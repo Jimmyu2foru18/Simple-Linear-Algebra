@@ -1,6 +1,6 @@
-// Function to create and manage notes
+
 function createNotepad(videoTitle) {
-    // Create a floating notepad container
+    // Create notepad container
     const notepad = document.createElement('div');
     notepad.className = 'floating-notepad';
     notepad.style.display = 'none';
@@ -19,11 +19,9 @@ function createNotepad(videoTitle) {
             <button class="save-btn">Save to Desktop</button>
         </div>
     `;
-
-    // Add the notepad to the document body
     document.body.appendChild(notepad);
 
-    // Make the notepad draggable
+    // notepad draggable
     const header = notepad.querySelector('.notepad-header');
     let isDragging = false;
     let currentX;
@@ -64,25 +62,25 @@ function createNotepad(videoTitle) {
         el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
     }
 
-    // Handle minimize button
+    // minimize button
     const minimizeBtn = notepad.querySelector('.minimize-btn');
     minimizeBtn.onclick = () => {
         const content = notepad.querySelector('.notepad-content');
         content.classList.toggle('minimized');
     };
 
-    // Get the close button and add click event
+    // button click
     const closeBtn = notepad.querySelector('.close');
     closeBtn.onclick = () => notepad.style.display = 'none';
 
-    // Save notes when the save button is clicked
+    // Save notes 
     const saveBtn = notepad.querySelector('.save-btn');
     saveBtn.onclick = () => {
         const textarea = notepad.querySelector('.notepad-textarea');
         const content = textarea.value;
         localStorage.setItem(`notes-${videoTitle}`, content);
 
-        // Create a Blob and download it
+        // download
         const blob = new Blob([content], { type: 'text/plain' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -97,7 +95,7 @@ function createNotepad(videoTitle) {
     return notepad;
 }
 
-// Function to add note buttons to all video sections
+//buttons
 function addNoteButtons() {
     const videoSections = document.querySelectorAll('.chapter h3');
     
@@ -107,18 +105,12 @@ function addNoteButtons() {
         noteButton.className = 'note-btn';
         noteButton.textContent = 'Take Notes';
         
-        // Create notepad modal for this video
         const notepadModal = createNotepad(videoTitle);
         
-        // Add click event to the button
         noteButton.onclick = () => {
             notepadModal.style.display = 'block';
         };
-        
-        // Insert button after the video section title
         section.parentNode.insertBefore(noteButton, section.nextSibling);
     });
 }
-
-// Initialize note-taking functionality when the page loads
 window.addEventListener('load', addNoteButtons);
