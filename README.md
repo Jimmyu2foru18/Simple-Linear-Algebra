@@ -2,6 +2,10 @@
 
 This project is an interactive web-based learning resource for Linear Algebra, featuring video lectures by Prof. Gilbert Strang. The course covers fundamental concepts of linear algebra with a focus on geometric interpretation and practical applications.
 
+## Preview
+
+Experience our interactive Linear Algebra course website live at: [Simple Linear Algebra Course](https://jimmyu2foru18.github.io/Simple-Linear-Algebra/)
+
 ## Features
 
 - Comprehensive video lectures from MIT OpenCourseWare
