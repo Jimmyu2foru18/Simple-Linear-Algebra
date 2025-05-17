@@ -43,6 +43,12 @@ The course covers essential topics in Linear Algebra including:
      ```
      Then visit `http://localhost:8000`
 
+## Preview
+
+Experience our interactive Linear Algebra course website live at: [Simple Linear Algebra Course](https://jimmyu2foru18.github.io/Simple-Linear-Algebra/)
+
+![Website Preview](preview.png)
+
 ## Deployment
 
 This site is automatically deployed to GitHub Pages. You can access it at: https://jimmyu2foru18.github.io/Simple-Linear-Algebra/
