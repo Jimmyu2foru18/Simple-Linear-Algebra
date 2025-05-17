@@ -6,7 +6,7 @@ This project is an interactive web-based learning resource for Linear Algebra, f
 
 Experience our interactive Linear Algebra course website live at: [Simple Linear Algebra Course](https://jimmyu2foru18.github.io/Simple-Linear-Algebra/)
 
-![Website Preview](preview.png)
+![Preview](preview.png)
 
 ## Features
 
