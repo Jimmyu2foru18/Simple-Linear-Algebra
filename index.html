@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Algebra - Prof. Gilbert Strang</title>
+    <style>
+        :root {
+            --primary-color: #1a2634;
+            --secondary-color: #2980b9;
+            --background-color: #f8f9fa;
+            --text-color: #1a1a1a;
+            --section-padding: 2rem;
+            --transition-speed: 0.3s;
+            --border-radius: 8px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            font-size: 16px;
+            letter-spacing: 0.3px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            background-image: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: #ffffff;
+            padding: var(--section-padding);
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .course-info {
+            background-color: #ffffff;
+            padding: var(--section-padding);
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: transform var(--transition-speed);
+            color: #1a1a1a;
+        }
+
+        .course-info:hover {
+            transform: translateY(-2px);
+        }
+
+        .chapter {
+            background-color: white;
+            padding: var(--section-padding);
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: all var(--transition-speed);
+        }
+
+        .chapter:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .chapter h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .notes {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-left: 4px solid var(--secondary-color);
+            margin: 1.5rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            transition: all var(--transition-speed);
+        }
+
+        .notes:hover {
+            background-color: #f1f3f5;
+            transform: translateX(4px);
+        }
+
+        .example {
+            background-color: #e8f4f8;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+            border: 1px solid #b3e0ff;
+            transition: all var(--transition-speed);
+        }
+
+        .example:hover {
+            background-color: #dff0f7;
+            transform: scale(1.01);
+        }
+
+        .questions {
+            background-color: #fff3e0;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+            border: 1px solid #ffe0b2;
+            transition: all var(--transition-speed);
+        }
+
+        .questions:hover {
+            background-color: #ffe8cc;
+            transform: scale(1.01);
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.75rem; }
+        h4 { font-size: 1.5rem; }
+
+        ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        pre {
+            background-color: #f1f3f5;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            body { font-size: 14px; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
+            h3 { font-size: 1.5rem; }
+            h4 { font-size: 1.25rem; }
+
+            .course-info, .chapter {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .notes, .example, .questions {
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Linear Algebra</h1>
+        <div class="course-info">
+            <p><strong>Instructor:</strong> Prof. Gilbert Strang</p>
+            <p><strong>Department:</strong> Mathematics</p>
+            <p><strong>Year:</strong> Fall 2011</p>
+            <p><strong>Level:</strong> Undergraduate</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="chapter">
+            <h2>Week 1</h2>
+            <h3>01. The Geometry of Linear Equations</h3>
+            
+            <div class="video-container">
+                <iframe width="808" height="455" src="https://www.youtube.com/embed/J7DzL2_Na80" 
+                    title="1. The Geometry of Linear Equations" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="notes">
+                <h4>Key Concepts</h4>
+                <ul>
+                    <li>The Problem: Understanding systems of linear equations geometrically</li>
+                    <li>The Matrix: A compact way to represent linear equations</li>
+                    <li>Vectors: Understanding linear combinations and their geometric meaning</li>
+                    <li>Matrix Form: Writing equations as Ax = b</li>
+                    <li>Dimensional Space: Extending concepts beyond 3D to n-dimensions</li>
+                </ul>
+
+                <h4>Important Points</h4>
+                <p>Linear algebra provides a framework for solving systems of linear equations through geometric interpretation. The key is understanding how vectors combine and intersect in space, and how matrices represent these relationships systematically.</p>
+                <p>Linear combinations of vectors can span spaces, creating planes, lines, or entire dimensional spaces depending on their properties.</p>
+                <p>The matrix equation Ax = b represents a system where we're looking for a point x that satisfies all equations simultaneously.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <p>Consider the system:</p>
+                <pre>
+2x + y = 4
+x - y = 1</pre>
+                <p>Geometrically, these equations represent two lines in 2D space. Their intersection point (if it exists) is the solution to the system. In this case, x = 2, y = 0 is the solution, as it satisfies both equations.</p>
+            </div>
+
+            <div class="questions">
+                <h4>Key Questions</h4>
+                <p><strong>Can we solve Ax = b for every b?</strong></p>
+                <p>Not always. The solution exists only when b is in the column space of A (the span of A's columns).</p>
+
+                <p><strong>Do the linear combinations of the columns fill 3-D space?</strong></p>
+                <p>Only if the columns are linearly independent and there are three of them. The columns must point in different directions to span the full space.</p>
+
+                <p><strong>When can the combinations go wrong?</strong></p>
+                <p>Problems occur when vectors are linearly dependent (lie in the same plane or line), making it impossible to reach certain points in the space. This happens when determinant = 0 or when columns are parallel.</p>
+
+                <p><strong>Dimensional Space</strong></p>
+                <p>While we can visualize in 2D and 3D, the concepts extend to n-dimensional space. The same principles apply: linear independence, span, and solutions exist in higher dimensions.</p>
+            </div>
+        </section>
+
+        <!-- Placeholder for remaining chapters -->
+        <section class="chapter">
+            <h3>02. Elimination with Matrices</h3>
+            <div class="video-container">
+                <iframe width="1861" height="757" src="https://www.youtube.com/embed/QVKj3LADCnA" 
+                    title="2. Elimination with Matrices" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="notes">
+                <h4>Key Concepts</h4>
+                <ul>
+                    <li>Gaussian Elimination: Systematic method for solving systems of linear equations</li>
+                    <li>Matrix Operations: Understanding how elimination steps can be represented as matrix operations</li>
+                    <li>Upper Triangular Form: Converting matrices to a simpler form for solving equations</li>
+                    <li>Back Substitution: Process of solving equations after elimination</li>
+                </ul>
+
+                <h4>Important Points</h4>
+                <p>Elimination is a fundamental process in linear algebra that transforms a system of equations into an equivalent, easier-to-solve system. The process involves systematic steps to create zero entries below the diagonal of the matrix.</p>
+                <p>Each elimination step can be represented as a matrix multiplication, showing how linear algebra connects computational and theoretical aspects.</p>
+                <p>The final upper triangular form allows for straightforward back substitution to find solutions.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <p>Consider the system:</p>
+                <pre>
+2x + 4y = 8
+x + 3y = 5</pre>
+                <p>Elimination steps:</p>
+                <ol>
+                    <li>Subtract (½ × first equation) from second equation:</li>
+                    <li>2x + 4y = 8</li>
+                    <li>y = 1</li>
+                </ol>
+                <p>Back substitution gives: y = 1, x = 2</p>
+            </div>
+
+            <div class="questions">
+                <h4>Key Questions</h4>
+                <p><strong>When does elimination fail?</strong></p>
+                <p>Elimination fails when we encounter a zero pivot (division by zero) or when the system has no unique solution.</p>
+
+                <p><strong>What makes a good pivot element?</strong></p>
+                <p>A good pivot should be non-zero and preferably large in magnitude to minimize numerical errors in calculations.</p>
+
+                <p><strong>How do we handle special cases?</strong></p>
+                <p>Special cases like zero pivots may require row exchanges (pivoting) or indicate that the system has no solution or infinitely many solutions.</p>
+            </div>
+        </section>
+
+        <section class="chapter">
+            <h3>03. Multiplication and Inverse Matrices</h3>
+            <div class="video-container">
+                <iframe width="1861" height="757" src="https://www.youtube.com/embed/FX4C-JpTFgY" 
+                    title="3. Multiplication and Inverse Matrices" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="notes">
+                <h4>Key Concepts</h4>
+                <ul>
+                    <li>Matrix Multiplication: Understanding the process and properties</li>
+                    <li>Inverse Matrices: Definition and conditions for existence</li>
+                    <li>Matrix Properties: Associative and distributive laws</li>
+                    <li>Applications: Solving systems using inverse matrices</li>
+                </ul>
+
+                <h4>Important Points</h4>
+                <p>Matrix multiplication is not commutative (AB ≠ BA) but follows specific rules for combining rows and columns. The process involves taking dot products of rows with columns.</p>
+                <p>A matrix A is invertible if there exists a matrix A⁻¹ such that AA⁻¹ = A⁻¹A = I (identity matrix). Not all matrices have inverses.</p>
+                <p>The inverse matrix provides a direct way to solve equations: if Ax = b, then x = A⁻¹b (when A is invertible).</p>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <p>For a 2×2 matrix:</p>
+                <pre>
+A = [2 1]
+    [1 3]
+
+A⁻¹ = [3/5  -1/5]
+      [-1/5  2/5]</pre>
+                <p>Verify: AA⁻¹ = I</p>
+                <p>This inverse exists because det(A) = 5 ≠ 0</p>
+            </div>
+
+            <div class="questions">
+                <h4>Key Questions</h4>
+                <p><strong>When does a matrix have an inverse?</strong></p>
+                <p>A matrix has an inverse if and only if it is square and its determinant is not zero (non-singular).</p>
+
+                <p><strong>Why isn't matrix multiplication commutative?</strong></p>
+                <p>The dimensions and arrangement of entries make AB and BA different in general, though they may be equal in special cases.</p>
+
+                <p><strong>What are the practical applications?</strong></p>
+                <p>Inverse matrices are used in computer graphics, economics, and solving complex systems of equations efficiently.</p>
+            </div>
+        </section>
+
+        <section class="chapter">
+            <h3>04. Factorization into A = LU</h3>
+            <div class="video-container">
+                <iframe width="1861" height="757" src="https://www.youtube.com/embed/MsIvs_6vC38" 
+                    title="4. Factorization into A = LU" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="notes">
+                <h4>Key Concepts</h4>
+                <ul>
+                    <li>LU Decomposition: Breaking down a matrix into lower and upper triangular matrices</li>
+                    <li>Triangular Matrices: Properties and advantages in solving systems</li>
+                    <li>Factorization Process: Understanding how elimination leads to LU form</li>
+                    <li>Computational Efficiency: Benefits of LU factorization in solving multiple systems</li>
+                </ul>
+
+                <h4>Important Points</h4>
+                <p>LU factorization represents the elimination process as a product of two triangular matrices: L (lower triangular) and U (upper triangular).</p>
+                <p>The factorization A = LU stores the elimination steps efficiently and allows solving Ax = b by first solving Ly = b, then Ux = y.</p>
+                <p>This method is particularly efficient when solving multiple systems with the same coefficient matrix but different right-hand sides.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <p>For the matrix:</p>
+                <pre>
+A = [2  4]
+    [1  3]
+
+L = [1  0]
+    [1/2 1]
+
+U = [2  4]
+    [0  1]</pre>
+                <p>Verify: A = LU</p>
+                <p>This factorization captures the elimination step that created zeros below the diagonal.</p>
+            </div>
+
+            <div class="questions">
+                <h4>Key Questions</h4>
+                <p><strong>When is LU factorization possible?</strong></p>
+                <p>LU factorization is possible when all leading submatrices have non-zero determinants and no row exchanges are needed.</p>
+
+                <p><strong>What are the advantages of LU factorization?</strong></p>
+                <p>It's more efficient than computing the inverse, especially for large systems or when solving multiple systems with the same coefficient matrix.</p>
+
+                <p><strong>How does pivoting affect LU factorization?</strong></p>
+                <p>When pivoting is needed, we get PLU factorization, where P is a permutation matrix representing row exchanges.</p>
+            </div>
+        </section>
+
+        <section class="chapter">
+            <h3>05. Transposes, Permutations, Spaces R^n</h3>
+            <div class="video-container">
+                <iframe width="1861" height="757" src="https://www.youtube.com/embed/JibVXBElKL0" 
+                    title="5. Transposes, Permutations, Spaces R^n" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="notes">
+                <h4>Key Concepts</h4>
+                <ul>
+                    <li>Matrix Transpose: Properties and operations with A^T</li>
+                    <li>Permutation Matrices: Understanding row and column exchanges</li>
+                    <li>Vector Spaces: Properties and operations in R^n</li>
+                    <li>Subspaces: Understanding subsets that preserve vector operations</li>
+                </ul>
+
+                <h4>Important Points</h4>
+                <p>The transpose A^T is formed by converting rows to columns (or vice versa). For any matrix A, (A^T)^T = A and (AB)^T = B^TA^T.</p>
+                <p>Permutation matrices represent row exchanges and are invertible, with their inverse being their transpose.</p>
+                <p>R^n is a vector space with specific properties like closure under addition and scalar multiplication. Understanding its structure is crucial for linear algebra.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <p>Consider the matrix and its transpose:</p>
+                <pre>
+A = [1 2 3]
+    [4 5 6]
+
+A^T = [1 4]
+      [2 5]
+      [3 6]</pre>
+                <p>A permutation matrix:</p>
+                <pre>
+P = [0 1]
+    [1 0]</pre>
+                <p>This P swaps rows when multiplied with another matrix.</p>
+            </div>
+
+            <div class="questions">
+                <h4>Key Questions</h4>
+                <p><strong>What are the properties of transpose matrices?</strong></p>
+                <p>Transpose matrices have special properties in terms of multiplication, addition, and inverse operations. For symmetric matrices, A = A^T.</p>
+
+                <p><strong>How do permutations affect matrix operations?</strong></p>
+                <p>Permutations preserve the essential properties of matrices while rearranging rows or columns, useful in optimization and solving systems.</p>
+
+                <p><strong>What defines a vector space?</strong></p>
+                <p>A vector space must satisfy eight axioms including closure under addition and scalar multiplication, existence of zero vector, and additive inverses.</p>
+            </div>
+        </section>
+
+        <section class="chapter">
+            <h3>06. Column Space and Nullspace</h3>
+            <div class="video-container">
+                <iframe width="1861" height="757" src="https://www.youtube.com/embed/8o5Cmfpeo6g" 
+                    title="6. Column Space and Nullspace" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="notes">
+                <h4>Key Concepts</h4>
+                <ul>
+                    <li>Column Space: All possible linear combinations of matrix columns</li>
+                    <li>Nullspace: All solutions to Ax = 0</li>
+                    <li>Rank: Dimension of the column space</li>
+                    <li>Fundamental Theorem: Relationship between dimensions</li>
+                </ul>
+
+                <h4>Important Points</h4>
+                <p>The column space C(A) consists of all vectors b such that Ax = b has a solution. It represents all possible outputs of the matrix transformation.</p>
+                <p>The nullspace N(A) contains all vectors x that satisfy Ax = 0. These vectors reveal the linear dependencies among the columns.</p>
+                <p>The rank of a matrix determines its column space dimension and is crucial in understanding system solvability.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <p>For the matrix:</p>
+                <pre>
+A = [1  2]
+    [2  4]
+    [3  6]</pre>
+                <p>Column Space: All linear combinations of [1;2;3] and [2;4;6]</p>
+                <p>Nullspace: Contains multiples of [-2;1] since 1(-2) + 2(1) = 0</p>
+                <p>Rank = 1 (columns are proportional)</p>
+            </div>
+
+            <div class="questions">
+                <h4>Key Questions</h4>
+                <p><strong>How do we find the column space?</strong></p>
+                <p>The column space consists of all linear combinations of the columns. Reduced row echelon form helps identify a basis.</p>
+
+                <p><strong>What does the nullspace tell us?</strong></p>
+                <p>The nullspace reveals linear dependencies and helps understand when the system Ax = b has no solution or infinitely many solutions.</p>
+
+                <p><strong>How are rank and nullspace related?</strong></p>
+                <p>The Rank-Nullity Theorem states that rank(A) + dim(N(A)) = n, where n is the number of columns in A.</p>
+            </div>
+        </section>
+
+        <section class="chapter">
+            <h3>07. Solving Ax = 0: Pivot Variables, Special Solutions</h3>
+            <div class="video-container">
+                <iframe width="1861" height="757" src="https://www.youtube.com/embed/VqP2tREMvt0" 
+                    title="7. Solving Ax = 0: Pivot Variables, Special Solutions" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="notes">
+                <h4>Key Concepts</h4>
+                <ul>
+                    <li>Pivot Variables: Key variables in solving systems</li>
+                    <li>Free Variables: Variables that can take any value</li>
+                    <li>Special Solutions: Basic solutions to homogeneous equations</li>
+                    <li>Reduced Row Echelon Form: Standard form for solving systems</li>
+                </ul>
+
+                <h4>Important Points</h4>
+                <p>When solving Ax = 0, pivot variables are determined by the leading entries in the reduced row echelon form. Free variables can be assigned any value.</p>
+                <p>Special solutions are found by setting one free variable to 1 and others to 0, creating a basis for the nullspace.</p>
+                <p>The number of free variables equals the dimension of the nullspace, while the number of pivot variables equals the rank.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <p>Consider the system:</p>
+                <pre>
+[1 2 2 2][x1]   [0]
+[2 4 6 8][x2] = [0]
+[3 6 8 10][x3]   [0]
+           [x4]</pre>
+                <p>After reduction:</p>
+                <pre>
+[1 2 2 2]
+[0 0 2 4]
+[0 0 0 0]</pre>
+                <p>x1, x3 are pivot variables; x2, x4 are free variables</p>
+            </div>
+
+            <div class="questions">
+                <h4>Key Questions</h4>
+                <p><strong>How do we identify pivot variables?</strong></p>
+                <p>Pivot variables correspond to leading 1's in the reduced row echelon form. They are determined by the rank of the matrix.</p>
+
+                <p><strong>What is the significance of free variables?</strong></p>
+                <p>Free variables generate the nullspace. Each free variable leads to a special solution, and their linear combinations give all solutions.</p>
+
+                <p><strong>How do we find special solutions?</strong></p>
+                <p>Set one free variable to 1 and others to 0, then solve for pivot variables. Repeat for each free variable to find a basis for the nullspace.</p>
+            </div>
+        </section>
+
+        <section class="chapter">
+            <h3>08. Solving Ax = b: Row Reduced Form R</h3>
+            <div class="video-container">
+                <iframe width="1861" height="757" src="https://www.youtube.com/embed/9Q1q7s1jTzU" 
+                    title="8. Solving Ax = b: Row Reduced Form R" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="notes">
+                <h4>Key Concepts</h4>
+                <ul>
+                    <li>Row Reduced Form: Standard form for solving linear systems</li>
+                    <li>Complete Solution: Particular + nullspace solutions</li>
+                    <li>Solvability Conditions: When Ax = b has solutions</li>
+                    <li>Rank Condition: Relationship to existence of solutions</li>
+                </ul>
+
+                <h4>Important Points</h4>
+                <p>The row reduced form R reveals whether Ax = b has solutions and helps find them efficiently. The complete solution combines a particular solution with the nullspace solution.</p>
+                <p>Solvability depends on whether b is in the column space of A. This can be checked using the rank condition.</p>
+                <p>When solutions exist, there may be either a unique solution or infinitely many solutions, determined by the presence of free variables.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <p>For the system:</p>
+                <pre>
+[1 2 3][x]   [6]
+[2 4 6][y] = [12]
+[3 6 9][z]   [18]</pre>
+                <p>Row reduced form:</p>
+                <pre>
+[1 2 3 | 6]
+[0 0 0 | 0]
+[0 0 0 | 0]</pre>
+                <p>Solution: x + 2y + 3z = 6, with y and z free</p>
+            </div>
+
+            <div class="questions">
+                <h4>Key Questions</h4>
+                <p><strong>When does Ax = b have a solution?</strong></p>
+                <p>A solution exists if and only if b is in the column space of A, which occurs when the rank of [A b] equals the rank of A.</p>
+
+                <p><strong>How do we find the complete solution?</strong></p>
+                <p>Find a particular solution xp where Axp = b, then add any solution xn from the nullspace (Axn = 0). The complete solution is x = xp + xn.</p>
+
+                <p><strong>What role does rank play?</strong></p>
+                <p>The rank determines both existence (through the rank condition) and uniqueness (through the number of free variables) of solutions.</p>
+            </div>
+        </section>
+
+        <section class="chapter">
+            <h3>09. Independence, Basis, and Dimension</h3>
+            <div class="video-container">
+                <iframe width="1861" height="757" src="https://www.youtube.com/embed/yjBerM5jWsc" 
+                    title="9. Independence, Basis, and Dimension" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="notes">
+                <h4>Key Concepts</h4>
+                <ul>
+                    <li>Linear Independence: Vectors that cannot be expressed as combinations of others</li>
+                    <li>Basis: Minimal spanning set of vectors</li>
+                    <li>Dimension: Number of vectors in a basis</li>
+                    <li>Coordinate Systems: Representing vectors in terms of a basis</li>
+                </ul>
+
+                <h4>Important Points</h4>
+                <p>Vectors are linearly independent if none can be written as a linear combination of the others. This is equivalent to having only the trivial solution to c₁v₁ + c₂v₂ + ... + cₙvₙ = 0.</p>
+                <p>A basis is a linearly independent set that spans the space. Every vector in the space can be written uniquely as a linear combination of basis vectors.</p>
+                <p>The dimension of a space is the number of vectors in any basis. This is a fundamental invariant of the space.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <p>Consider vectors in R³:</p>
+                <pre>
+v₁ = [1]
+     [0]
+     [0]
+
+v₂ = [0]
+     [1]
+     [0]
+
+v₃ = [0]
+     [0]
+     [1]</pre>
+                <p>These vectors form a basis for R³ because they are:</p>
+                <ol>
+                    <li>Linearly independent (no vector is a combination of others)</li>
+                    <li>Span R³ (can reach any point in R³)</li>
+                </ol>
+            </div>
+
+            <div class="questions">
+                <h4>Key Questions</h4>
+                <p><strong>How do we test for linear independence?</strong></p>
+                <p>Form a matrix with the vectors as columns and reduce to echelon form. The vectors are independent if and only if each column has a pivot.</p>
+
+                <p><strong>Why is basis important?</strong></p>
+                <p>A basis provides a coordinate system for the space, allowing us to represent any vector uniquely as a combination of basis vectors.</p>
+
+                <p><strong>What determines dimension?</strong></p>
+                <p>The dimension is determined by the number of vectors needed to span the space while maintaining linear independence.</p>
+            </div>
+        </section>
+
+        <section class="chapter">
+            <h3>10. The Four Fundamental Subspaces</h3>
+            <div class="video-container">
+                <iframe width="1861" height="757" src="https://www.youtube.com/embed/nHlE7EgJFds?list=PL221E2BBF13BECF6C" 
+                    title="10. The Four Fundamental Subspaces" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="notes">
+                <h4>Key Concepts</h4>
+                <ul>
+                    <li>The Four Fundamental Subspaces: Column space C(A), Nullspace N(A), Row space C(A<sup>T</sup>), Left nullspace N(A<sup>T</sup>)</li>
+                    <li>Dimension Relations: dim C(A) = dim C(A<sup>T</sup>) = rank(A)</li>
+                    <li>Fundamental Theorem: dim N(A) + rank(A) = n (number of columns)</li>
+                    <li>Solution Analysis: Using subspaces to analyze Ax = b</li>
+                </ul>
+
+                <h4>Important Points</h4>
+                <ul>
+                    <li>The column space contains all possible outputs of the matrix transformation</li>
+                    <li>The nullspace reveals all solutions to Ax = 0</li>
+                    <li>The row space is orthogonal to the nullspace</li>
+                    <li>The left nullspace contains all vectors y where A<sup>T</sup>y = 0</li>
+                </ul>
+
+                <h4>Key Questions and Answers</h4>
+                <p><strong>What is the relationship between the four subspaces?</strong></p>
+                <p>The row space and nullspace are orthogonal complements in R<sup>n</sup>, while the column space and left nullspace are orthogonal complements in R<sup>m</sup>.</p>
+
+                <p><strong>How do we find these subspaces?</strong></p>
+                <p>Column space: Look at the span of columns. Nullspace: Solve Ax = 0. Row space: Take transpose and find column space. Left nullspace: Solve A<sup>T</sup>y = 0.</p>
+
+                <p><strong>Why are these subspaces fundamental?</strong></p>
+                <p>They completely characterize the behavior of a linear transformation, including its solutions, kernel, and image.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <p>Consider the matrix:</p>
+                <pre>
+A = [1 2 3]
+    [2 4 6]</pre>
+                <p>Column Space: span{[1,2], [2,4], [3,6]} = span{[1,2]}<br>
+Nullspace: vectors x where Ax = 0, here x = t[-2,1,0] for any t<br>
+Row Space: span{[1,2,3], [2,4,6]} = span{[1,2,3]}<br>
+Left Nullspace: vectors y where A<sup>T</sup>y = 0, here y = t[-2,1] for any t</p>
+            </div>
+
+            <h3>11. Matrix Spaces; Rank 1; Small World Graphs</h3>
+            <div class="video-container">
+                <iframe width="1861" height="757" src="https://www.youtube.com/embed/2IdtqGM6KWU?list=PL221E2BBF13BECF6C" 
+                    title="11. Matrix Spaces; Rank 1; Small World Graphs" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="notes">
+                <h4>Key Concepts</h4>
+                <ul>
+                    <li>Matrix Spaces: Vector spaces of matrices with specific dimensions</li>
+                    <li>Rank-1 Matrices: Fundamental building blocks of higher rank matrices</li>
+                    <li>Small World Graphs: Network structures with specific connectivity patterns</li>
+                    <li>Matrix Decomposition: Breaking down matrices into simpler components</li>
+                </ul>
+
+                <h4>Important Points</h4>
+                <ul>
+                    <li>Every rank-1 matrix is the outer product of two vectors</li>
+                    <li>Higher rank matrices can be expressed as sums of rank-1 matrices</li>
+                    <li>Small world networks combine local and long-range connections</li>
+                    <li>The dimension of matrix spaces depends on the matrix size</li>
+                </ul>
+
+                <h4>Key Questions and Answers</h4>
+                <p><strong>What characterizes a rank-1 matrix?</strong></p>
+                <p>A rank-1 matrix can always be written as the outer product uv<sup>T</sup> of two vectors, where all columns are multiples of a single vector.</p>
+
+                <p><strong>How do small world graphs relate to linear algebra?</strong></p>
+                <p>The adjacency and connectivity matrices of small world graphs can be analyzed using matrix operations to understand network properties and information flow.</p>
+
+                <p><strong>Why are matrix spaces important?</strong></p>
+                <p>They provide a framework for understanding linear transformations between vector spaces and help analyze complex systems through matrix representations.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <p>A rank-1 matrix:</p>
+                <pre>
+[1] [2 3 4] = [2 3 4]
+[2]           [4 6 8]</pre>
+                <p>This 2×3 matrix is formed by multiplying a 2×1 vector by a 1×3 vector, creating a rank-1 matrix where all columns are multiples of [1,2].</p>
+            </div>
+
+            <h3>12. Graphs, Networks, Incidence Matrices</h3>
+            <div class="video-container">
+                <iframe width="1861" height="757" src="https://www.youtube.com/embed/6-wh6yvk6uc?list=PL221E2BBF13BECF6C" 
+                    title="12. Graphs, Networks, Incidence Matrices" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="notes">
+                <h4>Key Concepts</h4>
+                <ul>
+                    <li>Graph Representation: Using matrices to represent network structure</li>
+                    <li>Incidence Matrices: Encoding node-edge relationships</li>
+                    <li>Network Analysis: Understanding connectivity and flow</li>
+                    <li>Graph Properties: Paths, cycles, and components</li>
+                </ul>
+
+                <h4>Important Points</h4>
+                <ul>
+                    <li>Incidence matrices show how nodes connect through edges</li>
+                    <li>The nullspace reveals cycles in the graph</li>
+                    <li>Connected components appear in the matrix structure</li>
+                    <li>Flow conservation is represented by matrix equations</li>
+                </ul>
+
+                <h4>Key Questions and Answers</h4>
+                <p><strong>How do incidence matrices represent graphs?</strong></p>
+                <p>Each row represents a node, each column an edge. Entries are typically +1, -1 for edge direction, and 0 for no connection.</p>
+
+                <p><strong>What can we learn from the nullspace?</strong></p>
+                <p>The nullspace basis vectors correspond to fundamental cycles in the graph, helping identify independent circular paths.</p>
+
+                <p><strong>How do we analyze network flow?</strong></p>
+                <p>Flow conservation at nodes is expressed through matrix equations, where the incidence matrix multiplied by the flow vector equals the supply/demand vector.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <p>For a simple graph with 3 nodes and 2 edges:</p>
+                <pre>
+Node 1 ---(Edge 1)--- Node 2 ---(Edge 2)--- Node 3
+
+Incidence Matrix:
+    E1  E2
+N1  1   0
+N2 -1   1
+N3  0  -1</pre>
+            </div>
+
+            <h3>13. Quiz 1 Review</h3>
+            <div class="video-container">
+                <iframe width="1861" height="757" src="https://www.youtube.com/embed/l88D4r74gtM?list=PL221E2BBF13BECF6C" 
+                    title="13. Quiz 1 Review" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="notes">
+                <h4>Comprehensive Review</h4>
+                
+                <h5>1. The Geometry of Linear Equations</h5>
+                <ul>
+                    <li>Visualization of linear equations in 2D and 3D</li>
+                    <li>Geometric interpretation of solution sets</li>
+                    <li>Row picture vs. column picture</li>
+                    <li>Systems with unique solutions, no solutions, and infinite solutions</li>
+                </ul>
+
+                <h5>2. Elimination with Matrices</h5>
+                <ul>
+                    <li>Gaussian elimination process</li>
+                    <li>Upper triangular form and back substitution</li>
+                    <li>Matrix operations in elimination</li>
+                    <li>Permutation matrices and their role</li>
+                </ul>
+
+                <h5>3. Matrix Operations</h5>
+                <ul>
+                    <li>Matrix multiplication and its properties</li>
+                    <li>Inverse matrices and their computation</li>
+                    <li>Transpose properties</li>
+                    <li>Matrix factorization (LU decomposition)</li>
+                </ul>
+
+                <h5>4. Vector Spaces and Subspaces</h5>
+                <ul>
+                    <li>Vector space axioms and properties</li>
+                    <li>Subspace criteria and examples</li>
+                    <li>Span and linear combinations</li>
+                    <li>Linear independence vs. dependence</li>
+                </ul>
+
+                <h5>5. Vector Spaces and Linear Transformations</h5>
+                <ul>
+                    <li>Linear transformations and their properties</li>
+                    <li>Matrix representation of transformations</li>
+                    <li>One-to-one and onto mappings</li>
+                    <li>Kernel and range of transformations</li>
+                </ul>
+
+                <h5>6. Column Space and Nullspace</h5>
+                <ul>
+                    <li>Column space: C(A) and its properties</li>
+                    <li>Nullspace: N(A) and its significance</li>
+                    <li>Rank and dimension relationships</li>
+                    <li>The Rank-Nullity theorem</li>
+                </ul>
+
+                <h5>7. Solving Ax = 0</h5>
+                <ul>
+                    <li>Pivot variables and free variables</li>
+                    <li>Special solutions and their construction</li>
+                    <li>Reduced row echelon form (RREF)</li>
+                    <li>Complete solution set description</li>
+                </ul>
+
+                <h5>Practice Problems</h5>
+                <div class="example">
+                    <p><strong>Problem 1:</strong> Find the complete solution to a system Ax = 0 where A is a 3×4 matrix with rank 2.</p>
+                    <p><strong>Key Points:</strong></p>
+                    <ul>
+                        <li>Identify the number of free variables (2)</li>
+                        <li>Find special solutions</li>
+                        <li>Express general solution as linear combination</li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <p><strong>Problem 2:</strong> Determine if vectors form a basis for a vector space.</p>
+                    <p><strong>Method:</strong></p>
+                    <ul>
+                        <li>Check linear independence</li>
+                        <li>Verify span of the space</li>
+                        <li>Compare dimensions</li>
+                    </ul>
+                </div>
+
+                <h5>Key Theorems to Remember</h5>
+                <ul>
+                    <li>Rank-Nullity Theorem: rank(A) + dim(N(A)) = n</li>
+                    <li>Dimension Theorem for subspaces</li>
+                    <li>Invertible Matrix Theorem conditions</li>
+                    <li>Basis Theorem for vector spaces</li>
+                </ul>
+
+                <h5>Common Mistakes to Avoid</h5>
+                <ul>
+                    <li>Forgetting to check all subspace properties</li>
+                    <li>Incorrect row reduction in elimination</li>
+                    <li>Misidentifying pivot columns</li>
+                    <li>Overlooking the importance of linear independence</li>
+                </ul>
+                <h5>Additional Topics</h5>
+                <ul>
+                    <li>Orthogonality and Projections</li>
+                    <li>Eigenvalues and Eigenvectors</li>
+                    <li>Determinants and their properties</li>
+                    <li>Symmetric matrices and orthogonal matrices</li>
+                </ul>
+
+                <h5>Study Tips</h5>
+                <ul>
+                    <li>Focus on understanding concepts geometrically</li>
+                    <li>Practice solving problems systematically</li>
+                    <li>Connect different topics and their relationships</li>
+                    <li>Review definitions and theorems regularly</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
