@@ -330,12 +330,25 @@
             </div>
 
             <div class="example">
-                <h4>Example</h4>
-                <p>Consider the system:</p>
+                <h4>Example 1: Geometric Interpretation</h4>
+                <p>From Professor Strang's lecture, consider this system of linear equations:</p>
                 <pre>
-2x + y = 4
-x - y = 1</pre>
-                <p>Geometrically, these equations represent two lines in 2D space. Their intersection point (if it exists) is the solution to the system. In this case, x = 2, y = 0 is the solution, as it satisfies both equations.</p>
+2x - y = 0
+x + y = 3</pre>
+                <p>Geometric Analysis:</p>
+                <ul>
+                    <li>First equation (2x - y = 0): A line through the origin with slope 2</li>
+                    <li>Second equation (x + y = 3): A line with y-intercept 3</li>
+                    <li>Solution: The intersection point (2, 1) where both equations are satisfied</li>
+                </ul>
+                <p>This example demonstrates how linear equations represent lines and their intersection represents the solution to the system.</p>
+                <h4>Example 2: Column Picture</h4>
+                <p>The same system viewed as column vectors:</p>
+                <pre>
+x[2] + y[1] = [0]
+ [-1]   [1]   [3]</pre>
+                <p>This shows us that we're looking for the right combination of the column vectors [2;-1] and [1;1] to produce the vector [0;3].</p>
+                <p>As Professor Strang emphasizes, this column picture is fundamental to understanding linear algebra geometrically - we're finding the right linear combination of vectors to reach a specific point.</p>
             </div>
 
             <div class="questions">
@@ -381,18 +394,32 @@ x - y = 1</pre>
             </div>
 
             <div class="example">
-                <h4>Example</h4>
-                <p>Consider the system:</p>
+                <h4>Example 1: Gaussian Elimination Process</h4>
+                <p>From Professor Strang's lecture, consider this system of equations:</p>
                 <pre>
-2x + 4y = 8
-x + 3y = 5</pre>
-                <p>Elimination steps:</p>
+x + 2y + z = 2     (equation 1)
+3x + 8y + z = 12   (equation 2)
+0x + 4y + z = 2    (equation 3)</pre>
+                <p>Step-by-Step Elimination:</p>
                 <ol>
-                    <li>Subtract (½ × first equation) from second equation:</li>
-                    <li>2x + 4y = 8</li>
-                    <li>y = 1</li>
+                    <li>First elimination step: Multiply equation 1 by -3 and add to equation 2:</li>
+                    <pre>
+x + 2y + z = 2
+3x + 8y + z = 12
+-3x - 6y - 3z = -6
+_________________
+0x + 2y - 2z = 6</pre>
+                    <li>This gives us the new equation 2: 2y - 2z = 6 or y - z = 3</li>
+                    <li>Next, we continue with equation 3, which already has a zero in the first position</li>
                 </ol>
-                <p>Back substitution gives: y = 1, x = 2</p>
+                <p>As Professor Strang emphasizes, elimination is the systematic process of creating zeros below the pivot elements, transforming the system into an equivalent upper triangular form that's easier to solve.</p>
+                <h4>Example 2: Matrix Representation</h4>
+                <p>The same elimination process in matrix form:</p>
+                <pre>
+[1 2 1 | 2]     [1 2 1 | 2]     [1 2 1 | 2]
+[3 8 1 | 12] → [0 2 -2 | 6] → [0 2 -2 | 6]
+[0 4 1 | 2]     [0 4 1 | 2]     [0 0 5 | -10]</pre>
+                <p>Professor Strang shows how this matrix representation reveals the systematic nature of elimination. The pivots are 1, 2, and 5. The final upper triangular form allows for back substitution to find the solution: z = -2, y = 1, x = 2.</p>
             </div>
 
             <div class="questions">
@@ -435,16 +462,30 @@ x + 3y = 5</pre>
             </div>
 
             <div class="example">
-                <h4>Example</h4>
-                <p>For a 2×2 matrix:</p>
+                <h4>Example 1: Matrix Multiplication</h4>
+                <p>From Professor Strang's lecture, consider this matrix multiplication:</p>
                 <pre>
-A = [2 1]
-    [1 3]
+[1 0] [2 5]
+[3 4] [1 3]</pre>
+                <p>Professor Strang demonstrates that we can view this multiplication in different ways:</p>
+                <ul>
+                    <li>Row perspective: The first row of the result is [1×2 + 0×1, 1×5 + 0×3] = [2, 5]</li>
+                    <li>Column perspective: The first column of the result is 2[1;3] + 1[0;4] = [2;10]</li>
+                    <li>The complete result is [2 5; 10 17]</li>
+                </ul>
+                <h4>Example 2: Inverse Matrix</h4>
+                <p>For the matrix from the lecture:</p>
+                <pre>
+A = [1 2]
+    [3 7]
 
-A⁻¹ = [3/5  -1/5]
-      [-1/5  2/5]</pre>
-                <p>Verify: AA⁻¹ = I</p>
-                <p>This inverse exists because det(A) = 5 ≠ 0</p>
+A⁻¹ = [7  -2]
+      [-3  1]</pre>
+                <p>Professor Strang verifies this is the inverse by showing:</p>
+                <pre>
+AA⁻¹ = [1 2][7  -2] = [1 0]
+       [3 7][-3  1]   [0 1]</pre>
+                <p>This demonstrates a key concept from the lecture: when a matrix is invertible, we can solve Ax = b directly as x = A⁻¹b. The determinant of A is 1×7 - 2×3 = 1, which confirms A is invertible.</p>
             </div>
 
             <div class="questions">
@@ -487,19 +528,37 @@ A⁻¹ = [3/5  -1/5]
             </div>
 
             <div class="example">
-                <h4>Example</h4>
-                <p>For the matrix:</p>
+                <h4>Example 1: LU Decomposition</h4>
+                <p>From Professor Strang's lecture, consider this matrix factorization:</p>
                 <pre>
-A = [2  4]
-    [1  3]
+A = [1 2 1]
+    [3 8 1]
+    [0 4 1]
 
-L = [1  0]
-    [1/2 1]
+L = [1   0   0]
+    [3   1   0]
+    [0   2   1]
 
-U = [2  4]
-    [0  1]</pre>
-                <p>Verify: A = LU</p>
-                <p>This factorization captures the elimination step that created zeros below the diagonal.</p>
+U = [1 2 1]
+    [0 2 -2]
+    [0 0 5]</pre>
+                <p>Professor Strang demonstrates that this factorization captures the elimination process:</p>
+                <ul>
+                    <li>L contains the multipliers used during elimination (the numbers we multiply rows by)</li>
+                    <li>The 3 in L comes from eliminating the first entry in row 2</li>
+                    <li>The 2 in L comes from eliminating the second entry in row 3</li>
+                    <li>U is the upper triangular matrix resulting from elimination</li>
+                    <li>When we multiply L and U, we get back the original matrix A</li>
+                </ul>
+                <h4>Example 2: Solving Systems Using LU</h4>
+                <p>Professor Strang explains how LU factorization makes solving multiple systems efficient:</p>
+                <p>To solve Ax = b using LU factorization:</p>
+                <ol>
+                    <li>Factor A = LU (done once)</li>
+                    <li>Solve Ly = b (forward substitution)</li>
+                    <li>Solve Ux = y (back substitution)</li>
+                </ol>
+                <p>For example, with b = [5; 13; 8], we first solve Ly = b to get y = [5; -2; 12], then solve Ux = y to get x = [1; 2; 2]. This is especially efficient when solving multiple systems with the same coefficient matrix A but different right-hand sides b.</p>
             </div>
 
             <div class="questions">
@@ -542,8 +601,8 @@ U = [2  4]
             </div>
 
             <div class="example">
-                <h4>Example</h4>
-                <p>Consider the matrix and its transpose:</p>
+                <h4>Example 1: Transpose Properties</h4>
+                <p>From Professor Strang's lecture, consider this matrix and its transpose:</p>
                 <pre>
 A = [1 2 3]
     [4 5 6]
@@ -551,11 +610,18 @@ A = [1 2 3]
 A^T = [1 4]
       [2 5]
       [3 6]</pre>
-                <p>A permutation matrix:</p>
+                <p>Professor Strang demonstrates key properties:</p>
+                <ul>
+                    <li>(A^T)^T = A: The transpose of the transpose returns the original matrix</li>
+                    <li>(AB)^T = B^T A^T: The transpose of a product reverses the order</li>
+                    <li>For symmetric matrices, A = A^T (like A = [1 2; 2 3])</li>
+                </ul>
+                <h4>Example 2: Permutation Matrices</h4>
+                <p>A key permutation matrix from the lecture:</p>
                 <pre>
 P = [0 1]
     [1 0]</pre>
-                <p>This P swaps rows when multiplied with another matrix.</p>
+                <p>When P multiplies a matrix A, it exchanges the rows of A. Professor Strang shows that permutation matrices are invertible, and their inverse is their transpose: P^(-1) = P^T.</p>
             </div>
 
             <div class="questions">
@@ -598,15 +664,28 @@ P = [0 1]
             </div>
 
             <div class="example">
-                <h4>Example</h4>
-                <p>For the matrix:</p>
+                <h4>Example 1: Column Space and Nullspace</h4>
+                <p>From Professor Strang's lecture, consider this matrix:</p>
                 <pre>
 A = [1  2]
     [2  4]
     [3  6]</pre>
-                <p>Column Space: All linear combinations of [1;2;3] and [2;4;6]</p>
-                <p>Nullspace: Contains multiples of [-2;1] since 1(-2) + 2(1) = 0</p>
-                <p>Rank = 1 (columns are proportional)</p>
+                <p>Professor Strang analyzes this matrix in detail:</p>
+                <ul>
+                    <li>Column Space: All linear combinations of the columns [1;2;3] and [2;4;6]</li>
+                    <li>Since the second column is exactly twice the first column, the column space is just a line in R³</li>
+                    <li>Nullspace: Contains all vectors x where Ax = 0</li>
+                    <li>The vector x = [-2;1] is in the nullspace since A[-2;1] = -2[1;2;3] + 1[2;4;6] = [0;0;0]</li>
+                    <li>Rank = 1 (only one linearly independent column)</li>
+                </ul>
+                <h4>Example 2: Fundamental Spaces</h4>
+                <p>Professor Strang emphasizes the fundamental relationship:</p>
+                <p>For this 3×2 matrix with rank 1:</p>
+                <ul>
+                    <li>dim(Column Space) = rank = 1</li>
+                    <li>dim(Nullspace) = n - rank = 2 - 1 = 1</li>
+                    <li>dim(Row Space) = rank = 1</li>
+                </ul>
             </div>
 
             <div class="questions">
@@ -649,19 +728,29 @@ A = [1  2]
             </div>
 
             <div class="example">
-                <h4>Example</h4>
-                <p>Consider the system:</p>
+                <h4>Example: Finding the Nullspace</h4>
+                <p>From Professor Strang's lecture, consider this system Ax = 0:</p>
                 <pre>
 [1 2 2 2][x1]   [0]
 [2 4 6 8][x2] = [0]
 [3 6 8 10][x3]   [0]
            [x4]</pre>
-                <p>After reduction:</p>
+                <p>After row reduction to echelon form:</p>
                 <pre>
 [1 2 2 2]
 [0 0 2 4]
 [0 0 0 0]</pre>
-                <p>x1, x3 are pivot variables; x2, x4 are free variables</p>
+                <p>Professor Strang identifies:</p>
+                <ul>
+                    <li>Pivot variables: x1 and x3 (corresponding to columns 1 and 3)</li>
+                    <li>Free variables: x2 and x4 (corresponding to columns 2 and 4)</li>
+                    <li>The rank is 2, so the nullspace dimension is 4-2 = 2</li>
+                </ul>
+                <p>Special solutions (basis for nullspace):</p>
+                <pre>
+x2 = 1, x4 = 0 gives x1 = -2, x3 = 0, so x = [-2, 1, 0, 0]
+x2 = 0, x4 = 1 gives x1 = 0, x3 = -2, so x = [0, 0, -2, 1]</pre>
+                <p>The complete nullspace is all linear combinations of these two special solutions.</p>
             </div>
 
             <div class="questions">
@@ -704,18 +793,29 @@ A = [1  2]
             </div>
 
             <div class="example">
-                <h4>Example</h4>
-                <p>For the system:</p>
+                <h4>Example: Solving Ax = b</h4>
+                <p>From Professor Strang's lecture, consider this system:</p>
                 <pre>
 [1 2 3][x]   [6]
 [2 4 6][y] = [12]
 [3 6 9][z]   [18]</pre>
-                <p>Row reduced form:</p>
+                <p>Professor Strang shows the row reduced form:</p>
                 <pre>
 [1 2 3 | 6]
 [0 0 0 | 0]
 [0 0 0 | 0]</pre>
-                <p>Solution: x + 2y + 3z = 6, with y and z free</p>
+                <p>Analysis of the solution:</p>
+                <ul>
+                    <li>The rank of A is 1 (only one pivot)</li>
+                    <li>The augmented matrix [A b] also has rank 1</li>
+                    <li>Since rank(A) = rank([A b]), the system is consistent and has solutions</li>
+                    <li>The equation becomes: x + 2y + 3z = 6</li>
+                    <li>With y and z as free variables, we can write the complete solution as:</li>
+                </ul>
+                <pre>x = 6 - 2y - 3z
+y = any value
+z = any value</pre>
+                <p>Professor Strang emphasizes that this represents a plane of solutions in R³, where any point on the plane satisfies the original system.</p>
             </div>
 
             <div class="questions">
