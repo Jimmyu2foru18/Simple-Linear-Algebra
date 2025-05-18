@@ -1,19 +1,30 @@
-# Simple Linear Algebra
+# Simple Linear Algebra Course Website
 
-This is a learning resource for Linear Algebra, video lectures from Prof. Gilbert Strang. 
-Course covers fundamental concepts of linear algebra, geometric interpretation, and practical applications.
+This project is an interactive web-based learning resource for Linear Algebra, featuring video lectures by Prof. Gilbert Strang. The course covers fundamental concepts of linear algebra with a focus on geometric interpretation and practical applications.
 
 ## Preview
 
-Live at: [Simple Linear Algebra Course](https://jimmyu2foru18.github.io/Simple-Linear-Algebra/)
+Experience our interactive Linear Algebra course website live at: [Simple Linear Algebra Course](https://jimmyu2foru18.github.io/Simple-Linear-Algebra/)
 
-![Preview](preview.png)
+![Website Preview](preview.png)
 
 ## Features
 
-- Video lectures from MIT OpenCourseWare
-- Content organization
-- Notes and concepts for each lecture
+- Comprehensive video lectures from MIT OpenCourseWare
+- Structured weekly content organization
+- Detailed notes and key concepts for each lecture
+- Mobile-responsive design
+- Clean and modern user interface
+
+## Course Content
+
+The course covers essential topics in Linear Algebra including:
+
+- The Geometry of Linear Equations
+- Elimination with Matrices
+- Matrix Operations
+- Vector Spaces and Subspaces
+- And more...
 
 ## Getting Started
 
@@ -31,6 +42,12 @@ Live at: [Simple Linear Algebra Course](https://jimmyu2foru18.github.io/Simple-L
      python -m http.server 8000
      ```
      Then visit `http://localhost:8000`
+
+## Preview
+
+Experience our interactive Linear Algebra course website live at: [Simple Linear Algebra Course](https://jimmyu2foru18.github.io/Simple-Linear-Algebra/)
+
+![Website Preview](preview.png)
 
 ## Deployment
 

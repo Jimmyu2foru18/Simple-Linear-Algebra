@@ -366,7 +366,8 @@ x[2] + y[1] = [0]
                 <p>While we can visualize in 2D and 3D, the concepts extend to n-dimensional space. The same principles apply: linear independence, span, and solutions exist in higher dimensions.</p>
             </div>
         </section>
-        
+
+        <!-- Placeholder for remaining chapters -->
         <section class="chapter">
             <h3>02. Elimination with Matrices</h3>
             <div class="video-container">
@@ -858,25 +859,50 @@ z = any value</pre>
             </div>
 
             <div class="example">
-                <h4>Example</h4>
-                <p>Consider vectors in R³:</p>
+                <h4>Example 1: Testing Linear Independence</h4>
+                <p>From Professor Strang's lecture, consider these vectors:</p>
                 <pre>
 v₁ = [1]
-     [0]
-     [0]
-
-v₂ = [0]
      [1]
-     [0]
+     [2]
 
-v₃ = [0]
-     [0]
-     [1]</pre>
-                <p>These vectors form a basis for R³ because they are:</p>
-                <ol>
-                    <li>Linearly independent (no vector is a combination of others)</li>
-                    <li>Span R³ (can reach any point in R³)</li>
-                </ol>
+v₂ = [2]
+     [2]
+     [5]
+
+v₃ = [3]
+     [1]
+     [8]</pre>
+                <p>To test if these vectors are linearly independent, we ask: Does c₁v₁ + c₂v₂ + c₃v₃ = 0 have only the trivial solution?</p>
+                <p>Professor Strang demonstrates this by creating a matrix with these vectors as columns:</p>
+                <pre>
+A = [1 2 3]
+    [1 2 1]
+    [2 5 8]</pre>
+                <p>After row reduction:</p>
+                <pre>
+[1 2 3]
+[0 0 -2]
+[0 1 2]</pre>
+                <p>Since we have 3 pivots (in columns 1, 3, and 2), these vectors are linearly independent.</p>
+                
+                <h4>Example 2: Finding a Basis</h4>
+                <p>Professor Strang illustrates how to find a basis for the column space of:</p>
+                <pre>
+A = [1 2 3]
+    [1 2 3]
+    [2 5 8]</pre>
+                <p>After row reduction to find pivot columns:</p>
+                <pre>
+[1 2 3]
+[0 0 0]
+[0 1 2]</pre>
+                <p>The pivot columns are 1 and 2. Going back to the original matrix, the basis for the column space is:</p>
+                <pre>
+[1]    [2]
+[1] and [2]
+[2]    [5]</pre>
+                <p>Professor Strang emphasizes that this basis has exactly r = rank(A) = 2 vectors, confirming that dim(C(A)) = rank(A).</p>
             </div>
 
             <div class="questions">
@@ -933,15 +959,62 @@ v₃ = [0]
             </div>
 
             <div class="example">
-                <h4>Example</h4>
-                <p>Consider the matrix:</p>
+                <h4>Example 1: The Four Fundamental Subspaces</h4>
+                <p>From Professor Strang's lecture, consider this matrix:</p>
                 <pre>
 A = [1 2 3]
     [2 4 6]</pre>
-                <p>Column Space: span{[1,2], [2,4], [3,6]} = span{[1,2]}<br>
-Nullspace: vectors x where Ax = 0, here x = t[-2,1,0] for any t<br>
-Row Space: span{[1,2,3], [2,4,6]} = span{[1,2,3]}<br>
-Left Nullspace: vectors y where A<sup>T</sup>y = 0, here y = t[-2,1] for any t</p>
+                <p>Professor Strang analyzes each of the four subspaces:</p>
+                
+                <h5>Column Space C(A)</h5>
+                <p>The column space consists of all linear combinations of the columns:</p>
+                <pre>
+c₁[1] + c₂[2] + c₃[3] = [?]
+  [2]    [4]    [6]   [?]</pre>
+                <p>Since the third column is 3 times the first column, the column space is just a plane in R². Its basis is {[1,2]} and dim(C(A)) = 1.</p>
+                
+                <h5>Nullspace N(A)</h5>
+                <p>The nullspace contains all solutions to Ax = 0:</p>
+                <pre>
+[1 2 3][x₁]   [0]
+[2 4 6][x₂] = [0]
+       [x₃]</pre>
+                <p>After row reduction:</p>
+                <pre>
+[1 2 3]
+[0 0 0]</pre>
+                <p>We have one pivot variable (x₁) and two free variables (x₂, x₃). Setting x₂ = s and x₃ = t:</p>
+                <pre>
+x₁ = -2s - 3t
+x₂ = s
+x₃ = t</pre>
+                <p>The nullspace basis vectors are:</p>
+                <pre>
+[-2]    [-3]
+[ 1] and [ 0]
+[ 0]    [ 1]</pre>
+                <p>So dim(N(A)) = 2, and we confirm that dim(C(A)) + dim(N(A)) = 1 + 2 = 3 = number of columns.</p>
+                
+                <h5>Row Space C(A<sup>T</sup>)</h5>
+                <p>The row space is the span of the rows of A:</p>
+                <pre>
+span{[1,2,3], [2,4,6]}</pre>
+                <p>Since the second row is twice the first row, the row space has dimension 1 with basis {[1,2,3]}.</p>
+                
+                <h5>Left Nullspace N(A<sup>T</sup>)</h5>
+                <p>The left nullspace contains all vectors y where A<sup>T</sup>y = 0:</p>
+                <pre>
+[1 2][y₁] = [0]
+[2 4][y₂]   [0]
+[3 6]       [0]</pre>
+                <p>This has the solution y = t[-2,1] for any scalar t, so dim(N(A<sup>T</sup>)) = 1.</p>
+                
+                <p>Professor Strang emphasizes the fundamental relationships:</p>
+                <ul>
+                    <li>dim(C(A)) = dim(C(A<sup>T</sup>)) = rank(A) = 1</li>
+                    <li>dim(N(A)) = n - rank(A) = 3 - 1 = 2</li>
+                    <li>dim(N(A<sup>T</sup>)) = m - rank(A) = 2 - 1 = 1</li>
+                </ul>
             </div>
 
             <h3>11. Matrix Spaces; Rank 1; Small World Graphs</h3>
@@ -984,12 +1057,39 @@ Left Nullspace: vectors y where A<sup>T</sup>y = 0, here y = t[-2,1] for any t</
             </div>
 
             <div class="example">
-                <h4>Example</h4>
-                <p>A rank-1 matrix:</p>
+                <h4>Example 1: Rank-1 Matrices</h4>
+                <p>From Professor Strang's lecture, he demonstrates how rank-1 matrices are formed:</p>
                 <pre>
-[1] [2 3 4] = [2 3 4]
-[2]           [4 6 8]</pre>
-                <p>This 2×3 matrix is formed by multiplying a 2×1 vector by a 1×3 vector, creating a rank-1 matrix where all columns are multiples of [1,2].</p>
+A = uv^T = [1] [2 3 4] = [2  3  4]
+           [2]           [4  6  8]</pre>
+                <p>Professor Strang explains that every rank-1 matrix can be written as the outer product of two vectors. In this case:</p>
+                <ul>
+                    <li>u = [1; 2] is a column vector</li>
+                    <li>v^T = [2 3 4] is a row vector</li>
+                    <li>Their outer product creates a 2×3 matrix where each column is a multiple of u</li>
+                </ul>
+                
+                <h4>Example 2: Matrix Decomposition</h4>
+                <p>Professor Strang shows how higher-rank matrices can be decomposed into sums of rank-1 matrices:</p>
+                <pre>
+A = [4 1]
+    [2 7]</pre>
+                <p>This matrix can be written as the sum of two rank-1 matrices:</p>
+                <pre>
+A = [4 0] + [0 1] = [4] [1 0] + [0] [0 1]
+    [2 0]   [0 7]   [2]         [7]</pre>
+                <p>Professor Strang emphasizes that this decomposition is fundamental to understanding singular value decomposition (SVD) and other matrix factorizations.</p>
+                
+                <h4>Example 3: Small World Graphs</h4>
+                <p>Professor Strang illustrates small world networks with a simple example:</p>
+                <p>Consider a ring of nodes where each node is connected to its immediate neighbors. The adjacency matrix has 1's on the sub- and super-diagonals. Adding just a few "long-range" connections dramatically reduces the average path length between nodes.</p>
+                <p>He demonstrates how the powers of the adjacency matrix A reveal connectivity patterns:</p>
+                <ul>
+                    <li>A^1 shows direct connections</li>
+                    <li>A^2 shows two-step connections</li>
+                    <li>A^k shows k-step connections</li>
+                </ul>
+                <p>This matrix analysis helps explain the "six degrees of separation" phenomenon in social networks.</p>
             </div>
 
             <h3>12. Graphs, Networks, Incidence Matrices</h3>
@@ -1032,16 +1132,38 @@ Left Nullspace: vectors y where A<sup>T</sup>y = 0, here y = t[-2,1] for any t</
             </div>
 
             <div class="example">
-                <h4>Example</h4>
-                <p>For a simple graph with 3 nodes and 2 edges:</p>
+                <h4>Example 1: Graph Representation with Incidence Matrices</h4>
+                <p>From Professor Strang's lecture, he analyzes a simple graph with 4 nodes and 5 edges:</p>
                 <pre>
-Node 1 ---(Edge 1)--- Node 2 ---(Edge 2)--- Node 3
-
-Incidence Matrix:
-    E1  E2
-N1  1   0
-N2 -1   1
-N3  0  -1</pre>
+    1 --- 2
+    |\    |
+    | \   |
+    |  \  |
+    |   \ |
+    4 --- 3</pre>
+                <p>Professor Strang constructs the incidence matrix A where rows represent nodes and columns represent edges:</p>
+                <pre>
+        e₁  e₂  e₃  e₄  e₅
+node 1  1   1   1   0   0
+node 2 -1   0   0   1   0
+node 3  0  -1   0  -1   1
+node 4  0   0  -1   0  -1</pre>
+                <p>He explains that each column has exactly two non-zero entries (1 and -1) representing the nodes connected by that edge. The signs indicate direction (from +1 to -1).</p>
+                
+                <h4>Example 2: Nullspace and Fundamental Cycles</h4>
+                <p>Professor Strang demonstrates that the nullspace of the incidence matrix reveals the cycles in the graph:</p>
+                <p>For the graph above, he finds a basis for the nullspace of A:</p>
+                <pre>
+x₁ = [1, 1, 0, 1, 0]ᵀ  (cycle: e₁→e₂→e₄)
+x₂ = [1, 0, 1, 0, 1]ᵀ  (cycle: e₁→e₃→e₅)</pre>
+                <p>Each nullspace basis vector corresponds to a fundamental cycle in the graph. The entries indicate which edges form the cycle (1 means the edge is in the cycle).</p>
+                
+                <h4>Example 3: Network Flow Analysis</h4>
+                <p>Professor Strang shows how to analyze flow in a network:</p>
+                <p>If f is a vector of flows on each edge, then Af represents the net flow at each node. For flow conservation:</p>
+                <pre>Af = s</pre>
+                <p>Where s is the supply/demand vector (positive for sources, negative for sinks, zero for transit nodes).</p>
+                <p>For example, with s = [1, 0, 0, -1]ᵀ (flow from node 1 to node 4), he finds a valid flow vector f that satisfies the conservation law.</p>
             </div>
 
             <h3>13. Quiz 1 Review</h3>
@@ -1116,23 +1238,90 @@ N3  0  -1</pre>
 
                 <h5>Practice Problems</h5>
                 <div class="example">
-                    <p><strong>Problem 1:</strong> Find the complete solution to a system Ax = 0 where A is a 3×4 matrix with rank 2.</p>
-                    <p><strong>Key Points:</strong></p>
-                    <ul>
-                        <li>Identify the number of free variables (2)</li>
-                        <li>Find special solutions</li>
-                        <li>Express general solution as linear combination</li>
-                    </ul>
+                    <h4>Example 1: Complete Solution to Homogeneous System</h4>
+                    <p>From Professor Strang's review, he works through this example:</p>
+                    <p>Find the complete solution to Ax = 0 where:</p>
+                    <pre>
+A = [1  2  2  2]
+    [2  4  6  8]
+    [3  6  8 10]</pre>
+                    <p>Professor Strang demonstrates the systematic approach:</p>
+                    <ol>
+                        <li>Perform row reduction to get the echelon form:</li>
+                        <pre>
+[1  2  2  2]
+[0  0  2  4]
+[0  0  0  0]</pre>
+                        <li>Identify pivot variables (x₁, x₃) and free variables (x₂, x₄)</li>
+                        <li>Express pivot variables in terms of free variables:</li>
+                        <pre>
+x₁ = -2x₂ - (2x₄ - 2x₃)/1 = -2x₂ - 2x₄ + 2x₃
+x₃ = -2x₄</pre>
+                        <li>Substitute back to get:</li>
+                        <pre>
+x₁ = -2x₂ - 2x₄ + 2(-2x₄) = -2x₂ - 6x₄
+x₂ = x₂ (free)
+x₃ = -2x₄
+x₄ = x₄ (free)</pre>
+                        <li>Write the complete solution as:</li>
+                        <pre>
+x = x₂[-2] + x₄[-6]
+       [ 1]      [ 0]
+       [ 0]      [-2]
+       [ 0]      [ 1]</pre>
+                    </ol>
+                    <p>Professor Strang emphasizes that this represents all possible solutions to the system, with the nullspace dimension = 4 - 2 = 2 (number of columns minus rank).</p>
                 </div>
 
                 <div class="example">
-                    <p><strong>Problem 2:</strong> Determine if vectors form a basis for a vector space.</p>
-                    <p><strong>Method:</strong></p>
+                    <h4>Example 2: Basis Verification</h4>
+                    <p>From the review lecture, Professor Strang examines this problem:</p>
+                    <p>Determine if these vectors form a basis for R³:</p>
+                    <pre>
+v₁ = [1]
+     [2]
+     [3]
+
+v₂ = [0]
+     [1]
+     [1]
+
+v₃ = [2]
+     [5]
+     [7]</pre>
+                    <p>Professor Strang's approach:</p>
+                    <ol>
+                        <li>Check if the vectors are linearly independent by forming the matrix:</li>
+                        <pre>
+[1  0  2]
+[2  1  5]
+[3  1  7]</pre>
+                        <li>Row reduce to determine rank:</li>
+                        <pre>
+[1  0  2]
+[0  1  1]
+[0  0  0]</pre>
+                        <li>Since the rank is 2 (only 2 pivots), the vectors are not linearly independent</li>
+                        <li>Therefore, they cannot form a basis for R³, which requires 3 linearly independent vectors</li>
+                    </ol>
+                    <p>Professor Strang shows that v₃ = 2v₁ + v₂, confirming the linear dependence.</p>
+                </div>
+                
+                <div class="example">
+                    <h4>Example 3: Four Fundamental Subspaces</h4>
+                    <p>Professor Strang reviews this key example from earlier lectures:</p>
+                    <pre>
+A = [1  0  0]
+    [1  1  0]
+    [1  1  1]</pre>
+                    <p>He identifies all four fundamental subspaces:</p>
                     <ul>
-                        <li>Check linear independence</li>
-                        <li>Verify span of the space</li>
-                        <li>Compare dimensions</li>
+                        <li><strong>Column Space:</strong> span{[1;1;1], [0;1;1], [0;0;1]} = R³ (full column space)</li>
+                        <li><strong>Nullspace:</strong> {0} (only the zero vector, since A has full column rank)</li>
+                        <li><strong>Row Space:</strong> span{[1,0,0], [1,1,0], [1,1,1]} = R³ (full row space)</li>
+                        <li><strong>Left Nullspace:</strong> {0} (only the zero vector, since A has full row rank)</li>
                     </ul>
+                    <p>Professor Strang emphasizes that this triangular matrix is invertible, with all four fundamental subspaces having their maximum possible dimensions.</p>
                 </div>
 
                 <h5>Key Theorems to Remember</h5>
