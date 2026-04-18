@@ -40,7 +40,7 @@ function createNotepad(videoTitle) {
     function dragStart(e) {
         initialX = e.clientX - xOffset;
         initialY = e.clientY - yOffset;
-        if (e.target === header) {
+        if (header.contains(e.target)) {
             isDragging = true;
         }
     }
