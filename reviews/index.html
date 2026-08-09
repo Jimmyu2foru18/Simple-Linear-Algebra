@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Hub — Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .review-hub-hero {
+            background: linear-gradient(135deg, #1a2634 0%, #2c3e50 100%);
+            color: #fff;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+        .review-hub-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+        .review-hub-hero p {
+            font-size: 1.15rem;
+            opacity: 0.92;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .review-hub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .review-hub-card {
+            background: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 10px;
+            padding: 2rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .review-hub-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 16px 32px rgba(0,0,0,0.08);
+            border-color: #0366d6;
+        }
+        .review-hub-card .card-icon {
+            width: 48px;
+            height: 48px;
+            background: #f0f5ff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            font-size: 1.5rem;
+            color: #0366d6;
+            font-weight: 700;
+        }
+        .review-hub-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.75rem;
+        }
+        .review-hub-card p {
+            font-size: 0.95rem;
+            color: #586069;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+        .review-hub-card .card-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: #8a8f96;
+        }
+        .review-hub-card .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+    </style>
+</head>
+<body class="review-page">
+    <div class="review-header">
+        <div class="container">
+            <h1>Linear Algebra — Review Hub</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="index.html">Curriculum</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="review-container">
+        <div class="review-hub-hero">
+            <h1>Structured Review Sheets</h1>
+            <p>Comprehensive review materials organized by topic. Each sheet includes key concepts, formulas, worked examples, and practice problems drawn from all course sources.</p>
+        </div>
+
+        <div class="review-hub-grid">
+            <a href="review-basics.html" class="review-hub-card">
+                <div class="card-icon">01</div>
+                <h3>Linear Systems & Matrix Basics</h3>
+                <p>Systems of linear equations, Gaussian elimination, matrix operations, and inverses. Covers chapters 1–4 with comprehensive review sheets.</p>
+                <div class="card-meta">
+                    <span>4 chapters</span>
+                    <span>8 videos</span>
+                </div>
+            </a>
+
+            <a href="review-subspaces.html" class="review-hub-card">
+                <div class="card-icon">02</div>
+                <h3>Vector Spaces & Subspaces</h3>
+                <p>Vector spaces, subspaces, span, linear independence, basis, dimension, and the four fundamental subspaces. Covers chapters 5–10.</p>
+                <div class="card-meta">
+                    <span>6 chapters</span>
+                    <span>12 videos</span>
+                </div>
+            </a>
+
+            <a href="review-orthogonality.html" class="review-hub-card">
+                <div class="card-icon">03</div>
+                <h3>Orthogonality & Projections</h3>
+                <p>Orthogonal vectors and subspaces, projections onto subspaces, least squares, orthogonal matrices, and the Gram-Schmidt process. Covers chapters 14–17.</p>
+                <div class="card-meta">
+                    <span>4 chapters</span>
+                    <span>8 videos</span>
+                </div>
+            </a>
+
+            <a href="review-determinants.html" class="review-hub-card">
+                <div class="card-icon">04</div>
+                <h3>Determinants & Cramer's Rule</h3>
+                <p>Properties of determinants, determinant formulas, cofactors, Cramer's Rule, and geometric interpretations. Covers chapters 18–20.</p>
+                <div class="card-meta">
+                    <span>3 chapters</span>
+                    <span>6 videos</span>
+                </div>
+            </a>
+
+            <a href="review-eigenvalues.html" class="review-hub-card">
+                <div class="card-icon">05</div>
+                <h3>Eigenvalues & Diagonalization</h3>
+                <p>Eigenvalues, eigenvectors, diagonalization, matrix powers, differential equations, and Markov chains. Covers chapters 21–24.</p>
+                <div class="card-meta">
+                    <span>4 chapters</span>
+                    <span>8 videos</span>
+                </div>
+            </a>
+
+            <a href="review-advanced.html" class="review-hub-card">
+                <div class="card-icon">06</div>
+                <h3>Advanced Topics & Final Review</h3>
+                <p>Symmetric matrices, positive definiteness, complex matrices, FFT, SVD, Jordan form, pseudoinverse, and comprehensive final review. Covers chapters 26–35.</p>
+                <div class="card-meta">
+                    <span>10 chapters</span>
+                    <span>20 videos</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

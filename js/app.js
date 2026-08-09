@@ -26,8 +26,30 @@
         { id: 'ch09', number: '09', title: 'Independence, Basis, and Dimension', file: 'chapter-09.html', description: 'Linear independence, basis vectors, and dimension theory.' },
         { id: 'ch10', number: '10', title: 'The Four Fundamental Subspaces', file: 'chapter-10.html', description: 'Column space, nullspace, row space, and left nullspace.' },
         { id: 'ch11', number: '11', title: 'Matrix Spaces; Rank 1; Small World Graphs', file: 'chapter-11.html', description: 'Matrix vector spaces, rank-1 matrices, and network theory.' },
-        { id: 'ch12', number: '12', title: 'Graphs and Networks; Incidence Matrices', file: 'chapter-12.html', description: 'Network analysis using graph theory and incidence matrices.' },
-        { id: 'ch13', number: '13', title: 'Orthogonal Vectors and Subspaces', file: 'chapter-13.html', description: 'Orthogonality, projections, and least squares approximation.' }
+        { id: 'ch12', number: '12', title: 'Graphs, Networks, Incidence Matrices', file: 'chapter-12.html', description: 'Network analysis using graph theory and incidence matrices.' },
+        { id: 'ch13', number: '13', title: 'Quiz 1 Review', file: 'chapter-13.html', description: 'Comprehensive review of chapters 1-12 with practice problems.' },
+        { id: 'ch14', number: '14', title: 'Orthogonal Vectors and Subspaces', file: 'chapter-14.html', description: 'Orthogonality, projections, and least squares approximation.' },
+        { id: 'ch15', number: '15', title: 'Projections onto Subspaces', file: 'chapter-15.html', description: 'Projection matrices and least squares approximation.' },
+        { id: 'ch16', number: '16', title: 'Projection Matrices and Least Squares', file: 'chapter-16.html', description: 'Least squares solutions and projection matrix properties.' },
+        { id: 'ch17', number: '17', title: 'Orthogonal Matrices and Gram-Schmidt', file: 'chapter-17.html', description: 'Orthogonal bases and the Gram-Schmidt orthogonalization process.' },
+        { id: 'ch18', number: '18', title: 'Properties of Determinants', file: 'chapter-18.html', description: 'Determinant properties and their implications for matrix algebra.' },
+        { id: 'ch19', number: '19', title: 'Determinant Formulas and Cofactors', file: 'chapter-19.html', description: 'Cofactor expansion and determinant computation methods.' },
+        { id: 'ch20', number: '20', title: "Cramer's Rule, Inverse Matrix, and Volume", file: 'chapter-20.html', description: "Cramer's Rule and geometric interpretations of determinants." },
+        { id: 'ch21', number: '21', title: 'Eigenvalues and Eigenvectors', file: 'chapter-21.html', description: 'Introduction to eigenvalues, eigenvectors, and their applications.' },
+        { id: 'ch22', number: '22', title: 'Diagonalization and Powers of A', file: 'chapter-22.html', description: 'Diagonalizing matrices and computing matrix powers.' },
+        { id: 'ch23', number: '23', title: 'Differential Equations and exp(At)', file: 'chapter-23.html', description: 'Matrix exponentials and solving systems of differential equations.' },
+        { id: 'ch24', number: '24', title: 'Markov Matrices; Fourier Series', file: 'chapter-24.html', description: 'Markov chains and applications of linear algebra to Fourier series.' },
+        { id: 'ch25', number: '25', title: 'Quiz 2 Review', file: 'chapter-25.html', description: 'Comprehensive review of chapters 14-24 with practice problems.' },
+        { id: 'ch26', number: '26', title: 'Symmetric Matrices and Positive Definiteness', file: 'chapter-26.html', description: 'Properties of symmetric matrices and positive definite matrices.' },
+        { id: 'ch27', number: '27', title: 'Complex Matrices; Fast Fourier Transform', file: 'chapter-27.html', description: 'Complex matrix algebra and the FFT algorithm.' },
+        { id: 'ch28', number: '28', title: 'Positive Definite Matrices and Minima', file: 'chapter-28.html', description: 'Optimization applications of positive definite matrices.' },
+        { id: 'ch29', number: '29', title: 'Similar Matrices and Jordan Form', file: 'chapter-29.html', description: 'Matrix similarity and the Jordan canonical form.' },
+        { id: 'ch30', number: '30', title: 'Singular Value Decomposition', file: 'chapter-30.html', description: 'The SVD theorem and its applications in data science.' },
+        { id: 'ch31', number: '31', title: 'Linear Transformations and Their Matrices', file: 'chapter-31.html', description: 'Linear transformations between vector spaces and matrix representations.' },
+        { id: 'ch32', number: '32', title: 'Change of Basis; Image Compression', file: 'chapter-32.html', description: 'Change of basis theory and applications to image compression.' },
+        { id: 'ch33', number: '33', title: 'Quiz 3 Review', file: 'chapter-33.html', description: 'Comprehensive review of chapters 25-32 with practice problems.' },
+        { id: 'ch34', number: '34', title: 'Left and Right Inverses; Pseudoinverse', file: 'chapter-34.html', description: 'Generalized inverses and the Moore-Penrose pseudoinverse.' },
+        { id: 'ch35', number: '35', title: 'Final Course Review', file: 'chapter-35.html', description: 'Comprehensive final review of the entire linear algebra course.' }
     ];
 
     // ============================================

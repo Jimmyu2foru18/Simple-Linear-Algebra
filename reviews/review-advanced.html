@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: Advanced Topics & Final Review — Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'no-mathjax'
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        .review-header {
+            background: #fff;
+            border-bottom: 1px solid #e1e4e8;
+            padding: 1.25rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .review-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .review-header h1 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .review-header nav {
+            display: flex;
+            gap: 0.75rem;
+        }
+        .review-header nav a {
+            color: #586069;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.4rem 0.85rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        .review-header nav a:hover {
+            color: #0366d6;
+            background: #f0f5ff;
+        }
+        .review-hero {
+            background: linear-gradient(135deg, #1a2634 0%, #2c3e50 100%);
+            color: #fff;
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .review-hero h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .review-hero p {
+            font-size: 1.05rem;
+            opacity: 0.92;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+        .review-tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid #e1e4e8;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+        .review-tab {
+            padding: 0.85rem 1.25rem;
+            background: none;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #586069;
+            cursor: pointer;
+            position: relative;
+            white-space: nowrap;
+            transition: color 0.2s ease;
+            font-family: inherit;
+        }
+        .review-tab:hover {
+            color: #0366d6;
+        }
+        .review-tab.active {
+            color: #0366d6;
+            font-weight: 600;
+        }
+        .review-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #0366d6;
+            border-radius: 1px;
+        }
+        .review-section {
+            display: none;
+        }
+        .review-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .review-card {
+            background: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 10px;
+            padding: 1.75rem 2rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .review-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #eaecef;
+        }
+        .review-card h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 1.25rem 0 0.75rem;
+        }
+        .review-card p {
+            color: #586069;
+            margin-bottom: 0.85rem;
+            line-height: 1.7;
+        }
+        .review-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        .review-table th {
+            background: #fafbfc;
+            padding: 0.85rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #1a1a1a;
+            border-bottom: 2px solid #e1e4e8;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .review-table td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid #eaecef;
+            color: #586069;
+        }
+        .review-table tr:last-child td {
+            border-bottom: none;
+        }
+        .review-callout {
+            padding: 1.25rem 1.5rem;
+            border-radius: 6px;
+            margin: 1.25rem 0;
+            border-left: 4px solid;
+        }
+        .review-callout.info {
+            background: #f0f5ff;
+            border-color: #0366d6;
+            color: #1a3a5c;
+        }
+        .review-callout.warning {
+            background: #fff8e6;
+            border-color: #b08800;
+            color: #5c4a1a;
+        }
+        .review-callout.success {
+            background: #f0fff4;
+            border-color: #22863a;
+            color: #1a3a2c;
+        }
+        .review-formula {
+            background: #f8f9fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.25rem 0;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.15rem;
+            overflow-x: auto;
+        }
+        .review-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2.5rem 0;
+            padding: 1.25rem 0;
+            border-top: 1px solid #e1e4e8;
+        }
+        .review-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.7rem 1.25rem;
+            background: #fff;
+            color: #0366d6;
+            text-decoration: none;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+        .review-nav-btn:hover {
+            background: #f0f5ff;
+            border-color: #0366d6;
+        }
+        .review-nav-btn.disabled {
+            color: #8a8f96;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .review-nav-indicator {
+            font-size: 0.85rem;
+            color: #8a8f96;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .review-card {
+                padding: 1.25rem;
+            }
+            .review-tab {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+            }
+            .review-nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="review-header">
+        <div class="container">
+            <h1>Linear Algebra — Review Sheets</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="index.html">Review Hub</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="review-hero">
+            <h2>Advanced Topics & Final Review</h2>
+            <p>Comprehensive review of symmetric matrices, positive definiteness, complex matrices, FFT, SVD, Jordan form, pseudoinverse, and final comprehensive review. Covers chapters 26–35.</p>
+        </div>
+
+        <div class="review-tabs">
+            <button class="review-tab active" data-tab="svd">Singular Value Decomposition</button>
+            <button class="review-tab" data-tab="symmetric">Symmetric Matrices</button>
+            <button class="review-tab" data-tab="pseudoinverse">Pseudoinverse</button>
+            <button class="review-tab" data-tab="final">Final Review Checklist</button>
+        </div>
+
+        <!-- SVD -->
+        <div class="review-section active" id="svd">
+            <div class="review-card">
+                <h3>1. Singular Value Decomposition (SVD)</h3>
+                <p>The SVD is one of the most important matrix factorizations in linear algebra. Every $m \times n$ matrix $A$ can be factored as $A = U\Sigma V^T$.</p>
+
+                <h4>1.1 The SVD Factorization</h4>
+                <div class="review-formula">
+                    $$A = U\Sigma V^T$$
+                    <div class="formula-label">Singular Value Decomposition</div>
+                </div>
+                <ul>
+                    <li><strong>$U$:</strong> $m \times m$ orthogonal matrix (left singular vectors)</li>
+                    <li><strong>$\Sigma$:</strong> $m \times n$ diagonal matrix with nonnegative singular values $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0$</li>
+                    <li><strong>$V$:</strong> $n \times n$ orthogonal matrix (right singular vectors)</li>
+                </ul>
+
+                <h4>1.2 Key Properties</h4>
+                <ul>
+                    <li>The columns of $U$ are eigenvectors of $AA^T$</li>
+                    <li>The columns of $V$ are eigenvectors of $A^TA$</li>
+                    <li>$\sigma_i = \sqrt{\lambda_i}$ where $\lambda_i$ are eigenvalues of $A^TA$</li>
+                    <li>Rank of $A$ = number of nonzero singular values</li>
+                </ul>
+
+                <h4>1.3 Applications</h4>
+                <ul>
+                    <li>Image compression (keeping top $k$ singular values)</li>
+                    <li>Principal Component Analysis (PCA)</li>
+                    <li>Solving ill-conditioned systems (truncated SVD)</li>
+                    <li>Recommendation systems</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Symmetric Matrices -->
+        <div class="review-section" id="symmetric">
+            <div class="review-card">
+                <h3>2. Symmetric Matrices & Positive Definiteness</h3>
+                <p>A matrix $A$ is <strong>symmetric</strong> if $A = A^T$. Symmetric matrices have particularly nice properties, including real eigenvalues and orthogonal eigenvectors.</p>
+
+                <h4>2.1 Spectral Theorem</h4>
+                <div class="review-callout success">
+                    <strong>Spectral Theorem:</strong> Every symmetric matrix $A$ can be diagonalized by an orthogonal matrix: $A = Q\Lambda Q^T$, where $Q$ is orthogonal and $\Lambda$ is diagonal with real eigenvalues.
+                </div>
+
+                <h4>2.2 Positive Definite Matrices</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Property</th><th>Equivalent Conditions</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Positive Definite</td><td>$\mathbf{x}^TA\mathbf{x} > 0$ for all $\mathbf{x} \neq \mathbf{0}$</td></tr>
+                        <tr><td>Eigenvalues</td><td>All eigenvalues $\lambda_i > 0$</td></tr>
+                        <tr><td>Pivots</td><td>All pivots in Gaussian elimination are positive</td></tr>
+                        <tr><td>Determinants</td><td>All leading principal minors are positive</td></tr>
+                        <tr><td>Square root</td><td>$A = B^TB$ for some invertible $B$</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pseudoinverse -->
+        <div class="review-section" id="pseudoinverse">
+            <div class="review-card">
+                <h3>3. Moore-Penrose Pseudoinverse</h3>
+                <p>The <strong>pseudoinverse</strong> $A^+$ generalizes the inverse to rectangular or singular matrices. It provides the least squares solution to $A\mathbf{x} = \mathbf{b}$.</p>
+
+                <h4>3.1 Definition via SVD</h4>
+                <div class="review-formula">
+                    $$A^+ = V\Sigma^+U^T$$
+                    <div class="formula-label">Pseudoinverse via SVD</div>
+                </div>
+                <p>where $\Sigma^+$ is formed by taking the reciprocal of each nonzero singular value in $\Sigma$ and transposing the result.</p>
+
+                <h4>3.2 Properties</h4>
+                <ul>
+                    <li>$AA^+A = A$</li>
+                    <li>$A^+AA^+ = A^+$</li>
+                    <li>$(AA^+)^T = AA^+$</li>
+                    <li>$(A^+A)^T = A^+A$</li>
+                    <li>The least squares solution is $\mathbf{x} = A^+\mathbf{b}$</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Final Review -->
+        <div class="review-section" id="final">
+            <div class="review-card">
+                <h3>4. Final Review Checklist</h3>
+                <p>Use this checklist to ensure mastery of all linear algebra topics.</p>
+
+                <h4>4.1 Core Concepts</h4>
+                <ul>
+                    <li>☐ Systems of linear equations and $A\mathbf{x} = \mathbf{b}$</li>
+                    <li>☐ Gaussian elimination and row echelon form</li>
+                    <li>☐ Matrix operations (addition, multiplication, transpose)</li>
+                    <li>☐ Matrix inverses and invertibility conditions</li>
+                    <li>☐ LU factorization and its applications</li>
+                </ul>
+
+                <h4>4.2 Vector Spaces</h4>
+                <ul>
+                    <li>☐ Vector space axioms and common examples</li>
+                    <li>☐ Subspaces, span, and the subspace test</li>
+                    <li>☐ Linear independence and dependence</li>
+                    <li>☐ Basis and dimension</li>
+                    <li>☐ The four fundamental subspaces and their relationships</li>
+                </ul>
+
+                <h4>4.3 Orthogonality</h4>
+                <ul>
+                    <li>☐ Inner product, dot product, and orthogonality</li>
+                    <li>☐ Orthogonal complements</li>
+                    <li>☐ Projections onto subspaces</li>
+                    <li>☐ Least squares approximation and normal equations</li>
+                    <li>☐ Gram-Schmidt orthogonalization and QR factorization</li>
+                </ul>
+
+                <h4>4.4 Determinants</h4>
+                <ul>
+                    <li>☐ Determinant properties and computation</li>
+                    <li>☐ Cofactor expansion</li>
+                    <li>☐ Cramer's Rule</li>
+                    <li>☐ Geometric interpretation as volume</li>
+                </ul>
+
+                <h4>4.5 Eigenvalues & Advanced</h4>
+                <ul>
+                    <li>☐ Eigenvalues, eigenvectors, and characteristic equation</li>
+                    <li>☐ Diagonalization and matrix powers</li>
+                    <li>☐ Matrix exponentials and differential equations</li>
+                    <li>☐ Markov chains and steady states</li>
+                    <li>☐ Symmetric matrices and positive definiteness</li>
+                    <li>☐ Singular Value Decomposition (SVD)</li>
+                    <li>☐ Pseudoinverse and its applications</li>
+                </ul>
+
+                <div class="review-callout success">
+                    <strong>Final Tip:</strong> Work through the practice problems in each chapter, then review the corresponding section in these review sheets. Focus on understanding the geometric intuition behind each concept.
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="review-nav">
+            <a href="review-eigenvalues.html" class="review-nav-btn">← Previous</a>
+            <span class="review-nav-indicator">Review Sheet 6 of 6</span>
+            <span></span>
+        </nav>
+    </div>
+
+    <script>
+        document.querySelectorAll('.review-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.tab;
+                document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.review-section').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(target).classList.add('active');
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById(target)]);
+                }
+            });
+        });
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

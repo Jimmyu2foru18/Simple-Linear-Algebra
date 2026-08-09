@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: Vector Spaces & Subspaces — Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'no-mathjax'
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        .review-header {
+            background: #fff;
+            border-bottom: 1px solid #e1e4e8;
+            padding: 1.25rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .review-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .review-header h1 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .review-header nav {
+            display: flex;
+            gap: 0.75rem;
+        }
+        .review-header nav a {
+            color: #586069;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.4rem 0.85rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        .review-header nav a:hover {
+            color: #0366d6;
+            background: #f0f5ff;
+        }
+        .review-hero {
+            background: linear-gradient(135deg, #1a2634 0%, #2c3e50 100%);
+            color: #fff;
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .review-hero h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .review-hero p {
+            font-size: 1.05rem;
+            opacity: 0.92;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+        .review-tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid #e1e4e8;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+        .review-tab {
+            padding: 0.85rem 1.25rem;
+            background: none;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #586069;
+            cursor: pointer;
+            position: relative;
+            white-space: nowrap;
+            transition: color 0.2s ease;
+            font-family: inherit;
+        }
+        .review-tab:hover {
+            color: #0366d6;
+        }
+        .review-tab.active {
+            color: #0366d6;
+            font-weight: 600;
+        }
+        .review-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #0366d6;
+            border-radius: 1px;
+        }
+        .review-section {
+            display: none;
+        }
+        .review-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .review-card {
+            background: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 10px;
+            padding: 1.75rem 2rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .review-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #eaecef;
+        }
+        .review-card h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 1.25rem 0 0.75rem;
+        }
+        .review-card p {
+            color: #586069;
+            margin-bottom: 0.85rem;
+            line-height: 1.7;
+        }
+        .review-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        .review-table th {
+            background: #fafbfc;
+            padding: 0.85rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #1a1a1a;
+            border-bottom: 2px solid #e1e4e8;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .review-table td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid #eaecef;
+            color: #586069;
+        }
+        .review-table tr:last-child td {
+            border-bottom: none;
+        }
+        .review-callout {
+            padding: 1.25rem 1.5rem;
+            border-radius: 6px;
+            margin: 1.25rem 0;
+            border-left: 4px solid;
+        }
+        .review-callout.info {
+            background: #f0f5ff;
+            border-color: #0366d6;
+            color: #1a3a5c;
+        }
+        .review-callout.warning {
+            background: #fff8e6;
+            border-color: #b08800;
+            color: #5c4a1a;
+        }
+        .review-callout.success {
+            background: #f0fff4;
+            border-color: #22863a;
+            color: #1a3a2c;
+        }
+        .review-formula {
+            background: #f8f9fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.25rem 0;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.15rem;
+            overflow-x: auto;
+        }
+        .review-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2.5rem 0;
+            padding: 1.25rem 0;
+            border-top: 1px solid #e1e4e8;
+        }
+        .review-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.7rem 1.25rem;
+            background: #fff;
+            color: #0366d6;
+            text-decoration: none;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+        .review-nav-btn:hover {
+            background: #f0f5ff;
+            border-color: #0366d6;
+        }
+        .review-nav-btn.disabled {
+            color: #8a8f96;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .review-nav-indicator {
+            font-size: 0.85rem;
+            color: #8a8f96;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .review-card {
+                padding: 1.25rem;
+            }
+            .review-tab {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+            }
+            .review-nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="review-header">
+        <div class="container">
+            <h1>Linear Algebra — Review Sheets</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="index.html">Review Hub</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="review-hero">
+            <h2>Vector Spaces & Subspaces</h2>
+            <p>Comprehensive review of vector spaces, subspaces, span, linear independence, basis, dimension, and the four fundamental subspaces. Covers chapters 5–10 from Gilbert Strang's MIT 18.06 course.</p>
+        </div>
+
+        <div class="review-tabs">
+            <button class="review-tab active" data-tab="vector-spaces">Vector Spaces</button>
+            <button class="review-tab" data-tab="subspaces">Subspaces</button>
+            <button class="review-tab" data-tab="independence">Linear Independence</button>
+            <button class="review-tab" data-tab="basis">Basis & Dimension</button>
+            <button class="review-tab" data-tab="fundamental">Four Fundamental Subspaces</button>
+        </div>
+
+        <!-- Vector Spaces -->
+        <div class="review-section active" id="vector-spaces">
+            <div class="review-card">
+                <h3>1. Vector Spaces</h3>
+                <p>A vector space $V$ over a field $\mathbb{R}$ is a set of elements called vectors, together with two operations: vector addition and scalar multiplication, satisfying eight axioms (closure, associativity, commutativity, identity, inverse, distributivity).</p>
+
+                <h4>1.1 Key Axioms</h4>
+                <ul>
+                    <li><strong>Closure under addition:</strong> If $\mathbf{u}, \mathbf{v} \in V$, then $\mathbf{u} + \mathbf{v} \in V$</li>
+                    <li><strong>Closure under scalar multiplication:</strong> If $c \in \mathbb{R}$ and $\mathbf{v} \in V$, then $c\mathbf{v} \in V$</li>
+                    <li><strong>Zero vector:</strong> There exists $\mathbf{0} \in V$ such that $\mathbf{v} + \mathbf{0} = \mathbf{v}$</li>
+                    <li><strong>Additive inverse:</strong> For each $\mathbf{v} \in V$, there exists $-\mathbf{v} \in V$</li>
+                </ul>
+
+                <h4>1.2 Common Vector Spaces</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Space</th><th>Description</th><th>Dimension</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>$\mathbb{R}^n$</td><td>All $n$-tuples of real numbers</td><td>$n$</td></tr>
+                        <tr><td>$M_{m \times n}(\mathbb{R})$</td><td>All $m \times n$ matrices</td><td>$mn$</td></tr>
+                        <tr><td>$P_n$</td><td>Polynomials of degree $\leq n$</td><td>$n+1$</td></tr>
+                        <tr><td>$C[a,b]$</td><td>Continuous functions on $[a,b]$</td><td>Infinite</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Subspaces -->
+        <div class="review-section" id="subspaces">
+            <div class="review-card">
+                <h3>2. Subspaces</h3>
+                <p>A subspace $W$ of a vector space $V$ is a subset that is itself a vector space under the same operations. The key test is the <strong>Subspace Test</strong>.</p>
+
+                <h4>2.1 Subspace Test</h4>
+                <div class="review-callout info">
+                    A nonempty subset $W \subseteq V$ is a subspace if and only if:
+                    <ol style="margin-top: 0.5rem; margin-bottom: 0;">
+                        <li>$\mathbf{u} + \mathbf{v} \in W$ for all $\mathbf{u}, \mathbf{v} \in W$ (closed under addition)</li>
+                        <li>$c\mathbf{u} \in W$ for all $c \in \mathbb{R}, \mathbf{u} \in W$ (closed under scalar multiplication)</li>
+                    </ol>
+                </div>
+
+                <h4>2.2 Span</h4>
+                <div class="review-formula">
+                    $$\text{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\} = \{c_1\mathbf{v}_1 + \cdots + c_k\mathbf{v}_k : c_i \in \mathbb{R}\}$$
+                    <div class="formula-label">Span definition</div>
+                </div>
+                <p>The span of a set of vectors is the set of all possible linear combinations. It is always a subspace.</p>
+
+                <h4>2.3 Column Space and Nullspace</h4>
+                <ul>
+                    <li><strong>Column Space $C(A)$:</strong> Span of the columns of $A$; subspace of $\mathbb{R}^m$</li>
+                    <li><strong>Nullspace $N(A)$:</strong> Set of all $\mathbf{x}$ such that $A\mathbf{x} = \mathbf{0}$; subspace of $\mathbb{R}^n$</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Linear Independence -->
+        <div class="review-section" id="independence">
+            <div class="review-card">
+                <h3>3. Linear Independence</h3>
+                <p>A set of vectors $\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$ is linearly independent if the only solution to $c_1\mathbf{v}_1 + \cdots + c_k\mathbf{v}_k = \mathbf{0}$ is $c_1 = \cdots = c_k = 0$.</p>
+
+                <h4>3.1 Key Tests</h4>
+                <ul>
+                    <li>Vectors are independent if no vector in the set can be written as a linear combination of the others</li>
+                    <li>If $\text{rank}(A) = n$ (number of columns), columns are independent</li>
+                    <li>More than $n$ vectors in $\mathbb{R}^n$ are always dependent</li>
+                </ul>
+
+                <h4>3.2 Wronskian Test (Functions)</h4>
+                <p>For functions $f_1, \ldots, f_n$, construct the Wronskian matrix. If $\det(W) \neq 0$ on an interval, the functions are linearly independent.</p>
+            </div>
+        </div>
+
+        <!-- Basis & Dimension -->
+        <div class="review-section" id="basis">
+            <div class="review-card">
+                <h3>4. Basis & Dimension</h3>
+                <p>A <strong>basis</strong> for a vector space $V$ is a linearly independent set that spans $V$. The <strong>dimension</strong> is the number of vectors in any basis.</p>
+
+                <h4>4.1 Key Properties</h4>
+                <ul>
+                    <li>Every vector in $V$ can be written uniquely as a linear combination of basis vectors</li>
+                    <li>All bases for $V$ have the same number of vectors</li>
+                    <li>If $V$ has dimension $n$, any set of $n$ independent vectors is a basis</li>
+                    <li>Any spanning set with $n$ vectors is a basis</li>
+                </ul>
+
+                <h4>4.2 Dimension Theorem</h4>
+                <div class="review-formula">
+                    $$\text{dim}(C(A)) + \text{dim}(N(A)) = n$$
+                    <div class="formula-label">Rank-nullity theorem for $A_{m \times n}$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Four Fundamental Subspaces -->
+        <div class="review-section" id="fundamental">
+            <div class="review-card">
+                <h3>5. The Four Fundamental Subspaces</h3>
+                <p>For any $m \times n$ matrix $A$, there are four fundamental subspaces that completely characterize the matrix.</p>
+
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Subspace</th><th>Symbol</th><th>Description</th><th>Dimension</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Column Space</td><td>$C(A)$</td><td>Span of columns of $A$</td><td>$\text{rank}(A) = r$</td></tr>
+                        <tr><td>Nullspace</td><td>$N(A)$</td><td>Solutions to $A\mathbf{x} = \mathbf{0}$</td><td>$n - r$</td></tr>
+                        <tr><td>Row Space</td><td>$C(A^T)$</td><td>Span of rows of $A$</td><td>$r$</td></tr>
+                        <tr><td>Left Nullspace</td><td>$N(A^T)$</td><td>Solutions to $A^T\mathbf{y} = \mathbf{0}$</td><td>$m - r$</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="review-callout success">
+                    <strong>Fundamental Theorem of Linear Algebra (Part 1):</strong> The row space and nullspace are orthogonal complements in $\mathbb{R}^n$. The column space and left nullspace are orthogonal complements in $\mathbb{R}^m$.
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="review-nav">
+            <a href="review-basics.html" class="review-nav-btn">← Previous</a>
+            <span class="review-nav-indicator">Review Sheet 2 of 6</span>
+            <a href="review-orthogonality.html" class="review-nav-btn">Next →</a>
+        </nav>
+    </div>
+
+    <script>
+        document.querySelectorAll('.review-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.tab;
+                document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.review-section').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(target).classList.add('active');
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById(target)]);
+                }
+            });
+        });
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>
