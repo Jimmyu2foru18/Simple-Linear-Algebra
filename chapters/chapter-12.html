@@ -123,21 +123,21 @@ $$Early Orbit Math - Linear Algebra Series$$
             <div class="derivation">
                 <h4>Derivation: Rank of the Incidence Matrix</h4>
                 <p>For a connected graph with n nodes:</p>
-                \$\$A is m Ã— n
-$$Sum of all rows = 0 (every +1 has a matching -1)
-Therefore rows are dependent: rank â‰¤ n-1$$
+                 A 	ext{ is } m \times n 
+                 \text{Sum of all rows} = 0 \text{ (every +1 has a matching -1)} 
+                 \text{Therefore rows are dependent: } \text{rank}(A) \leq n-1 
 
-If graph is connected, only one dependency exists.
-$$Therefore: \$\text{rank}(A)\$ = n - 1\$\$$$
-                <p>The nullspace of <code>A^T</code> has dimension <code>m - (n-1)</code>, which equals the number of independent cycles.</p>
+                <p>If graph is connected, only one dependency exists.</p>
+                $$ \text{rank}(A) = n - 1 $$
+                <p>The nullspace of $A^T$ has dimension $m - (n-1)$, which equals the number of independent cycles.</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Kirchhoff's Laws in Matrix Form</h4>
-                <p>Let <code>x</code> be edge currents and <code>b</code> be external currents at nodes. KCL says <code>\\mathbf{x} = \mathbf{b}\$</code>. For voltage differences <code>y</code> around edges, KVL says <code>A^T y = 0</code>.</p>
-                \$\$KCL: \\mathbf{x} = \mathbf{b}\$   (current balance at each node)
-$$KVL: A^T y = 0  (voltage balance around loops)
-dim(N(A^T)) = m - n + 1 = number of fundamental loops\$\$$$
+                <p>Let $\mathbf{x}$ be edge currents and $\mathbf{b}$ be external currents at nodes. KCL says \mathbf{x} = \mathbf{b}$. For voltage differences $\mathbf{y}$ around edges, KVL says ^T\mathbf{y} = \mathbf{0}$.</p>
+                 \text{KCL: } A\mathbf{x} = \mathbf{b} \quad \text{(current balance at each node)} 
+                 \text{KVL: } A^T\mathbf{y} = \mathbf{0} \quad \text{(voltage balance around loops)} 
+                 \dim(N(A^T)) = m - n + 1 = \text{number of fundamental loops} 
             </div>
 
             <h3>Learning Strategies</h3>
@@ -170,7 +170,7 @@ dim(N(A^T)) = m - n + 1 = number of fundamental loops\$\$$$
             <div class="visual-aid">
                 <h4>Figure: Graph and Its Incidence Matrix</h4>
                 <p>A simple 4-node, 5-edge graph:</p>
-                \$\$Graph:
+                $$Graph:
 $$1 --- 2$$
   |     |
 $$3 --- 4$$
@@ -181,16 +181,16 @@ $$e1:     1  -1   0   0   (1â†’2)
 e2:     0   1  -1   0   (2â†’3)
 e3:     1   0   0  -1   (1â†’4)
 e4:     0   0   1  -1   (3â†’4)
-e5:     0   1   0  -1   (2â†’4)\$\$$$
+e5:     0   1   0  -1   (2â†’4)$$$$
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Spanning Tree and Cycle</h4>
                 <p>From the graph above, edges {e1, e2, e3} form a spanning tree. Adding e4 creates cycle {e2, e4, e3}.</p>
-                \$\$Spanning tree: 3 edges (n-1 = 4-1)
+                $$Spanning tree: 3 edges (n-1 = 4-1)
 Independent: columns of A for {e1, e2, e3}
 $$Cycle space: dim = 5 - 4 + 1 = 2$$
-Fundamental cycles: {e2, e4, e3}, {e1, e3, e5, e2}\$\$
+Fundamental cycles: {e2, e4, e3}, {e1, e3, e5, e2}$$
             </div>
 
             <h3>Worked Examples</h3>
@@ -199,12 +199,12 @@ Fundamental cycles: {e2, e4, e3}, {e1, e3, e5, e2}\$\$
                 <h4>Example 1: Constructing an Incidence Matrix</h4>
                 <p><strong>Problem:</strong> Build the incidence matrix for a triangle graph with nodes 1, 2, 3 and edges (1,2), (2,3), (3,1).</p>
                 <p><strong>Solution:</strong></p>
-                \$\$n1  n2  n3
+                $$n1  n2  n3
 $$e12:   1  -1   0
 e23:   0   1  -1
 e31:  -1   0   1   (or reverse:  1   0  -1)$$
 
-Note: Each column sums to 0 (KCL at each node if no external current).\$\$
+Note: Each column sums to 0 (KCL at each node if no external current).$$
             </div>
 
             <div class="example">
@@ -241,10 +241,10 @@ Note: Each column sums to 0 (KCL at each node if no external current).\$\$
                 <p><em>Hint: The row space is the column space of <code>A^T</code>.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>dim(row space) = dim(<code>C(A^T)</code>) = \$\text{rank}(A)\$ = <code>n-1</code>.</p>
+                    <p>dim(row space) = dim(<code>C(A^T)</code>) = $\text{rank}(A)$ = <code>n-1</code>.</p>
                 </details>
 
-                <p><strong>Problem 4:</strong> In an electrical network, if node 1 has external current +3 and node 2 has -3, write the KCL equation <code>\\mathbf{x} = \mathbf{b}\$</code>.</p>
+                <p><strong>Problem 4:</strong> In an electrical network, if node 1 has external current +3 and node 2 has -3, write the KCL equation $A\mathbf{x} = \mathbf{b}$.</p>
                 <p><em>Hint: b represents external current injection at each node.</em></p>
                 <details>
                     <summary>Solution</summary>

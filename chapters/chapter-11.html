@@ -123,20 +123,20 @@ $$Early Orbit Math - Linear Algebra Series$$
             <div class="derivation">
                 <h4>Derivation: Rank-1 Factorization</h4>
                 <p>Any rank-1 matrix <code>A</code> has columns that are multiples of each other:</p>
-                \$\$A = [c1*u  c2*u  ...  cn*u]   where u is a column vector
+                $$A = [c1*u  c2*u  ...  cn*u]   where u is a column vector
 
 $$This can be written as:   A = u * [c1, c2, ..., cn]$$
-                        = u * v^T  (outer product)\$\$
+                        = u * v^T  (outer product)$$
                 <p>The dimension of the space of rank-1 matrices in <code>M_{mÃ—n}</code> is <code>m + n - 1</code> (m for u, n for v, minus 1 for scaling ambiguity).</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Counting Walks via Matrix Powers</h4>
                 <p>The <code>(i, j)</code> entry of <code>A^k</code> counts walks of length k from node i to node j:</p>
-                \$\$(A^2)_ij = sum over l of A_il * A_lj
+                $$(A^2)_ij = sum over l of A_il * A_lj
          = number of 2-step paths i â†’ l â†’ j
 
-(A^k)_ij = sum over all paths i = v0 â†’ v1 â†’ ... â†’ vk = j of 1\$\$
+(A^k)_ij = sum over all paths i = v0 â†’ v1 â†’ ... â†’ vk = j of 1$$
                 <p>This connects linear algebra to network analysis.</p>
             </div>
 
@@ -170,17 +170,17 @@ $$This can be written as:   A = u * [c1, c2, ..., cn]$$
             <div class="visual-aid">
                 <h4>Figure: Rank-1 Matrix Structure</h4>
                 <p>A rank-1 matrix has a simple pattern - every column is a multiple of the first column:</p>
-                \$\$A = [1  2  3]   =  [1]   [1  2  3]
+                $$A = [1  2  3]   =  [1]   [1  2  3]
     [2  4  6]      [2]
     [3  6  9]      [3]
 
-= u * v^T  where  u = [1, 2, 3]^T,  v = [1, 2, 3]^T\$\$
+= u * v^T  where  u = [1, 2, 3]^T,  v = [1, 2, 3]^T$$
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Small World Network</h4>
                 <p>A graph with 6 nodes where each node connects to neighbors and one random long-range link:</p>
-                \$\$Adjacency matrix:
+                $$Adjacency matrix:
 [0 1 1 0 0 1]
 [1 0 1 1 0 0]
 [1 1 0 1 1 0]
@@ -188,7 +188,7 @@ $$This can be written as:   A = u * [c1, c2, ..., cn]$$
 [0 0 1 1 0 1]
 [1 0 0 1 1 0]
 
-Short paths exist due to the "small world" connections.\$\$
+Short paths exist due to the "small world" connections.$$
             </div>
 
             <h3>Worked Examples</h3>
