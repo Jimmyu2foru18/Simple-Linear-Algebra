@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4: Factorization into A = LU - Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- MathJax Configuration -->
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+$$ignoreHtmlClass: 'no-mathjax'$$
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Linear Algebra</h1>
+        <p class="subtitle">Chapter 4: Factorization into A = LU</p>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="index.html">Curriculum</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Chapter 4: Factorization into A = LU</h2>
+            <p class="lead">LU decomposition and its applications in solving linear systems. This chapter shows how the elimination process naturally factors a matrix into a lower triangular matrix L and an upper triangular matrix U.</p>
+
+            <div class="video-section">
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/MsIvs_6vC38"
+$$title="4. Factorization into A = LU - Gilbert Strang"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <h3>Concept Breakdowns</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1"
+$$title="Prof Dave â€” LU Decomposition"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Prof. Dave Explains</h5>
+                        <p>Concise breakdown of LU factorization</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2"
+$$title="Paul Dawkins â€” Textbook Context"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <p>Textbook-aligned explanation with examples</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3"
+$$title="Valerie Hower â€” Problem Solving"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Valerie Hower</h5>
+                        <p>Step-by-step problem-solving demonstration</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-section">
+                <h4>Quick Overview â€” Early Orbit Math</h4>
+                <p>For a rapid summary of this chapter's key concepts, check out:</p>
+                <a href="https://www.youtube.com/@EarlyOrbitMath" target="_blank" rel="noopener noreferrer" class="nav-btn">
+$$Early Orbit Math - Linear Algebra Series$$
+                </a>
+            </div>
+
+            <h3>Detailed Topic Breakdowns</h3>
+
+            <h4>The LU Factorization</h4>
+            <p>When we perform Gaussian elimination without row exchanges, the process naturally produces a factorization <code>A = LU</code>, where L is a lower triangular matrix containing the multipliers used during elimination, and U is the resulting upper triangular matrix.</p>
+
+            <h4>The L Matrix</h4>
+            <p>L is lower triangular with ones on the diagonal. Its subdiagonal entries <code>l_ij</code> are exactly the multipliers used to eliminate the entries below the pivots during Gaussian elimination. L captures the row operations in compact form.</p>
+
+            <h4>Computational Cost</h4>
+            <p>The cost of Gaussian elimination for an <code>n x n</code> matrix is approximately <code>n^3/3</code> operations. This is far more efficient than computing <code>A^-1</code> (which costs <code>n^3</code> operations) and then ltiplying by b.</p>
+
+            <h4>Pertation Matrices</h4>
+            <p>When row exchanges are needed, we introduce pertation matrices P. The factorization becomes <code>PA = LU</code>, where P reorders the rows of A to enable safe elimination. P is orthogonal: <code>P^-1 = P^T</code>.</p>
+
+            <h3>Mathematical Rigor</h3>
+
+            <div class="derivation">
+                <h4>Derivation: Constructing L from Multipliers</h4>
+                <p>For a 3x3 system, suppose the multipliers are <code>l_21, l_31, l_32</code>. The elimination matrices ltiply as:</p>
+                $$E_32 * E_31 * E_21 * A = U
+
+$$Therefore: A = (E_21)^-1 * (E_31)^-1 * (E_32)^-1 * U = L * U$$$$
+                <p>Where <code>L = (E_21)^-1 * (E_31)^-1 * (E_32)^-1</code> is lower triangular with the multipliers in the appropriate positions.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Solving $A\mathbf{x} = \mathbf{b}$ via LU</h4>
+                <p>Once <code>A = LU</code>, solving <code>$A\mathbf{x} = \mathbf{b}$</code> becomes a two-step process:</p>
+                $$Step 1: Forward substitution   Ly = b   (solve for y)
+$$Step 2: Back substitution       Ux = y   (solve for x)$$$$
+                <p>Forward substitution is efficient because L is lower triangular. Each step requires only one division and a few subtractions.</p>
+            </div>
+
+            <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "L Stores the Lifts"</strong>
+                    <p>L contains the multipliers that "lift" the lower entries to zero during elimination. The entry <code>l_ij</code> tells you how ch of row i to subtract from row j.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Forward then Back"</strong>
+                    <p>LU decomposition splits one solve into two easy solves: first go down through L (forward), then up through U (backward). Each is triangular and fast.</p>
+                </div>
+            </div>
+
+            <div class="strategies">
+                <h4>Study Tips</h4>
+                <ul>
+                    <li>Practice computing L by hand for small 3x3 matrices</li>
+                    <li>Verify <code>LU = A</code> after computing both factors</li>
+                    <li>Understand that row exchanges require P: <code>PA = LU</code></li>
+                    <li>Note that computing <code>A^-1</code> costs ~3 $\times$ more than solving <code>$A\mathbf{x} = \mathbf{b}$</code> ltiple $\times$</li>
+                    <li>Recognize when a matrix cannot be factored without pertations</li>
+                </ul>
+            </div>
+
+            <h3>Visual Aids</h3>
+
+            <div class="visual-aid">
+                <h4>Figure: LU Factorization Flow</h4>
+                <p>The elimination process viewed as factorization:</p>
+                $$A = [[2  1  1]     U = [[2  1    1   ]
+    [4 -6  0]  =        [0 -8  -2  ] * L
+    [-2 7  2]]          [0  0   1  ]]
+
+$$L = [[1    0   0]     Multipliers: l21=2, l31=-1, l32=-1$$
+    [2    1   0]
+    [-1  -1   1]]$$
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Operation Counts</h4>
+                <p>Comparing computational costs for an <code>n x n</code> system:</p>
+                $$Forward Substitution:     ~n^2/2  operations
+Back Substitution:        ~n^2/2  operations
+Total for LU solve:       ~n^2    operations
+Gaussian Elimination:     ~n^3/3  operations
+Inverse computation:      ~n^3    operations
+
+$$For n=1000: LU is ~300x faster than computing A^-1!$$$$
+            </div>
+
+            <h3>Worked Examples</h3>
+
+            <div class="example">
+                <h4>Example 1: 2x2 LU Factorization</h4>
+                <p><strong>Problem:</strong> Factor <code>A = [[2, 1], [4, -6]]</code> into <code>LU</code>.</p>
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li>Pivot: <code>a_11 = 2</code></li>
+                    <li>Multiplier: <code>l_21 = 4/2 = 2</code></li>
+                    <li>Eliminate: <code>R2 - 2*R1 = [0, -6-2] = [0, -8]</code></li>
+                    <li><code>U = [[2, 1], [0, -8]]</code></li>
+                    <li><code>L = [[1, 0], [2, 1]]</code></li>
+                    <li>Verify: <code>LU = [[2, 1], [4, -6]] = A</code> âœ“</li>
+                </ol>
+            </div>
+
+            <div class="example">
+                <h4>Example 2: 3x3 LU Factorization</h4>
+                <p><strong>Problem:</strong> Factor <code>A = [[2, -1, 0], [1, 2, 1], [0, 1, 3]]</code>.</p>
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li>Pivot <code>a_11 = 2</code>, multiplier <code>l_21 = 1/2 = 0.5</code></li>
+                    <li><code>R2 - 0.5*R1 = [0, 2.5, 1]</code></li>
+                    <li><code>U = [[2, -1, 0], [0, 2.5, 1], [0, 1, 3]]</code></li>
+                    <li>Next pivot <code>u_22 = 2.5</code>, multiplier <code>l_32 = 1/2.5 = 0.4</code></li>
+                    <li><code>R3 - 0.4*R2 = [0, 0, 2.6]</code></li>
+                    <li>Final <code>U = [[2, -1, 0], [0, 2.5, 1], [0, 0, 2.6]]</code></li>
+                    <li><code>L = [[1, 0, 0], [0.5, 1, 0], [0, 0.4, 1]]</code></li>
+                </ol>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Solving $A\mathbf{x} = \mathbf{b}$ via LU</h4>
+                <p><strong>Problem:</strong> Use the LU factors from Example 1 to solve <code>Ax = [1, 5]^T</code>.</p>
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li>Forward solve <code>Ly = b</code>: <code>y_1 = 1</code>, <code>2*1 + y_2 = 5 â†’ y_2 = 3</code></li>
+                    <li>Back solve <code>Ux = y</code>: <code>-8*x_2 = 3 â†’ x_2 = -3/8</code></li>
+                    <li><code>2*x_1 + (-3/8) = 1 â†’ x_1 = 11/16</code></li>
+                </ol>
+            </div>
+
+            <h3>Practice Problems</h3>
+
+            <div class="questions">
+                <h4>Problem Set 4</h4>
+                <p><strong>Problem 1:</strong> Factor <code>A = [[1, 3], [2, 7]]</code> into LU.</p>
+                <p><em>Hint: Find the multiplier for eliminating the (2,1) entry.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><code>l_21 = 2/1 = 2</code></p>
+                    <p><code>U = [[1, 3], [0, 1]]</code></p>
+                    <p><code>L = [[1, 0], [2, 1]]</code></p>
+                </details>
+
+                <p><strong>Problem 2:</strong> For <code>A = [[1, 1, 0], [2, 3, 1], [1, 2, 1]]</code>, find the LU factorization.</p>
+                <p><em>Hint: Two pivots needed; track both multipliers.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><code>l_21 = 2, l_31 = 1</code></p>
+                    <p>After first column elimination: <code>[[1, 1, 0], [0, 1, 1], [0, 1, 1]]</code></p>
+                    <p><code>l_32 = 1</code></p>
+                    <p><code>U = [[1, 1, 0], [0, 1, 1], [0, 0, 0]]</code></p>
+                    <p><code>L = [[1, 0, 0], [2, 1, 0], [1, 1, 1]]</code></p>
+                </details>
+
+                <p><strong>Problem 3:</strong> Show that if <code>A</code> is singular, the LU factorization (without pertations) fails.</p>
+                <p><em>Hint: What happens when a pivot is zero?</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>If <code>A</code> is singular, elimination produces a zero pivot. Without row exchange, we cannot proceed. A pertation matrix P reorders rows: <code>PA = LU</code>.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Compute the number of multiplications needed to factor an <code>n x n</code> matrix into LU (no pertations).</p>
+                <p><em>Hint: Count operations in the elimination loop.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Approximately <code>n^3/3</code> multiplications/divisions and a similar number of additions/subtractions. Total ~<code>2n^3/3</code> flops.</p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="chapter-03.html" class="nav-btn prev" id="prev-chapter">Previous</a>
+                <span class="nav-indicator" id="chapter-indicator"></span>
+                <a href="chapter-05.html" class="nav-btn next" id="next-chapter">Next</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
+
+

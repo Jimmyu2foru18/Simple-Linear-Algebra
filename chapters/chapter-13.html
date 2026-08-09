@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 13: Orthogonal Vectors and Subspaces - Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- MathJax Configuration -->
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+$$ignoreHtmlClass: 'no-mathjax'$$
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Linear Algebra</h1>
+        <p class="subtitle">Chapter 13: Orthogonal Vectors and Subspaces</p>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="index.html">Curriculum</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Chapter 13: Orthogonal Vectors and Subspaces</h2>
+            <p class="lead">Orthogonality, projections, and least squares approximation. This chapter introduces perpendicularity in vector spaces, enabling projections onto subspaces, orthogonalization via Gram-Schmidt, and the powerful least squares method for inconsistent systems.</p>
+
+            <div class="video-section">
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/PLACEHOLDER_13"
+$$title="13. Orthogonal Vectors and Subspaces - Gilbert Strang"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <h3>Concept Breakdowns</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1"
+$$title="Prof Dave â€” Orthogonal Vectors and Subspaces"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Prof. Dave Explains</h5>
+                        <p>Concise breakdown of orthogonality and projections</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2"
+$$title="Paul Dawkins â€” Textbook Context"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <p>Textbook-aligned explanation with examples</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3"
+$$title="Valerie Hower â€” Problem Solving"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Valerie Hower</h5>
+                        <p>Step-by-step problem-solving demonstration</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-section">
+                <h4>Quick Overview â€” Early Orbit Math</h4>
+                <p>For a rapid summary of this chapter's key concepts, check out:</p>
+                <a href="https://www.youtube.com/@EarlyOrbitMath" target="_blank" rel="noopener noreferrer" class="nav-btn">
+$$Early Orbit Math - Linear Algebra Series$$
+                </a>
+            </div>
+
+            <h3>Detailed Topic Breakdowns</h3>
+
+            <h4>Dot Product and Orthogonality</h4>
+            <p>The dot product (inner product) of vectors <code>u</code> and <code>v</code> in <code>\$\mathbb{R}^n\$</code> is <code>u Â· v = u^T v = sum(u_i * v_i)</code>. Vectors are orthogonal when their dot product is zero. The length (norm) of a vector is <code>||v|| = sqrt(v Â· v)</code>.</p>
+
+            <h4>Orthogonal Subspaces</h4>
+            <p>Two subspaces V and W are orthogonal if every vector in V is orthogonal to every vector in W. The orthogonal complement <code>V^perp</code> is the set of all vectors orthogonal to V. Key fact: <code>(V^perp)^perp = V</code> for closed subspaces.</p>
+
+            <h4>Projections onto Lines and Subspaces</h4>
+            <p>The projection of a vector <code>b</code> onto a line through <code>a</code> is <code>p = (a^T b / a^T a) * a</code>. For a subspace with orthonormal basis columns in Q, the projection is <code>p = Q Q^T b</code>. Projections minimize the distance from b to the subspace.</p>
+
+            <h4>Least Squares Approximation</h4>
+            <p>When <code>\\mathbf{x} = \mathbf{b}\$</code> has no exact solution, the least squares solution minimizes <code>||Ax - b||</code>. The normal equations are <code>A^T A x = A^T b</code>. If A has independent columns, <code>A^T A</code> is invertible and <code>x = (A^T A)^-1 A^T b</code>.</p>
+
+            <h4>Orthogonal Matrices</h4>
+            <p>An orthogonal matrix Q satisfies <code>Q^T Q = I</code>, meaning its columns are orthonormal. Orthogonal matrices preserve lengths and angles: <code>||Qx|| = ||x||</code>. Their inverses equal their transposes: <code>Q^-1 = Q^T</code>.</p>
+
+            <h4>Gram-Schmidt Orthogonalization</h4>
+            <p>The Gram-Schmidt process takes any set of independent vectors and produces an orthonormal basis for their span. At each step, subtract the projection of the new vector onto all previously processed vectors, then normalize.</p>
+
+            <h3>Mathematical Rigor</h3>
+
+            <div class="derivation">
+                <h4>Derivation: Projection Formula</h4>
+                <p>To project <code>b</code> onto the line through <code>a</code>, we seek <code>p = c*a</code> such that the error <code>e = b - p</code> is orthogonal to <code>a</code>:</p>
+                \$\$a^T e = 0
+$$a^T (b - ca) = 0
+a^T b - c(a^T a) = 0
+c = (a^T b) / (a^T a)$$
+
+$$Therefore: p = ((a^T b) / (a^T a)) * a\$\$$$
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Least Squares via Projection</h4>
+                <p>We want <code>Ax â‰ˆ b</code>. The closest point in <code>C(A)</code> to <code>b</code> is the projection <code>p = A x_hat</code>. Since the error <code>e = b - Ax_hat</code> is orthogonal to <code>C(A)</code>, it is orthogonal to every column of A:</p>
+                \$\$A^T (b - Ax_hat) = 0
+$$A^T b - A^T A x_hat = 0
+A^T A x_hat = A^T b  (Normal Equations)\$\$$$
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Gram-Schmidt Process</h4>
+                <p>Given independent vectors <code>a1, a2, ..., an</code>:</p>
+                \$\$Step 1: q1 = a1 / ||a1||
+$$Step 2: q2 = (a2 - (q1^T a2)q1) / ||a2 - (q1^T a2)q1||
+Step 3: q3 = (a3 - (q1^T a3)q1 - (q2^T a3)q2) / ||...||$$
+...
+$$Step k: qk = (ak - sum_{j=1}^{k-1} (qj^T ak)qj) / ||...||\$\$$$
+                <p>Each <code>qk</code> is orthogonal to all previous <code>qj</code> and has unit length.</p>
+            </div>
+
+            <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Project then Subtract"</strong>
+                    <p>To find the closest point to b in a subspace: (1) project b onto the subspace to get p, (2) subtract to get the error <code>e = b - p</code>. The error is orthogonal to the subspace.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Gram-Schmidt: Subtract Projections, Then Normalize"</strong>
+                    <p>For each vector: remove its shadow on previous vectors (subtract projections), then scale to unit length (normalize). The result is an orthonormal basis.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Least Squares = Closest in Column Space"</strong>
+                    <p>When <code>\\mathbf{x} = \mathbf{b}\$</code> has no solution, find <code>x_hat</code> that makes <code>Ax_hat</code> as close to <code>b</code> as possible. This is the projection of b onto <code>C(A)</code>.</p>
+                </div>
+            </div>
+
+            <div class="strategies">
+                <h4>Study Tips</h4>
+                <ul>
+                    <li>Always draw the projection picture: b decomposes into p (in subspace) + e (orthogonal to subspace)</li>
+                    <li>For projections onto lines, memorize <code>p = (a^T b / a^T a) a</code></li>
+                    <li>QR factorization from Gram-Schmidt makes least squares easy: <code>R x = Q^T b</code></li>
+                    <li>Orthogonal matrices preserve geometry - rotations and reflections</li>
+                    <li>The normal equations <code>A^T A x = A^T b</code> are the key to least squares</li>
+                    <li>Check <code>A^T A</code> is invertible: requires independent columns of A</li>
+                </ul>
+            </div>
+
+            <h3>Visual Aids</h3>
+
+            <div class="visual-aid">
+                <h4>Figure: Projection onto a Line</h4>
+                <p>Decomposing <code>b</code> into parallel and perpendicular components relative to <code>a</code>:</p>
+                \$\$b
+       |
+       | e (error, orthogonal to a)
+       |
+$$p ----b$$
+|
+| p (projection, parallel to a)
+|
+$$+-------- a$$
+
+$$p = (aÂ·b / aÂ·a) * a
+e = b - p
+Check: a Â· e = 0 âœ“\$\$$$
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Least Squares Geometry</h4>
+                <p>When b is not in <code>C(A)</code>, find the closest point <code>p = Ax_hat</code>:</p>
+                \$\$b
+      |\
+      | \
+      |  \ e (shortest possible)
+      |   \
+      p    \
+     /      \
+    /        \
+$$+----------+-------- C(A)$$
+
+$$A^T e = 0  means  e âŠ¥ C(A)$$
+This determines x_hat uniquely.\$\$
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Gram-Schmidt Process</h4>
+                <p>Converting <code>a1, a2</code> to orthonormal <code>q1, q2</code>:</p>
+                \$\$Step 1: q1 = a1 / ||a1||
+
+Step 2:
+  Project a2 onto q1: (q1^T a2) q1
+$$Subtract: a2 - (q1^T a2) q1  (make orthogonal to q1)
+Normalize: q2 = [a2 - (q1^T a2)q1] / ||...||$$
+
+$$Result: q1 âŠ¥ q2, ||q1|| = ||q2|| = 1\$\$$$
+            </div>
+
+            <h3>Worked Examples</h3>
+
+            <div class="example">
+                <h4>Example 1: Projection onto a Line</h4>
+                <p><strong>Problem:</strong> Project <code>b = [3, 2]^T</code> onto the line through <code>a = [1, 1]^T</code>.</p>
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li><code>a^T a = 1 + 1 = 2</code></li>
+                    <li><code>a^T b = 3 + 2 = 5</code></li>
+                    <li><code>p = (5/2) * [1, 1]^T = [2.5, 2.5]^T</code></li>
+                    <li>Error: <code>e = [3, 2]^T - [2.5, 2.5]^T = [0.5, -0.5]^T</code></li>
+                    <li>Check: <code>a Â· e = 1*0.5 + 1*(-0.5) = 0</code> âœ“</li>
+                </ol>
+            </div>
+
+            <div class="example">
+                <h4>Example 2: Least Squares Fit</h4>
+                <p><strong>Problem:</strong> Find the least squares line <code>y = C + Dt</code> through points <code>(t, y) = (1, 1), (2, 2), (3, 2)</code>.</p>
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li>Design matrix: <code>A = [[1, 1], [1, 2], [1, 3]]</code>, <code>b = [1, 2, 2]^T</code></li>
+                    <li><code>A^T A = [[3, 6], [6, 14]]</code></li>
+                    <li><code>A^T b = [5, 11]^T</code></li>
+                    <li>Normal equations: <code>[[3, 6], [6, 14]] [C, D]^T = [5, 11]^T</code></li>
+                    <li>Solve: <code>C = 1/3, D = 3/2</code></li>
+                    <li>Best fit line: <code>y = 1/3 + (3/2)t</code></li>
+                </ol>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Gram-Schmidt Process</h4>
+                <p><strong>Problem:</strong> Orthonormalize <code>a1 = [1, 1, 0]^T</code>, <code>a2 = [1, 0, 1]^T</code>, <code>a3 = [1, 1, 1]^T</code>.</p>
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li><code>q1 = [1, 1, 0]^T / sqrt(2) = [1/sqrt(2), 1/sqrt(2), 0]^T</code></li>
+                    <li>Project <code>a2</code> onto <code>q1</code>: <code>(q1^T a2) = 1/sqrt(2)</code></li>
+                    <li><code>a2_perp = [1, 0, 1]^T - (1/sqrt(2))[1/sqrt(2), 1/sqrt(2), 0]^T = [0.5, -0.5, 1]^T</code></li>
+                    <li><code>||a2_perp|| = sqrt(0.25 + 0.25 + 1) = sqrt(1.5)</code></li>
+                    <li><code>q2 = [0.5, -0.5, 1]^T / sqrt(1.5)</code></li>
+                    <li>Similarly compute <code>q3</code> from <code>a3</code> minus projections onto <code>q1</code> and <code>q2</code></li>
+                </ol>
+            </div>
+
+            <h3>Practice Problems</h3>
+
+            <div class="questions">
+                <h4>Problem Set 13</h4>
+                <p><strong>Problem 1:</strong> Are vectors <code>u = [1, 2, 2]^T</code> and <code>v = [1, -1, 1]^T</code> orthogonal? Compute their lengths.</p>
+                <p><em>Hint: Compute the dot product and norms.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><code>u Â· v = 1 - 2 + 2 = 1 â‰  0</code>. Not orthogonal.</p>
+                    <p><code>||u|| = sqrt(1 + 4 + 4) = 3</code></p>
+                    <p><code>||v|| = sqrt(1 + 1 + 1) = sqrt(3)</code></p>
+                </details>
+
+                <p><strong>Problem 2:</strong> Project <code>b = [1, 2, 3]^T</code> onto the plane spanned by <code>a1 = [1, 0, 0]^T</code> and <code>a2 = [0, 1, 0]^T</code>.</p>
+                <p><em>Hint: The plane is the xy-plane. What is the closest point?</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>The plane is <code>z = 0</code>. The closest point to <code>[1, 2, 3]^T</code> is <code>[1, 2, 0]^T</code>. Projection <code>p = [1, 2, 0]^T</code>, error <code>e = [0, 0, 3]^T</code>.</p>
+                </details>
+
+                <p><strong>Problem 3:</strong> Find the least squares solution to <code>\\mathbf{x} = \mathbf{b}\$</code> where <code>A = [[1, 0], [0, 1], [1, 1]]</code> and <code>b = [1, 2, 4]^T</code>.</p>
+                <p><em>Hint: Compute <code>A^T A</code> and <code>A^T b</code>.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><code>A^T A = [[2, 1], [1, 2]]</code></p>
+                    <p><code>A^T b = [5, 6]^T</code></p>
+                    <p>Solving: <code>x = [4/3, 7/3]^T</code></p>
+                    <p>Check: <code>Ax = [4/3, 7/3, 11/3]^T</code>, error minimized.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Is <code>Q = [[1/sqrt(2), 1/sqrt(2)], [-1/sqrt(2), 1/sqrt(2)]]</code> an orthogonal matrix? Verify.</p>
+                <p><em>Hint: Check if <code>Q^T Q = I</code>.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    \$\$Q^T Q = [[1/2+1/2,  1/2-1/2],
+         [1/2-1/2,  1/2+1/2]]
+       = [[1, 0],
+         [0, 1]] = I  âœ“\$\$
+                    <p>Yes, Q is orthogonal (a rotation by 45 degrees).</p>
+                </details>
+
+                <p><strong>Problem 5:</strong> If Q is orthogonal, what is <code>||Qx||</code> in terms of <code>||x||</code>?</p>
+                <p><em>Hint: Compute <code>||Qx||^2 = (Qx)^T (Qx)</code>.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    \$\$||Qx||^2 = (Qx)^T (Qx) = x^T Q^T Q x = x^T I x = x^T x = ||x||^2
+$$Therefore: ||Qx|| = ||x||\$\$$$
+                    <p>Orthogonal matrices preserve lengths and angles.</p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="chapter-12.html" class="nav-btn prev" id="prev-chapter">Previous</a>
+                <span class="nav-indicator" id="chapter-indicator"></span>
+                <a href="#" class="nav-btn next disabled" id="next-chapter">Next</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
+
+

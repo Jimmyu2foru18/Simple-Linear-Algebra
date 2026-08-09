@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 9: Independence, Basis, and Dimension - Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- MathJax Configuration -->
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+$$ignoreHtmlClass: 'no-mathjax'$$
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Linear Algebra</h1>
+        <p class="subtitle">Chapter 9: Independence, Basis, and Dimension</p>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="index.html">Curriculum</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Chapter 9: Independence, Basis, and Dimension</h2>
+            <p class="lead">Linear independence, basis vectors, and dimension theory. This chapter defines the fundamental concepts that measure the "size" and structure of vector spaces and subspaces.</p>
+
+            <div class="video-section">
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/yjBerM5jWsc"
+$$title="9. Independence, Basis, and Dimension - Gilbert Strang"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <h3>Concept Breakdowns</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1"
+$$title="Prof Dave â€” Independence and Basis"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Prof. Dave Explains</h5>
+                        <p>Concise breakdown of independence, basis, and dimension</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2"
+$$title="Paul Dawkins â€” Textbook Context"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <p>Textbook-aligned explanation with examples</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3"
+$$title="Valerie Hower â€” Problem Solving"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Valerie Hower</h5>
+                        <p>Step-by-step problem-solving demonstration</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-section">
+                <h4>Quick Overview â€” Early Orbit Math</h4>
+                <p>For a rapid summary of this chapter's key concepts, check out:</p>
+                <a href="https://www.youtube.com/@EarlyOrbitMath" target="_blank" rel="noopener noreferrer" class="nav-btn">
+$$Early Orbit Math - Linear Algebra Series$$
+                </a>
+            </div>
+
+            <h3>Detailed Topic Breakdowns</h3>
+
+            <h4>Linear Independence</h4>
+            <p>A set of vectors <code>{v1, v2, ..., vk}</code> is linearly independent if the only solution to <code>c1*v1 + c2*v2 + ... + ck*vk = 0</code> is <code>c1 = c2 = ... = ck = 0</code>. If any nonzero coefficients produce zero, the vectors are dependent.</p>
+
+            <h4>Span and Basis</h4>
+            <p>The span of a set of vectors is all possible linear combinations. A basis for a vector space V is a set of vectors that are both linearly independent and span V. Every vector in V can be written uniquely as a linear combination of basis vectors.</p>
+
+            <h4>Dimension</h4>
+            <p>The dimension of a vector space is the number of vectors in any basis for that space. All bases for a given space have the same number of vectors. <code>dim($\mathbb{R}^n$) = n</code>. The dimension of a subspace is less than or equal to the dimension of the parent space.</p>
+
+            <h4>Rank and Matrix Spaces</h4>
+            <p>The rank of a matrix is the dimension of its column space (or row space). The rank equals the number of pivot columns. It measures how ch "information" the matrix preserves.</p>
+
+            <h3>Mathematical Rigor</h3>
+
+            <div class="derivation">
+                <h4>Derivation: Independence Test via Matrix</h4>
+                <p>To test if vectors <code>v1, v2, ..., vk</code> in <code>$\mathbb{R}^n$</code> are independent:</p>
+                $$Form matrix A = [v1 v2 ... vk]
+$$Solve Ax = 0$$
+
+$$If only trivial solution x = 0 exists: independent$$
+If nontrivial solution exists: dependent$$
+                <p>The vectors are independent exactly when $\text{rank}(A)$ = k.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Uniqueness of Basis Representation</h4>
+                <p>If <code>{v1, ..., vn}</code> is a basis for V and <code>v = c1*v1 + ... + cn*vn = d1*v1 + ... + dn*vn</code>, then:</p>
+                $$(c1-d1)*v1 + ... + (cn-dn)*vn = 0
+$$By independence: c1-d1 = 0, ..., cn-dn = 0
+Therefore: ci = di for all i$$$$
+                <p>Basis representations are unique.</p>
+            </div>
+
+            <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "INDEPENDENT = No Empty Weight"</strong>
+                    <p>A set is independent if no vector in the set can be written as a combination of the others. Like people: if no one's weight comes from standing on others' shoulders, they're independent.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Basis = Just Right"</strong>
+                    <p>A basis has exactly the right number of vectors: enough to span the space, but not so many that they become dependent. Not too few (can't span), not too many (dependent).</p>
+                </div>
+            </div>
+
+            <div class="strategies">
+                <h4>Study Tips</h4>
+                <ul>
+                    <li>Always test independence by solving <code>Ax = 0</code> where A has the vectors as columns</li>
+                    <li>More vectors than dimensions (k > n in <code>$\mathbb{R}^n$</code>) always means dependence</li>
+                    <li>The standard basis for <code>$\mathbb{R}^n$</code> is <code>e1, e2, ..., en</code></li>
+                    <li>To extend a linearly independent set to a basis, add vectors from the standard basis that aren't already in the span</li>
+                    <li>Dimension is invariant - all bases have the same size</li>
+                </ul>
+            </div>
+
+            <h3>Visual Aids</h3>
+
+            <div class="visual-aid">
+                <h4>Figure: Independent vs. Dependent Vectors in R^2</h4>
+                <p>Two vectors in <code>R^2</code>:</p>
+                $$Independent:       Dependent:
+$$v1 = [1]          v1 = [1]$$
+    [0]                [0]
+$$v2 = [0]          v2 = [2]$$
+    [1]                [0]
+
+$$v1 and v2 span R^2.   v2 = 2*v1, lies on same line.$$$$
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Basis for a Plane in R^3</h4>
+                <p>A plane through the origin in <code>R^3</code> has dimension 2. Any two independent vectors in the plane form a basis:</p>
+                $$Plane: x + y + z = 0
+$$Basis vectors: v1 = [1, -1, 0]^T, v2 = [1, 0, -1]^T
+Any vector in plane: c1*v1 + c2*v2$$$$
+            </div>
+
+            <h3>Worked Examples</h3>
+
+            <div class="example">
+                <h4>Example 1: Testing Independence</h4>
+                <p><strong>Problem:</strong> Determine if <code>v1 = [1, 2, 3]^T</code>, <code>v2 = [2, 5, 7]^T</code>, <code>v3 = [3, 7, 10]^T</code> are independent.</p>
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li>Form <code>A = [[1, 2, 3], [2, 5, 7], [3, 7, 10]]</code></li>
+                    <li>RREF: <code>[[1, 0, 1], [0, 1, 1], [0, 0, 0]]</code></li>
+                    <li>Rank = 2 &lt; 3 (number of vectors)</li>
+                    <li>Nontrivial solution exists: <code>v3 = -v1 - v2</code></li>
+                    <li><strong>Vectors are dependent.</strong></li>
+                </ol>
+            </div>
+
+            <div class="example">
+                <h4>Example 2: Finding a Basis</h4>
+                <p><strong>Problem:</strong> Find a basis for the subspace <code>S = span{[1, 2, 1]^T, [2, 4, 2]^T, [1, 0, 1]^T}</code>.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Note: <code>v2 = 2*v1</code>, so <code>v2</code> is dependent on <code>v1</code></li>
+                    <li>Check if <code>v3</code> is independent of <code>v1</code>: not a ltiple</li>
+                    <li>RREF of <code>[v1 v2 v3]</code> gives pivots in columns 1 and 3</li>
+                    <li>Basis: <code>{[1, 2, 1]^T, [1, 0, 1]^T}</code></li>
+                    <li>dim(S) = 2</li>
+                </ul>
+            </div>
+
+            <h3>Practice Problems</h3>
+
+            <div class="questions">
+                <h4>Problem Set 9</h4>
+                <p><strong>Problem 1:</strong> Are the vectors <code>[1, 1, 0]^T, [0, 1, 1]^T, [1, 0, 1]^T</code> in <code>R^3</code> independent?</p>
+                <p><em>Hint: Three vectors in <code>R^3</code> can be independent if they form a basis.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>RREF of <code>[[1,0,1],[1,1,0],[0,1,1]]</code> = I. Rank = 3. <strong>Independent.</strong></p>
+                </details>
+
+                <p><strong>Problem 2:</strong> What is the dimension of the subspace of <code>R^4</code> spanned by <code>[1, 0, 0, 1]^T, [0, 1, 0, 1]^T, [1, 1, 0, 0]^T, [0, 0, 1, 1]^T</code>?</p>
+                <p><em>Hint: Compute the rank of the matrix with these vectors as columns.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>The four vectors are independent (RREF = I). Dimension = 4. They span all of <code>R^4</code>.</p>
+                </details>
+
+                <p><strong>Problem 3:</strong> Extend <code>{[1, 1]^T}</code> to a basis for <code>R^2</code>.</p>
+                <p><em>Hint: Add any vector not in the span of the first vector.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Add <code>[0, 1]^T</code> or <code>[1, 0]^T</code> or any vector not equal to <code>c*[1, 1]^T</code>. Basis: <code>{[1, 1]^T, [0, 1]^T}</code>.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> If a subspace S of <code>R^5</code> has dimension 3, what is the maxim number of linearly independent vectors it can contain?</p>
+                <p><em>Hint: Think about the definition of dimension.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>3. Any set of 4 or more vectors in a 3-dimensional subspace st be dependent.</p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="chapter-08.html" class="nav-btn prev" id="prev-chapter">Previous</a>
+                <span class="nav-indicator" id="chapter-indicator"></span>
+                <a href="chapter-10.html" class="nav-btn next" id="next-chapter">Next</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
+
+

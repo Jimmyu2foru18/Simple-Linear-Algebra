@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 12: Graphs and Networks; Incidence Matrices - Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- MathJax Configuration -->
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+$$ignoreHtmlClass: 'no-mathjax'$$
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Linear Algebra</h1>
+        <p class="subtitle">Chapter 12: Graphs and Networks; Incidence Matrices</p>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="index.html">Curriculum</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Chapter 12: Graphs and Networks; Incidence Matrices</h2>
+            <p class="lead">Network analysis using graph theory and incidence matrices. This chapter applies linear algebra to analyze electrical networks, traffic flow, and structural rigidity through incidence matrices and Kirchhoff's laws.</p>
+
+            <div class="video-section">
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/6-wh6yvk6uc"
+$$title="12. Graphs and Networks; Incidence Matrices - Gilbert Strang"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <h3>Concept Breakdowns</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1"
+$$title="Prof Dave â€” Graphs and Networks"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Prof. Dave Explains</h5>
+                        <p>Concise breakdown of graph theory and networks</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2"
+$$title="Paul Dawkins â€” Textbook Context"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <p>Textbook-aligned explanation with examples</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3"
+$$title="Valerie Hower â€” Problem Solving"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Valerie Hower</h5>
+                        <p>Step-by-step problem-solving demonstration</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-section">
+                <h4>Quick Overview â€” Early Orbit Math</h4>
+                <p>For a rapid summary of this chapter's key concepts, check out:</p>
+                <a href="https://www.youtube.com/@EarlyOrbitMath" target="_blank" rel="noopener noreferrer" class="nav-btn">
+$$Early Orbit Math - Linear Algebra Series$$
+                </a>
+            </div>
+
+            <h3>Detailed Topic Breakdowns</h3>
+
+            <h4>Incidence Matrices</h4>
+            <p>An incidence matrix A represents a graph with n nodes and m edges. Each row corresponds to an edge, with +1 and -1 entries indicating the nodes it connects. For undirected graphs, the orientation is arbitrary.</p>
+
+            <h4>Kirchhoff's Laws</h4>
+            <p>Kirchhoff's Current Law (KCL) states that flow into a node equals flow out. Kirchhoff's Voltage Law (KVL) states that voltage differences around any loop sum to zero. These laws are elegantly expressed using incidence matrices.</p>
+
+            <h4>Rank of Incidence Matrices</h4>
+            <p>For a connected graph with n nodes, the incidence matrix has rank <code>n-1</code>. One row is always dependent because the sum of all rows is zero. The nullspace of <code>A^T</code> corresponds to vectors satisfying KCL.</p>
+
+            <h4>Spanning Trees and Independence</h4>
+            <p>A spanning tree of a graph with n nodes has exactly <code>n-1</code> edges and connects all nodes without cycles. The columns of A corresponding to a spanning tree are independent. The remaining edges form cycles.</p>
+
+            <h3>Mathematical Rigor</h3>
+
+            <div class="derivation">
+                <h4>Derivation: Rank of the Incidence Matrix</h4>
+                <p>For a connected graph with n nodes:</p>
+                \$\$A is m Ã— n
+$$Sum of all rows = 0 (every +1 has a matching -1)
+Therefore rows are dependent: rank â‰¤ n-1$$
+
+If graph is connected, only one dependency exists.
+$$Therefore: \$\text{rank}(A)\$ = n - 1\$\$$$
+                <p>The nullspace of <code>A^T</code> has dimension <code>m - (n-1)</code>, which equals the number of independent cycles.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Kirchhoff's Laws in Matrix Form</h4>
+                <p>Let <code>x</code> be edge currents and <code>b</code> be external currents at nodes. KCL says <code>\\mathbf{x} = \mathbf{b}\$</code>. For voltage differences <code>y</code> around edges, KVL says <code>A^T y = 0</code>.</p>
+                \$\$KCL: \\mathbf{x} = \mathbf{b}\$   (current balance at each node)
+$$KVL: A^T y = 0  (voltage balance around loops)
+dim(N(A^T)) = m - n + 1 = number of fundamental loops\$\$$$
+            </div>
+
+            <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Incidence: In for +1, Out for -1"</strong>
+                    <p>In an incidence matrix, the row for edge (i, j) has +1 at column i (head) and -1 at column j (tail). This records the direction of flow across each edge.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Tree Gives Independence, Loop Gives Dependency"</strong>
+                    <p>Spanning tree edges give independent columns in A. Adding one more edge creates one cycle and one dependency. Number of independent cycles = <code>m - n + 1</code>.</p>
+                </div>
+            </div>
+
+            <div class="strategies">
+                <h4>Study Tips</h4>
+                <ul>
+                    <li>Always draw the graph before constructing the incidence matrix</li>
+                    <li>Check that row sums of A are zero as a consistency check</li>
+                    <li>For KCL, the nullspace of <code>A^T</code> gives loop currents</li>
+                    <li>A spanning tree has <code>n-1</code> edges for n nodes</li>
+                    <li>Removing any edge from a cycle creates a spanning tree</li>
+                </ul>
+            </div>
+
+            <h3>Visual Aids</h3>
+
+            <div class="visual-aid">
+                <h4>Figure: Graph and Its Incidence Matrix</h4>
+                <p>A simple 4-node, 5-edge graph:</p>
+                \$\$Graph:
+$$1 --- 2$$
+  |     |
+$$3 --- 4$$
+
+$$Incidence matrix A (rows = edges):$$
+        n1  n2  n3  n4
+$$e1:     1  -1   0   0   (1â†’2)
+e2:     0   1  -1   0   (2â†’3)
+e3:     1   0   0  -1   (1â†’4)
+e4:     0   0   1  -1   (3â†’4)
+e5:     0   1   0  -1   (2â†’4)\$\$$$
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Spanning Tree and Cycle</h4>
+                <p>From the graph above, edges {e1, e2, e3} form a spanning tree. Adding e4 creates cycle {e2, e4, e3}.</p>
+                \$\$Spanning tree: 3 edges (n-1 = 4-1)
+Independent: columns of A for {e1, e2, e3}
+$$Cycle space: dim = 5 - 4 + 1 = 2$$
+Fundamental cycles: {e2, e4, e3}, {e1, e3, e5, e2}\$\$
+            </div>
+
+            <h3>Worked Examples</h3>
+
+            <div class="example">
+                <h4>Example 1: Constructing an Incidence Matrix</h4>
+                <p><strong>Problem:</strong> Build the incidence matrix for a triangle graph with nodes 1, 2, 3 and edges (1,2), (2,3), (3,1).</p>
+                <p><strong>Solution:</strong></p>
+                \$\$n1  n2  n3
+$$e12:   1  -1   0
+e23:   0   1  -1
+e31:  -1   0   1   (or reverse:  1   0  -1)$$
+
+Note: Each column sums to 0 (KCL at each node if no external current).\$\$
+            </div>
+
+            <div class="example">
+                <h4>Example 2: Finding the Rank</h4>
+                <p><strong>Problem:</strong> Determine the rank of the incidence matrix for a tree with 5 nodes.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>A tree with n nodes has <code>n-1</code> edges and no cycles</li>
+                    <li>Incidence matrix: <code>(n-1) x n</code> = 4x5</li>
+                    <li>For a connected tree, rank = <code>n-1 = 4</code></li>
+                    <li>One nullspace vector in <code>R^5</code>: <code>[1, 1, 1, 1, 1]^T</code></li>
+                </ul>
+            </div>
+
+            <h3>Practice Problems</h3>
+
+            <div class="questions">
+                <h4>Problem Set 12</h4>
+                <p><strong>Problem 1:</strong> For a graph with 6 nodes and 9 edges, how many independent cycles does it have?</p>
+                <p><em>Hint: Use the cycle rank formula <code>m - n + c</code> where c is the number of connected components.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Assuming connected (c=1): cycles = <code>9 - 6 + 1 = 4</code>. dim(<code>N(A^T)</code>) = 4.</p>
+                </details>
+
+                <p><strong>Problem 2:</strong> Show that for any incidence matrix, the vector <code>[1, 1, ..., 1]^T</code> is in the nullspace of A.</p>
+                <p><em>Hint: Each row of A has one +1 and one -1.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Row i of A has exactly one +1 and one -1. When multiplied by <code>[1, ..., 1]^T</code>, the result is <code>1 + (-1) = 0</code>. Thus <code>A * 1 = 0</code>.</p>
+                </details>
+
+                <p><strong>Problem 3:</strong> What is the dimension of the row space of the incidence matrix for a connected graph with n nodes?</p>
+                <p><em>Hint: The row space is the column space of <code>A^T</code>.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>dim(row space) = dim(<code>C(A^T)</code>) = \$\text{rank}(A)\$ = <code>n-1</code>.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> In an electrical network, if node 1 has external current +3 and node 2 has -3, write the KCL equation <code>\\mathbf{x} = \mathbf{b}\$</code>.</p>
+                <p><em>Hint: b represents external current injection at each node.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><code>b = [3, -3, 0, 0, ...]^T</code>. The incidence matrix A multiplied by edge currents x must equal b, ensuring current conservation at each node.</p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="chapter-11.html" class="nav-btn prev" id="prev-chapter">Previous</a>
+                <span class="nav-indicator" id="chapter-indicator"></span>
+                <a href="chapter-13.html" class="nav-btn next" id="next-chapter">Next</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
+
+

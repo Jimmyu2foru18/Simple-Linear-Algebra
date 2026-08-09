@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 10: The Four Fundamental Subspaces - Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- MathJax Configuration -->
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+$$ignoreHtmlClass: 'no-mathjax'$$
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Linear Algebra</h1>
+        <p class="subtitle">Chapter 10: The Four Fundamental Subspaces</p>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="index.html">Curriculum</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Chapter 10: The Four Fundamental Subspaces</h2>
+            <p class="lead">Column space, nullspace, row space, and left nullspace. This chapter unifies the fundamental subspaces associated with a matrix and reveals their deep relationships through the Fundamental Theorem of Linear Algebra.</p>
+
+            <div class="video-section">
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/nHlE7EgJFds"
+$$title="10. The Four Fundamental Subspaces - Gilbert Strang"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <h3>Concept Breakdowns</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1"
+$$title="Prof Dave â€” Four Fundamental Subspaces"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Prof. Dave Explains</h5>
+                        <p>Concise breakdown of the four subspaces</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2"
+$$title="Paul Dawkins â€” Textbook Context"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <p>Textbook-aligned explanation with examples</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3"
+$$title="Valerie Hower â€” Problem Solving"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Valerie Hower</h5>
+                        <p>Step-by-step problem-solving demonstration</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-section">
+                <h4>Quick Overview â€” Early Orbit Math</h4>
+                <p>For a rapid summary of this chapter's key concepts, check out:</p>
+                <a href="https://www.youtube.com/@EarlyOrbitMath" target="_blank" rel="noopener noreferrer" class="nav-btn">
+$$Early Orbit Math - Linear Algebra Series$$
+                </a>
+            </div>
+
+            <h3>Detailed Topic Breakdowns</h3>
+
+            <h4>The Four Subspaces</h4>
+            <p>For an <code>m x n</code> matrix A of rank r, the four fundamental subspaces are:</p>
+            <ul>
+                <li><strong>Column Space C(A):</strong> In <code>\$\mathbb{R}^m\$</code>, dimension r. All combinations of columns of A.</li>
+                <li><strong>Nullspace N(A):</strong> In <code>\$\mathbb{R}^n\$</code>, dimension n-r. All solutions to <code>Ax = 0</code>.</li>
+                <li><strong>Row Space C(A^T):</strong> In <code>\$\mathbb{R}^n\$</code>, dimension r. All combinations of rows of A.</li>
+                <li><strong>Left Nullspace N(A^T):</strong> In <code>\$\mathbb{R}^m\$</code>, dimension m-r. All solutions to <code>A^T y = 0</code>.</li>
+            </ul>
+
+            <h4>Orthogonal Complements</h4>
+            <p>The column space and nullspace of <code>A^T</code> are orthogonal complements in <code>\$\mathbb{R}^n\$</code>. Similarly, <code>C(A)</code> and <code>N(A^T)</code> are orthogonal complements in <code>\$\mathbb{R}^m\$</code>. Every vector in one space is orthogonal to every vector in the other.</p>
+
+            <h4>Fundamental Theorem of Linear Algebra</h4>
+            <p>The theorem connects the four subspaces through dimensions and orthogonality. Part 1 states <code>C(A)</code> and <code>N(A^T)</code> are orthogonal complements in <code>\$\mathbb{R}^m\$</code>. Part 2 states <code>C(A^T)</code> and <code>N(A)</code> are orthogonal complements in <code>\$\mathbb{R}^n\$</code>.</p>
+
+            <h4>Rank Equality</h4>
+            <p>The row rank equals the column rank. Both equal the number of pivots in the RREF. This fundamental equality unifies the row space and column space dimensions.</p>
+
+            <h3>Mathematical Rigor</h3>
+
+            <div class="derivation">
+                <h4>Derivation: Orthogonality of C(A) and N(A^T)</h4>
+                <p>If <code>y âˆˆ N(A^T)</code>, then <code>A^T y = 0</code>. For any <code>b âˆˆ C(A)</code>, there exists x with <code>\\mathbf{x} = \mathbf{b}\$</code>. Then:</p>
+                \$\$y^T b = y^T (Ax) = (A^T y)^T x = 0^T x = 0\$\$
+                <p>Thus <code>y âŠ¥ b</code>. Every vector in <code>N(A^T)</code> is orthogonal to every vector in <code>C(A)</code>.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Dimension Formula Verification</h4>
+                <p>For an <code>m x n</code> matrix A with rank r:</p>
+                \$\$dim(C(A)) = r
+$$dim(N(A)) = n - r
+dim(C(A^T)) = r
+dim(N(A^T)) = m - r$$
+
+$$Sum of dimensions in \$\mathbb{R}^m\$: r + (m-r) = m  âœ“
+Sum of dimensions in \$\mathbb{R}^n\$: r + (n-r) = n  âœ“\$\$$$
+                <p>The orthogonal complement dimensions sum to the ambient space dimension, as expected.</p>
+            </div>
+
+            <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Row and Column, Left and Right"</strong>
+                    <p>Remember the pairs: <code>C(A)</code> (columns) pairs with <code>N(A^T)</code> (left nullspace). <code>C(A^T)</code> (rows) pairs with <code>N(A)</code> (nullspace). Each pair lives in complementary dimensions.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Same Rank, Orthogonal Complements"</strong>
+                    <p><code>C(A)</code> and <code>C(A^T)</code> have the same dimension (the rank). Their orthogonal complements (<code>N(A^T)</code> and <code>N(A)</code>) fill the remaining dimensions.</p>
+                </div>
+            </div>
+
+            <div class="strategies">
+                <h4>Study Tips</h4>
+                <ul>
+                    <li>Draw the "Fundamental Theorem" diagram showing the four subspaces</li>
+                    <li>Always determine the rank first - it gives dimensions of all four subspaces</li>
+                    <li>The row space basis comes from the nonzero rows of RREF</li>
+                    <li>The left nullspace basis comes from the special solutions to <code>A^T y = 0</code></li>
+                    <li>Practice identifying which subspace a given vector belongs to</li>
+                </ul>
+            </div>
+
+            <h3>Visual Aids</h3>
+
+            <div class="visual-aid">
+                <h4>Figure: The Four Subspaces Diagram</h4>
+                <p>Visual representation of the Fundamental Theorem:</p>
+                \$\$\$\mathbb{R}^m\$:                     C(A) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ N(A^T)
+(rank r)                (dim r)  âŠ¥  (dim m-r)
+
+\$\mathbb{R}^n\$:                     C(A^T) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ N(A)
+(rank r)                (dim r)  âŠ¥  (dim n-r)\$\$
+                <p>Row space and column space share the same dimension (rank). Each orthogonal pair sums to the full space dimension.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Basis from RREF</h4>
+                <p>How RREF reveals bases for all subspaces:</p>
+                \$\$A = [[1, 2, 0, 3], [2, 4, 1, 7]]
+$$RREF = [[1, 2, 0, 3], [0, 0, 1, 1]]$$
+
+C(A) basis: cols 1,3 of A  â†’  {[1,2]^T, [0,1]^T}
+Row space basis: rows of RREF  â†’  {[1,2,0,3], [0,0,1,1]}
+$$N(A): solve Rx=0  â†’  span{[2,1,0,0]^T, [3,0,1,1]^T}
+N(A^T): solve A^T y=0  â†’  span{[2,1]^T}\$\$$$
+            </div>
+
+            <h3>Worked Examples</h3>
+
+            <div class="example">
+                <h4>Example 1: Identifying All Four Subspaces</h4>
+                <p><strong>Problem:</strong> Find bases and dimensions for all four subspaces of <code>A = [[1, 2, 3], [2, 4, 6]]</code>.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>RREF: <code>[[1, 2, 3], [0, 0, 0]]</code>, rank = 1</li>
+                    <li><code>C(A)</code>: basis = <code>{[1, 2]^T}</code>, dim = 1</li>
+                    <li><code>N(A)</code>: <code>x1 + 2x2 + 3x3 = 0</code>, free: <code>x2, x3</code></li>
+                    <li>Special solutions: <code>[-2, 1, 0]^T</code>, <code>[-3, 0, 1]^T</code>, dim = 2</li>
+                    <li>Row space: basis = <code>{[1, 2, 3]}</code>, dim = 1</li>
+                    <li>Left nullspace <code>N(A^T)</code>: <code>y1 + 2y2 = 0</code>, basis = <code>{[-2, 1]^T}</code>, dim = 1</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 2: Orthogonality Verification</h4>
+                <p><strong>Problem:</strong> Verify that every vector in <code>C(A^T)</code> is orthogonal to every vector in <code>N(A)</code> for A from Example 1.</p>
+                <p><strong>Solution:</strong></p>
+                \$\$Row space vector: [1, 2, 3]
+$$Nullspace vector: [-2, 1, 0]$$
+
+$$Dot product: 1*(-2) + 2*1 + 3*0 = -2 + 2 + 0 = 0  âœ“$$
+
+Row space vector: [1, 2, 3]
+$$Nullspace vector: [-3, 0, 1]$$
+
+$$Dot product: 1*(-3) + 2*0 + 3*1 = -3 + 0 + 3 = 0  âœ“\$\$$$
+            </div>
+
+            <h3>Practice Problems</h3>
+
+            <div class="questions">
+                <h4>Problem Set 10</h4>
+                <p><strong>Problem 1:</strong> For <code>A = [[1, 0, 0], [0, 1, 0], [0, 0, 0]]</code>, find all four subspaces and their dimensions.</p>
+                <p><em>Hint: A is already in RREF form.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><code>C(A)</code>: span{[1,0,0]^T, [0,1,0]^T}, dim = 2</p>
+                    <p><code>N(A)</code>: span{[0,0,1]^T}, dim = 1</p>
+                    <p>Row space: span{[1,0,0], [0,1,0]}, dim = 2</p>
+                    <p><code>N(A^T)</code>: span{[0,0,1]^T}, dim = 1</p>
+                </details>
+
+                <p><strong>Problem 2:</strong> True or false: The row space of A equals the column space of <code>A^T</code>. Explain.</p>
+                <p><em>Hint: What are the columns of <code>A^T</code>?</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><strong>True.</strong> The columns of <code>A^T</code> are the rows of A. The row space of A is defined as the span of its rows, which equals <code>C(A^T)</code>.</p>
+                </details>
+
+                <p><strong>Problem 3:</strong> If A is 4x6 with rank 3, what are the dimensions of all four subspaces?</p>
+                <p><em>Hint: Apply the dimension formulas with m=4, n=6, r=3.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><code>C(A)</code>: dim = 3 (in <code>R^4</code>)</p>
+                    <p><code>N(A)</code>: dim = 6-3 = 3 (in <code>R^6</code>)</p>
+                    <p>Row space: dim = 3 (in <code>R^6</code>)</p>
+                    <p><code>N(A^T)</code>: dim = 4-3 = 1 (in <code>R^4</code>)</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Show that the left nullspace of A is the orthogonal complement of <code>C(A)</code> in <code>\$\mathbb{R}^m\$</code>.</p>
+                <p><em>Hint: Use the definition of <code>N(A^T)</code> and the argument from the derivation section.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>If <code>y âˆˆ N(A^T)</code>, then <code>A^T y = 0</code>. For any <code>b âˆˆ C(A)</code>, <code>b = Ax</code>. Then <code>y^T b = y^T Ax = (A^T y)^T x = 0</code>. So y is orthogonal to all vectors in <code>C(A)</code>. Thus <code>N(A^T) = C(A)^perp</code>.</p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="chapter-09.html" class="nav-btn prev" id="prev-chapter">Previous</a>
+                <span class="nav-indicator" id="chapter-indicator"></span>
+                <a href="chapter-11.html" class="nav-btn next" id="next-chapter">Next</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
+
+

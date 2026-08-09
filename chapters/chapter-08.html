@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 8: Solving $A\mathbf{x} = \mathbf{b}$: Row Reduced Form R - Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- MathJax Configuration -->
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+$$ignoreHtmlClass: 'no-mathjax'$$
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Linear Algebra</h1>
+        <p class="subtitle">Chapter 8: Solving $A\mathbf{x} = \mathbf{b}$: Row Reduced Form R</p>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="index.html">Curriculum</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Chapter 8: Solving $A\mathbf{x} = \mathbf{b}$: Row Reduced Form R</h2>
+            <p class="lead">Complete solutions to non-homogeneous systems. This chapter extends the nullspace theory to solve <code>$A\mathbf{x} = \mathbf{b}$</code> completely, identifying conditions for existence and describing the full solution set.</p>
+
+            <div class="video-section">
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/9Q1q7s1jTzU"
+$$title="8. Solving $A\mathbf{x} = \mathbf{b}$: Row Reduced Form R - Gilbert Strang"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <h3>Concept Breakdowns</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1"
+$$title="Prof Dave â€” Solving $A\mathbf{x} = \mathbf{b}$"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Prof. Dave Explains</h5>
+                        <p>Concise breakdown of solving $A\mathbf{x} = \mathbf{b}$</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2"
+$$title="Paul Dawkins â€” Textbook Context"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <p>Textbook-aligned explanation with examples</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3"
+$$title="Valerie Hower â€” Problem Solving"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Valerie Hower</h5>
+                        <p>Step-by-step problem-solving demonstration</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-section">
+                <h4>Quick Overview â€” Early Orbit Math</h4>
+                <p>For a rapid summary of this chapter's key concepts, check out:</p>
+                <a href="https://www.youtube.com/@EarlyOrbitMath" target="_blank" rel="noopener noreferrer" class="nav-btn">
+$$Early Orbit Math - Linear Algebra Series$$
+                </a>
+            </div>
+
+            <h3>Detailed Topic Breakdowns</h3>
+
+            <h4>Complete Solution Structure</h4>
+            <p>The complete solution to <code>$A\mathbf{x} = \mathbf{b}$</code> has the form <code>x = x_particular + x_nullspace</code>. One particular solution <code>x_p</code> satisfies <code>Ax_p = b</code>. Adding any nullspace vector <code>x_n</code> (where <code>Ax_n = 0</code>) gives another solution. The full solution set is an affine subspace.</p>
+
+            <h4>Existence Conditions</h4>
+            <p><code>$A\mathbf{x} = \mathbf{b}$</code> has a solution if and only if b is in <code>C(A)</code>. Equivalently, <code>$\text{rank}(A)$ = rank([A | b])</code>. If the augmented matrix has an extra nonzero row compared to A (e.g., <code>[0 ... 0 | nonzero]</code>), the system is inconsistent.</p>
+
+            <h4>Row Reduced Form R</h4>
+            <p>R is the RREF of A. It reveals pivot and free variables and makes the structure of solutions transparent. The RREF of <code>[A | b]</code> directly shows whether a solution exists and provides a particular solution.</p>
+
+            <h4>Particular Solutions</h4>
+            <p>To find one particular solution, set all free variables to zero in the RREF of <code>[A | b]</code>. The pivot variables are then determined by the rightmost column of the reduced augmented matrix.</p>
+
+            <h3>Mathematical Rigor</h3>
+
+            <div class="derivation">
+                <h4>Derivation: The General Solution</h4>
+                <p>Let <code>x_p</code> be any particular solution to <code>$A\mathbf{x} = \mathbf{b}$</code>. For any <code>x_n âˆˆ N(A)</code>:</p>
+                $$A(x_p + x_n) = Ax_p + Ax_n = b + 0 = b
+
+$$Therefore, x_p + x_n is also a solution.$$
+Conversely, if x is any solution:
+$$A(x - x_p) = Ax - Ax_p = b - b = 0
+So x - x_p âˆˆ N(A), meaning x = x_p + x_n for some x_n.$$$$
+                <p>This proves the complete solution is exactly the particular solution plus the entire nullspace.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Inconsistency Detection</h4>
+                <p>After row reduction, if any row of <code>[R | d]</code> has the form <code>[0 0 ... 0 | c]</code> where <code>c â‰  0</code>, then:</p>
+                $$0*x1 + 0*x2 + ... + 0*xn = c
+$$0 = c   (impossible!)$$
+
+$$This means b âˆ‰ C(A), so $A\mathbf{x} = \mathbf{b}$ has no solution.$$$$
+            </div>
+
+            <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "One Particular Plus All Nullspace"</strong>
+                    <p>The complete solution is not just one answer - it's one particular solution plus the entire nullspace. Think of it as: "Find one solution, then add all the ways to get zero."</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "0 = 0 is OK, 0 = c is Not"</strong>
+                    <p>In the RREF of <code>[A | b]</code>, a row of all zeros in A is fine. But if that row has a nonzero entry in the b-column, the system is inconsistent (no solution).</p>
+                </div>
+            </div>
+
+            <div class="strategies">
+                <h4>Study Tips</h4>
+                <ul>
+                    <li>Always check consistency first by comparing <code>$\text{rank}(A)$</code> and <code>rank([A | b])</code></li>
+                    <li>When finding a particular solution, set free variables to zero</li>
+                    <li>Write the complete solution as: <code>x = x_p + c1*v1 + c2*v2 + ...</code></li>
+                    <li>Verify by substituting the particular solution back into <code>$A\mathbf{x} = \mathbf{b}$</code></li>
+                    <li>The number of special solutions equals the number of free variables</li>
+                </ul>
+            </div>
+
+            <h3>Visual Aids</h3>
+
+            <div class="visual-aid">
+                <h4>Figure: Complete Solution as Affine Subspace</h4>
+                <p>The solution set of <code>$A\mathbf{x} = \mathbf{b}$</code> is the particular solution shifted by the nullspace:</p>
+                $$N(A) = line through origin in R^3
+$$x_p = specific point not on that line
+Solution set = line through x_p parallel to N(A)$$
+
+$$All solutions: x_p + N(A) = {x_p + x_n : x_n âˆˆ N(A)}$$$$
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Augmented Matrix Consistency Check</h4>
+                <p>Comparing RREF of A and <code>[A | b]</code>:</p>
+                $$RREF(A):      [1 0 2 | 0]
+              [0 1 1 | 0]
+              [0 0 0 | 0]
+
+RREF([A|b]):  [1 0 2 | 3]
+              [0 1 1 | 2]
+              [0 0 0 | 1]  â† 0 = 1? INCONSISTENT!$$
+            </div>
+
+            <h3>Worked Examples</h3>
+
+            <div class="example">
+                <h4>Example 1: Consistent System</h4>
+                <p><strong>Problem:</strong> Solve <code>$A\mathbf{x} = \mathbf{b}$</code> completely for:</p>
+$$A = [[1, 2, 2], [2, 4, 6]]    b = [1, 5]^T$$
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li>RREF of <code>[A | b]</code>: <code>[[1, 2, 2 | 1], [0, 0, 2 | 3]]</code></li>
+                    <li>Consistent (no <code>0 = nonzero</code> row)</li>
+                    <li>Pivot variables: <code>x1, x3</code>. Free: <code>x2</code></li>
+                    <li>Particular solution (<code>x2 = 0</code>): <code>x1 = -3, x3 = 1.5</code></li>
+                    <li>Special solution (<code>x2 = 1</code>): <code>x1 = -2, x3 = 0</code></li>
+                    <li>Complete: <code>x = [-3, 0, 1.5]^T + c*[-2, 1, 0]^T</code></li>
+                </ol>
+            </div>
+
+            <div class="example">
+                <h4>Example 2: Inconsistent System</h4>
+                <p><strong>Problem:</strong> Determine if <code>$A\mathbf{x} = \mathbf{b}$</code> has a solution for:</p>
+$$A = [[1, 2], [2, 4]]    b = [3, 7]^T$$
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>RREF of <code>[A | b]</code>: <code>[[1, 2 | 3], [0, 0 | 1]]</code></li>
+                    <li>Second row: <code>0 = 1</code> is impossible</li>
+                    <li><code>b âˆ‰ C(A)</code>. <strong>No solution exists.</strong></li>
+                </ul>
+            </div>
+
+            <h3>Practice Problems</h3>
+
+            <div class="questions">
+                <h4>Problem Set 8</h4>
+                <p><strong>Problem 1:</strong> Solve <code>$A\mathbf{x} = \mathbf{b}$</code> completely for:</p>
+$$A = [[1, 1, 1], [1, 2, 3]]    b = [6, 14]^T$$
+                <p><em>Hint: Check consistency, then find particular and nullspace parts.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>RREF: <code>[[1, 0, -1 | -2], [0, 1, 2 | 8]]</code></p>
+                    <p>Particular: <code>x = [-2, 8, 0]^T</code> (setting free <code>x3=0</code>)</p>
+                    <p>Special: <code>[1, -2, 1]^T</code></p>
+                    <p>Complete: <code>x = [-2, 8, 0]^T + c*[1, -2, 1]^T</code></p>
+                </details>
+
+                <p><strong>Problem 2:</strong> For which values of <code>b1, b2</code> does <code>$A\mathbf{x} = \mathbf{b}$</code> have a solution?</p>
+$$A = [[1, 3], [2, 6]]    b = [b1, b2]^T$$
+                <p><em>Hint: The column space is a line. What condition st b satisfy?</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><code>C(A)</code> = span{[1, 2]^T}. So <code>b2 = 2*b1</code> is required. If <code>b2 â‰  2*b1</code>, no solution.</p>
+                </details>
+
+                <p><strong>Problem 3:</strong> If <code>x_p1</code> and <code>x_p2</code> are two particular solutions to <code>$A\mathbf{x} = \mathbf{b}$</code>, show that their difference is in <code>N(A)</code>.</p>
+                <p><em>Hint: Subtract the two equations <code>Ax_p1 = b</code> and <code>Ax_p2 = b</code>.</em></p>
+                <details>
+                    <summary>Solution</summary>
+$$A(x_p1 - x_p2) = Ax_p1 - Ax_p2 = b - b = 0
+So x_p1 - x_p2 âˆˆ N(A).$$
+                </details>
+
+                <p><strong>Problem 4:</strong> Write the complete solution to <code>Ax = 0</code> and <code>$A\mathbf{x} = \mathbf{b}$</code> when A is invertible.</p>
+                <p><em>Hint: If A is invertible, what does RREF look like?</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>If A is invertible, <code>Ax = 0</code> has only <code>x = 0</code>. For <code>$A\mathbf{x} = \mathbf{b}$</code>, the unique solution is <code>x = A^-1 b</code>. There are no free variables, so nullspace is <code>{0}</code> and the particular solution is unique.</p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="chapter-07.html" class="nav-btn prev" id="prev-chapter">Previous</a>
+                <span class="nav-indicator" id="chapter-indicator"></span>
+                <a href="chapter-09.html" class="nav-btn next" id="next-chapter">Next</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
+
+
+

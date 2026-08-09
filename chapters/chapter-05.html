@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5: Transposes, Pertations, Spaces $\mathbb{R}^n$ - Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- MathJax Configuration -->
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+$$ignoreHtmlClass: 'no-mathjax'$$
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Linear Algebra</h1>
+        <p class="subtitle">Chapter 5: Transposes, Pertations, Spaces $\mathbb{R}^n$</p>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="index.html">Curriculum</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Chapter 5: Transposes, Pertations, Spaces $\mathbb{R}^n$</h2>
+            <p class="lead">Matrix transposes, pertation matrices, and vector spaces. This chapter introduces the algebraic structure underlying linear algebra, including the vector space $\mathbb{R}^n$ and its subspaces.</p>
+
+            <div class="video-section">
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/JibVXBElKL0"
+$$title="5. Transposes, Pertations, Spaces $\mathbb{R}^n$ - Gilbert Strang"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <h3>Concept Breakdowns</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1"
+$$title="Prof Dave â€” Transposes and Vector Spaces"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Prof. Dave Explains</h5>
+                        <p>Concise breakdown of transposes and spaces</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2"
+$$title="Paul Dawkins â€” Textbook Context"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <p>Textbook-aligned explanation with examples</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3"
+$$title="Valerie Hower â€” Problem Solving"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Valerie Hower</h5>
+                        <p>Step-by-step problem-solving demonstration</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-section">
+                <h4>Quick Overview â€” Early Orbit Math</h4>
+                <p>For a rapid summary of this chapter's key concepts, check out:</p>
+                <a href="https://www.youtube.com/@EarlyOrbitMath" target="_blank" rel="noopener noreferrer" class="nav-btn">
+$$Early Orbit Math - Linear Algebra Series$$
+                </a>
+            </div>
+
+            <h3>Detailed Topic Breakdowns</h3>
+
+            <h4>Matrix Transpose</h4>
+            <p>The transpose of a matrix A, denoted <code>A^T</code>, is formed by flipping A across its main diagonal. Rows become columns and columns become rows. The <code>(i, j)</code> entry of <code>A^T</code> is the <code>(j, i)</code> entry of A.</p>
+
+            <h4>Properties of Transposes</h4>
+            <p>Key algebraic rules include <code>(A^T)^T = A</code>, <code>(A + B)^T = A^T + B^T</code>, and <code>(AB)^T = B^T A^T</code>. The order reversal in the product rule is essential and often counterintuitive.</p>
+
+            <h4>Symmetric Matrices</h4>
+            <p>A matrix is symmetric if <code>A^T = A</code>. Symmetric matrices have real eigenvalues and orthogonal eigenvectors. They appear frequently in applications because they represent quadratic forms and covariance matrices.</p>
+
+            <h4>Pertation Matrices</h4>
+            <p>Pertation matrices are obtained by perting the rows (or columns) of the identity matrix. They have exactly one '1' in each row and column, with zeros elsewhere. <code>P^T = P^-1</code>, so pertation matrices are orthogonal.</p>
+
+            <h4>Vector Spaces and Subspaces</h4>
+            <p>A vector space is a collection of vectors closed under addition and scalar multiplication. <code>$\mathbb{R}^n$</code> is the n-dimensional real vector space. A subspace is a subset that is itself a vector space, requiring closure under linear combinations.</p>
+
+            <h3>Mathematical Rigor</h3>
+
+            <div class="derivation">
+                <h4>Derivation: The Four Requirements of a Vector Space</h4>
+                <p>A set V with addition and scalar multiplication is a vector space if it satisfies:</p>
+                $$1. Closure under addition:    u + v âˆˆ V
+2. Closure under scalar multiplication: cu âˆˆ V
+$$3. Comtativity:             u + v = v + u$$
+4. Existence of zero vector:  0 âˆˆ V
+(plus associativity, distributivity, identity)$$
+                <p>For subspaces, only closure properties (1 and 2) plus existence of zero vector need verification.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Transpose of a Product</h4>
+                <p>Let <code>C = AB</code>. The <code>(i, j)</code> entry of <code>C^T</code> is <code>c_ji</code>:</p>
+                $$c_ji = sum over k of (a_jk * b_ki)  (entry of AB)
+     = sum over k of (b_ki * a_jk)   (comte scalars)
+     = entry (j, i) of B^T A^T$$
+                <p>Therefore <code>C^T = B^T A^T</code>.</p>
+            </div>
+
+            <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Flip Across the Diagonal"</strong>
+                    <p>To transpose a matrix, flip it across its main diagonal (top-left to bottom-right). Visualize turning the page of a book - what was on the left is now on the right.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Subspace CLIP"</strong>
+                    <p>A subset S of <code>$\mathbb{R}^n$</code> is a subspace if it satisfies: <strong>C</strong>losure (under addition and scalar multiplication), contains the <strong>L</strong>eft zero vector, is <strong>I</strong>nherited from <code>$\mathbb{R}^n$</strong>, and is <strong>P</strong>roperly closed under linear combinations.</p>
+                </div>
+            </div>
+
+            <div class="strategies">
+                <h4>Study Tips</h4>
+                <ul>
+                    <li>Practice transposing matrices of different shapes to internalize the pattern</li>
+                    <li>Memorize the key transpose properties, especially <code>(AB)^T = B^T A^T</code></li>
+                    <li>Draw pertation matrices for small n to see the pattern</li>
+                    <li>Verify subspaces by checking: zero vector, closure under addition, closure under scalar multiplication</li>
+                    <li>Common subspaces: lines through origin, planes through origin, whole space, zero subspace</li>
+                </ul>
+            </div>
+
+            <h3>Visual Aids</h3>
+
+            <div class="visual-aid">
+                <h4>Figure: Transpose Operation</h4>
+                <p>Visualizing the transpose of a 3x2 matrix:</p>
+$$A = [a  d]        A^T = [a  b  c]$$
+    [b  e]               [d  e  f]
+    [c  f]
+                <p>Column 1 of A becomes Row 1 of <code>A^T</code>. Column 2 becomes Row 2.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Pertation Matrices</h4>
+                <p>3x3 pertation matrices corresponding to different orderings:</p>
+                $$Identity (no swap):      Swap R1,R3:       Cycle R1->R2->R3:
+[1 0 0]                 [0 0 1]            [0 1 0]
+[0 1 0]                 [0 1 0]            [0 0 1]
+[0 0 1]                 [1 0 0]            [1 0 0]$$
+            </div>
+
+            <h3>Worked Examples</h3>
+
+            <div class="example">
+                <h4>Example 1: Computing a Transpose</h4>
+                <p><strong>Problem:</strong> Find <code>A^T</code> and verify <code>(A^T)^T = A</code>.</p>
+$$A = [1  2  3]$$
+    [4  5  6]
+                <p><strong>Solution:</strong></p>
+$$A^T = [1  4]$$
+     [2  5]
+     [3  6]
+
+(A^T)^T = [1  2  3] = A  âœ“
+         [4  5  6]
+            </div>
+
+            <div class="example">
+                <h4>Example 2: Symmetric Matrix</h4>
+                <p><strong>Problem:</strong> Show that <code>A = [[2, 3, 1], [3, 5, 4], [1, 4, 6]]</code> is symmetric.</p>
+                <p><strong>Solution:</strong></p>
+$$A^T = [2  3  1] = A  âœ“$$
+     [3  5  4]
+     [1  4  6]
+                <p>Since <code>A^T = A</code>, A is symmetric.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Verifying a Subspace</h4>
+                <p><strong>Problem:</strong> Is the set <code>S = {(x, y) âˆˆ R^2 : x + y = 0}</code> a subspace of <code>R^2</code>?</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Zero vector: <code>(0, 0)</code> satisfies <code>0 + 0 = 0</code> âœ“</li>
+                    <li>Closure: If <code>(x1, y1)</code> and <code>(x2, y2)</code> satisfy <code>x + y = 0</code>, then <code>(x1+x2) + (y1+y2) = (x1+y1) + (x2+y2) = 0 + 0 = 0</code> âœ“</li>
+                    <li>Scalar multiplication: If <code>x + y = 0</code>, then <code>cx + cy = c(x+y) = c*0 = 0</code> âœ“</li>
+                    <li><strong>S is a subspace</strong> (specifically, a line through the origin)</li>
+                </ul>
+            </div>
+
+            <h3>Practice Problems</h3>
+
+            <div class="questions">
+                <h4>Problem Set 5</h4>
+                <p><strong>Problem 1:</strong> Compute <code>(AB)^T</code> and verify it equals <code>B^T A^T</code> for:</p>
+$$A = [1 2]    B = [3 1]$$
+    [0 1]        [0 4]
+                <p><em>Hint: Compute AB first, then transpose both sides.</em></p>
+                <details>
+                    <summary>Solution</summary>
+$$AB = [3  9]    (AB)^T = [3  0]$$
+     [0  4]              [9  4]
+
+$$B^T = [3 0]    A^T = [1 0]$$
+     [1 4]           [2 1]
+
+$$B^T A^T = [3*1+0*2  3*0+0*1] = [3  0]$$
+          [1*1+4*2  1*0+4*1]   [9  4] âœ“
+                </details>
+
+                <p><strong>Problem 2:</strong> Find all 3x3 pertation matrices and determine their inverses.</p>
+                <p><em>Hint: There are 3! = 6 pertation matrices. Each is its own inverse or transpose.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>The 6 pertation matrices correspond to the 6 orderings of (1,2,3). Each satisfies <code>P^T = P^-1</code>. For transpositions (swaps), <code>P^2 = I</code> so <code>P^-1 = P</code>. For 3-cycles, <code>P^3 = I</code>.</p>
+                </details>
+
+                <p><strong>Problem 3:</strong> Is <code>S = {(x, y, z) : x + y + z = 1}</code> a subspace of <code>R^3</code>?</p>
+                <p><em>Hint: Check if the zero vector is in S.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>No. The zero vector <code>(0, 0, 0)</code> does not satisfy <code>x + y + z = 1</code>. Subspaces st contain the zero vector.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Show that the set of all symmetric <code>n x n</code> matrices forms a subspace of the vector space of all <code>n x n</code> matrices.</p>
+                <p><em>Hint: Check closure under addition and scalar multiplication.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>If <code>A^T = A</code> and <code>B^T = B</code>, then <code>(A+B)^T = A^T + B^T = A + B</code>. Also <code>(cA)^T = cA^T = cA</code>. The zero matrix is symmetric. Thus, symmetric matrices form a subspace.</p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="chapter-04.html" class="nav-btn prev" id="prev-chapter">Previous</a>
+                <span class="nav-indicator" id="chapter-indicator"></span>
+                <a href="chapter-06.html" class="nav-btn next" id="next-chapter">Next</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
+
+
+

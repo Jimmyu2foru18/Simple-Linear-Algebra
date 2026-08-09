@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 6: Column Space and Nullspace - Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- MathJax Configuration -->
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+$$ignoreHtmlClass: 'no-mathjax'$$
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Linear Algebra</h1>
+        <p class="subtitle">Chapter 6: Column Space and Nullspace</p>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="index.html">Curriculum</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Chapter 6: Column Space and Nullspace</h2>
+            <p class="lead">Understanding the fundamental subspaces of a matrix. This chapter introduces the column space and nullspace, two key subspaces that characterize the behavior of the matrix equation $A\mathbf{x} = \mathbf{b}$.</p>
+
+            <div class="video-section">
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/8o5Cmfpeo6g"
+$$title="6. Column Space and Nullspace - Gilbert Strang"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <h3>Concept Breakdowns</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1"
+$$title="Prof Dave â€” Column and Nullspace"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Prof. Dave Explains</h5>
+                        <p>Concise breakdown of column space and nullspace</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2"
+$$title="Paul Dawkins â€” Textbook Context"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                                    allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <p>Textbook-aligned explanation with examples</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3"
+$$title="Valerie Hower â€” Problem Solving"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"$$
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Valerie Hower</h5>
+                        <p>Step-by-step problem-solving demonstration</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-section">
+                <h4>Quick Overview â€” Early Orbit Math</h4>
+                <p>For a rapid summary of this chapter's key concepts, check out:</p>
+                <a href="https://www.youtube.com/@EarlyOrbitMath" target="_blank" rel="noopener noreferrer" class="nav-btn">
+$$Early Orbit Math - Linear Algebra Series$$
+                </a>
+            </div>
+
+            <h3>Detailed Topic Breakdowns</h3>
+
+            <h4>The Column Space C(A)</h4>
+            <p>The column space of A, denoted <code>C(A)</code>, is the set of all linear combinations of the columns of A. It is a subspace of <code>$\mathbb{R}^m$</code> (where A is <code>m x n</code>). The system <code>$A\mathbf{x} = \mathbf{b}$</code> is solvable if and only if b lies in <code>C(A)</code>.</p>
+
+            <h4>The Nullspace N(A)</h4>
+            <p>The nullspace of A, denoted <code>N(A)</code>, is the set of all solutions to <code>Ax = 0</code>. It is a subspace of <code>$\mathbb{R}^n$</code>. If A is square and invertible, the nullspace contains only the zero vector. Otherwise, the nullspace has nontrivial solutions.</p>
+
+            <h4>Rank and Pivot Columns</h4>
+            <p>The rank of A is the dimension of the column space, equal to the number of pivot columns in the row-echelon form of A. The pivot columns of A form a basis for <code>C(A)</code>.</p>
+
+            <h4>Free Variables and the Nullspace</h4>
+            <p>Variables corresponding to non-pivot columns are free variables. Setting one free variable to 1 (and others to 0) generates a special solution. All special solutions span the nullspace.</p>
+
+            <h3>Mathematical Rigor</h3>
+
+            <div class="derivation">
+                <h4>Derivation: When is $A\mathbf{x} = \mathbf{b}$ Solvable?</h4>
+                <p><code>$A\mathbf{x} = \mathbf{b}$</code> has a solution if and only if b is a linear combination of the columns of A. This means b st be orthogonal to every vector in the left nullspace of A (every row of the reduced matrix <code>[A | b]</code> st have the same rank as A).</p>
+                $$Condition: rank([A | b]) = $\text{rank}(A)$
+Equivalent: b âˆˆ C(A)
+Geometric: b lies in the span of A's columns$$
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Rank-Nullity Theorem (Preview)</h4>
+                <p>For an <code>m x n</code> matrix A with rank r:</p>
+                $$dim(C(A)) = r               (number of pivot columns)
+$$dim(N(A)) = n - r           (number of free variables)
+dim(C(A)) + dim(N(A)) = n   (Rank-Nullity Theorem)$$$$
+                <p>This fundamental relationship connects the column space and nullspace dimensions.</p>
+            </div>
+
+            <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "C is for Column, N is for Null"</strong>
+                    <p>The column space <code>C(A)</code> answers: "What outputs can A produce?" The nullspace <code>N(A)</code> answers: "What inputs produce zero?" These are the two fundamental questions of linear algebra.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Pivot = Basic, Free = Special"</strong>
+                    <p>Pivot columns correspond to basic variables (determined by the system). Non-pivot columns correspond to free variables (parameters for special solutions in the nullspace).</p>
+                </div>
+            </div>
+
+            <div class="strategies">
+                <h4>Study Tips</h4>
+                <ul>
+                    <li>Always find the RREF to identify pivot columns and free variables</li>
+                    <li>Pivot columns of A (not RREF) form a basis for <code>C(A)</code></li>
+                    <li>Special solutions are found by setting one free variable to 1 at a time</li>
+                    <li>The nullspace always contains the zero vector</li>
+                    <li>Practice switching between matrix notation and span notation</li>
+                </ul>
+            </div>
+
+            <h3>Visual Aids</h3>
+
+            <div class="visual-aid">
+                <h4>Figure: Column Space in R^3</h4>
+                <p>For <code>A = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]</code>, the column space is a plane through the origin in <code>R^3</code> because column 3 = column 1 + column 2 (linearly dependent).</p>
+$$c1 = [1]    c2 = [2]    c3 = [3] = c1 + c2$$
+    [4]        [5]           [6]   =   [4] + [5]
+    [7]        [8]           [9]   =   [7] + [8]
+                <p>Basis for <code>C(A)</code>: <code>{c1, c2}</code>. Dimension = 2.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Nullspace as Solutions to Ax = 0</h4>
+                <p>The nullspace is the set of all x that A "collapses" to zero. For a 3x3 matrix of rank 2, the nullspace is a line through the origin in <code>R^3</code>.</p>
+                $$Special solutions span N(A):
+$$For free variable x3:  x = [-1, 2, 1]^T
+N(A) = { c*[-1, 2, 1]^T : c âˆˆ R }$$$$
+            </div>
+
+            <h3>Worked Examples</h3>
+
+            <div class="example">
+                <h4>Example 1: Finding Column Space</h4>
+                <p><strong>Problem:</strong> Find a basis and dimension for <code>C(A)</code> where:</p>
+$$A = [1  2  3  4]$$
+    [2  4  6  8]
+    [1  0  1  0]
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li>RREF of A: <code>[[1, 0, 1, 0], [0, 1, 1, 2], [0, 0, 0, 0]]</code></li>
+                    <li>Pivot columns: 1 and 2</li>
+                    <li>Basis for <code>C(A)</code>: columns 1 and 2 of A: <code>{[1, 2, 1]^T, [2, 4, 0]^T}</code></li>
+                    <li>dim(<code>C(A)</code>) = $\text{rank}(A)$ = 2</li>
+                </ol>
+            </div>
+
+            <div class="example">
+                <h4>Example 2: Finding the Nullspace</h4>
+                <p><strong>Problem:</strong> Describe the nullspace of A from Example 1.</p>
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li>RREF: <code>x1 + x3 = 0</code>, <code>x2 + x3 + 2*x4 = 0</code></li>
+                    <li>Free variables: <code>x3, x4</code></li>
+                    <li>Special solution 1 (<code>x3 = 1, x4 = 0</code>): <code>[-1, -1, 1, 0]^T</code></li>
+                    <li>Special solution 2 (<code>x3 = 0, x4 = 1</code>): <code>[0, -2, 0, 1]^T</code></li>
+                    <li>Basis for <code>N(A)</code>: <code>{[-1, -1, 1, 0]^T, [0, -2, 0, 1]^T}</code></li>
+                    <li>dim(<code>N(A)</code>) = 2</li>
+                </ol>
+            </div>
+
+            <h3>Practice Problems</h3>
+
+            <div class="questions">
+                <h4>Problem Set 6</h4>
+                <p><strong>Problem 1:</strong> For <code>A = [[1, 3, 2], [2, 6, 4]]</code>, determine whether <code>b = [1, 2]^T</code> is in <code>C(A)</code>.</p>
+                <p><em>Hint: Solve <code>$A\mathbf{x} = \mathbf{b}$</code> or check if b is a combination of columns.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Columns 2 and 3 are ltiples of column 1. <code>C(A)</code> is the line through <code>[1, 2]^T</code>. Since <code>b = [1, 2]^T</code> is exactly column 1, <strong>yes, b âˆˆ C(A)</strong>.</p>
+                </details>
+
+                <p><strong>Problem 2:</strong> Find a basis for the nullspace of <code>A = [[1, 2, 3], [1, 2, 3], [2, 4, 6]]</code>.</p>
+                <p><em>Hint: RREF reveals the free variables.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>RREF: <code>[[1, 2, 3], [0, 0, 0], [0, 0, 0]]</code></p>
+                    <p>One free variable: <code>x2, x3</code> are free. Actually, rank = 1, so 2 free variables.</p>
+                    <p>Special solutions: <code>[-2, 1, 0]^T</code> and <code>[-3, 0, 1]^T</code></p>
+                </details>
+
+                <p><strong>Problem 3:</strong> Explain why the column space of <code>A^T</code> is the row space of A.</p>
+                <p><em>Hint: Think about what the columns of <code>A^T</code> are.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>The columns of <code>A^T</code> are the rows of A. So <code>C(A^T)</code> = span(rows of A) = row space of A.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Can a 3x4 matrix have its column space equal to <code>R^3</code>? Explain.</p>
+                <p><em>Hint: How many pivot columns are needed to span <code>R^3</code>?</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Yes. If rank = 3, the three pivot columns span <code>R^3</code>. A 3x4 matrix can have rank 3 (if columns 1, 2, 3 are independent).</p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="chapter-05.html" class="nav-btn prev" id="prev-chapter">Previous</a>
+                <span class="nav-indicator" id="chapter-indicator"></span>
+                <a href="chapter-07.html" class="nav-btn next" id="next-chapter">Next</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
+
+
+
