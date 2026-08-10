@@ -470,16 +470,6 @@ Notes are saved per chapter and persist across sessions.">${escapeHtml(currentNo
         toggleBtn.className = 'note-btn note-sidebar-toggle';
         toggleBtn.textContent = 'Notes';
         toggleBtn.type = 'button';
-        toggleBtn.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:999;padding:0.75rem 1.25rem;background-color:#2980b9;color:white;border:none;border-radius:8px;cursor:pointer;font-size:1rem;box-shadow:0 2px 8px rgba(0,0,0,0.2);transition:all 0.3s ease;';
-
-        toggleBtn.addEventListener('mouseenter', () => {
-            toggleBtn.style.backgroundColor = '#2471a3';
-            toggleBtn.style.transform = 'translateY(-2px)';
-        });
-        toggleBtn.addEventListener('mouseleave', () => {
-            toggleBtn.style.backgroundColor = '#2980b9';
-            toggleBtn.style.transform = 'translateY(0)';
-        });
 
         toggleBtn.addEventListener('click', () => {
             const currentFile = window.location.pathname.split('/').pop();
