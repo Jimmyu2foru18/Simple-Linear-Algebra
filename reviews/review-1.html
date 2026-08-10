@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: Foundations & Basic Operations — Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'no-mathjax'
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <div class="review-header">
+        <div class="container">
+            <h1>Linear Algebra — Review Sheets</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="index.html">Review Hub</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="review-hero">
+            <h2>Foundations & Basic Operations</h2>
+            <p>Comprehensive review of systems of linear equations, Gaussian elimination, matrix operations, and matrix inverses. Covers chapters 1–3 from Gilbert Strang's MIT 18.06 course.</p>
+        </div>
+
+        <div class="review-tabs">
+            <button class="review-tab active" data-tab="systems">Systems of Equations</button>
+            <button class="review-tab" data-tab="elimination">Gaussian Elimination</button>
+            <button class="review-tab" data-tab="matrix-ops">Matrix Operations</button>
+            <button class="review-tab" data-tab="inverses">Matrix Inverses</button>
+        </div>
+
+        <!-- Systems of Linear Equations -->
+        <div class="review-section active" id="systems">
+            <div class="review-card">
+                <h3>1. Systems of Linear Equations</h3>
+                <p>A system of linear equations consists of multiple equations that must be satisfied simultaneously. The fundamental question is whether there exists a set of values for the variables that satisfies all equations at once.</p>
+
+                <h4>1.1 The Matrix Form: $A\mathbf{x} = \mathbf{b}$</h4>
+                <p>The matrix equation compactly represents a system where:</p>
+                <ul>
+                    <li><strong>$A$</strong> is the $m \times n$ coefficient matrix containing the coefficients of the variables</li>
+                    <li><strong>$\mathbf{x}$</strong> is the $n \times 1$ vector of unknowns we want to solve for</li>
+                    <li><strong>$\mathbf{b}$</strong> is the $m \times 1$ right-hand side vector</li>
+                </ul>
+
+                <div class="review-formula">
+                    $$A\mathbf{x} = \mathbf{b} \quad \Longleftrightarrow \quad \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix} = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{bmatrix}$$
+                    <div class="formula-label">Matrix equation representation</div>
+                </div>
+
+                <h4>1.2 Row Picture vs. Column Picture</h4>
+                <div class="review-callout info">
+                    <strong>Key Insight (Strang):</strong> There are two essential perspectives for understanding $A\mathbf{x} = \mathbf{b}$:
+                    <ul>
+                        <li><strong>Row Picture:</strong> Each row represents one equation. We seek a point $\mathbf{x}$ that satisfies all equations simultaneously.</li>
+                        <li><strong>Column Picture:</strong> We take linear combinations of the columns of $A$ to produce $\mathbf{b}$. This is fundamental to understanding linear algebra.</li>
+                    </ul>
+                </div>
+
+                <h4>1.3 Solution Types</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Condition</th><th>Solution Type</th><th>Geometric Interpretation</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Unique solution</td><td>Exactly one solution</td><td>Lines/planes intersect at one point</td></tr>
+                        <tr><td>No solution</td><td>Inconsistent system</td><td>Parallel lines/planes</td></tr>
+                        <tr><td>Infinitely many solutions</td><td>Dependent equations</td><td>Coincident lines/planes</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>1.4 Dimensional Space</h4>
+                <p>While we can visualize in 2D and 3D, linear algebra extends seamlessly to $n$-dimensional space. The same principles of linear combinations, span, and solution spaces apply in higher dimensions.</p>
+            </div>
+        </div>
+
+        <!-- Gaussian Elimination -->
+        <div class="review-section" id="elimination">
+            <div class="review-card">
+                <h3>2. Gaussian Elimination</h3>
+                <p>Gaussian elimination is a systematic algorithm for solving systems of linear equations. The method transforms the augmented matrix $[A|\mathbf{b}]$ into upper triangular form using elementary row operations, making the system easy to solve by back substitution.</p>
+
+                <h4>2.1 Elementary Row Operations</h4>
+                <p>Three types of row operations preserve the solution set:</p>
+                <ol>
+                    <li><strong>Type I:</strong> Swap two rows ($R_i \leftrightarrow R_j$)</li>
+                    <li><strong>Type II:</strong> Multiply a row by a nonzero scalar ($R_i \leftarrow c \cdot R_i$)</li>
+                    <li><strong>Type III:</strong> Add a multiple of one row to another ($R_i \leftarrow R_i + c \cdot R_j$)</li>
+                </ol>
+
+                <h4>2.2 The Elimination Process</h4>
+                <div class="review-callout info">
+                    <strong>Mnemonic: "Zero Below, Solve Above"</strong><br>
+                    Create zeros below each pivot (going down columns). Then solve from the bottom up (going up rows).
+                </div>
+
+                <div class="review-formula">
+                    $$\left[\begin{array}{ccc|c} 2 & 1 & 1 & 8 \\ 4 & -6 & 0 & -2 \\ -2 & 7 & 2 & 3 \end{array}\right] \rightarrow \left[\begin{array}{ccc|c} 2 & 1 & 1 & 8 \\ 0 & -8 & -2 & -18 \\ 0 & 0 & 1 & 1 \end{array}\right]$$
+                    <div class="formula-label">Upper triangular form after elimination</div>
+                </div>
+
+                <h4>2.3 Pivot and Elimination</h4>
+                <p>A pivot is the first nonzero entry in a row during elimination. The pivot column determines which variable becomes a basic variable. Variables without pivots become free variables, indicating special solutions to homogeneous systems.</p>
+
+                <h4>2.4 Back Substitution</h4>
+                <p>Once the matrix is in upper triangular form, solve for variables starting from the last equation and substituting upward.</p>
+            </div>
+        </div>
+
+        <!-- Matrix Operations -->
+        <div class="review-section" id="matrix-ops">
+            <div class="review-card">
+                <h3>3. Matrix Operations</h3>
+                <p>Matrix multiplication and addition follow specific rules that differ from scalar arithmetic. Understanding these operations is essential for working with linear systems.</p>
+
+                <h4>3.1 Matrix Multiplication</h4>
+                <div class="review-formula">
+                    $$(AB)_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj}$$
+                    <div class="formula-label">Matrix multiplication definition</div>
+                </div>
+                <p>Key properties:</p>
+                <ul>
+                    <li><strong>Not commutative:</strong> $AB \neq BA$ in general</li>
+                    <li><strong>Associative:</strong> $(AB)C = A(BC)$</li>
+                    <li><strong>Distributive:</strong> $A(B + C) = AB + AC$</li>
+                </ul>
+
+                <h4>3.2 Matrix Addition</h4>
+                <p>Matrices of the same size can be added element-wise: $(A + B)_{ij} = a_{ij} + b_{ij}$.</p>
+
+                <h4>3.3 Transpose</h4>
+                <div class="review-formula">
+                    $$(A^T)_{ij} = a_{ji}$$
+                    <div class="formula-label">Transpose operation</div>
+                </div>
+                <p>Key properties:</p>
+                <ul>
+                    <li>$(A^T)^T = A$</li>
+                    <li>$(AB)^T = B^T A^T$</li>
+                    <li>$(A + B)^T = A^T + B^T$</li>
+                </ul>
+
+                <h4>3.4 Diagonal and Elimination Matrices</h4>
+                <p>Diagonal matrices have nonzero entries only on the main diagonal. They are easy to invert: simply invert each diagonal entry. Elimination matrices perform row operations and their inverses reverse those operations.</p>
+            </div>
+        </div>
+
+        <!-- Matrix Inverses -->
+        <div class="review-section" id="inverses">
+            <div class="review-card">
+                <h3>4. Matrix Inverses</h3>
+                <p>A matrix $A$ is invertible if there exists a matrix $A^{-1}$ such that $AA^{-1} = A^{-1}A = I$ (the identity matrix). Not all matrices have inverses.</p>
+
+                <h4>4.1 Conditions for Invertibility</h4>
+                <ul>
+                    <li>$A$ must be square ($n \times n$)</li>
+                    <li>$\det(A) \neq 0$</li>
+                    <li>$\text{rank}(A) = n$</li>
+                    <li>Columns of $A$ are linearly independent</li>
+                    <li>$A\mathbf{x} = \mathbf{0}$ has only the trivial solution</li>
+                </ul>
+
+                <h4>4.2 Computing the Inverse</h4>
+                <p>The inverse can be computed using the augmented matrix $[A | I]$ and row reduction:</p>
+                <div class="review-formula">
+                    $$[A | I] \xrightarrow{\text{row reduce}} [I | A^{-1}]$$
+                    <div class="formula-label">Inverse via augmented matrix</div>
+                </div>
+
+                <h4>4.3 Using the Inverse to Solve Systems</h4>
+                <div class="review-formula">
+                    $$A\mathbf{x} = \mathbf{b} \quad \Rightarrow \quad \mathbf{x} = A^{-1}\mathbf{b}$$
+                    <div class="formula-label">Solution via matrix inverse</div>
+                </div>
+                <div class="review-callout warning">
+                    <strong>Note:</strong> Computing the inverse is rarely the most efficient method for solving systems. Gaussian elimination or LU factorization is preferred for large systems.
+                </div>
+
+                <h4>4.4 Inverse Properties</h4>
+                <div class="review-formula">
+                    $$(AB)^{-1} = B^{-1}A^{-1} \quad \text{(reverse order!)}$$
+                    <div class="formula-label">Inverse of a product</div>
+                </div>
+                <p>The reversal of order in $(AB)^{-1} = B^{-1}A^{-1}$ is crucial: you must undo the last operation first when inverting a product.</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="review-nav">
+            <span></span>
+            <span class="review-nav-indicator">Review Sheet 1 of 12</span>
+            <a href="review-2.html" class="review-nav-btn">Next →</a>
+        </nav>
+    </div>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.review-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.tab;
+                document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.review-section').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(target).classList.add('active');
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById(target)]);
+                }
+            });
+        });
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: Quiz 1 & Orthogonality — Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'no-mathjax'
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <div class="review-header">
+        <div class="container">
+            <h1>Linear Algebra — Review Sheets</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="index.html">Review Hub</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="review-hero">
+            <h2>Quiz 1 & Orthogonality</h2>
+            <p>Comprehensive review of Quiz 1 material, orthogonal vectors and subspaces, and projections onto subspaces. Covers chapters 13–15 from Gilbert Strang's MIT 18.06 course.</p>
+        </div>
+
+        <div class="review-tabs">
+            <button class="review-tab active" data-tab="quiz1">Quiz 1 Review</button>
+            <button class="review-tab" data-tab="orthogonal">Orthogonal Vectors & Subspaces</button>
+            <button class="review-tab" data-tab="projections">Projections onto Subspaces</button>
+        </div>
+
+        <!-- Quiz 1 Review -->
+        <div class="review-section active" id="quiz1">
+            <div class="review-card">
+                <h3>1. Quiz 1 Review</h3>
+                <p>Quiz 1 covers the first half of the course, emphasizing rectangular matrices, null spaces, rank, and the deep structure of linear systems. The key insight is that square invertible matrices are straightforward, but rectangular matrices reveal the true depth of linear algebra.</p>
+
+                <h4>1.1 Exam Emphasis: Rectangular Matrices</h4>
+                <div class="review-callout warning">
+                    <strong>Exam Focus:</strong> Chapter 3 is heavily emphasized. When matrices are square and invertible, null spaces and ranks are trivial. For rectangular matrices, these concepts become the central objects of study. Focus on null spaces of $A$ and $A^T$, rank, and the four subspaces.
+                </div>
+
+                <h4>1.2 Dimensions of Spanned Subspaces</h4>
+                <p>For three nonzero vectors $\mathbf{u}, \mathbf{v}, \mathbf{w}$ in $\mathbb{R}^7$, the possible dimensions of the subspace they span are $1 \leq d \leq 3$. The dimension equals the number of linearly independent vectors among them.</p>
+                <div class="review-formula">
+                    $$1 \leq \dim(\text{span}\{\mathbf{u}, \mathbf{v}, \mathbf{w}\}) \leq 3$$
+                    <div class="formula-label">Possible dimensions for three nonzero vectors in $\mathbb{R}^7$</div>
+                </div>
+
+                <h4>1.3 The Four Subspaces Recap</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Subspace</th><th>Symbol</th><th>Dimension</th><th>Space</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Column Space</td><td>$C(A)$</td><td>$r$</td><td>$\mathbb{R}^m$</td></tr>
+                        <tr><td>Nullspace</td><td>$N(A)$</td><td>$n - r$</td><td>$\mathbb{R}^n$</td></tr>
+                        <tr><td>Row Space</td><td>$C(A^T)$</td><td>$r$</td><td>$\mathbb{R}^n$</td></tr>
+                        <tr><td>Left Nullspace</td><td>$N(A^T)$</td><td>$m - r$</td><td>$\mathbb{R}^m$</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>1.4 Null Spaces and Echelon Form</h4>
+                <p>For a matrix in echelon form with $r$ pivots, the rank is $r$ and the null space has dimension $n - r$. Free variables produce special solutions that form a basis for the null space. If $r = n$, the null space contains only $\mathbf{0}$. If $r < n$, there are $n - r$ free variables.</p>
+
+                <h4>1.5 Full Rank Cases</h4>
+                <ul>
+                    <li><strong>Full row rank ($r = m$):</strong> Rows are independent, $N(A^T) = \{\mathbf{0}\}$</li>
+                    <li><strong>Full column rank ($r = n$):</strong> Columns are independent, $N(A) = \{\mathbf{0}\}$</li>
+                    <li><strong>Square invertible ($r = m = n$):</strong> Both hold simultaneously</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Orthogonal Vectors & Subspaces -->
+        <div class="review-section" id="orthogonal">
+            <div class="review-card">
+                <h3>2. Orthogonal Vectors & Subspaces</h3>
+                <p>Orthogonality means perpendicularity in $n$-dimensional space. Two vectors are orthogonal if their dot product is zero. Two subspaces are orthogonal if every vector in one is orthogonal to every vector in the other.</p>
+
+                <h4>2.1 Dot Product</h4>
+                <div class="review-formula">
+                    $$\mathbf{x}^T\mathbf{y} = x_1y_1 + x_2y_2 + \cdots + x_ny_n = 0$$
+                    <div class="formula-label">Orthogonality condition</div>
+                </div>
+
+                <h4>2.2 Orthogonal Subspaces</h4>
+                <p>Two subspaces $S$ and $T$ are orthogonal ($S \perp T$) if for all $\mathbf{s} \in S$ and $\mathbf{t} \in T$, we have $\mathbf{s}^T\mathbf{t} = 0$. Merely not intersecting is not enough — every pair of vectors must be orthogonal.</p>
+                <div class="review-formula">
+                    $$S \perp T \iff \mathbf{s}^T\mathbf{t} = 0 \text{ for all } \mathbf{s} \in S, \mathbf{t} \in T$$
+                    <div class="formula-label">Definition of orthogonal subspaces</div>
+                </div>
+
+                <h4>2.3 The Four Subspaces Are Orthogonal</h4>
+                <div class="review-callout success">
+                    <strong>Fundamental Theorem of Linear Algebra (Orthogonal Version):</strong>
+                    <ul>
+                        <li>Row space $C(A^T)$ and nullspace $N(A)$ are orthogonal complements in $\mathbb{R}^n$</li>
+                        <li>Column space $C(A)$ and left nullspace $N(A^T)$ are orthogonal complements in $\mathbb{R}^m$</li>
+                        <li>Each pair sums to the full space dimension: $r + (n-r) = n$ and $r + (m-r) = m$</li>
+                    </ul>
+                </div>
+
+                <h4>2.4 Why Row Space ⊥ Nullspace</h4>
+                <p>If $\mathbf{x} \in N(A)$, then $A\mathbf{x} = \mathbf{0}$. Writing this row by row: every row $\mathbf{r}_i$ of $A$ dotted with $\mathbf{x}$ equals zero. Since the row space is the span of the rows, $\mathbf{x}$ is orthogonal to every vector in $C(A^T)$.</p>
+                <div class="review-formula">
+                    $$\text{If } A\mathbf{x} = \mathbf{0}, \text{ then } \mathbf{r}_i^T\mathbf{x} = 0 \text{ for all rows } \mathbf{r}_i \implies \mathbf{x} \perp C(A^T)$$
+                    <div class="formula-label">Row space orthogonal to nullspace</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projections onto Subspaces -->
+        <div class="review-section" id="projections">
+            <div class="review-card">
+                <h3>3. Projections onto Subspaces</h3>
+                <p>Projecting a vector $\mathbf{b}$ onto a subspace $S$ means finding the closest vector $\mathbf{p} \in S$. The error $\mathbf{e} = \mathbf{b} - \mathbf{p}$ is orthogonal to $S$, and $\mathbf{b} = \mathbf{p} + \mathbf{e}$ decomposes into orthogonal components.</p>
+
+                <h4>3.1 The Normal Equations</h4>
+                <p>To project $\mathbf{b}$ onto $C(A)$, we seek $\hat{\mathbf{x}}$ such that the error $\mathbf{e} = \mathbf{b} - A\hat{\mathbf{x}}$ is perpendicular to $C(A)$. The condition $A^T\mathbf{e} = \mathbf{0}$ yields the normal equations:</p>
+                <div class="review-formula">
+                    $$A^TA\hat{\mathbf{x}} = A^T\mathbf{b}$$
+                    <div class="formula-label">Normal equations</div>
+                </div>
+
+                <h4>3.2 The Projection Matrix</h4>
+                <p>The projection $\mathbf{p} = A\hat{\mathbf{x}}$ can be written as $\mathbf{p} = P\mathbf{b}$ where $P = A(A^TA)^{-1}A^T$. This matrix projects any vector onto $C(A)$.</p>
+                <div class="review-formula">
+                    $$P = A(A^TA)^{-1}A^T$$
+                    <div class="formula-label">Projection matrix onto $C(A)$</div>
+                </div>
+
+                <h4>3.3 Properties of the Projection Matrix</h4>
+                <ul>
+                    <li><strong>Symmetric:</strong> $P^T = P$</li>
+                    <li><strong>Idempotent:</strong> $P^2 = P$ (projecting twice = projecting once)</li>
+                    <li><strong>Range:</strong> $C(P) = C(A)$</li>
+                    <li><strong>Nullspace:</strong> $N(P) = N(A^T)$</li>
+                </ul>
+
+                <h4>3.4 Connection to the Four Subspaces</h4>
+                <div class="review-callout info">
+                    <strong>Geometric Heart of Projection:</strong> The decomposition $\mathbf{b} = \mathbf{p} + \mathbf{e}$ splits $\mathbf{b}$ into the part in $C(A)$ and the part in $N(A^T)$. These are orthogonal complements in $\mathbb{R}^m$. The normal equations ensure $\mathbf{e} \perp C(A)$.
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="review-nav">
+            <a href="review-4.html" class="review-nav-btn">← Previous</a>
+            <span class="review-nav-indicator">Review Sheet 5 of 12</span>
+            <a href="review-6.html" class="review-nav-btn">Next →</a>
+        </nav>
+    </div>
+
+    <script>
+        document.querySelectorAll('.review-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.tab;
+                document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.review-section').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(target).classList.add('active');
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById(target)]);
+                }
+            });
+        });
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

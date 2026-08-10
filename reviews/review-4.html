@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: The Four Subspaces & Applications — Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'no-mathjax'
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <div class="review-header">
+        <div class="container">
+            <h1>Linear Algebra — Review Sheets</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="index.html">Review Hub</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="review-hero">
+            <h2>The Four Subspaces & Applications</h2>
+            <p>Comprehensive review of the four fundamental subspaces, matrix spaces and rank, and graphs, networks & incidence matrices. Covers chapters 10–12 from Gilbert Strang's MIT 18.06 course.</p>
+        </div>
+
+        <div class="review-tabs">
+            <button class="review-tab active" data-tab="four-fundamental">Four Fundamental Subspaces</button>
+            <button class="review-tab" data-tab="matrix-spaces">Matrix Spaces & Rank</button>
+            <button class="review-tab" data-tab="graphs">Graphs, Networks & Incidence</button>
+        </div>
+
+        <!-- Four Fundamental Subspaces -->
+        <div class="review-section active" id="four-fundamental">
+            <div class="review-card">
+                <h3>1. The Four Fundamental Subspaces</h3>
+                <p>For an $m \times n$ matrix $A$ with rank $r$, the four fundamental subspaces completely describe the action of $A$ on $\mathbb{R}^n$ and $\mathbb{R}^m$.</p>
+
+                <h4>1.1 The Four Subspaces</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Subspace</th><th>Symbol</th><th>Ambient Space</th><th>Dimension</th><th>Definition</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Column Space</td><td>$C(A)$</td><td>$\mathbb{R}^m$</td><td>$r$</td><td>Span of columns of $A$</td></tr>
+                        <tr><td>Nullspace</td><td>$N(A)$</td><td>$\mathbb{R}^n$</td><td>$n - r$</td><td>Solutions to $A\mathbf{x} = \mathbf{0}$</td></tr>
+                        <tr><td>Row Space</td><td>$C(A^T)$</td><td>$\mathbb{R}^n$</td><td>$r$</td><td>Span of rows of $A$</td></tr>
+                        <tr><td>Left Nullspace</td><td>$N(A^T)$</td><td>$\mathbb{R}^m$</td><td>$m - r$</td><td>Solutions to $A^T\mathbf{y} = \mathbf{0}$</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>1.2 Rank Equality</h4>
+                <div class="review-callout success">
+                    <strong>Rank Equality:</strong> The row rank equals the column rank. Both equal the number of pivots in the reduced row echelon form (RREF). This equality unifies the row space and column space dimensions.
+                </div>
+
+                <h4>1.3 Orthogonal Complements</h4>
+                <p>The column space and nullspace of $A^T$ are orthogonal complements in $\mathbb{R}^n$. Similarly, $C(A)$ and $N(A^T)$ are orthogonal complements in $\mathbb{R}^m$.</p>
+                <div class="review-formula">
+                    $$C(A) \perp N(A^T) \quad \text{in } \mathbb{R}^m, \qquad C(A^T) \perp N(A) \quad \text{in } \mathbb{R}^n$$
+                    <div class="formula-label">Orthogonal complement pairs</div>
+                </div>
+
+                <h4>1.4 Basis from RREF</h4>
+                <ul>
+                    <li><strong>Column space basis:</strong> Pivot columns of $A$ (not RREF)</li>
+                    <li><strong>Row space basis:</strong> Nonzero rows of RREF</li>
+                    <li><strong>Nullspace basis:</strong> Special solutions from $R\mathbf{x} = \mathbf{0}$</li>
+                    <li><strong>Left nullspace basis:</strong> Special solutions to $A^T\mathbf{y} = \mathbf{0}$</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Matrix Spaces & Rank -->
+        <div class="review-section" id="matrix-spaces">
+            <div class="review-card">
+                <h3>2. Matrix Spaces & Rank</h3>
+                <p>Vector space concepts extend naturally to matrices themselves. The set of all $m \times n$ matrices forms a vector space, and important subspaces arise from symmetry constraints.</p>
+
+                <h4>2.1 Matrix Vector Spaces</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Space</th><th>Description</th><th>Dimension</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>$M_{m \times n}$</td><td>All $m \times n$ matrices</td><td>$mn$</td></tr>
+                        <tr><td>Sym($n$)</td><td>Symmetric $n \times n$ matrices</td><td>$\frac{n(n+1)}{2}$</td></tr>
+                        <tr><td>Tri($n$)</td><td>Triangular $n \times n$ matrices</td><td>$\frac{n(n+1)}{2}$</td></tr>
+                        <tr><td>Diag($n$)</td><td>Diagonal $n \times n$ matrices</td><td>$n$</td></tr>
+                        <tr><td>Skew($n$)</td><td>Skew-symmetric $n \times n$ matrices</td><td>$\frac{n(n-1)}{2}$</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>2.2 Rank-1 Matrices</h4>
+                <p>A matrix has rank 1 if every column is a multiple of a single vector. Such matrices can be written as the outer product of two vectors.</p>
+                <div class="review-formula">
+                    $$A = \mathbf{u}\mathbf{v}^T \quad \text{(rank-1 factorization)}$$
+                    <div class="formula-label">Rank-1 matrix as outer product</div>
+                </div>
+                <div class="review-callout info">
+                    <strong>Key Insight:</strong> Every matrix of rank $r$ can be expressed as a sum of $r$ rank-1 matrices. Rank-1 matrices are the "building blocks" of all matrices.
+                </div>
+
+                <h4>2.3 Dimension of Rank-1 Space</h4>
+                <p>The dimension of the space of rank-1 matrices in $M_{m \times n}$ is $m + n - 1$: $m$ parameters for $\mathbf{u}$, $n$ for $\mathbf{v}$, minus 1 for the scaling ambiguity $c\mathbf{u} \cdot \frac{1}{c}\mathbf{v}^T = \mathbf{u}\mathbf{v}^T$.</p>
+                <div class="review-formula">
+                    $$\dim(\{\text{rank-1 matrices in } M_{m \times n}\}) = m + n - 1$$
+                    <div class="formula-label">Dimension of rank-1 matrix space</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Graphs, Networks & Incidence -->
+        <div class="review-section" id="graphs">
+            <div class="review-card">
+                <h3>3. Graphs, Networks & Incidence Matrices</h3>
+                <p>Linear algebra provides powerful tools for analyzing networks. Incidence matrices encode graph structure, and their nullspaces reveal fundamental properties of electrical and mechanical networks.</p>
+
+                <h4>3.1 Incidence Matrices</h4>
+                <p>For a graph with $n$ nodes and $m$ edges, the incidence matrix $A$ is $m \times n$. Row $i$ (for edge $i \to j$) has $+1$ at column $i$ and $-1$ at column $j$, with zeros elsewhere.</p>
+                <div class="review-formula">
+                    $$A = \begin{bmatrix} +1 & -1 & 0 & \cdots \\ 0 & +1 & -1 & \cdots \\ \vdots & & & \ddots \end{bmatrix}$$
+                    <div class="formula-label">Incidence matrix structure</div>
+                </div>
+
+                <h4>3.2 Rank of Incidence Matrix</h4>
+                <div class="review-callout success">
+                    <strong>Rank Theorem for Incidence Matrices:</strong> For a connected graph with $n$ nodes, $\text{rank}(A) = n - 1$. One row is always dependent because the sum of all rows is zero.
+                </div>
+
+                <h4>3.3 Kirchhoff's Laws</h4>
+                <ul>
+                    <li><strong>KCL (Kirchhoff's Current Law):</strong> $A\mathbf{x} = \mathbf{b}$ — current balance at each node</li>
+                    <li><strong>KVL (Kirchhoff's Voltage Law):</strong> $A^T\mathbf{y} = \mathbf{0}$ — voltage balance around loops</li>
+                </ul>
+                <p>The dimension of $N(A^T)$ equals the number of independent cycles: $m - n + 1$.</p>
+
+                <h4>3.4 Spanning Trees</h4>
+                <p>A spanning tree of a connected graph with $n$ nodes has exactly $n-1$ edges and connects all nodes without cycles. The columns of $A$ corresponding to a spanning tree are linearly independent.</p>
+                <div class="review-formula">
+                    $$\text{Number of independent cycles} = m - n + 1$$
+                    <div class="formula-label">Cycle rank formula</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="review-nav">
+            <a href="review-3.html" class="review-nav-btn">← Previous</a>
+            <span class="review-nav-indicator">Review Sheet 4 of 12</span>
+            <a href="review-5.html" class="review-nav-btn">Next →</a>
+        </nav>
+    </div>
+
+    <script>
+        document.querySelectorAll('.review-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.tab;
+                document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.review-section').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(target).classList.add('active');
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById(target)]);
+                }
+            });
+        });
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

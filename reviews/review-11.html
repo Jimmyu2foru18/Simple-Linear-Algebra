@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: Transformations & Quiz 3 — Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'no-mathjax'
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <div class="review-header">
+        <div class="container">
+            <h1>Linear Algebra — Review Sheets</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="index.html">Review Hub</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="review-hero">
+            <h2>Transformations & Quiz 3</h2>
+            <p>Covers linear transformations, change of basis, image compression, and Quiz 3 review material. Review of chapters 31, 32, and 33.</p>
+        </div>
+
+        <div class="review-tabs">
+            <button class="review-tab active" data-tab="linear-transforms">Linear Transformations</button>
+            <button class="review-tab" data-tab="change-basis">Change of Basis & Compression</button>
+            <button class="review-tab" data-tab="quiz3">Quiz 3 Review</button>
+        </div>
+
+        <!-- Linear Transformations -->
+        <div class="review-section active" id="linear-transforms">
+            <div class="review-card">
+                <h3>1. Linear Transformations</h3>
+                <p>A linear transformation $T: V \to W$ is completely determined by its action on a basis. The matrix representation depends on the choice of input and output bases.</p>
+
+                <h4>1.1 Matrix of a Linear Transformation</h4>
+                <div class="review-formula">
+                    $$A_{ij} = \text{coefficient of } w_i \text{ in } T(v_j)$$
+                    <div class="formula-label">Column $j$ of $A$ is $T(v_j)$ in output coordinates</div>
+                </div>
+                <ul>
+                    <li>The $j$-th column of $A$ is $T(v_j)$ expressed in the <strong>output basis</strong></li>
+                    <li>If input basis = output basis = eigenvector basis, $A$ is diagonal</li>
+                    <li>Coordinates depend on basis: the vector is coordinate-free, the matrix is not</li>
+                </ul>
+
+                <h4>1.2 Projection Example</h4>
+                <p>Projection onto line $y=x$ in $\mathbb{R}^2$:</p>
+                <ul>
+                    <li>Eigenvector basis: $A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$ (diagonal)</li>
+                    <li>Standard basis: $P = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$</li>
+                    <li>Same transformation, different bases, different matrices</li>
+                </ul>
+
+                <h4>1.3 Derivative as a Matrix</h4>
+                <div class="review-formula">
+                    $$A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{bmatrix}$$
+                    <div class="formula-label">Derivative $T: P_3 \to P_2$ with bases $\{1, x, x^2\}$ and $\{1, x\}$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Change of Basis -->
+        <div class="review-section" id="change-basis">
+            <div class="review-card">
+                <h3>2. Change of Basis & Image Compression</h3>
+                <p>Changing the basis can dramatically simplify computation and enable compression. A good basis is fast to multiply, fast to invert, and concentrates signal energy into few coefficients.</p>
+
+                <h4>2.1 Change of Basis Formula</h4>
+                <div class="review-formula">
+                    $$x = Wc, \quad c = W^{-1}x$$
+                    <div class="formula-label">Change of basis: old coordinates = $W \times$ new coordinates</div>
+                </div>
+                <ul>
+                    <li>For orthogonal basis: $W^{-1} = W^T$</li>
+                    <li>Fourier basis: $F_n^{-1} = \frac{1}{n}\bar{F}_n^T$</li>
+                    <li>Wavelet basis: $W^{-1} = W^T$ (after normalization)</li>
+                </ul>
+
+                <h4>2.2 Similar Matrices from Change of Basis</h4>
+                <div class="review-formula">
+                    $$B = M^{-1}AM$$
+                    <div class="formula-label">Similarity transformation</div>
+                </div>
+                <p>Same transformation $T$ in different bases. Preserves eigenvalues, trace, and determinant. The eigenvector basis gives $B = \Lambda$ diagonal.</p>
+
+                <h4>2.3 Good Basis Criteria</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Criterion</th><th>Fourier Basis</th><th>Wavelet Basis</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Fast multiplication</td><td>FFT: $O(n \log n)$</td><td>Fast wavelet transform</td></tr>
+                        <tr><td>Fast inversion</td><td>$F_n^{-1} = \frac{1}{n}\bar{F}_n^T$</td><td>$W^{-1} = W^T$</td></tr>
+                        <tr><td>Good compression</td><td>Low frequencies capture energy</td><td>Better for edges (JPEG 2000)</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>2.4 Image Compression</h4>
+                <div class="review-callout info">
+                    <strong>Key Insight:</strong> In the standard basis, throwing away 90% of pixels destroys the image. In the wavelet basis, throwing away high-frequency coefficients preserves structure because most energy is in a few coefficients.
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz 3 Review -->
+        <div class="review-section" id="quiz3">
+            <div class="review-card">
+                <h3>3. Quiz 3 Review</h3>
+                <p>Review of core matrix classifications and the SVD, connecting symmetry, positive definiteness, Markov and projection matrices through eigenvalue tests.</p>
+
+                <h4>3.1 Matrix Classification by Eigenvalues</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Matrix Type</th><th>Eigenvalue Condition</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Symmetric</td><td>All eigenvalues real; eigenvectors orthogonal</td></tr>
+                        <tr><td>Positive definite</td><td>All eigenvalues $\lambda_i > 0$</td></tr>
+                        <tr><td>Positive semi-definite</td><td>All eigenvalues $\lambda_i \geq 0$</td></tr>
+                        <tr><td>Markov</td><td>$\lambda = 1$ is largest eigenvalue; others $|\lambda| < 1$</td></tr>
+                        <tr><td>Projection ($P^2 = P$)</td><td>Eigenvalues are only $0$ and $1$</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>3.2 The SVD</h4>
+                <div class="review-formula">
+                    $$A = U\Sigma V^T, \quad \sigma_i = \sqrt{\lambda_i(A^T A)}$$
+                    <div class="formula-label">SVD: singular values are square roots of eigenvalues of $A^T A$</div>
+                </div>
+                <ul>
+                    <li>Every matrix has an SVD, even if rectangular or singular</li></li>
+                    <li>Resolve sign ambiguity via $A v_i = \sigma_i u_i$</li>
+                    <li>Rank equals number of nonzero singular values</li>
+                    <li>Null space comes from $V$ columns for $\sigma_i = 0$</li>
+                </ul>
+
+                <h4>3.3 Key Theorems</h4>
+                <div class="review-callout warning">
+                    <strong>Important:</strong> Symmetric matrices have real eigenvalues and orthogonal eigenvectors. If $A$ is not symmetric, eigenvalues may be complex and eigenvectors may not be orthogonal.
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="review-nav">
+            <a href="review-10.html" class="review-nav-btn">← Previous</a>
+            <span class="review-nav-indicator">Review Sheet 11 of 12</span>
+            <a href="review-12.html" class="review-nav-btn">Next →</a>
+        </nav>
+    </div>
+
+    <script>
+        document.querySelectorAll('.review-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.tab;
+                document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.review-section').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(target).classList.add('active');
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById(target)]);
+                }
+            });
+        });
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

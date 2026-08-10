@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: Positive Definite & SVD — Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'no-mathjax'
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <div class="review-header">
+        <div class="container">
+            <h1>Linear Algebra — Review Sheets</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="index.html">Review Hub</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="review-hero">
+            <h2>Positive Definite & SVD</h2>
+            <p>Covers positive definite matrices and minima, similar matrices and Jordan form, and singular value decomposition. Review of chapters 28, 29, and 30.</p>
+        </div>
+
+        <div class="review-tabs">
+            <button class="review-tab active" data-tab="positive-definite">Positive Definite Matrices</button>
+            <button class="review-tab" data-tab="jordan">Similar Matrices & Jordan Form</button>
+            <button class="review-tab" data-tab="svd">Singular Value Decomposition</button>
+        </div>
+
+        <!-- Positive Definite Matrices -->
+        <div class="review-section active" id="positive-definite">
+            <div class="review-card">
+                <h3>1. Positive Definite Matrices</h3>
+                <p>A symmetric matrix $A$ is positive definite when $x^T A x > 0$ for all nonzero $x$. This connects multivariable optimization to linear algebra through the Hessian matrix.</p>
+
+                <h4>1.1 Tests for Positive Definiteness</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Test</th><th>Condition</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Eigenvalue test</td><td>All eigenvalues $\lambda_i > 0$</td></tr>
+                        <tr><td>Pivot test</td><td>All pivots in Gaussian elimination are positive</td></tr>
+                        <tr><td>Determinant test</td><td>All leading principal minors $\det(A_k) > 0$</td></tr>
+                        <tr><td>Quadratic form</td><td>$x^T A x > 0$ for all nonzero $x$</td></tr>
+                        <tr><td>Factorization</td><td>$A = LDL^T$ with positive diagonal in $D$</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>1.2 Completing the Square = Elimination</h4>
+                <div class="review-callout info">
+                    <strong>Key Insight:</strong> For $Q(x) = x^T A x$, completing the square reveals the pivots outside the squares and multipliers inside. Positive pivots guarantee a sum of positive squares.
+                </div>
+                <p>For $A = \begin{bmatrix} 2 & 6 \\ 6 & 20 \end{bmatrix}$, completing the square gives:
+                    $$Q(x) = 2(x_1 + 3x_2)^2 + 2x_2^2$$
+                Pivot 1 = 2, multiplier = 3, pivot 2 = 2. All positive $\Rightarrow$ positive definite.</p>
+
+                <h4>1.3 Principal Axis Theorem</h4>
+                <div class="review-formula">
+                    $$A = Q\Lambda Q^T$$
+                    <div class="formula-label">Spectral decomposition of positive definite matrix</div>
+                </div>
+                <p>The eigenvectors $q_i$ give the principal axes of the ellipsoid $x^T A x = 1$, and the eigenvalues $\lambda_i$ determine the semi-axis lengths $1/\sqrt{\lambda_i}$.</p>
+            </div>
+        </div>
+
+        <!-- Similar Matrices & Jordan Form -->
+        <div class="review-section" id="jordan">
+            <div class="review-card">
+                <h3>2. Similar Matrices & Jordan Form</h3>
+                <p>Two matrices are similar if they represent the same linear transformation in different bases. Similarity preserves eigenvalues but changes eigenvectors. When a matrix lacks a full set of eigenvectors, the Jordan form captures the structure.</p>
+
+                <h4>2.1 Similarity Transformation</h4>
+                <div class="review-formula">
+                    $$B = M^{-1}AM$$
+                    <div class="formula-label">Similarity transformation</div>
+                </div>
+                <ul>
+                    <li>Similar matrices have the <strong>same eigenvalues</strong></li>
+                    <li>Eigenvectors transform as $x_B = M^{-1}x_A$</li>
+                    <li>Diagonalization: $S^{-1}AS = \Lambda$ when $A$ has $n$ independent eigenvectors</li>
+                    <li>The diagonal matrix $\Lambda$ is the "best" member of the similarity family</li>
+                </ul>
+
+                <h4>2.2 Jordan Blocks</h4>
+                <div class="review-formula">
+                    $$J_k(\lambda) = \begin{bmatrix} \lambda & 1 & 0 & \cdots & 0 \\ 0 & \lambda & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \ddots & \vdots \\ 0 & 0 & \cdots & \lambda & 1 \\ 0 & 0 & \cdots & 0 & \lambda \end{bmatrix}$$
+                    <div class="formula-label">Jordan block of size $k$</div>
+                </div>
+                <p>A Jordan block $J_k(\lambda)$ has size $k$ but only <strong>one independent eigenvector</strong>. The number of Jordan blocks equals the number of independent eigenvectors. Jordan's theorem states every square matrix is similar to a block diagonal matrix of Jordan blocks.</p>
+
+                <h4>2.3 Diagonalizable vs Non-Diagonalizable</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Matrix</th><th>Eigenvalues</th><th>Eigenvectors</th><th>Diagonalizable?</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>$\begin{bmatrix} 4 & 0 \\ 0 & 4 \end{bmatrix}$</td><td>4, 4</td><td>2</td><td>Yes ($= 4I$, "loner")</td></tr>
+                        <tr><td>$\begin{bmatrix} 4 & 1 \\ 0 & 4 \end{bmatrix}$</td><td>4, 4</td><td>1</td><td>No (Jordan block $J_2(4)$)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SVD -->
+        <div class="review-section" id="svd">
+            <div class="review-card">
+                <h3>3. Singular Value Decomposition (SVD)</h3>
+                <p>The SVD is the most powerful matrix factorization: every real matrix $A$ can be written as $A = U\Sigma V^T$, where $U$ and $V$ are orthogonal and $\Sigma$ is diagonal with non-negative singular values.</p>
+
+                <h4>3.1 The SVD Factorization</h4>
+                <div class="review-formula">
+                    $$A = U\Sigma V^T$$
+                    <div class="formula-label">Singular Value Decomposition</div>
+                </div>
+                <ul>
+                    <li>Singular values: $\sigma_i = \sqrt{\lambda_i(A^T A)}$, ordered $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0$</li>
+                    <li>$V$ columns are eigenvectors of $A^T A$</li>
+                    <li>$U$ columns are found from $u_i = \frac{1}{\sigma_i} A v_i$</li>
+                    <li>Number of nonzero singular values = rank of $A$</li>
+                </ul>
+
+                <h4>3.2 Outer Product Form</h4>
+                <div class="review-formula">
+                    $$A = \sum_{i=1}^r \sigma_i u_i v_i^T$$
+                    <div class="formula-label">SVD as sum of rank-1 matrices</div>
+                </div>
+
+                <h4>3.3 Four Fundamental Subspaces</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Subspace</th><th>Basis from SVD</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Row space $\mathcal{C}(A^T)$</td><td>First $r$ columns of $V$</td></tr>
+                        <tr><td>Null space $\mathcal{N}(A)$</td><td>Last $n-r$ columns of $V$</td></tr>
+                        <tr><td>Column space $\mathcal{C}(A)$</td><td>First $r$ columns of $U$</td></tr>
+                        <tr><td>Left null space $\mathcal{N}(A^T)$</td><td>Last $m-r$ columns of $U$</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>3.4 Key Properties</h4>
+                <div class="review-callout success">
+                    <strong>Eckart-Young-Mirsky Theorem:</strong> The truncated SVD $A_r = \sum_{i=1}^r \sigma_i u_i v_i^T$ is the best rank-$r$ approximation to $A$ in the Frobenius norm.
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="review-nav">
+            <a href="review-9.html" class="review-nav-btn">← Previous</a>
+            <span class="review-nav-indicator">Review Sheet 10 of 12</span>
+            <a href="review-11.html" class="review-nav-btn">Next →</a>
+        </nav>
+    </div>
+
+    <script>
+        document.querySelectorAll('.review-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.tab;
+                document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.review-section').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(target).classList.add('active');
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById(target)]);
+                }
+            });
+        });
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

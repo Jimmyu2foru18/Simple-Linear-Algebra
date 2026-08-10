@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: Diagonalization & Applications — Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'no-mathjax'
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <div class="review-header">
+        <div class="container">
+            <h1>Linear Algebra — Review Sheets</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="index.html">Review Hub</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="review-hero">
+            <h2>Diagonalization & Applications</h2>
+            <p>Comprehensive review of diagonalization, matrix powers, differential equations via the matrix exponential, Markov chains, and Fourier series. Covers chapters 22–24.</p>
+        </div>
+
+        <div class="review-tabs">
+            <button class="review-tab active" data-tab="diagonalization">Diagonalization & Matrix Powers</button>
+            <button class="review-tab" data-tab="diff-eq">Differential Equations & exp(At)</button>
+            <button class="review-tab" data-tab="markov">Markov Chains & Fourier Series</button>
+        </div>
+
+        <!-- Diagonalization & Matrix Powers -->
+        <div class="review-section active" id="diagonalization">
+            <div class="review-card">
+                <h3>1. Diagonalization & Matrix Powers</h3>
+                <p>A matrix $A$ is <strong>diagonalizable</strong> if $A = S\Lambda S^{-1}$, where $S$ has eigenvectors as columns and $\Lambda$ is diagonal with eigenvalues. This yields the efficient power formula $A^k = S\Lambda^k S^{-1}$.</p>
+
+                <h4>1.1 Diagonalization Theorem</h4>
+                <div class="review-callout success">
+                    <strong>Diagonalization Criterion:</strong> $A$ is diagonalizable if and only if it has $n$ linearly independent eigenvectors. Then $S = [\mathbf{x}_1 \; \mathbf{x}_2 \; \cdots \; \mathbf{x}_n]$ and $\Lambda = \text{diag}(\lambda_1, \lambda_2, \ldots, \lambda_n)$, giving $A = S\Lambda S^{-1}$.
+                </div>
+
+                <h4>1.2 Matrix Powers via Diagonalization</h4>
+                <div class="review-formula">
+                    $$A^k = S\Lambda^k S^{-1} = S\begin{bmatrix} \lambda_1^k & & \\ & \ddots & \\ & & \lambda_n^k \end{bmatrix}S^{-1}$$
+                    <div class="formula-label">Efficient computation of $A^k$</div>
+                </div>
+                <p>Raising the diagonal matrix $\Lambda$ to the $k$-th power is trivial (entrywise). The interior $S^{-1}S = I$ terms cancel in the product.</p>
+
+                <h4>1.3 Fibonacci via Matrix System</h4>
+                <p>The recurrence $F_{k+2} = F_{k+1} + F_k$ (with $F_0 = 0, F_1 = 1$) converts to first-order form by defining the state vector $\mathbf{u}_k = \begin{bmatrix} F_{k+1} \\ F_k \end{bmatrix}$:</p>
+                <div class="review-formula">
+                    $$\mathbf{u}_{k+1} = A\mathbf{u}_k, \quad A = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}, \quad \mathbf{u}_0 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$$
+                    <div class="formula-label">Fibonacci as a first-order matrix system</div>
+                </div>
+
+                <h4>1.4 Fibonacci Eigenvalues</h4>
+                <div class="review-formula">
+                    $$\lambda^2 - \lambda - 1 = 0 \implies \lambda_{1,2} = \frac{1 \pm \sqrt{5}}{2}$$
+                    <div class="formula-label">Golden ratio and its conjugate</div>
+                </div>
+                <p>The dominant eigenvalue $\lambda_1 = \frac{1+\sqrt{5}}{2} \approx 1.618$ (the golden ratio) controls the growth rate. The second eigenvalue $\lambda_2 \approx -0.618$ has $|\lambda_2| < 1$, so its contribution vanishes for large $k$.</p>
+
+                <h4>1.5 Long-Term Dynamics Summary</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Condition on Eigenvalues</th><th>Long-Term Behavior of $A^k$</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>All $|\lambda_i| &lt; 1$</td><td>$A^k \to \mathbf{0}$ (decay)</td></tr>
+                        <tr><td>All $|\lambda_i| &gt; 1$</td><td>$A^k$ grows unbounded</td></tr>
+                        <tr><td>Some $|\lambda_i| = 1$, rest $< 1$</td><td>Approaches rank-1 projection</td></tr>
+                        <tr><td>Dominant $|\lambda_1| > |\lambda_2| \geq \cdots$</td><td>$A^k \approx \lambda_1^k \, \mathbf{x}_1 \mathbf{c}^T$</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="review-callout warning">
+                    <strong>Precondition Check:</strong> Before applying $A^k = S\Lambda^k S^{-1}$, verify that $A$ has $n$ independent eigenvectors. A repeated eigenvalue with only one eigenvector (defective matrix) cannot be diagonalized this way.
+                </div>
+            </div>
+        </div>
+
+        <!-- Differential Equations & exp(At) -->
+        <div class="review-section" id="diff-eq">
+            <div class="review-card">
+                <h3>2. Differential Equations & the Matrix Exponential</h3>
+                <p>The system $\frac{d\mathbf{u}}{dt} = A\mathbf{u}$ is the continuous-time analogue of the discrete system $\mathbf{u}_{k+1} = A\mathbf{u}_k$. Where powers $\lambda^k$ appear in the discrete case, exponentials $e^{\lambda t}$ appear in the continuous case.</p>
+
+                <h4>2.1 The Matrix Exponential</h4>
+                <div class="review-formula">
+                    $$e^{At} = I + At + \frac{(At)^2}{2!} + \frac{(At)^3}{3!} + \cdots$$
+                    <div class="formula-label">Matrix exponential series</div>
+                </div>
+
+                <h4>2.2 General Solution</h4>
+                <div class="review-formula">
+                    $$\mathbf{u}(t) = c_1 e^{\lambda_1 t}\mathbf{x}_1 + c_2 e^{\lambda_2 t}\mathbf{x}_2 + \cdots + c_n e^{\lambda_n t}\mathbf{x}_n$$
+                    <div class="formula-label">Solution as eigenmode expansion</div>
+                </div>
+                <p>Equivalently: $\mathbf{u}(t) = S\, e^{\Lambda t}\, S^{-1}\mathbf{u}(0)$, where $e^{\Lambda t} = \text{diag}(e^{\lambda_1 t}, \ldots, e^{\lambda_n t})$.</p>
+
+                <h4>2.3 Stability Classification</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Eigenvalue Real Parts</th><th>Behavior of $e^{\lambda t}$</th><th>System Stability</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>$\text{Re}(\lambda) &lt; 0$</td><td>$e^{\lambda t} \to 0$</td><td>Decay to zero (stable)</td></tr>
+                        <tr><td>$\text{Re}(\lambda) = 0$</td><td>$|e^{\lambda t}| = 1$</td><td>Oscillation (marginally stable)</td></tr>
+                        <tr><td>$\text{Re}(\lambda) &gt; 0$</td><td>$e^{\lambda t} \to \infty$</td><td>Growth (unstable)</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>2.4 Steady State from $\lambda = 0$</h4>
+                <div class="review-formula">
+                    $$\text{If } A\mathbf{x} = \mathbf{0} \text{ (singular) with } \lambda = 0: \quad e^{0t} = 1 \text{ persists as steady state}$$
+                    <div class="formula-label">Zero eigenvalue produces persistent steady state</div>
+                </div>
+                <div class="review-callout info">
+                    <strong>Worked Example:</strong> For $A = \begin{bmatrix} -1 & 2 \\ 1 & -2 \end{bmatrix}$ (singular, $\lambda_1 = 0, \lambda_2 = -3$) with $\mathbf{u}(0) = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$, the solution is $\mathbf{u}(t) = \frac{1}{3}\begin{bmatrix} 2 \\ 1 \end{bmatrix} + \frac{1}{3}e^{-3t}\begin{bmatrix} -1 \\ 1 \end{bmatrix}$. As $t \to \infty$, the exponential term vanishes and the steady state is $\mathbf{u}_\infty = \begin{bmatrix} 2/3 \\ 1/3 \end{bmatrix}$.
+                </div>
+            </div>
+        </div>
+
+        <!-- Markov Chains & Fourier Series -->
+        <div class="review-section" id="markov">
+            <div class="review-card">
+                <h3>3. Markov Chains & Fourier Series</h3>
+                <p>Markov matrices model population transitions where total population is conserved. Fourier series extend the idea of orthonormal basis expansion from finite-dimensional vectors to infinite-dimensional function spaces.</p>
+
+                <h4>3.1 Markov Matrix Properties</h4>
+                <ul>
+                    <li>All entries nonneg: $a_{ij} \geq 0$</li>
+                    <li>Columns sum to 1: $\sum_i a_{ij} = 1$ (column-stochastic) or rows sum to 1 (row-stochastic)</li>
+                    <li>$\lambda = 1$ is always an eigenvalue (steady-state mode)</li>
+                    <li>All other eigenvalues satisfy $|\lambda| \leq 1$</li>
+                </ul>
+
+                <h4>3.2 Markov Chain Solution</h4>
+                <p>For $A = \begin{bmatrix} 0.9 & 0.1 \\ 0.2 & 0.8 \end{bmatrix}$ with $\mathbf{u}_0 = \begin{bmatrix} 0 \\ 1000 \end{bmatrix}$:</p>
+                <div class="review-formula">
+                    $$\mathbf{u}_k = c_1 (1)^k \begin{bmatrix} 2 \\ 1 \end{bmatrix} + c_2 (0.7)^k \begin{bmatrix} -1 \\ 1 \end{bmatrix}$$
+                    <div class="formula-label">Decay of transient mode, persistence of steady state</div>
+                </div>
+                <p>With $c_1 = 1000/3$ and $c_2 = 2000/3$, the $(0.7)^k$ term vanishes and the steady state is $\mathbf{u}_\infty = \begin{bmatrix} 2000/3 \\ 1000/3 \end{bmatrix} \approx \begin{bmatrix} 667 \\ 333 \end{bmatrix}$.</p>
+
+                <h4>3.3 Fourier Series: Functions as Infinite-Dimensional Vectors</h4>
+                <p>The orthonormal basis expansion $v = \sum (q_i^T v)\, q_i$ in $\mathbb{R}^n$ generalizes to function spaces where the dot product becomes an integral:</p>
+                <div class="review-formula">
+                    $$f(x) = a_0 + \sum_{n=1}^{\infty}\left[ a_n \cos(nx) + b_n \sin(nx) \right]$$
+                    <div class="formula-label">Fourier series on $[0, 2\pi]$</div>
+                </div>
+
+                <h4>3.4 Fourier Coefficient Formulas</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Coefficient</th><th>Formula</th><th>Normalization</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>$a_0$</td><td>$\frac{1}{2\pi}\int_0^{2\pi} f(x)\,dx$</td><td>Average value (inner product with $1$, length $\sqrt{2\pi}$)</td></tr>
+                        <tr><td>$a_n$</td><td>$\frac{1}{\pi}\int_0^{2\pi} f(x)\cos(nx)\,dx$</td><td>Inner product with $\cos(nx)$, length $\sqrt{\pi}$</td></tr>
+                        <tr><td>$b_n$</td><td>$\frac{1}{\pi}\int_0^{2\pi} f(x)\sin(nx)\,dx$</td><td>Inner product with $\sin(nx)$, length $\sqrt{\pi}$</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="review-callout success">
+                    <strong>Orthogonality:</strong> $\int_0^{2\pi} \cos(mx)\cos(nx)\,dx = 0$ for $m \neq n$, and similarly for all cross-terms. This is why each coefficient is isolated by taking an inner product with the corresponding basis function.
+                </div>
+
+                <h4>3.5 Worked Example: $f(x) = x$ on $[-\pi, \pi]$</h4>
+                <p>$f(x) = x$ is odd, so $a_0 = 0$ and all $a_n = 0$. The sine coefficients are $b_n = \frac{2}{\pi}\int_0^{\pi} x\sin(nx)\,dx = \frac{2(-1)^{n+1}}{n}$. Thus:</p>
+                <div class="review-formula">
+                    $$x = \sum_{n=1}^{\infty} \frac{2(-1)^{n+1}}{n}\sin(nx)$$
+                    <div class="formula-label">Fourier series of $f(x) = x$</div>
+                </div>
+                <p>At $x = \pi/2$: $\frac{\pi}{2} = 2\left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \cdots\right)$, the Leibniz formula for $\pi$.</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="review-nav">
+            <a href="review-7.html" class="review-nav-btn">← Previous</a>
+            <span class="review-nav-indicator">Review Sheet 8 of 12</span>
+            <a href="review-9.html" class="review-nav-btn">Next →</a>
+        </nav>
+    </div>
+
+    <script>
+        document.querySelectorAll('.review-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.tab;
+                document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.review-section').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(target).classList.add('active');
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById(target)]);
+                }
+            });
+        });
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

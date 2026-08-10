@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: Least Squares & Determinants — Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'no-mathjax'
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <div class="review-header">
+        <div class="container">
+            <h1>Linear Algebra — Review Sheets</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="index.html">Review Hub</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="review-hero">
+            <h2>Least Squares & Determinants</h2>
+            <p>Comprehensive review of projection matrices and least squares, orthogonal matrices and Gram-Schmidt, and properties of determinants. Covers chapters 16–18 from Gilbert Strang's MIT 18.06 course.</p>
+        </div>
+
+        <div class="review-tabs">
+            <button class="review-tab active" data-tab="least-squares">Projection Matrices & Least Squares</button>
+            <button class="review-tab" data-tab="gram-schmidt">Orthogonal Matrices & Gram-Schmidt</button>
+            <button class="review-tab" data-tab="det-properties">Properties of Determinants</button>
+        </div>
+
+        <!-- Projection Matrices & Least Squares -->
+        <div class="review-section active" id="least-squares">
+            <div class="review-card">
+                <h3>1. Projection Matrices & Least Squares</h3>
+                <p>When $A\mathbf{x} = \mathbf{b}$ has no exact solution (overdetermined system), the least squares method finds the $\hat{\mathbf{x}}$ minimizing $\|A\mathbf{x} - \mathbf{b}\|^2$. This is equivalent to projecting $\mathbf{b}$ onto $C(A)$.</p>
+
+                <h4>1.1 The Normal Equations</h4>
+                <p>The minimum error occurs when the gradient of $\|A\mathbf{x} - \mathbf{b}\|^2$ is zero:</p>
+                <div class="review-formula">
+                    $$A^TA\hat{\mathbf{x}} = A^T\mathbf{b}$$
+                    <div class="formula-label">Normal equations for least squares</div>
+                </div>
+
+                <h4>1.2 Projection and Error Vectors</h4>
+                <p>The least squares solution decomposes $\mathbf{b}$ into orthogonal components:</p>
+                <div class="review-formula">
+                    $$\mathbf{b} = \underbrace{A\hat{\mathbf{x}}}_{\mathbf{p} \in C(A)} + \underbrace{(\mathbf{b} - A\hat{\mathbf{x}})}_{\mathbf{e} \in N(A^T)}$$
+                    <div class="formula-label">Orthogonal decomposition of $\mathbf{b}$</div>
+                </div>
+                <p>Verification: $\mathbf{p}^T\mathbf{e} = 0$, $A^T\mathbf{e} = \mathbf{0}$, and $\mathbf{p} + \mathbf{e} = \mathbf{b}$.</p>
+
+                <h4>1.3 Properties of $A^TA$</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Property</th><th>Statement</th><th>Condition</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Symmetric</td><td>$(A^TA)^T = A^TA$</td><td>Always</td></tr>
+                        <tr><td>Invertible</td><td>$A^TA$ has inverse</td><td>$A$ has independent columns</td></tr>
+                        <tr><td>Positive definite</td><td>$\mathbf{x}^TA^TA\mathbf{x} > 0$</td><td>$\mathbf{x} \neq \mathbf{0}$</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>1.4 Orthonormal Columns</h4>
+                <div class="review-callout success">
+                    <strong>Ideal Case:</strong> When columns of $A$ are orthonormal, $A^TA = I$ and the normal equations become $I\hat{\mathbf{x}} = A^T\mathbf{b}$, so $\hat{\mathbf{x}} = A^T\mathbf{b}$. No matrix inversion is needed.
+                </div>
+            </div>
+        </div>
+
+        <!-- Orthogonal Matrices & Gram-Schmidt -->
+        <div class="review-section" id="gram-schmidt">
+            <div class="review-card">
+                <h3>2. Orthogonal Matrices & Gram-Schmidt</h3>
+                <p>The Gram-Schmidt process transforms any basis into an orthonormal basis. Orthogonal matrices, whose columns are orthonormal, represent rotations and reflections that preserve lengths and angles.</p>
+
+                <h4>2.1 Orthogonal and Orthonormal Vectors</h4>
+                <div class="review-formula">
+                    $$\mathbf{u}^T\mathbf{v} = 0 \quad \text{(orthogonal)}$$
+                    $$Q^TQ = I \quad \text{(orthonormal columns)}$$
+                    <div class="formula-label">Orthogonality conditions</div>
+                </div>
+
+                <h4>2.2 Gram-Schmidt Orthogonalization</h4>
+                <p>Given independent vectors $\mathbf{a}_1, \mathbf{a}_2, \mathbf{a}_3$, Gram-Schmidt produces orthogonal vectors $\mathbf{q}_1, \mathbf{q}_2, \mathbf{q}_3$:</p>
+                <div class="review-formula">
+                    $$\mathbf{q}_1 = \mathbf{a}_1$$
+                    $$\mathbf{q}_2 = \mathbf{a}_2 - \frac{\mathbf{q}_1^T\mathbf{a}_2}{\mathbf{q}_1^T\mathbf{q}_1}\mathbf{q}_1$$
+                    $$\mathbf{q}_3 = \mathbf{a}_3 - \frac{\mathbf{q}_1^T\mathbf{a}_3}{\mathbf{q}_1^T\mathbf{q}_1}\mathbf{q}_1 - \frac{\mathbf{q}_2^T\mathbf{a}_3}{\mathbf{q}_2^T\mathbf{q}_2}\mathbf{q}_2$$
+                    <div class="formula-label">Gram-Schmidt orthogonalization steps</div>
+                </div>
+
+                <h4>2.3 QR Factorization</h4>
+                <p>Any matrix $A$ with linearly independent columns can be factored as $A = QR$, where $Q$ has orthonormal columns and $R$ is upper triangular.</p>
+                <div class="review-formula">
+                    $$A = QR, \quad R = Q^TA$$
+                    <div class="formula-label">QR factorization</div>
+                </div>
+                <div class="review-callout info">
+                    <strong>Key Property:</strong> The entries of $R$ are inner products: $r_{ij} = \mathbf{q}_i^T\mathbf{a}_j$. Because each $\mathbf{q}_j$ is perpendicular to all previous $\mathbf{q}_i$ ($i < j$), the lower triangle of $R$ is zero.
+                </div>
+
+                <h4>2.4 Properties of Orthogonal Matrices</h4>
+                <ul>
+                    <li>$Q^TQ = QQ^T = I$</li>
+                    <li>$|Q\mathbf{x}| = |\mathbf{x}|$ for all $\mathbf{x}$ (preserves lengths)</li>
+                    <li>$\det(Q) = \pm 1$ ($+1$ for rotation, $-1$ for reflection)</li>
+                    <li>$Q^{-1} = Q^T$</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Properties of Determinants -->
+        <div class="review-section" id="det-properties">
+            <div class="review-card">
+                <h3>3. Properties of Determinants</h3>
+                <p>The determinant is a scalar function that measures the volume scaling factor of a linear transformation. It provides a complete test for invertibility and satisfies elegant algebraic properties.</p>
+
+                <h4>3.1 Computing via Elimination</h4>
+                <p>Gaussian elimination reduces $A$ to upper triangular form $U$. The determinant is the product of the pivots, up to sign from row exchanges:</p>
+                <div class="review-formula">
+                    $$\det(A) = (-1)^r \cdot u_{11} u_{22} \cdots u_{nn}$$
+                    <div class="formula-label">Determinant via elimination ($r$ = row exchanges)</div>
+                </div>
+
+                <h4>3.2 Key Properties</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Property</th><th>Mathematical Statement</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Identity</td><td>$\det(I) = 1$</td></tr>
+                        <tr><td>Row exchange</td><td>$\det(PA) = -\det(A)$</td></tr>
+                        <tr><td>Row scaling</td><td>$\det(cR_i) = c \cdot \det(A)$</td></tr>
+                        <tr><td>Row addition</td><td>$R_i \leftarrow R_i + cR_j$ leaves $\det$ unchanged</td></tr>
+                        <tr><td>Zero row</td><td>Row of zeroes $\implies \det = 0$</td></tr>
+                        <tr><td>Product</td><td>$\det(AB) = \det(A)\det(B)$</td></tr>
+                        <tr><td>Transpose</td><td>$\det(A^T) = \det(A)$</td></tr>
+                        <tr><td>Scalar multiple</td><td>$\det(cA) = c^n\det(A)$ for $n \times n$ matrix</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>3.3 Singularity Test</h4>
+                <div class="review-callout success">
+                    <strong>Invertibility Criterion:</strong> $A$ is invertible if and only if $\det(A) \neq 0$. If elimination produces a zero pivot, $\det(A) = 0$. If all pivots are nonzero, $\det(A)$ equals their product (up to sign).
+                </div>
+
+                <h4>3.4 Determinant of Special Matrices</h4>
+                <ul>
+                    <li><strong>Diagonal:</strong> $\det(D) = d_1 d_2 \cdots d_n$</li>
+                    <li><strong>Triangular:</strong> $\det(T) = \prod_{i=1}^n t_{ii}$</li>
+                    <li><strong>Inverse:</strong> $\det(A^{-1}) = 1/\det(A)$</li>
+                    <li><strong>Power:</strong> $\det(A^k) = (\det(A))^k$</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="review-nav">
+            <a href="review-5.html" class="review-nav-btn">← Previous</a>
+            <span class="review-nav-indicator">Review Sheet 6 of 12</span>
+            <a href="review-7.html" class="review-nav-btn">Next →</a>
+        </nav>
+    </div>
+
+    <script>
+        document.querySelectorAll('.review-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.tab;
+                document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.review-section').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(target).classList.add('active');
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById(target)]);
+                }
+            });
+        });
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

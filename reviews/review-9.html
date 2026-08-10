@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: Quiz 2 & Advanced Topics — Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'no-mathjax'
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <div class="review-header">
+        <div class="container">
+            <h1>Linear Algebra — Review Sheets</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="index.html">Review Hub</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="review-hero">
+            <h2>Quiz 2 & Advanced Topics</h2>
+            <p>Comprehensive review of determinant recurrences, complex eigenvalues, symmetric matrices, positive definiteness, complex matrices, and the Fast Fourier Transform. Covers chapters 25–27.</p>
+        </div>
+
+        <div class="review-tabs">
+            <button class="review-tab active" data-tab="quiz2">Quiz 2 Review</button>
+            <button class="review-tab" data-tab="symmetric">Symmetric Matrices</button>
+            <button class="review-tab" data-tab="complex-fft">Complex Matrices & FFT</button>
+        </div>
+
+        <!-- Quiz 2 Review -->
+        <div class="review-section active" id="quiz2">
+            <div class="review-card">
+                <h3>1. Determinant Recurrences & Periodicity</h3>
+                <p>Quiz 2 emphasizes the connection between cofactor expansion, recurrence relations, and complex eigenvalues. The $n \times n$ tri-diagonal matrix of ones $A_n$ produces a determinant recurrence when expanded along the first row.</p>
+
+                <h4>1.1 The Determinant Recurrence</h4>
+                <div class="review-formula">
+                    $$D_n = D_{n-1} - D_{n-2}, \quad D_1 = 1,\; D_2 = 0$$
+                    <div class="formula-label">Cofactor expansion along first row of tri-diagonal ones</div>
+                </div>
+                <p>The first entry of row 1 gives $D_{n-1}$ (a $+$ cofactor), and the second entry gives $-D_{n-2}$ (a $-$ cofactor). All other entries are zero, so only two terms survive.</p>
+
+                <h4>1.2 Period-6 Determinant Sequence</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>$n$</th><th>$D_n$</th><th>Recurrence Step</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>$1$</td><td>base case</td></tr>
+                        <tr><td>2</td><td>$0$</td><td>base case</td></tr>
+                        <tr><td>3</td><td>$-1$</td><td>$0 - 1$</td></tr>
+                        <tr><td>4</td><td>$-1$</td><td>$-1 - 0$</td></tr>
+                        <tr><td>5</td><td>$0$</td><td>$-1 - (-1)$</td></tr>
+                        <tr><td>6</td><td>$1$</td><td>$0 - (-1)$</td></tr>
+                        <tr><td>7</td><td>$1$</td><td>$1 - 0$</td></tr>
+                        <tr><td>8</td><td>$0$</td><td>$1 - 1$</td></tr>
+                    </tbody>
+                </table>
+                <div class="review-callout info">
+                    <strong>Periodicity Explained:</strong> The recurrence $D_n = D_{n-1} - D_{n-2}$ corresponds to the matrix $A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix}$. Its characteristic equation $\lambda^2 - \lambda + 1 = 0$ has roots $\lambda = e^{\pm i\pi/3}$ (on the unit circle at $\pm 60°$). Since $|\lambda| = 1$ and $\lambda^6 = 1$, we get $A^6 = I$, explaining the period-6 cycle.
+                </div>
+            </div>
+
+            <div class="review-card">
+                <h3>2. Singular vs. Invertible Matrix Families</h3>
+                <p>A family of symmetric matrices $A_n$ with zeros on the diagonal and increasing integers off-diagonal reveals a striking pattern:</p>
+
+                <h4>2.1 The $A_3$ Example (Singular)</h4>
+                <p>$A_3 = \begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 2 \\ 0 & 2 & 0 \end{bmatrix}$. Column 3 is $2 \times$ column 1, so the columns are linearly dependent and $\det(A_3) = 0$.</p>
+                <div class="review-formula">
+                    $$\det(A_3 - \lambda I) = -\lambda(\lambda^2 - 5) = 0 \implies \lambda = 0,\; \pm\sqrt{5}$$
+                    <div class="formula-label">Eigenvalues of singular $A_3$</div>
+                </div>
+
+                <h4>2.2 The $A_4$ Example (Invertible)</h4>
+                <p>The $4 \times 4$ matrix in the same family has $\det(A_4) = 9 \neq 0$, so it is invertible. Since $C(A_4) = \mathbb{R}^4$, the projection matrix onto the column space is $P = I_4$.</p>
+
+                <h4>2.3 Pattern: Odd vs. Even Index</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Matrix Size</th><th>$\det$</th><th>Column Space</th><th>Projection $P$</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>$A_3$ (odd)</td><td>$0$</td><td>2D subspace of $\mathbb{R}^3$</td><td>Rank-2 projection</td></tr>
+                        <tr><td>$A_4$ (even)</td><td>$9$</td><td>$\mathbb{R}^4$</td><td>$I_4$</td></tr>
+                        <tr><td>$A_5$ (odd)</td><td>$0$</td><td>Proper subspace</td><td>Rank deficit</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="review-callout warning">
+                    <strong>Key Exam Insight:</strong> To check if a matrix is singular, look for proportional columns (or rows) before computing the determinant. A zero eigenvalue immediately implies singularity.
+                </div>
+            </div>
+
+            <div class="review-card">
+                <h3>3. Projection Matrix onto the Column Space</h3>
+                <p>For any matrix $A$ with independent columns, the projection matrix onto $C(A)$ is:</p>
+                <div class="review-formula">
+                    $$P = A(A^T A)^{-1} A^T$$
+                    <div class="formula-label">Projection onto column space</div>
+                </div>
+                <p>If $A$ is square and invertible, then $C(A) = \mathbb{R}^n$ and $P = I_n$. If $A$ is singular, $C(A)$ is a proper subspace and $P \neq I$.</p>
+            </div>
+        </div>
+
+        <!-- Symmetric Matrices -->
+        <div class="review-section" id="symmetric">
+            <div class="review-card">
+                <h3>1. Symmetric Matrices & the Spectral Theorem</h3>
+                <p>A matrix is <strong>symmetric</strong> if $A = A^T$. Symmetric matrices are the "well-behaved" matrices of linear algebra.</p>
+
+                <h4>1.1 Real Eigenvalues, Orthogonal Eigenvectors</h4>
+                <div class="review-callout success">
+                    <strong>Spectral Theorem:</strong> Every real symmetric matrix has real eigenvalues and a complete set of $n$ orthonormal eigenvectors. It can be factored as $A = Q\Lambda Q^T$ where $Q$ is orthogonal ($Q^T Q = I$).
+                </div>
+
+                <h4>1.2 Proof Sketch: Orthogonality of Eigenvectors</h4>
+                <p>If $A\mathbf{x} = \lambda \mathbf{x}$ and $A\mathbf{y} = \alpha \mathbf{y}$ with $\lambda \neq \alpha$:</p>
+                <div class="review-formula">
+                    $$\mathbf{y}^T A \mathbf{x} = \lambda \mathbf{y}^T \mathbf{x} \quad \text{and} \quad \mathbf{y}^T A \mathbf{x} = (A^T\mathbf{y})^T \mathbf{x} = \alpha \mathbf{y}^T \mathbf{x}$$
+                    <div class="formula-label">Two expressions for $\mathbf{y}^T A \mathbf{x}$</div>
+                </div>
+                <p>Since $A = A^T$, both equal $\mathbf{y}^T A \mathbf{x}$. Thus $(\lambda - \alpha)\mathbf{y}^T \mathbf{x} = 0$, and since $\lambda \neq \alpha$, we get $\mathbf{y}^T \mathbf{x} = 0$ (orthogonality).</p>
+
+                <h4>1.3 Decomposition into Rank-1 Projections</h4>
+                <div class="review-formula">
+                    $$A = \lambda_1 \mathbf{q}_1 \mathbf{q}_1^T + \lambda_2 \mathbf{q}_2 \mathbf{q}_2^T + \cdots + \lambda_n \mathbf{q}_n \mathbf{q}_n^T$$
+                    <div class="formula-label">Spectral decomposition: weighted sum of projection matrices</div>
+                </div>
+                <p>Each $\mathbf{q}_i \mathbf{q}_i^T$ is a symmetric rank-1 projection matrix ($P^2 = P$, $P^T = P$). The eigenvalues $\lambda_i$ scale these projections along mutually perpendicular directions.</p>
+
+                <h4>1.4 Hermitian Matrices (Complex Generalization)</h4>
+                <p>For complex matrices, symmetry is replaced by the <strong>Hermitian</strong> property $A^H = A$, where $A^H = \bar{A}^T$ is the conjugate transpose. Hermitian matrices also have real eigenvalues and orthogonal eigenvectors (using $\bar{\mathbf{x}}^T \mathbf{x}$ for length).</p>
+            </div>
+
+            <div class="review-card">
+                <h3>2. Positive Definite Matrices</h3>
+                <p>A symmetric matrix $A$ is <strong>positive definite</strong> if $\mathbf{x}^T A \mathbf{x} > 0$ for all nonzero $\mathbf{x}$. Five equivalent conditions determine positive definiteness:</p>
+
+                <h4>2.1 Four Equivalent Tests</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Test</th><th>Condition for Positive Definite</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Quadratic form</td><td>$\mathbf{x}^T A \mathbf{x} > 0$ for all $\mathbf{x} \neq \mathbf{0}$</td></tr>
+                        <tr><td>Eigenvalues</td><td>All $\lambda_i > 0$</td></tr>
+                        <tr><td>Pivots</td><td>All pivots $d_i > 0$ in $A = LU$</td></tr>
+                        <tr><td>Leading minors</td><td>All $\det(A_k) > 0$ for $k = 1, \ldots, n$</td></tr>
+                        <tr><td>Factorization</td><td>$A = B^T B$ for some invertible $B$</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>2.2 The 2×2 Test</h4>
+                <p>For $A = \begin{bmatrix} a & b \\ b & c \end{bmatrix}$, positive definiteness requires:</p>
+                <div class="review-formula">
+                    $$a > 0 \quad \text{and} \quad ac - b^2 > 0$$
+                    <div class="formula-label">2×2 positive definiteness conditions</div>
+                </div>
+                <p>Both conditions: the first pivot ($a$) is positive, and the determinant ($ac - b^2$) is positive.</p>
+
+                <h4>2.3 Example: $A = \begin{bmatrix} 5 & 3 \\ 3 & 2 \end{bmatrix}$</h4>
+                <ul>
+                    <li>Pivot 1 = 5 > 0 ✓</li>
+                    <li>$\det(A) = 10 - 9 = 1 > 0$ ✓</li>
+                    <li>Eigenvalues: $\lambda^2 - 7\lambda + 1 = 0$, both roots positive ✓</li>
+                </ul>
+                <div class="review-callout warning">
+                    <strong>Common Pitfall:</strong> A positive determinant does NOT imply positive definiteness. The matrix $\begin{bmatrix} -1 & 0 \\ 0 & -1 \end{bmatrix}$ has $\det = 1 > 0$ but both eigenvalues are negative. Check <em>all</em> leading principal minors, not just the full determinant.
+                </div>
+            </div>
+
+            <div class="review-card">
+                <h3>3. Pivots Match Eigenvalue Signs</h3>
+                <p>For symmetric matrices, the number of positive pivots equals the number of positive eigenvalues, and similarly for negative and zero. This is a consequence of the <strong>Inertia Theorem</strong>:</p>
+                <div class="review-formula">
+                    $$\#\{\text{positive pivots}\} = \#\{\text{positive eigenvalues}\}$$
+                    <div class="formula-label">Sylvester's law of inertia (symmetric case)</div>
+                </div>
+                <p>This means you can determine the eigenvalue sign distribution by computing only the pivots from Gaussian elimination — no need to find the eigenvalues explicitly.</p>
+            </div>
+        </div>
+
+        <!-- Complex Matrices & FFT -->
+        <div class="review-section" id="complex-fft">
+            <div class="review-card">
+                <h3>1. Roots of Unity & the Fourier Matrix</h3>
+                <p>The $n$-th roots of unity are $1, W, W^2, \ldots, W^{n-1}$ where $W = e^{2\pi i/n}$. They lie on the unit circle at evenly spaced angles.</p>
+
+                <h4>1.1 The Primitive Root</h4>
+                <div class="review-formula">
+                    $$W = e^{2\pi i/n} = \cos\!\left(\frac{2\pi}{n}\right) + i\sin\!\left(\frac{2\pi}{n}\right), \quad W^n = 1$$
+                    <div class="formula-label">Primitive $n$-th root of unity</div>
+                </div>
+
+                <h4>1.2 The Fourier Matrix $F_n$</h4>
+                <p>The $n \times n$ Fourier matrix has entries $(F_n)_{jk} = W^{jk}$ for $j, k = 0, 1, \ldots, n-1$. For $n = 4$ with $W = i$:</p>
+                <div class="review-formula">
+                    $$F_4 = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & i & -1 & -i \\ 1 & -1 & 1 & -1 \\ 1 & -i & -1 & i \end{bmatrix}$$
+                    <div class="formula-label">4×4 Fourier matrix</div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <h3>2. Orthogonality & the Inverse</h3>
+                <p>The columns of $F_n$ are orthogonal. The inner product of columns $j$ and $k$ is:</p>
+
+                <h4>2.1 Column Inner Product</h4>
+                <div class="review-formula">
+                    $$\langle \mathbf{c}_j, \mathbf{c}_k \rangle = \sum_{m=0}^{n-1} W^{mj}\,\overline{W^{mk}} = \sum_{m=0}^{n-1} W^{m(j-k)} = \begin{cases} n & j = k \\ 0 & j \neq k \end{cases}$$
+                    <div class="formula-label">Orthogonality of Fourier matrix columns</div>
+                </div>
+                <p>For $j \neq k$, this is a geometric series: $\frac{1 - (W^{j-k})^n}{1 - W^{j-k}} = \frac{1 - W^{n(j-k)}}{1 - W^{j-k}} = \frac{1 - 1}{1 - W^{j-k}} = 0$.</p>
+
+                <h4>2.2 The Inverse Matrix</h4>
+                <div class="review-formula">
+                    $$F_n^{-1} = \frac{1}{n}\,\overline{F_n}^{\,T}$$
+                    <div class="formula-label">Inverse of the Fourier matrix</div>
+                </div>
+                <p>Each column has length $\sqrt{n}$. Dividing $F_n$ by $\sqrt{n}$ gives an orthonormal matrix (complex unitary). This mirrors $Q^{-1} = Q^T$ for real orthogonal matrices.</p>
+
+                <h4>2.3 Roots of Unity Summary</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>$n$</th><th>$W$</th><th>Roots</th><th>On Unit Circle</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>4</td><td>$i$</td><td>$1, i, -1, -i$</td><td>Yes, $|\lambda| = 1$</td></tr>
+                        <tr><td>6</td><td>$e^{i\pi/3}$</td><td>$1, W, W^2, W^3, W^4, W^5$</td><td>Yes, $|\lambda| = 1$</td></tr>
+                        <tr><td>8</td><td>$e^{i\pi/4}$</td><td>8 evenly spaced points</td><td>Yes, $|\lambda| = 1$</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="review-card">
+                <h3>3. Fast Fourier Transform (FFT)</h3>
+                <p>The FFT is an algorithm that multiplies by $F_n$ in $O(n \log n)$ operations instead of $O(n^2)$.</p>
+
+                <h4>3.1 The Recursion</h4>
+                <p>The FFT recursively splits $F_{2n}$ into two copies of $F_n$ plus a permutation and diagonal fix-up:</p>
+                <div class="review-formula">
+                    $$F_{2n} = \text{fix-up} \times \begin{bmatrix} F_n & 0 \\ 0 & F_n \end{bmatrix} \times \text{permute}$$
+                    <div class="formula-label">FFT recursive decomposition</div>
+                </div>
+
+                <h4>3.2 Operation Count</h4>
+                <div class="review-formula">
+                    $$M(n) = \frac{1}{2}\,n\log_2 n$$
+                    <div class="formula-label">FFT operation count (vs. $n^2$ for direct)</div>
+                </div>
+                <p>The recurrence $M(2n) = 2M(n) + O(n)$ solves to $M(n) = O(n \log n)$. Dividing by $2^k$: $M(2^k)/2^k = M(2^{k-1})/2^{k-1} + c/2$, telescoping to $kc/2$, so $M(2^k) = \frac{c}{2} \cdot k \cdot 2^k$.</p>
+
+                <h4>3.3 Speedup Comparison</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>$n$</th><th>Direct $n^2$</th><th>FFT $\frac{1}{2}n\log_2 n$</th><th>Speedup</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>8</td><td>64</td><td>12</td><td>5.3×</td></tr>
+                        <tr><td>64</td><td>4,096</td><td>192</td><td>21.3×</td></tr>
+                        <tr><td>1024</td><td>1,048,576</td><td>5,120</td><td>~205×</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="review-callout success">
+                    <strong>Why FFT Matters:</strong> For $n = 1024$, the FFT reduces the work from over one million operations to about five thousand — a factor of 200. This makes real-time signal processing, audio analysis, image processing, and large-scale polynomial multiplication computationally feasible.
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="review-nav">
+            <a href="review-8.html" class="review-nav-btn">← Previous</a>
+            <span class="review-nav-indicator">Review Sheet 9 of 12</span>
+            <a href="review-10.html" class="review-nav-btn">Next →</a>
+        </nav>
+    </div>
+
+    <script>
+        document.querySelectorAll('.review-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.tab;
+                document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.review-section').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(target).classList.add('active');
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById(target)]);
+                }
+            });
+        });
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

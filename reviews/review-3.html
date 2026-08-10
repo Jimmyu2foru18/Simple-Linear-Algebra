@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: Homogeneous Systems & Independence — Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'no-mathjax'
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <div class="review-header">
+        <div class="container">
+            <h1>Linear Algebra — Review Sheets</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="index.html">Review Hub</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="review-hero">
+            <h2>Homogeneous Systems & Independence</h2>
+            <p>Comprehensive review of reduced row echelon form, pivot & free variables, special solutions, row reduced form, and independence, basis & dimension. Covers chapters 7–9 from Gilbert Strang's MIT 18.06 course.</p>
+        </div>
+
+        <div class="review-tabs">
+            <button class="review-tab active" data-tab="rref">Reduced Row Echelon Form</button>
+            <button class="review-tab" data-tab="pivot-free">Pivot & Free Variables</button>
+            <button class="review-tab" data-tab="special-solutions">Special Solutions</button>
+            <button class="review-tab" data-tab="row-reduced">Row Reduced Form</button>
+            <button class="review-tab" data-tab="independence">Independence, Basis & Dimension</button>
+        </div>
+
+        <!-- Reduced Row Echelon Form -->
+        <div class="review-section active" id="rref">
+            <div class="review-card">
+                <h3>1. Reduced Row Echelon Form (RREF)</h3>
+                <p>The RREF of a matrix is the simplest equivalent matrix obtained by complete elimination. In RREF, every pivot is 1, each pivot is the only nonzero entry in its column, and pivots appear to the right as we move down rows.</p>
+
+                <h4>1.1 RREF Conditions</h4>
+                <p>A matrix is in reduced row echelon form if it satisfies:</p>
+                <ol>
+                    <li>All nonzero rows are above any rows of all zeros</li>
+                    <li>Each leading entry (pivot) is 1</li>
+                    <li>Each leading 1 is the only nonzero entry in its column</li>
+                    <li>Each leading 1 is to the right of the leading 1 in the row above</li>
+                </ol>
+
+                <h4>1.2 RREF and the Identity Matrix</h4>
+                <p>If $A$ is invertible, $\text{RREF}(A) = I$. If $A$ is singular, $\text{RREF}(A)$ has at least one zero row. The RREF reveals the rank, pivot positions, and structure of the solution space.</p>
+
+                <h4>1.3 Key Properties</h4>
+                <div class="review-callout info">
+                    <strong>RREF is Unique:</strong> Every matrix has exactly one RREF. No matter which sequence of row operations you use, you will always arrive at the same final reduced form.
+                </div>
+
+                <h4>1.4 From RREF to Special Solutions</h4>
+                <div class="review-formula">
+                    $$\text{Given RREF: } \begin{bmatrix} 1 & -2 & 0 & 3 \\ 0 & 0 & 1 & 4 \end{bmatrix}$$
+                    <div class="formula-label">Example RREF with free variables $x_2, x_4$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pivot & Free Variables -->
+        <div class="review-section" id="pivot-free">
+            <div class="review-card">
+                <h3>2. Pivot & Free Variables</h3>
+                <p>Pivot variables correspond to pivot columns and are determined by the system. Free variables correspond to non-pivot columns and can be assigned arbitrary values. The number of free variables equals the dimension of the nullspace.</p>
+
+                <h4>2.1 Pivot Variables</h4>
+                <p>Pivot variables are the unknowns corresponding to pivot columns in the RREF. They are determined by the system and take whatever values are forced upon them by the equations.</p>
+
+                <h4>2.2 Free Variables</h4>
+                <p>Free variables are the unknowns corresponding to non-pivot columns. They can be assigned any value, and each free variable introduces a parameter into the solution set.</p>
+
+                <h4>2.3 Counting Variables</h4>
+                <div class="review-formula">
+                    $$\text{Number of free variables} = n - r$$
+                    <div class="formula-label">Free variables = total variables $-$ rank</div>
+                </div>
+                <p>For an $m \times n$ matrix $A$ with rank $r$:</p>
+                <ul>
+                    <li>$r$ pivot variables (determined)</li>
+                    <li>$n - r$ free variables (arbitrary)</li>
+                </ul>
+
+                <h4>2.4 Key Insight</h4>
+                <div class="review-callout info">
+                    <strong>Mnemonic: "Free to Choose, Pivot to Obey"</strong><br>
+                    Free variables you can assign any value. Pivot variables must obey the equations and take whatever values are forced upon them.
+                </div>
+            </div>
+        </div>
+
+        <!-- Special Solutions -->
+        <div class="review-section" id="special-solutions">
+            <div class="review-card">
+                <h3>3. Special Solutions</h3>
+                <p>To find a basis for the nullspace, set each free variable to 1 (one at a time, others to 0) and solve for the pivot variables. Each choice produces one special solution. All special solutions span the nullspace.</p>
+
+                <h4>3.1 Finding Special Solutions from RREF</h4>
+                <p>Given RREF $R$ with $r$ pivots and $n-r$ free variables:</p>
+                <ol>
+                    <li>Set one free variable to 1, all others to 0</li>
+                    <li>Read pivot values from $R$</li>
+                    <li>One special solution: $x$ has 1 in position $j$, $-R_{ij}$ in each pivot row $i$'s column $j$</li>
+                    <li>Repeat for each free variable to get the basis of $N(A)$</li>
+                </ol>
+
+                <h4>3.2 Nullspace Dimension Formula</h4>
+                <div class="review-formula">
+                    $$\dim(N(A)) = n - r$$
+                    <div class="formula-label">Nullspace dimension</div>
+                </div>
+                <p>This is half of the Rank-Nullity theorem: $\text{rank}(A) + \text{nullity}(A) = n$.</p>
+
+                <h4>3.3 Example Special Solutions</h4>
+                <div class="review-formula">
+                    $$\text{Given RREF: } \begin{bmatrix} 1 & -2 & 0 & 3 \\ 0 & 0 & 1 & 4 \end{bmatrix}$$
+                    $$\text{Special solution 1 } (x_2=1, x_4=0): \quad \mathbf{x}_1 = \begin{bmatrix} 2 \\ 1 \\ 0 \\ 0 \end{bmatrix}$$
+                    $$\text{Special solution 2 } (x_2=0, x_4=1): \quad \mathbf{x}_2 = \begin{bmatrix} -3 \\ 0 \\ -4 \\ 1 \end{bmatrix}$$
+                    <div class="formula-label">Two special solutions spanning $N(A)$</div>
+                </div>
+
+                <h4>3.4 Nullspace Properties</h4>
+                <ul>
+                    <li>The nullspace always contains the zero vector</li>
+                    <li>The nullspace is closed under addition and scalar multiplication</li>
+                    <li>If no free variables exist, nullspace = $\{0\}$ only</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Row Reduced Form -->
+        <div class="review-section" id="row-reduced">
+            <div class="review-card">
+                <h3>4. Solving $A\mathbf{x} = \mathbf{b}$: Row Reduced Form</h3>
+                <p>Complete solutions to non-homogeneous systems. This section extends the nullspace theory to solve $A\mathbf{x} = \mathbf{b}$ completely, identifying conditions for existence and describing the full solution set.</p>
+
+                <h4>4.1 Complete Solution Structure</h4>
+                <p>The complete solution to $A\mathbf{x} = \mathbf{b}$ has the form $\mathbf{x} = \mathbf{x}_p + \mathbf{x}_{\text{nullspace}}$. One particular solution $\mathbf{x}_p$ satisfies $A\mathbf{x}_p = \mathbf{b}$. Adding any nullspace vector $\mathbf{x}_n$ (where $A\mathbf{x}_n = \mathbf{0}$) gives another solution. The full solution set is an affine subspace.</p>
+
+                <h4>4.2 Existence Conditions</h4>
+                <p>$A\mathbf{x} = \mathbf{b}$ has a solution if and only if $\mathbf{b}$ is in $C(A)$. Equivalently, $\text{rank}(A) = \text{rank}([A|\mathbf{b}])$. If the augmented matrix has an extra nonzero row compared to $A$, the system is inconsistent.</p>
+
+                <h4>4.3 Particular Solutions</h4>
+                <p>To find one particular solution, set all free variables to zero in the RREF of $[A|\mathbf{b}]$. The pivot variables are then determined by the rightmost column of the reduced augmented matrix.</p>
+
+                <h4>4.4 Inconsistency Detection</h4>
+                <div class="review-callout warning">
+                    <strong>Key Rule: "0 = 0 is OK, 0 = c is Not"</strong><br>
+                    In the RREF of $[A|\mathbf{b}]$, a row of all zeros in $A$ is fine. But if that row has a nonzero entry in the $\mathbf{b}$-column, the system is inconsistent (no solution).
+                </div>
+            </div>
+        </div>
+
+        <!-- Independence, Basis & Dimension -->
+        <div class="review-section" id="independence">
+            <div class="review-card">
+                <h3>5. Independence, Basis & Dimension</h3>
+                <p>Linear independence, basis vectors, and dimension theory. This section defines the fundamental concepts that measure the "size" and structure of vector spaces and subspaces.</p>
+
+                <h4>5.1 Linear Independence</h4>
+                <p>A set of vectors $\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$ is linearly independent if the only solution to $c_1\mathbf{v}_1 + \cdots + c_k\mathbf{v}_k = \mathbf{0}$ is $c_1 = \cdots = c_k = 0$. If any nonzero coefficients produce zero, the vectors are dependent.</p>
+
+                <h4>5.2 Testing Independence</h4>
+                <div class="review-formula">
+                    $$\text{Form } A = [\mathbf{v}_1 \; \mathbf{v}_2 \; \cdots \; \mathbf{v}_k]$$
+                    $$\text{Solve } A\mathbf{x} = \mathbf{0}$$
+                    $$\text{If only trivial solution } \mathbf{x} = \mathbf{0}: \text{ independent}$$
+                    $$\text{If nontrivial solution exists: dependent}$$
+                    <div class="formula-label">Independence test via matrix</div>
+                </div>
+                <p>The vectors are independent exactly when $\text{rank}(A) = k$.</p>
+
+                <h4>5.3 Basis</h4>
+                <p>A basis for a vector space $V$ is a set of vectors that are both linearly independent and span $V$. Every vector in $V$ can be written uniquely as a linear combination of basis vectors.</p>
+
+                <h4>5.4 Dimension</h4>
+                <p>The dimension of a vector space is the number of vectors in any basis for that space. All bases for a given space have the same number of vectors. $\dim(\mathbb{R}^n) = n$. The dimension of a subspace is less than or equal to the dimension of the parent space.</p>
+
+                <h4>5.5 Rank</h4>
+                <p>The rank of a matrix is the dimension of its column space (or row space). The rank equals the number of pivot columns. It measures how much "information" the matrix preserves.</p>
+
+                <div class="review-callout success">
+                    <strong>Basis = Just Right:</strong> A basis has exactly the right number of vectors: enough to span the space, but not so many that they become dependent. Not too few (can't span), not too many (dependent).
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="review-nav">
+            <a href="review-2.html" class="review-nav-btn">← Previous</a>
+            <span class="review-nav-indicator">Review Sheet 3 of 12</span>
+            <a href="review-4.html" class="review-nav-btn">Next →</a>
+        </nav>
+    </div>
+
+    <script>
+        document.querySelectorAll('.review-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.tab;
+                document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.review-section').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(target).classList.add('active');
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById(target)]);
+                }
+            });
+        });
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

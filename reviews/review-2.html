@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: Matrix Factorization & Subspaces — Linear Algebra</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'no-mathjax'
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <div class="review-header">
+        <div class="container">
+            <h1>Linear Algebra — Review Sheets</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="index.html">Review Hub</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="review-hero">
+            <h2>Matrix Factorization & Subspaces</h2>
+            <p>Comprehensive review of LU factorization, matrix transposes, vector spaces $\mathbb{R}^n$, and column space & nullspace. Covers chapters 4–6 from Gilbert Strang's MIT 18.06 course.</p>
+        </div>
+
+        <div class="review-tabs">
+            <button class="review-tab active" data-tab="lu">LU Factorization</button>
+            <button class="review-tab" data-tab="transposes">Transposes & Permutations</button>
+            <button class="review-tab" data-tab="rn-spaces">Vector Spaces $\mathbb{R}^n$</button>
+            <button class="review-tab" data-tab="column-null">Column Space & Nullspace</button>
+        </div>
+
+        <!-- LU Factorization -->
+        <div class="review-section active" id="lu">
+            <div class="review-card">
+                <h3>1. LU Factorization</h3>
+                <p>When we perform Gaussian elimination without row exchanges, the process naturally produces a factorization $A = LU$, where $L$ is a lower triangular matrix containing the multipliers used during elimination, and $U$ is the resulting upper triangular matrix.</p>
+
+                <h4>1.1 The L Matrix</h4>
+                <p>$L$ is lower triangular with ones on the diagonal. Its subdiagonal entries $l_{ij}$ are exactly the multipliers used to eliminate the entries below the pivots during Gaussian elimination.</p>
+
+                <div class="review-formula">
+                    $$A = LU \quad \text{where} \quad L = \begin{bmatrix} 1 & 0 & 0 \\ l_{21} & 1 & 0 \\ l_{31} & l_{32} & 1 \end{bmatrix}, \quad U = \begin{bmatrix} u_{11} & u_{12} & u_{13} \\ 0 & u_{22} & u_{23} \\ 0 & 0 & u_{33} \end{bmatrix}$$
+                    <div class="formula-label">LU decomposition structure</div>
+                </div>
+
+                <h4>1.2 Solving Systems Using LU</h4>
+                <p>To solve $A\mathbf{x} = \mathbf{b}$ using LU factorization:</p>
+                <ol>
+                    <li>Factor $A = LU$ (done once)</li>
+                    <li>Solve $L\mathbf{y} = \mathbf{b}$ (forward substitution)</li>
+                    <li>Solve $U\mathbf{x} = \mathbf{y}$ (back substitution)</li>
+                </ol>
+
+                <h4>1.3 Computational Cost</h4>
+                <div class="review-callout info">
+                    The cost of Gaussian elimination for an $n \times n$ matrix is approximately $n^3/3$ operations. This is far more efficient than computing $A^{-1}$ (which costs $n^3$ operations) and then multiplying by $\mathbf{b}$.
+                </div>
+
+                <h4>1.4 Permutation Matrices</h4>
+                <p>When row exchanges are needed, we introduce permutation matrices $P$. The factorization becomes $PA = LU$, where $P$ reorders the rows of $A$ to enable safe elimination. $P$ is orthogonal: $P^{-1} = P^T$.</p>
+            </div>
+        </div>
+
+        <!-- Transposes & Permutations -->
+        <div class="review-section" id="transposes">
+            <div class="review-card">
+                <h3>2. Transposes & Permutations</h3>
+                <p>The transpose of a matrix $A$, denoted $A^T$, is formed by flipping $A$ across its main diagonal. Rows become columns and columns become rows.</p>
+
+                <h4>2.1 Properties of Transposes</h4>
+                <div class="review-formula">
+                    $$(A^T)_{ij} = a_{ji}$$
+                    <div class="formula-label">Transpose operation</div>
+                </div>
+                <p>Key algebraic rules:</p>
+                <ul>
+                    <li>$(A^T)^T = A$</li>
+                    <li>$(A + B)^T = A^T + B^T$</li>
+                    <li>$(AB)^T = B^T A^T$ (order reversal!)</li>
+                </ul>
+
+                <h4>2.2 Symmetric Matrices</h4>
+                <p>A matrix is symmetric if $A^T = A$. Symmetric matrices have real eigenvalues and orthogonal eigenvectors. They appear frequently in applications because they represent quadratic forms and covariance matrices.</p>
+
+                <h4>2.3 Permutation Matrices</h4>
+                <p>Permutation matrices are obtained by permuting the rows (or columns) of the identity matrix. They have exactly one '1' in each row and column, with zeros elsewhere. $P^T = P^{-1}$, so permutation matrices are orthogonal.</p>
+
+                <div class="review-callout info">
+                    <strong>Mnemonic: "Flip Across the Diagonal"</strong><br>
+                    To transpose a matrix, flip it across its main diagonal (top-left to bottom-right). Visualize turning the page of a book.
+                </div>
+            </div>
+        </div>
+
+        <!-- Vector Spaces R^n -->
+        <div class="review-section" id="rn-spaces">
+            <div class="review-card">
+                <h3>3. Vector Spaces $\mathbb{R}^n$</h3>
+                <p>A vector space is a collection of vectors closed under addition and scalar multiplication. $\mathbb{R}^n$ is the $n$-dimensional real vector space. A subspace is a subset that is itself a vector space, requiring closure under linear combinations.</p>
+
+                <h4>3.1 The Four Requirements of a Vector Space</h4>
+                <p>A set $V$ with addition and scalar multiplication is a vector space if it satisfies:</p>
+                <ol>
+                    <li><strong>Closure under addition:</strong> $\mathbf{u} + \mathbf{v} \in V$</li>
+                    <li><strong>Closure under scalar multiplication:</strong> $c\mathbf{u} \in V$</li>
+                    <li><strong>Commutativity:</strong> $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$</li>
+                    <li><strong>Existence of zero vector:</strong> $\mathbf{0} \in V$</li>
+                </ol>
+
+                <h4>3.2 Common Vector Spaces</h4>
+                <table class="review-table">
+                    <thead>
+                        <tr><th>Space</th><th>Description</th><th>Dimension</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>$\mathbb{R}^n$</td><td>All $n$-tuples of real numbers</td><td>$n$</td></tr>
+                        <tr><td>$M_{m \times n}(\mathbb{R})$</td><td>All $m \times n$ matrices</td><td>$mn$</td></tr>
+                        <tr><td>$P_n$</td><td>Polynomials of degree $\leq n$</td><td>$n+1$</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>3.3 Subspace Test</h4>
+                <div class="review-callout info">
+                    A nonempty subset $W \subseteq V$ is a subspace if and only if:
+                    <ol>
+                        <li>$\mathbf{u} + \mathbf{v} \in W$ for all $\mathbf{u}, \mathbf{v} \in W$</li>
+                        <li>$c\mathbf{u} \in W$ for all $c \in \mathbb{R}, \mathbf{u} \in W$</li>
+                    </ol>
+                </div>
+
+                <h4>3.4 Span</h4>
+                <div class="review-formula">
+                    $$\text{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\} = \{c_1\mathbf{v}_1 + \cdots + c_k\mathbf{v}_k : c_i \in \mathbb{R}\}$$
+                    <div class="formula-label">Span definition</div>
+                </div>
+                <p>The span of a set of vectors is the set of all possible linear combinations. It is always a subspace.</p>
+            </div>
+        </div>
+
+        <!-- Column Space & Nullspace -->
+        <div class="review-section" id="column-null">
+            <div class="review-card">
+                <h3>4. Column Space & Nullspace</h3>
+                <p>Understanding the fundamental subspaces of a matrix. This section introduces the column space and nullspace, two key subspaces that characterize the behavior of the matrix equation $A\mathbf{x} = \mathbf{b}$.</p>
+
+                <h4>4.1 The Column Space $C(A)$</h4>
+                <p>The column space of $A$, denoted $C(A)$, is the set of all linear combinations of the columns of $A$. It is a subspace of $\mathbb{R}^m$ (where $A$ is $m \times n$). The system $A\mathbf{x} = \mathbf{b}$ is solvable if and only if $\mathbf{b}$ lies in $C(A)$.</p>
+
+                <h4>4.2 The Nullspace $N(A)$</h4>
+                <p>The nullspace of $A$, denoted $N(A)$, is the set of all solutions to $A\mathbf{x} = \mathbf{0}$. It is a subspace of $\mathbb{R}^n$. If $A$ is square and invertible, the nullspace contains only the zero vector. Otherwise, the nullspace has nontrivial solutions.</p>
+
+                <h4>4.3 Rank and Pivot Columns</h4>
+                <p>The rank of $A$ is the dimension of the column space, equal to the number of pivot columns in the row-echelon form of $A$. The pivot columns of $A$ form a basis for $C(A)$.</p>
+
+                <h4>4.4 Rank-Nullity Theorem</h4>
+                <div class="review-formula">
+                    $$\text{rank}(A) + \text{nullity}(A) = n$$
+                    <div class="formula-label">Rank-Nullity Theorem</div>
+                </div>
+                <p>For an $m \times n$ matrix $A$ with rank $r$:</p>
+                <ul>
+                    <li>$\dim(C(A)) = r$ (number of pivot columns)</li>
+                    <li>$\dim(N(A)) = n - r$ (number of free variables)</li>
+                </ul>
+
+                <h4>4.5 Free Variables and the Nullspace</h4>
+                <p>Variables corresponding to non-pivot columns are free variables. Setting one free variable to 1 (and others to 0) generates a special solution. All special solutions span the nullspace.</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="review-nav">
+            <a href="review-1.html" class="review-nav-btn">← Previous</a>
+            <span class="review-nav-indicator">Review Sheet 2 of 12</span>
+            <a href="review-3.html" class="review-nav-btn">Next →</a>
+        </nav>
+    </div>
+
+    <script>
+        document.querySelectorAll('.review-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.tab;
+                document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.review-section').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(target).classList.add('active');
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById(target)]);
+                }
+            });
+        });
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>
