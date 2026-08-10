@@ -15,7 +15,6 @@ Experience the course live at: [Simple Linear Algebra Course](https://jimmyu2for
   - Concept Breakdowns by Prof. Dave Explains
   - Textbook Context by Paul Cartier
   - Problem-Solving Methods by Valerie Hower
-  - Quick Overviews by Early Orbit Math
 - **Interactive Note-Taking**: Floating notepad with auto-save and desktop export
 - **Progress Tracking**: Visual progress bar and chapter navigation (Previous/Next)
 - **Responsive Design**: Works on desktop, tablet, and mobile
@@ -181,4 +180,4 @@ This project is licensed under the MIT License
 
 - Prof. Gilbert Strang for the excellent lecture content
 - MIT OpenCourseWare for making the lectures available
-- Prof. Dave Explains, Paul Cartier, Valerie Hower, and Early Orbit Math for supplementary content
+- Prof. Dave Explains, Paul Cartier, and Valerie Hower for supplementary content

@@ -6,7 +6,6 @@
     // ============================================
     const CONFIG = {
         notesKey: 'linear_algebra_notes',
-        currentChapterKey: 'linear_algebra_current_chapter',
         mathJaxVersion: '3',
         storagePrefix: 'la_notes_'
     };
@@ -322,24 +321,6 @@ Notes are saved per chapter and persist across sessions.">${escapeHtml(currentNo
                 nextBtn.classList.add('disabled');
             }
         }
-
-        // Save current chapter to localStorage
-        if (currentIndex >= 0) {
-            localStorage.setItem(CONFIG.currentChapterKey, CHAPTERS[currentIndex].file);
-        }
-    }
-
-    function resumeProgress() {
-        const lastChapter = localStorage.getItem(CONFIG.currentChapterKey);
-        if (lastChapter && window.location.pathname.endsWith('index.html')) {
-            const chapter = CHAPTERS.find(ch => ch.file === lastChapter);
-            if (chapter) {
-                const confirmed = confirm(`Resume where you left off? You were last on Chapter ${chapter.number}: ${chapter.title}`);
-                if (confirmed) {
-                    window.location.href = lastChapter;
-                }
-            }
-        }
     }
 
     // ============================================
@@ -492,7 +473,6 @@ Notes are saved per chapter and persist across sessions.">${escapeHtml(currentNo
         initSearch();
         initSmoothScroll();
         initKeyboardShortcuts();
-        resumeProgress();
     }
 
     if (document.readyState === 'loading') {
