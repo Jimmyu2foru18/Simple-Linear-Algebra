@@ -36,13 +36,13 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 33: Quiz 3 Review</h2>
-            <p class="lead">This chapter serves as a comprehensive review of the core matrix classifications and decompositions covered in Chapters 25 through 32. We revisit four fundamental matrix types—symmetric, positive definite, Markov, and projection matrices—through the lens of eigenvalue tests, then build toward the singular value decomposition (SVD). The SVD stands as one of the most important factorizations in all of linear algebra: every matrix, rectangular or square, singular or invertible, factors into an orthogonal matrix, a diagonal matrix of singular values, and another orthogonal matrix. Understanding how to compute the SVD, interpret its pieces, and extract geometric meaning from the singular values ties together the course's themes of eigenvalues, orthogonality, and the fundamental subspaces.</p>
+            <p class="lead">This chapter serves as a comprehensive review of the core matrix classifications and decompositions covered in Chapters 25 through 32. We revisit four fundamental matrix typesâ€”symmetric, positive definite, Markov, and projection matricesâ€”through the lens of eigenvalue tests, then build toward the singular value decomposition (SVD). The SVD stands as one of the most important factorizations in all of linear algebra: every matrix, rectangular or square, singular or invertible, factors into an orthogonal matrix, a diagonal matrix of singular values, and another orthogonal matrix. Understanding how to compute the SVD, interpret its pieces, and extract geometric meaning from the singular values ties together the course's themes of eigenvalues, orthogonality, and the fundamental subspaces.</p>
 
             <div class="video-section">
-                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/uK1Xz7M6b4w"
-                            title="33. Quiz 3 Review - Gilbert Strang"
+                    <iframe src="https://www.youtube.com/embed/HgC1l_6ySkc"
+                            title="33. Quiz 3 Review — Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -51,7 +51,51 @@
             </div>
 
             <h3>Concept Breakdowns</h3>
-            <div class="concept-section">
+                        <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/HZa1RwFHgwU"
+                                title="Prof Dave Explains — Change of Basis"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Gilbert Strang</h5>
+                        <p>Quiz 3 Review</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/kYB8IZa5AuE"
+                                title="3Blue1Brown — Linear transformations and matrices"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Prof Dave Explains</h5>
+                        <p>Change of Basis</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/P2LTAUO1TdA"
+                                title="3Blue1Brown — Change of basis"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>3Blue1Brown</h5>
+                        <p>Linear transformations</p>
+                    </div>
+                </div>
+            </div>
+<div class="concept-section">
                 <h4>Symmetric Matrices and Real Eigenvalues</h4>
                 <p>A matrix $A$ is <strong>symmetric</strong> when $A = A^T$. The spectral theorem guarantees that symmetric matrices have exclusively <strong>real eigenvalues</strong> and that eigenvectors corresponding to distinct eigenvalues are <strong>orthogonal</strong>. This is why the imaginary constant $c = i$ is immediately ruled out for symmetric matrices: the eigenvalues would fail to be real, violating the spectral theorem. For any symmetric matrix, we can write the spectral decomposition $A = Q\Lambda Q^T$, where $Q$ is orthogonal and $\Lambda$ is diagonal with the eigenvalues. The orthogonality of eigenvectors is the key property that unlocks every other classification test in this review.</p>
 
@@ -62,7 +106,7 @@
                 <p>A <strong>Markov matrix</strong> (or stochastic matrix) has non-negative entries and each column sums to $1$. Its most important eigenvalue property is that $\lambda = 1$ is always an eigenvalue, and it is the <strong>largest</strong> eigenvalue in magnitude. All other eigenvalues satisfy $|\lambda| < 1$. Consequently, a matrix with an eigenvalue of $2$ can never be a Markov matrix, because $2$ exceeds the spectral radius of $1$. When checking whether a given symmetric matrix could be Markov, the eigenvalue test gives an immediate "no" if any eigenvalue exceeds $1$ in magnitude.</p>
 
                 <h4>Projection Matrices</h4>
-                <p>A <strong>projection matrix</strong> $P$ satisfies $P^2 = P$. Applying the eigenvalue equation twice gives $\lambda^2 = \lambda$, so every eigenvalue must be either $0$ or $1$. No other values are possible. If we ask whether $\frac{1}{2}A$ is a projection matrix, we are asking whether $A$ has eigenvalues $0$ and $2$. For our $2 \times 2$ example with eigenvalues $c+1$ and $c-1$, this occurs when $c = 0$ (eigenvalues $1$ and $-1$, wait—actually for $c=0$ eigenvalues are $1$ and $-1$, so $\frac{1}{2}A$ would have eigenvalues $\pm 1/2$, not good) or more carefully: if $A$ has eigenvalues $0$ and $2$, then $\frac{1}{2}A$ has eigenvalues $0$ and $1$. For the matrix $\begin{bmatrix} c & 1 \\ 1 & c \end{bmatrix}$, the eigenvalues are $c \pm 1$. Setting these to $0$ and $2$ gives $c = 1$ (eigenvalues $2, 0$) or $c = -1$ (eigenvalues $0, -2$). But since projection matrices must be symmetric and have non-negative eigenvalues for $\frac{1}{2}A$, we need $c = 1$ for eigenvalues $2$ and $0$.</p>
+                <p>A <strong>projection matrix</strong> $P$ satisfies $P^2 = P$. Applying the eigenvalue equation twice gives $\lambda^2 = \lambda$, so every eigenvalue must be either $0$ or $1$. No other values are possible. If we ask whether $\frac{1}{2}A$ is a projection matrix, we are asking whether $A$ has eigenvalues $0$ and $2$. For our $2 \times 2$ example with eigenvalues $c+1$ and $c-1$, this occurs when $c = 0$ (eigenvalues $1$ and $-1$, waitâ€”actually for $c=0$ eigenvalues are $1$ and $-1$, so $\frac{1}{2}A$ would have eigenvalues $\pm 1/2$, not good) or more carefully: if $A$ has eigenvalues $0$ and $2$, then $\frac{1}{2}A$ has eigenvalues $0$ and $1$. For the matrix $\begin{bmatrix} c & 1 \\ 1 & c \end{bmatrix}$, the eigenvalues are $c \pm 1$. Setting these to $0$ and $2$ gives $c = 1$ (eigenvalues $2, 0$) or $c = -1$ (eigenvalues $0, -2$). But since projection matrices must be symmetric and have non-negative eigenvalues for $\frac{1}{2}A$, we need $c = 1$ for eigenvalues $2$ and $0$.</p>
 
                 <h4>Singular Value Decomposition (SVD)</h4>
                 <p>The <strong>singular value decomposition</strong> factorizes every matrix $A$ (rectangular, square, singular, or invertible) as $A = U\Sigma V^T$, where $U$ and $V$ are orthogonal matrices and $\Sigma$ is a rectangular diagonal matrix with non-negative entries called <strong>singular values</strong>. The singular values are the square roots of the eigenvalues of $A^T A$: $\sigma_i = \sqrt{\lambda_i(A^T A)}$. The columns of $V$ are the eigenvectors of $A^T A$. The columns of $U$ are the eigenvectors of $AA^T$, but there is a subtlety: eigenvectors are only defined up to sign. The correct way to fix the signs is to use the relationship $A v_i = \sigma_i u_i$. Having chosen $v_i$ and computed $\sigma_i$, multiplying by $A$ yields a unit vector that determines $u_i$ uniquely, eliminating the sign ambiguity. If any singular value is zero, the matrix is singular; the rank equals the number of non-zero singular values, and the null space is spanned by the columns of $V$ corresponding to zero singular values.</p>
@@ -87,7 +131,7 @@
 
             <div class="derivation">
                 <h4>Resolving the Sign Ambiguity for $U$</h4>
-                <p>Given $V$ and $\Sigma$, we compute $U$ column by column using $u_i = \frac{1}{\sigma_i} A v_i$ for each non-zero singular value. This formula is derived directly from $A = U\Sigma V^T$: multiplying both sides by $V$ gives $AV = U\Sigma$, so the $i$-th column satisfies $A v_i = \sigma_i u_i$. Because $A$ and $v_i$ are known, $u_i$ is completely determined—no sign ambiguity remains. For our diagonal example $A = \begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix}$, we get $u_1 = A e_1 / 3 = e_1$ and $u_2 = A e_2 / 2 = e_2$. The complete SVD is $A = I \begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix} I$, confirming that $U = V = I$ and $\Sigma$ contains the singular values.</p>
+                <p>Given $V$ and $\Sigma$, we compute $U$ column by column using $u_i = \frac{1}{\sigma_i} A v_i$ for each non-zero singular value. This formula is derived directly from $A = U\Sigma V^T$: multiplying both sides by $V$ gives $AV = U\Sigma$, so the $i$-th column satisfies $A v_i = \sigma_i u_i$. Because $A$ and $v_i$ are known, $u_i$ is completely determinedâ€”no sign ambiguity remains. For our diagonal example $A = \begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix}$, we get $u_1 = A e_1 / 3 = e_1$ and $u_2 = A e_2 / 2 = e_2$. The complete SVD is $A = I \begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix} I$, confirming that $U = V = I$ and $\Sigma$ contains the singular values.</p>
             </div>
 
             <h3>Learning Strategies</h3>
@@ -101,12 +145,12 @@
 
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Always check symmetry first—it unlocks orthogonal eigenvectors and real eigenvalues, which simplify every subsequent test.</li>
+                    <li>Always check symmetry firstâ€”it unlocks orthogonal eigenvectors and real eigenvalues, which simplify every subsequent test.</li>
                     <li>Use eigenvalue tests as quick filters before computing determinants or pivots; they tell you immediately whether a matrix can belong to a given class.</li>
                     <li>Remember the SVD sign rule: compute $U$ from $A v_i = \sigma_i u_i$, not from $AA^T$ alone, because the latter inherits the sign ambiguity of eigenvectors.</li>
                     <li>The rank of $A$ equals the number of non-zero singular values, not the dimension of the matrix. A $100 \times 100$ matrix with one non-zero singular value has rank $1$.</li>
                     <li>The null space of $A$ comes from the right singular vectors $v_i$ corresponding to zero singular values. These are the eigenvectors of $A^T A$ with eigenvalue $0$.</li>
-                    <li>Every review problem is a chance to practice connecting matrix properties—symmetry, definiteness, Markov structure, projection—to their eigen-solutions. Write the eigenvalues first; everything else follows.</li>
+                    <li>Every review problem is a chance to practice connecting matrix propertiesâ€”symmetry, definiteness, Markov structure, projectionâ€”to their eigen-solutions. Write the eigenvalues first; everything else follows.</li>
                 </ul>
             </div>
 
@@ -117,7 +161,7 @@
             </div>
 
             <div class="visual-aid">
-                <h4>Figure 2: SVD Geometry — Mapping the Unit Circle to an Ellipse</h4>
+                <h4>Figure 2: SVD Geometry â€” Mapping the Unit Circle to an Ellipse</h4>
                 <p>The SVD reveals that any linear transformation $A$ maps the unit circle in the domain to an ellipse in the codomain. The singular values $\sigma_1 \ge \sigma_2 \ge \cdots \ge \sigma_r$ are the semi-axis lengths of this ellipse. The directions of the axes are given by the columns of $U$, and the pre-image directions are given by the columns of $V$. If $\sigma_r = 0$, the ellipse collapses to a lower-dimensional subspace, signaling singularity.</p>
             </div>
 
@@ -200,3 +244,5 @@
     <script src="../js/app.js"></script>
 </body>
 </html>
+
+

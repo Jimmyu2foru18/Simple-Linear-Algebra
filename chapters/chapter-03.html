@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,10 +39,10 @@
             <p class="lead">Matrix multiplication rules and the concept of matrix inverses. This chapter explores how matrices combine, the conditions for invertibility, and how inverses solve linear systems.</p>
 
             <div class="video-section">
-                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/FX4C-JpTFgY"
-                            title="3. Multiplication and Inverse Matrices - Gilbert Strang"
+                            title="3. Multiplication and Inverse Matrices — Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -55,7 +55,7 @@
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/P5GJJ02OG08"
-                                    title="Prof Dave — Matrix Multiplication"
+                                    title="Prof Dave Explains — Matrix Multiplication"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -68,22 +68,22 @@
                 </div>
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/0rHqycGWOck"
-                                    title="Paul Dawkins — Textbook Context"
+                        <iframe src="https://www.youtube.com/embed/3xR9zTx9y74"
+                                    title="Dr. Valerie Hower — Matrix Product"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins — Textbook Context</h5>
+                        <h5>Paul Dawkins â€” Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/CjPKR-oI4Ew"
-                                    title="Valerie Hower — Problem Solving"
+                        <iframe src="https://www.youtube.com/embed/kWorj5BBy9k"
+                                    title="Prof Dave Explains — Inverse Matrices"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -114,7 +114,7 @@
 
             <div class="derivation">
                 <h4>Derivation: Inverse of a 2x2 Matrix</h4>
-                <p>For a 2x2 matrix <code>A = [[a, b], [c, d]]</code>, the inverse exists when <code>ad - bc ≈  0</code>:</p>
+                <p>For a 2x2 matrix <code>A = [[a, b], [c, d]]</code>, the inverse exists when <code>ad - bc â‰ˆÂ  0</code>:</p>
 $$A^-1 = (1/(ad-bc)) * [[d, -b],$$
                       [-c, a]]
                 <p>The determinant <code>ad - bc</code> st be nonzero for the inverse to exist. Verify by ltiplying <code>A * A^-1</code>:</p>
@@ -128,7 +128,7 @@ $$A^-1 = (1/(ad-bc)) * [[d, -b],$$
                 $$(AB)^-1 = B^-1 * A^-1        (reverse order!)
 (A^-1)^-1 = A
 (A^T)^-1 = (A^-1)^T
-(A + B)^-1 ≈  A^-1 + B^-1    (warning: does not distribute!)$$
+(A + B)^-1 â‰ˆÂ  A^-1 + B^-1    (warning: does not distribute!)$$
                 <p>The reversal of order in <code>(AB)^-1 = B^-1 A^-1</code> is crucial: you st undo the last operation first when inverting a product.</p>
             </div>
 
@@ -188,7 +188,7 @@ $$AB = [1*3+2*1  1*0+2*4] = [5  8]$$
 
 $$BA = [3*1+0*0  3*2+0*1] = [3  6]$$
      [1*1+4*0  1*2+4*1]   [1  6]
-                <p><code>AB ≈  BA</code>. Matrix multiplication is not comtative.</p>
+                <p><code>AB â‰ˆÂ  BA</code>. Matrix multiplication is not comtative.</p>
             </div>
 
             <div class="example">
@@ -200,7 +200,7 @@ $$A = [2  3]$$
                 <ol>
                     <li>Determinant: <code>$\det(A)$ = 2*2 - 3*1 = 1</code></li>
                     <li>Apply forla: <code>A^-1 = [[2, -3], [-1, 2]]</code></li>
-                    <li>Verify: <code>[[2,3],[1,2]] * [[2,-3],[-1,2]] = [[1,0],[0,1]]</code> âœ“</li>
+                    <li>Verify: <code>[[2,3],[1,2]] * [[2,-3],[-1,2]] = [[1,0],[0,1]]</code> Ã¢Å“â€œ</li>
                 </ol>
             </div>
 
@@ -266,4 +266,6 @@ $$AB = [1*1+0*2+2*1] = [3]$$
     <script src="../js/app.js"></script>
 </body>
 </html>
+
+
 

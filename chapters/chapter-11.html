@@ -39,10 +39,10 @@
             <p class="lead">Matrix vector spaces, rank-1 matrices, and network theory. This chapter extends vector space concepts to matrices themselves and introduces network analysis through graph theory and adjacency matrices.</p>
 
             <div class="video-section">
-                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/20qXwFvK18c"
-                            title="11. Matrix Spaces; Rank 1; Small World Graphs - Gilbert Strang"
+                    <iframe src="https://www.youtube.com/embed/2IdtqGM6KWU"
+                            title="11. Matrix Spaces; Rank 1; Small World Graphs — Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -54,8 +54,8 @@
             <div class="video-grid">
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/zHbfZWZJTGc"
-                                    title="Prof Dave — Matrix Spaces and Rank 1"
+                        <iframe src="https://www.youtube.com/embed/EP2ghkO0lSk"
+                                    title="Prof Dave Explains — Understanding Vector Spaces"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -68,22 +68,22 @@
                 </div>
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/L2UI_waWqNs"
-                                    title="Paul Dawkins — Textbook Context"
+                        <iframe src="https://www.youtube.com/embed/L-vWPl7mAjI"
+                                    title="Dr. Valerie Hower — Bases and Linear Independence"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins — Textbook Context</h5>
+                        <h5>Paul Dawkins â€” Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/NWwHDv3u_Ks"
-                                    title="Valerie Hower — Problem Solving"
+                        <iframe src="https://www.youtube.com/embed/9kDpbZCK62Y"
+                                    title="Prof Dave Explains — Linear Independence"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -119,16 +119,16 @@
 
 $$This can be written as:   A = u * [c1, c2, ..., cn]$$
                         = u * v^T  (outer product)$$
-                <p>The dimension of the space of rank-1 matrices in <code>M_{m×n}</code> is <code>m + n - 1</code> (m for u, n for v, minus 1 for scaling ambiguity).</p>
+                <p>The dimension of the space of rank-1 matrices in <code>M_{mÃ—n}</code> is <code>m + n - 1</code> (m for u, n for v, minus 1 for scaling ambiguity).</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Counting Walks via Matrix Powers</h4>
                 <p>The <code>(i, j)</code> entry of <code>A^k</code> counts walks of length k from node i to node j:</p>
                 $$(A^2)_ij = sum over l of A_il * A_lj
-         = number of 2-step paths i → l → j
+         = number of 2-step paths i â†’ l â†’ j
 
-(A^k)_ij = sum over all paths i = v0 → v1 → ... → vk = j of 1$$
+(A^k)_ij = sum over all paths i = v0 â†’ v1 â†’ ... â†’ vk = j of 1$$
                 <p>This connects linear algebra to network analysis.</p>
             </div>
 
@@ -142,7 +142,7 @@ $$This can be written as:   A = u * [c1, c2, ..., cn]$$
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Matrix Space Dimensions Multiply"</strong>
-                    <p>The space of <code>m x n</code> matrices has dimension <code>m × n</code>. Symmetric matrices: <code>n(n+1)/2</code>. Diagonal matrices: n. Upper triangular: <code>n(n+1)/2</code>.</p>
+                    <p>The space of <code>m x n</code> matrices has dimension <code>m Ã— n</code>. Symmetric matrices: <code>n(n+1)/2</code>. Diagonal matrices: n. Upper triangular: <code>n(n+1)/2</code>.</p>
                 </div>
             </div>
 
@@ -194,7 +194,7 @@ Short paths exist due to the "small world" connections.$$
                     <li>Rank = 1</li>
                     <li>Take <code>u = [2, 1]^T</code> (first column)</li>
                     <li>Take <code>v = [1, 2, 3]</code> (row multipliers)</li>
-                    <li><code>A = [2, 1]^T * [1, 2, 3] = [[2, 4, 6], [1, 2, 3]]</code> âœ“</li>
+                    <li><code>A = [2, 1]^T * [1, 2, 3] = [[2, 4, 6], [1, 2, 3]]</code> Ã¢Å“â€œ</li>
                 </ol>
             </div>
 
@@ -232,7 +232,7 @@ Short paths exist due to the "small world" connections.$$
                 <p><em>Hint: The maximum rank of a 2x2 matrix is 2.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Yes. Any 2x2 matrix A has rank ≈¤ 2. If rank = 2, it can be written as a sum of two rank-1 matrices (e.g., via SVD or by column splitting). If rank = 1, it is already one rank-1 matrix (add zero matrix).</p>
+                    <p>Yes. Any 2x2 matrix A has rank â‰ˆÂ¤ 2. If rank = 2, it can be written as a sum of two rank-1 matrices (e.g., via SVD or by column splitting). If rank = 1, it is already one rank-1 matrix (add zero matrix).</p>
                 </details>
 
                 <p><strong>Problem 4:</strong> For a graph with adjacency matrix A, what does <code>(A^3)_ii</code> represent?</p>
@@ -254,4 +254,7 @@ Short paths exist due to the "small world" connections.$$
     <script src="../js/app.js"></script>
 </body>
 </html>
+
+
+
 

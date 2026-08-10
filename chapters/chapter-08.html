@@ -39,10 +39,10 @@
             <p class="lead">Complete solutions to non-homogeneous systems. This chapter extends the nullspace theory to solve <code>$A\mathbf{x} = \mathbf{b}$</code> completely, identifying conditions for existence and describing the full solution set.</p>
 
             <div class="video-section">
-                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/JbK-n5Z5F-o"
-                            title="8. Solving Ax = b: Row Reduced Form R - Gilbert Strang"
+                    <iframe src="https://www.youtube.com/embed/9Q1q7s1jTzU"
+                            title="8. Solving Ax = b: Row Reduced Form R — Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -54,8 +54,8 @@
             <div class="video-grid">
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/EP2ghkO0lSk"
-                                    title="Prof Dave — Solving Ax = b"
+                        <iframe src="https://www.youtube.com/embed/zIeHOGhWEtc"
+                                    title="Dr. Valerie Hower — Gauss Jordan Elimination"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -68,22 +68,22 @@
                 </div>
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/e3fTxQQfy7I"
-                                    title="Paul Dawkins — Textbook Context"
+                        <iframe src="https://www.youtube.com/embed/T2Gtt8WygiU"
+                                    title="Prof Dave Explains — Elementary Row Operations"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins — Textbook Context</h5>
+                        <h5>Paul Dawkins â€” Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/rGWcIeCdwGg"
-                                    title="Valerie Hower — Problem Solving"
+                        <iframe src="https://www.youtube.com/embed/P5GJJ02OG08"
+                                    title="Prof Dave Explains — Matrix Multiplication"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -114,23 +114,23 @@
 
             <div class="derivation">
                 <h4>Derivation: The General Solution</h4>
-                <p>Let <code>x_p</code> be any particular solution to <code>$A\mathbf{x} = \mathbf{b}$</code>. For any <code>x_n ∈ N(A)</code>:</p>
+                <p>Let <code>x_p</code> be any particular solution to <code>$A\mathbf{x} = \mathbf{b}$</code>. For any <code>x_n âˆˆ N(A)</code>:</p>
                 $$A(x_p + x_n) = Ax_p + Ax_n = b + 0 = b
 
 $$Therefore, x_p + x_n is also a solution.$$
 Conversely, if x is any solution:
 $$A(x - x_p) = Ax - Ax_p = b - b = 0
-So x - x_p ∈ N(A), meaning x = x_p + x_n for some x_n.$$
+So x - x_p âˆˆ N(A), meaning x = x_p + x_n for some x_n.$$
                 <p>This proves the complete solution is exactly the particular solution plus the entire nullspace.</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Inconsistency Detection</h4>
-                <p>After row reduction, if any row of <code>[R | d]</code> has the form <code>[0 0 ... 0 | c]</code> where <code>c ≈  0</code>, then:</p>
+                <p>After row reduction, if any row of <code>[R | d]</code> has the form <code>[0 0 ... 0 | c]</code> where <code>c â‰ˆÂ  0</code>, then:</p>
                 $$0*x1 + 0*x2 + ... + 0*xn = c
 $$0 = c   (impossible!)$$
 
-$$This means b ∉ C(A), so $A\mathbf{x} = \mathbf{b}$ has no solution.$$
+$$This means b âˆ‰ C(A), so $A\mathbf{x} = \mathbf{b}$ has no solution.$$
             </div>
 
             <h3>Learning Strategies</h3>
@@ -167,7 +167,7 @@ $$This means b ∉ C(A), so $A\mathbf{x} = \mathbf{b}$ has no solution.$$
 $$x_p = specific point not on that line
 Solution set = line through x_p parallel to N(A)$$
 
-$$All solutions: x_p + N(A) = {x_p + x_n : x_n ∈ N(A)}$$
+$$All solutions: x_p + N(A) = {x_p + x_n : x_n âˆˆ N(A)}$$
             </div>
 
             <div class="visual-aid">
@@ -179,7 +179,7 @@ $$All solutions: x_p + N(A) = {x_p + x_n : x_n ∈ N(A)}$$
 
 RREF([A|b]):  [1 0 2 | 3]
               [0 1 1 | 2]
-              [0 0 0 | 1]  → 0 = 1? INCONSISTENT!$$
+              [0 0 0 | 1]  â†’Â 0 = 1? INCONSISTENT!$$
             </div>
 
             <h3>Worked Examples</h3>
@@ -207,7 +207,7 @@ $$A = [[1, 2], [2, 4]]    b = [3, 7]^T$$
                 <ul>
                     <li>RREF of <code>[A | b]</code>: <code>[[1, 2 | 3], [0, 0 | 1]]</code></li>
                     <li>Second row: <code>0 = 1</code> is impossible</li>
-                    <li><code>b ∉ C(A)</code>. <strong>No solution exists.</strong></li>
+                    <li><code>b âˆ‰ C(A)</code>. <strong>No solution exists.</strong></li>
                 </ul>
             </div>
 
@@ -231,7 +231,7 @@ $$A = [[1, 3], [2, 6]]    b = [b1, b2]^T$$
                 <p><em>Hint: The column space is a line. What condition st b satisfy?</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p><code>C(A)</code> = span{[1, 2]^T}. So <code>b2 = 2*b1</code> is required. If <code>b2 ≈  2*b1</code>, no solution.</p>
+                    <p><code>C(A)</code> = span{[1, 2]^T}. So <code>b2 = 2*b1</code> is required. If <code>b2 â‰ˆÂ  2*b1</code>, no solution.</p>
                 </details>
 
                 <p><strong>Problem 3:</strong> If <code>x_p1</code> and <code>x_p2</code> are two particular solutions to <code>$A\mathbf{x} = \mathbf{b}$</code>, show that their difference is in <code>N(A)</code>.</p>
@@ -239,7 +239,7 @@ $$A = [[1, 3], [2, 6]]    b = [b1, b2]^T$$
                 <details>
                     <summary>Solution</summary>
 $$A(x_p1 - x_p2) = Ax_p1 - Ax_p2 = b - b = 0
-So x_p1 - x_p2 ∈ N(A).$$
+So x_p1 - x_p2 âˆˆ N(A).$$
                 </details>
 
                 <p><strong>Problem 4:</strong> Write the complete solution to <code>Ax = 0</code> and <code>$A\mathbf{x} = \mathbf{b}$</code> when A is invertible.</p>
@@ -261,4 +261,7 @@ So x_p1 - x_p2 ∈ N(A).$$
     <script src="../js/app.js"></script>
 </body>
 </html>
+
+
+
 

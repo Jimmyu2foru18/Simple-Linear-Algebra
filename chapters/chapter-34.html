@@ -36,13 +36,13 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 34: Pseudo-Inverses and Projections</h2>
-            <p class="lead">This chapter resolves the puzzle of what to do when a matrix is not invertible. We begin by reviewing the special cases where a matrix has a one-sided inverse—either a left inverse when the columns are independent or a right inverse when the rows are independent. In each case, the product of the matrix and its one-sided inverse turns out to be a projection matrix, not the identity. The real subject is the general case: a rank-$r$ matrix with $r < m$ and $r < n$, where both the null space and the left null space are nontrivial. Between these null spaces, the matrix acts as a perfect invertible map from the $r$-dimensional row space to the $r$-dimensional column space. The pseudo-inverse $A^+$ is precisely that inverse on the good subspaces, extended by zero on the null spaces. We show how to construct $A^+$ directly from the singular value decomposition, and why statisticians need it for linear regression when $A^T A$ is singular. The chapter closes with the elegant property that $AA^+$ and $A^+A$ are orthogonal projections onto the column space and row space, respectively.</p>
+            <p class="lead">This chapter resolves the puzzle of what to do when a matrix is not invertible. We begin by reviewing the special cases where a matrix has a one-sided inverseâ€”either a left inverse when the columns are independent or a right inverse when the rows are independent. In each case, the product of the matrix and its one-sided inverse turns out to be a projection matrix, not the identity. The real subject is the general case: a rank-$r$ matrix with $r < m$ and $r < n$, where both the null space and the left null space are nontrivial. Between these null spaces, the matrix acts as a perfect invertible map from the $r$-dimensional row space to the $r$-dimensional column space. The pseudo-inverse $A^+$ is precisely that inverse on the good subspaces, extended by zero on the null spaces. We show how to construct $A^+$ directly from the singular value decomposition, and why statisticians need it for linear regression when $A^T A$ is singular. The chapter closes with the elegant property that $AA^+$ and $A^+A$ are orthogonal projections onto the column space and row space, respectively.</p>
 
             <div class="video-section">
-                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/uK1Xz7M6b4w"
-                            title="34. Pseudo-Inverses - Gilbert Strang"
+                    <iframe src="https://www.youtube.com/embed/Go2aLo7ZOlU"
+                            title="34. Left and Right Inverses; Pseudoinverse — Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -51,7 +51,51 @@
             </div>
 
             <h3>Concept Breakdowns</h3>
-            <div class="concept-section">
+                        <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/uNHRUXh4uH4"
+                                title="Dr. Valerie Hower — Inverse of a Linear Transformation"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Gilbert Strang</h5>
+                        <p>Left and Right Inverses; Pseudoinverse</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/kWorj5BBy9k"
+                                title="Prof Dave Explains — Inverse Matrices"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Dr. Valerie Hower</h5>
+                        <p>Inverse of Linear Transformation</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/kYB8IZa5AuE"
+                                title="3Blue1Brown — Linear transformations and matrices"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Prof Dave Explains</h5>
+                        <p>Inverse Matrices</p>
+                    </div>
+                </div>
+            </div>
+<div class="concept-section">
                 <h4>Left Inverses and Full Column Rank</h4>
                 <p>When $A$ is $m \times n$ with <strong>full column rank</strong> ($\text{rank}(A) = n$), the columns are linearly independent and the null space contains only the zero vector. In this case $A^T A$ is invertible, and the matrix $(A^T A)^{-1} A^T$ is a <strong>left inverse</strong>: $A^T A (A^T A)^{-1} A^T = A$. Multiplying in the opposite order gives $A (A^T A)^{-1} A^T$. This is not the identity, because $A (A^T A)^{-1} A^T$ is an $m \times m$ matrix that projects onto the $n$-dimensional column space of $A$. It acts as the identity on the column space and as zero on the left null space.</p>
 
@@ -62,7 +106,7 @@
                 <p>For a general matrix $A$ of rank $r < m$ and $r < n$, the four fundamental subspaces have dimensions: column space $r$, null space $n-r$, row space $r$, left null space $m-r$. The matrix $A$ maps the row space bijectively onto the column space, but it kills everything in the null space. Similarly, $A^T$ maps the column space bijectively onto the row space while killing the left null space. This one-to-one correspondence between the row and column spaces is the key to defining a pseudo-inverse.</p>
 
                 <h4>The Pseudo-Inverse: Definition and Motivation</h4>
-                <p>The <strong>Moore-Penrose pseudo-inverse</strong>, denoted $A^+$, is the matrix that inverts $A$ on the row space and column space and is zero on the null spaces. Formally, $A^+$ satisfies four Penrose conditions, but the essential idea is simple: if $x$ is in the row space and $y = Ax$ is in the column space, then $A^+ y = x$. The pseudo-inverse brings every vector in the column space back to its unique pre-image in the row space. If a vector has any component in the left null space, $A^+$ discards it because that component has no source in the row space. Statisticians discovered the pseudo-inverse because it solves the least-squares problem $A^T A x = A^T b$ even when $A^T A$ is singular—which happens whenever the columns of $A$ are linearly dependent, as in repeated experiments.</p>
+                <p>The <strong>Moore-Penrose pseudo-inverse</strong>, denoted $A^+$, is the matrix that inverts $A$ on the row space and column space and is zero on the null spaces. Formally, $A^+$ satisfies four Penrose conditions, but the essential idea is simple: if $x$ is in the row space and $y = Ax$ is in the column space, then $A^+ y = x$. The pseudo-inverse brings every vector in the column space back to its unique pre-image in the row space. If a vector has any component in the left null space, $A^+$ discards it because that component has no source in the row space. Statisticians discovered the pseudo-inverse because it solves the least-squares problem $A^T A x = A^T b$ even when $A^T A$ is singularâ€”which happens whenever the columns of $A$ are linearly dependent, as in repeated experiments.</p>
 
                 <h4>Proof: $A$ Is Invertible from Row Space to Column Space</h4>
                 <p>Suppose $x$ and $y$ are two different vectors in the row space, and suppose $Ax = Ay$. Then $A(x-y) = 0$, so $x-y$ lies in the null space. But $x-y$ also lies in the row space, because the row space is a subspace and closed under subtraction. The intersection of the null space and the row space is $\{0\}$, so $x-y = 0$, contradicting our assumption that $x \neq y$. Therefore distinct vectors in the row space map to distinct vectors in the column space, and $A$ is invertible between these two $r$-dimensional subspaces. The pseudo-inverse is exactly that inverse.</p>
@@ -189,3 +233,5 @@
     <script src="../js/app.js"></script>
 </body>
 </html>
+
+

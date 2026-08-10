@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,10 +39,10 @@
             <p class="lead">Matrix transposes, pertation matrices, and vector spaces. This chapter introduces the algebraic structure underlying linear algebra, including the vector space $\mathbb{R}^n$ and its subspaces.</p>
 
             <div class="video-section">
-                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/ObnZt05r8w0"
-                            title="5. Transposes, Permutations, Spaces R^n - Gilbert Strang"
+                    <iframe src="https://www.youtube.com/embed/JibVXBElKL0"
+                            title="5. Transposes, Permutations, Spaces R^n — Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -54,8 +54,8 @@
             <div class="video-grid">
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/biyQzy2yRUA"
-                                    title="Prof Dave — Transposes and Vector Spaces"
+                        <iframe src="https://www.youtube.com/embed/EP2ghkO0lSk"
+                                    title="Prof Dave Explains — Understanding Vector Spaces"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -68,22 +68,22 @@
                 </div>
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/0rHqycGWOck"
-                                    title="Paul Dawkins — Textbook Context"
+                        <iframe src="https://www.youtube.com/embed/pXp3nQ5exms"
+                                    title="Prof Dave Explains — Matrix Transpose"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins — Textbook Context</h5>
+                        <h5>Paul Dawkins â€” Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/CjPKR-oI4Ew"
-                                    title="Valerie Hower — Problem Solving"
+                        <iframe src="https://www.youtube.com/embed/Zd7wCsUM4pg"
+                                    title="Dr. Valerie Hower — Intro to Linear Transformations"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -118,10 +118,10 @@
             <div class="derivation">
                 <h4>Derivation: The Four Requirements of a Vector Space</h4>
                 <p>A set V with addition and scalar multiplication is a vector space if it satisfies:</p>
-                $$1. Closure under addition:    u + v ∈ V
-2. Closure under scalar multiplication: cu ∈ V
+                $$1. Closure under addition:    u + v âˆˆ V
+2. Closure under scalar multiplication: cu âˆˆ V
 $$3. Comtativity:             u + v = v + u$$
-4. Existence of zero vector:  0 ∈ V
+4. Existence of zero vector:  0 âˆˆ V
 (plus associativity, distributivity, identity)$$
                 <p>For subspaces, only closure properties (1 and 2) plus existence of zero vector need verification.</p>
             </div>
@@ -192,7 +192,7 @@ $$A^T = [1  4]$$
      [2  5]
      [3  6]
 
-(A^T)^T = [1  2  3] = A  âœ“
+(A^T)^T = [1  2  3] = A  Ã¢Å“â€œ
          [4  5  6]
             </div>
 
@@ -200,7 +200,7 @@ $$A^T = [1  4]$$
                 <h4>Example 2: Symmetric Matrix</h4>
                 <p><strong>Problem:</strong> Show that <code>A = [[2, 3, 1], [3, 5, 4], [1, 4, 6]]</code> is symmetric.</p>
                 <p><strong>Solution:</strong></p>
-$$A^T = [2  3  1] = A  âœ“$$
+$$A^T = [2  3  1] = A  Ã¢Å“â€œ$$
      [3  5  4]
      [1  4  6]
                 <p>Since <code>A^T = A</code>, A is symmetric.</p>
@@ -208,12 +208,12 @@ $$A^T = [2  3  1] = A  âœ“$$
 
             <div class="example">
                 <h4>Example 3: Verifying a Subspace</h4>
-                <p><strong>Problem:</strong> Is the set <code>S = {(x, y) ∈ R^2 : x + y = 0}</code> a subspace of <code>R^2</code>?</p>
+                <p><strong>Problem:</strong> Is the set <code>S = {(x, y) âˆˆ R^2 : x + y = 0}</code> a subspace of <code>R^2</code>?</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>Zero vector: <code>(0, 0)</code> satisfies <code>0 + 0 = 0</code> âœ“</li>
-                    <li>Closure: If <code>(x1, y1)</code> and <code>(x2, y2)</code> satisfy <code>x + y = 0</code>, then <code>(x1+x2) + (y1+y2) = (x1+y1) + (x2+y2) = 0 + 0 = 0</code> âœ“</li>
-                    <li>Scalar multiplication: If <code>x + y = 0</code>, then <code>cx + cy = c(x+y) = c*0 = 0</code> âœ“</li>
+                    <li>Zero vector: <code>(0, 0)</code> satisfies <code>0 + 0 = 0</code> Ã¢Å“â€œ</li>
+                    <li>Closure: If <code>(x1, y1)</code> and <code>(x2, y2)</code> satisfy <code>x + y = 0</code>, then <code>(x1+x2) + (y1+y2) = (x1+y1) + (x2+y2) = 0 + 0 = 0</code> Ã¢Å“â€œ</li>
+                    <li>Scalar multiplication: If <code>x + y = 0</code>, then <code>cx + cy = c(x+y) = c*0 = 0</code> Ã¢Å“â€œ</li>
                     <li><strong>S is a subspace</strong> (specifically, a line through the origin)</li>
                 </ul>
             </div>
@@ -235,7 +235,7 @@ $$B^T = [3 0]    A^T = [1 0]$$
      [1 4]           [2 1]
 
 $$B^T A^T = [3*1+0*2  3*0+0*1] = [3  0]$$
-          [1*1+4*2  1*0+4*1]   [9  4] âœ“
+          [1*1+4*2  1*0+4*1]   [9  4] Ã¢Å“â€œ
                 </details>
 
                 <p><strong>Problem 2:</strong> Find all 3x3 pertation matrices and determine their inverses.</p>
@@ -271,4 +271,6 @@ $$B^T A^T = [3*1+0*2  3*0+0*1] = [3  0]$$
     <script src="../js/app.js"></script>
 </body>
 </html>
+
+
 

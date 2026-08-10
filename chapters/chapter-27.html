@@ -36,13 +36,13 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 27: Complex Matrices; Fast Fourier Transform</h2>
-            <p class="lead">This chapter makes the leap from real to complex vector spaces, introducing the Fourier matrix as the most important example of a complex matrix with orthonormal columns. The $n \times n$ Fourier matrix $F_n$ is constructed from the $n$-th roots of unity, and its orthogonal columns make the inverse immediate: $F_n^{-1} = \bar{F}_n^T / n$. The climax is the Fast Fourier Transform (FFT), the algorithm that reduces the cost of multiplying by an $n \times n$ matrix from $n^2$ operations to $\frac{1}{2}n \log_2 n$ operations by recursively factoring $F_n$ into smaller Fourier matrices—a reduction by a factor of 200 for $n = 1024$.</p>
+            <p class="lead">This chapter makes the leap from real to complex vector spaces, introducing the Fourier matrix as the most important example of a complex matrix with orthonormal columns. The $n \times n$ Fourier matrix $F_n$ is constructed from the $n$-th roots of unity, and its orthogonal columns make the inverse immediate: $F_n^{-1} = \bar{F}_n^T / n$. The climax is the Fast Fourier Transform (FFT), the algorithm that reduces the cost of multiplying by an $n \times n$ matrix from $n^2$ operations to $\frac{1}{2}n \log_2 n$ operations by recursively factoring $F_n$ into smaller Fourier matricesâ€”a reduction by a factor of 200 for $n = 1024$.</p>
 
             <div class="video-section">
-                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/Wv_H-V1Q0oI"
-                            title="27. Complex Matrices; Fast Fourier Transform - Gilbert Strang"
+                    <iframe src="https://www.youtube.com/embed/M0Sa8fLOajA"
+                            title="27. Complex Matrices; Fast Fourier Transform — Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -54,8 +54,8 @@
             <div class="video-grid">
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/zHbfZWZJTGc"
-                                    title="Prof Dave — Complex Matrices; Fast Fourier Transform"
+                        <iframe src="https://www.youtube.com/embed/DUuTx2nbizM"
+                                    title="Prof Dave Explains — Complex, Hermitian, and Unitary Matrices"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -68,22 +68,22 @@
                 </div>
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/L2UI_waWqNs"
-                                    title="Paul Dawkins — Textbook Context"
+                        <iframe src="https://www.youtube.com/embed/Zd7wCsUM4pg"
+                                    title="Dr. Valerie Hower — Intro to Linear Transformations"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins — Textbook Context</h5>
+                        <h5>Paul Dawkins â€” Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/NWwHDv3u_Ks"
-                                    title="Valerie Hower — Problem Solving"
+                        <iframe src="https://www.youtube.com/embed/is1cg5yhdds"
+                                    title="Prof Dave Explains — Linear Transformations"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -112,7 +112,7 @@
             <h4>The Fast Fourier Transform (FFT)</h4>
             <p>The FFT is an algorithm that multiplies by $F_n$ (or $F_n^{-1}$) in $\frac{1}{2}n \log_2 n$ operations instead of $n^2$. The key insight is that $F_{2n}$ can be expressed in terms of two copies of $F_n$ separated by a permutation matrix that selects even and odd indexed components. Specifically, for $n=2m$:
                 $$F_{2n} = \begin{bmatrix} I & D \\ I & -D \end{bmatrix} \begin{bmatrix} F_n & 0 \\ 0 & F_n \end{bmatrix} \begin{bmatrix} P \\ 0 & I \end{bmatrix}$$
-            where $P$ is the permutation matrix that reorders $[x_0, x_1, \ldots, x_{2n-1}]$ into $[x_0, x_2, \ldots, x_{2n-2}, x_1, x_3, \ldots, x_{2n-1}]$ and $D$ is a diagonal matrix of powers of $W$. The recursive structure means we solve two problems of size $n$ instead of one problem of size $2n$. The recurrence for the operation count is $M(2n) = 2M(n) + O(n)$, which solves to $M(n) = O(n \log n)$. For $n=1024$, this is $512 \times 10 = 5120$ operations instead of $1,048,576$—a factor of 200 reduction.</p>
+            where $P$ is the permutation matrix that reorders $[x_0, x_1, \ldots, x_{2n-1}]$ into $[x_0, x_2, \ldots, x_{2n-2}, x_1, x_3, \ldots, x_{2n-1}]$ and $D$ is a diagonal matrix of powers of $W$. The recursive structure means we solve two problems of size $n$ instead of one problem of size $2n$. The recurrence for the operation count is $M(2n) = 2M(n) + O(n)$, which solves to $M(n) = O(n \log n)$. For $n=1024$, this is $512 \times 10 = 5120$ operations instead of $1,048,576$â€”a factor of 200 reduction.</p>
 
             <h3>Computation Examples</h3>
 
@@ -163,7 +163,7 @@
                     <li>To check orthogonality of columns, compute the inner product with conjugation: $\sum W^{mj} \bar{W}^{mk}$</li>
                     <li>The inverse formula $F_n^{-1} = \frac{1}{n}\bar{F}_n^T$ mirrors $Q^{-1} = Q^T$ for real orthogonal matrices</li>
                     <li>The FFT recursion is $F_{2n} \to$ two copies of $F_n$ plus permutation and diagonal fix-up</li>
-                    <li>The operation count goes from $n^2$ to $\frac{1}{2}n \log_2 n$—memorize this for exam questions</li>
+                    <li>The operation count goes from $n^2$ to $\frac{1}{2}n \log_2 n$â€”memorize this for exam questions</li>
                 </ul>
             </div>
 
@@ -177,7 +177,7 @@
             </div>
 
             <div class="visual-aid">
-                <h4>Figure: The 4×4 Fourier Matrix</h4>
+                <h4>Figure: The 4Ã—4 Fourier Matrix</h4>
                 <p>For $n=4$, $W = e^{2\pi i/4} = i$. The Fourier matrix is:</p>
                 $$F_4 = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & i & -1 & -i \\ 1 & -1 & 1 & -1 \\ 1 & -i & -1 & i \end{bmatrix}$$
                 <p>Each column has length squared $1^2+1^2+1^2+1^2=4$. The columns are orthogonal: $\bar{c}_0^T c_2 = 1-1+1-1 = 0$. The inverse is $F_4^{-1} = \frac{1}{4}\bar{F}_4^T = \frac{1}{4}\begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & -i & -1 & i \\ 1 & -1 & 1 & -1 \\ 1 & i & -1 & -i \end{bmatrix}$.</p>
@@ -194,7 +194,7 @@
             <h3>Worked Examples</h3>
 
             <div class="example">
-                <h4>Example 1: Constructing the 4×4 Fourier Matrix</h4>
+                <h4>Example 1: Constructing the 4Ã—4 Fourier Matrix</h4>
                 <p><strong>Problem:</strong> Construct $F_4$ explicitly, verify that its columns are orthogonal, and find $F_4^{-1}$.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
@@ -204,8 +204,8 @@
                     <li>Column 1: $[1, i, -1, -i]^T$, length squared = $1+1+1+1=4$</li>
                     <li>Column 2: $[1, -1, 1, -1]^T$, length squared = 4</li>
                     <li>Column 3: $[1, -i, -1, i]^T$, length squared = 4</li>
-                    <li>Inner product col 0 · col 2: $1\cdot1 + 1\cdot(-1) + 1\cdot1 + 1\cdot(-1) = 0$ ✓</li>
-                    <li>Inner product col 1 · col 3: $1\cdot1 + i\cdot i + (-1)\cdot(-1) + (-i)\cdot(-i) = 1 - 1 + 1 - 1 = 0$ ✓</li>
+                    <li>Inner product col 0 Â· col 2: $1\cdot1 + 1\cdot(-1) + 1\cdot1 + 1\cdot(-1) = 0$ âœ“</li>
+                    <li>Inner product col 1 Â· col 3: $1\cdot1 + i\cdot i + (-1)\cdot(-1) + (-i)\cdot(-i) = 1 - 1 + 1 - 1 = 0$ âœ“</li>
                     <li>Inverse: $F_4^{-1} = \frac{1}{4}\bar{F}_4^T = \frac{1}{4}\begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & -i & -1 & i \\ 1 & -1 & 1 & -1 \\ 1 & i & -1 & -i \end{bmatrix}$</li>
                 </ul>
             </div>
@@ -222,7 +222,7 @@
                     <li>$W^3 = -1$</li>
                     <li>$W^4 = -\frac{1}{2} - i\frac{\sqrt{3}}{2}$</li>
                     <li>$W^5 = \frac{1}{2} - i\frac{\sqrt{3}}{2}$</li>
-                    <li>$W^6 = (e^{i\pi/3})^6 = e^{2\pi i} = 1$ ✓</li>
+                    <li>$W^6 = (e^{i\pi/3})^6 = e^{2\pi i} = 1$ âœ“</li>
                     <li>All roots have magnitude 1: they lie on the unit circle</li>
                 </ul>
             </div>
@@ -234,11 +234,11 @@
                 <ul>
                     <li>Direct method: $n^2 = 8^2 = 64$ operations</li>
                     <li>FFT method: $\frac{1}{2}n \log_2 n = \frac{1}{2} \cdot 8 \cdot 3 = 12$ operations</li>
-                    <li>Speedup: $64/12 \approx 5.33$×</li>
-                    <li>Recursion tree: $F_8 \to 2F_4$ (cost 8 for fix-up), each $F_4 \to 2F_2$ (cost 4 each, total 8), each $F_2 \to 2F_1$ (cost 2 each, total 4×2=8)</li>
+                    <li>Speedup: $64/12 \approx 5.33$Ã—</li>
+                    <li>Recursion tree: $F_8 \to 2F_4$ (cost 8 for fix-up), each $F_4 \to 2F_2$ (cost 4 each, total 8), each $F_2 \to 2F_1$ (cost 2 each, total 4Ã—2=8)</li>
                     <li>Total fix-up cost: $8 + 8 + 8 = 24$ for the three levels... wait, let me recalculate more carefully</li>
-                    <li>Actually, the standard FFT for $n=8$ (radix-2 Cooley-Tukey) does: split into evens and odds, compute two FFTs of size 4, combine with twiddle factors. Two FFTs of size 4: each costs $2 \cdot 2^2 = 8$ at the next level? Let me use the formula: $M(8) = 2M(4) + 4$ (for the diagonal fix-up). $M(4) = 2M(2) + 2$. $M(2) = 2M(1) + 1 = 1$. So $M(4) = 2(1)+2 = 4$, $M(8) = 2(4)+4 = 12$. ✓</li>
-                    <li>For $n=1024$: $n^2 = 1,048,576$, FFT cost $= \frac{1}{2} \cdot 1024 \cdot 10 = 5120$. Speedup: $1,048,576/5120 \approx 205$×.</li>
+                    <li>Actually, the standard FFT for $n=8$ (radix-2 Cooley-Tukey) does: split into evens and odds, compute two FFTs of size 4, combine with twiddle factors. Two FFTs of size 4: each costs $2 \cdot 2^2 = 8$ at the next level? Let me use the formula: $M(8) = 2M(4) + 4$ (for the diagonal fix-up). $M(4) = 2M(2) + 2$. $M(2) = 2M(1) + 1 = 1$. So $M(4) = 2(1)+2 = 4$, $M(8) = 2(4)+4 = 12$. âœ“</li>
+                    <li>For $n=1024$: $n^2 = 1,048,576$, FFT cost $= \frac{1}{2} \cdot 1024 \cdot 10 = 5120$. Speedup: $1,048,576/5120 \approx 205$Ã—.</li>
                 </ul>
             </div>
 
@@ -272,7 +272,7 @@
                 <p><em>Hint: Unfold the recurrence: $M(2^k) = 2M(2^{k-1}) + c \cdot 2^{k-1}$. Divide by $2^k$ and telescope.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$M(2^k) = 2M(2^{k-1}) + c \cdot 2^{k-1}$. Divide by $2^k$: $M(2^k)/2^k = M(2^{k-1})/2^{k-1} + c/2$. Telescoping: $M(2^k)/2^k = k \cdot c/2$. Thus $M(2^k) = \frac{c}{2} k \cdot 2^k = \frac{c}{2} n \log_2 n$. The $n^2$ term from direct multiplication is replaced by $n \log_2 n$. For $n=1024$: $n^2 = 1,048,576$, while $n \log_2 n \approx 10,240$. The FFT is about 100× faster.</p>
+                    <p>$M(2^k) = 2M(2^{k-1}) + c \cdot 2^{k-1}$. Divide by $2^k$: $M(2^k)/2^k = M(2^{k-1})/2^{k-1} + c/2$. Telescoping: $M(2^k)/2^k = k \cdot c/2$. Thus $M(2^k) = \frac{c}{2} k \cdot 2^k = \frac{c}{2} n \log_2 n$. The $n^2$ term from direct multiplication is replaced by $n \log_2 n$. For $n=1024$: $n^2 = 1,048,576$, while $n \log_2 n \approx 10,240$. The FFT is about 100Ã— faster.</p>
                 </details>
             </div>
 
@@ -287,3 +287,5 @@
     <script src="../js/app.js"></script>
 </body>
 </html>
+
+

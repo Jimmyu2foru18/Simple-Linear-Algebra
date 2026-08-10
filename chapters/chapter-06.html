@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,10 +39,10 @@
             <p class="lead">Understanding the fundamental subspaces of a matrix. This chapter introduces the column space and nullspace, two key subspaces that characterize the behavior of the matrix equation $A\mathbf{x} = \mathbf{b}$.</p>
 
             <div class="video-section">
-                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/acdHCeeGhjk"
-                            title="6. Column Space and Nullspace - Gilbert Strang"
+                    <iframe src="https://www.youtube.com/embed/8o5Cmfpeo6g"
+                            title="6. Column Space and Nullspace — Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -54,8 +54,8 @@
             <div class="video-grid">
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/EP2ghkO0lSk"
-                                    title="Prof Dave — Column and Nullspace"
+                        <iframe src="https://www.youtube.com/embed/uQhTuRlWMxw"
+                                    title="3Blue1Brown — Inverse matrices, column space and null space"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -68,22 +68,22 @@
                 </div>
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/afI9cN_7XBY"
-                                    title="Paul Dawkins — Textbook Context"
+                        <iframe src="https://www.youtube.com/embed/4nLq5VDS4ok"
+                                    title="Dr. Valerie Hower — Using the Rank Nullity Theorem"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins — Textbook Context</h5>
+                        <h5>Paul Dawkins â€” Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/rGWcIeCdwGg"
-                                    title="Valerie Hower — Problem Solving"
+                        <iframe src="https://www.youtube.com/embed/EP2ghkO0lSk"
+                                    title="Prof Dave Explains — Understanding Vector Spaces"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -116,7 +116,7 @@
                 <h4>Derivation: When is $A\mathbf{x} = \mathbf{b}$ Solvable?</h4>
                 <p><code>$A\mathbf{x} = \mathbf{b}$</code> has a solution if and only if b is a linear combination of the columns of A. This means b st be orthogonal to every vector in the left nullspace of A (every row of the reduced matrix <code>[A | b]</code> st have the same rank as A).</p>
                 $$Condition: rank([A | b]) = $\text{rank}(A)$
-Equivalent: b ∈ C(A)
+Equivalent: b âˆˆ C(A)
 Geometric: b lies in the span of A's columns$$
             </div>
 
@@ -170,7 +170,7 @@ $$c1 = [1]    c2 = [2]    c3 = [3] = c1 + c2$$
                 <p>The nullspace is the set of all x that A "collapses" to zero. For a 3x3 matrix of rank 2, the nullspace is a line through the origin in <code>R^3</code>.</p>
                 $$Special solutions span N(A):
 $$For free variable x3:  x = [-1, 2, 1]^T
-N(A) = { c*[-1, 2, 1]^T : c ∈ R }$$
+N(A) = { c*[-1, 2, 1]^T : c âˆˆ R }$$
             </div>
 
             <h3>Worked Examples</h3>
@@ -212,7 +212,7 @@ $$A = [1  2  3  4]$$
                 <p><em>Hint: Solve <code>$A\mathbf{x} = \mathbf{b}$</code> or check if b is a combination of columns.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Columns 2 and 3 are ltiples of column 1. <code>C(A)</code> is the line through <code>[1, 2]^T</code>. Since <code>b = [1, 2]^T</code> is exactly column 1, <strong>yes, b ∈ C(A)</strong>.</p>
+                    <p>Columns 2 and 3 are ltiples of column 1. <code>C(A)</code> is the line through <code>[1, 2]^T</code>. Since <code>b = [1, 2]^T</code> is exactly column 1, <strong>yes, b âˆˆ C(A)</strong>.</p>
                 </details>
 
                 <p><strong>Problem 2:</strong> Find a basis for the nullspace of <code>A = [[1, 2, 3], [1, 2, 3], [2, 4, 6]]</code>.</p>
@@ -250,4 +250,6 @@ $$A = [1  2  3  4]$$
     <script src="../js/app.js"></script>
 </body>
 </html>
+
+
 

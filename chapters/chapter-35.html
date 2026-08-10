@@ -36,13 +36,13 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 35: Final Course Review</h2>
-            <p class="lead">This chapter weaves together the major themes of the course into a single coherent narrative. We begin with Markov chains, where the spectral structure of a stochastic matrix determines long-term behavior: the dominant eigenvalue is always $1$, and the corresponding eigenvector gives the steady state. We then turn to four classic exam-style problems that test matrix reconstruction from eigen-data, recognition of matrix factorizations, and the geometry of orthogonal eigenvectors. The chapter closes with least squares, the workhorse application of the entire course. Given $A$ and $b$, the least-squares solution $\hat{x}$ produces the projection of $b$ onto $\mathcal{C}(A)$; if $b$ happens to be orthogonal to every column of $A$, the best approximation is the zero vector. These ideas—eigenvalues, diagonalization, projections, and orthogonal bases—are not separate topics; they are facets of the same geometric picture of linear algebra.</p>
+            <p class="lead">This chapter weaves together the major themes of the course into a single coherent narrative. We begin with Markov chains, where the spectral structure of a stochastic matrix determines long-term behavior: the dominant eigenvalue is always $1$, and the corresponding eigenvector gives the steady state. We then turn to four classic exam-style problems that test matrix reconstruction from eigen-data, recognition of matrix factorizations, and the geometry of orthogonal eigenvectors. The chapter closes with least squares, the workhorse application of the entire course. Given $A$ and $b$, the least-squares solution $\hat{x}$ produces the projection of $b$ onto $\mathcal{C}(A)$; if $b$ happens to be orthogonal to every column of $A$, the best approximation is the zero vector. These ideasâ€”eigenvalues, diagonalization, projections, and orthogonal basesâ€”are not separate topics; they are facets of the same geometric picture of linear algebra.</p>
 
             <div class="video-section">
-                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/V9X7L_M5o2A"
-                            title="35. Final Course Review - Gilbert Strang"
+                    <iframe src="https://www.youtube.com/embed/RWvi4Vx4CDc"
+                            title="35. Final Course Review — Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -51,7 +51,51 @@
             </div>
 
             <h3>Concept Breakdowns</h3>
-            <div class="concept-section">
+                        <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/csgNflj69-Y"
+                                title="Prof Dave Explains — Intro to Linear Algebra"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Gilbert Strang</h5>
+                        <p>Final Course Review</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/rGWcIeCdwGg"
+                                title="Dr. Valerie Hower — Introduction to Linear Systems"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Prof Dave Explains</h5>
+                        <p>Intro to Linear Algebra</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/XkY2DOUCWMU"
+                                title="3Blue1Brown — Matrix multiplication as composition"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Dr. Valerie Hower</h5>
+                        <p>Introduction to Linear Systems</p>
+                    </div>
+                </div>
+            </div>
+<div class="concept-section">
                 <h4>Markov Chains and Steady State</h4>
                 <p>A <strong>Markov matrix</strong> $A$ has non-negative entries and each column sums to $1$. The eigenvalue $\lambda = 1$ is always present, with eigenvector $x$ satisfying $Ax = x$; this is the <strong>steady-state vector</strong>. All other eigenvalues satisfy $|\lambda| < 1$. If the starting state $u^{(0)}$ is expressed in the eigenbasis, then $u^{(k)} = A^k u^{(0)} = c_1 x_1 + c_2 \lambda_2^k x_2 + \cdots + c_n \lambda_n^k x_n$. As $k \to \infty$, every term with $|\lambda| < 1$ vanishes, leaving only $c_1 x_1$. The steady state is determined entirely by the eigenvector for $\lambda = 1$ and the coefficient $c_1$, which can often be found using the conservation of total mass: the sum of the entries of $u^{(k)}$ equals the sum of the entries of $u^{(0)}$.</p>
 
@@ -205,3 +249,5 @@
     <script src="../js/app.js"></script>
 </body>
 </html>
+
+
