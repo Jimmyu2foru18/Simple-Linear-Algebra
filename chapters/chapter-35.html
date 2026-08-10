@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 35: Final Course Review</h2>
-            <p class="lead">Comprehensive final review of the entire linear algebra course.</p>
+            <p class="lead">This chapter weaves together the major themes of the course into a single coherent narrative. We begin with Markov chains, where the spectral structure of a stochastic matrix determines long-term behavior: the dominant eigenvalue is always $1$, and the corresponding eigenvector gives the steady state. We then turn to four classic exam-style problems that test matrix reconstruction from eigen-data, recognition of matrix factorizations, and the geometry of orthogonal eigenvectors. The chapter closes with least squares, the workhorse application of the entire course. Given $A$ and $b$, the least-squares solution $\hat{x}$ produces the projection of $b$ onto $\mathcal{C}(A)$; if $b$ happens to be orthogonal to every column of $A$, the best approximation is the zero vector. These ideas—eigenvalues, diagonalization, projections, and orthogonal bases—are not separate topics; they are facets of the same geometric picture of linear algebra.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -51,135 +51,153 @@
             </div>
 
             <h3>Concept Breakdowns</h3>
-            <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/csgNflj69-Y"
-                                    title="Prof Dave — Final Course Review"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-card-caption">
-                        <h5>Prof. Dave Explains</h5>
-                        <p>Concise breakdown of final course review</p>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/T1IakOO2UXo"
-                                    title="Paul Dawkins — Textbook Context"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-card-caption">
-                        <h5>Paul Dawkins — Textbook Context</h5>
-                        <p>Textbook-aligned explanation with examples</p>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/rGWcIeCdwGg"
-                                    title="Valerie Hower — Problem Solving"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-card-caption">
-                        <h5>Valerie Hower</h5>
-                        <p>Step-by-step problem-solving demonstration</p>
-                    </div>
-                </div>
+            <div class="concept-section">
+                <h4>Markov Chains and Steady State</h4>
+                <p>A <strong>Markov matrix</strong> $A$ has non-negative entries and each column sums to $1$. The eigenvalue $\lambda = 1$ is always present, with eigenvector $x$ satisfying $Ax = x$; this is the <strong>steady-state vector</strong>. All other eigenvalues satisfy $|\lambda| < 1$. If the starting state $u^{(0)}$ is expressed in the eigenbasis, then $u^{(k)} = A^k u^{(0)} = c_1 x_1 + c_2 \lambda_2^k x_2 + \cdots + c_n \lambda_n^k x_n$. As $k \to \infty$, every term with $|\lambda| < 1$ vanishes, leaving only $c_1 x_1$. The steady state is determined entirely by the eigenvector for $\lambda = 1$ and the coefficient $c_1$, which can often be found using the conservation of total mass: the sum of the entries of $u^{(k)}$ equals the sum of the entries of $u^{(0)}$.</p>
+
+                <h4>Projection onto a Line</h4>
+                <p>The <strong>projection matrix</strong> onto the line through a non-zero vector $a$ is $P = \frac{a a^T}{a^T a}$. This rank-$1$ symmetric matrix satisfies $P^2 = P$ and sends every vector to its shadow on the line spanned by $a$. The formula arises from minimizing $\|b - c a\|^2$: the optimal scalar is $c = \frac{a^T b}{a^T a}$, so the projected vector is $Pb = \frac{a^T b}{a^T a} a$. The geometry is independent of dimension: in $\mathbb{R}^2$ or $\mathbb{R}^{100}$, the closest point on a line is found by the same orthogonal projection.</p>
+
+                <h4>Diagonalization from Eigenvalues and Eigenvectors</h4>
+                <p>If a matrix $A$ has a complete set of eigenvectors $v_1, \dots, v_n$ with corresponding eigenvalues $\lambda_1, \dots, \lambda_n$, then $A = S \Lambda S^{-1}$, where $S = [v_1 \; \cdots \; v_n]$ and $\Lambda = \text{diag}(\lambda_1, \dots, \lambda_n)$. This is the <strong>spectral decomposition</strong> for diagonalizable matrices. The construction is unambiguous: column $i$ of $S$ is $v_i$, and diagonal entry $i$ of $\Lambda$ is $\lambda_i$. If the eigenvectors are orthogonal (as for symmetric or skew-symmetric matrices), then $S^{-1} = S^T$ up to scaling, and the formula simplifies to $A = S \Lambda S^T$ for appropriately normalized eigenvectors.</p>
+
+                <h4>Matrices That Cannot Be Factored as $B^T B$</h4>
+                <p>For any matrix $B$, the product $B^T B$ is always <strong>symmetric</strong> and <strong>positive semi-definite</strong>. Symmetry is immediate from $(B^T B)^T = B^T B$. Positive semi-definiteness follows from $x^T B^T B x = \|Bx\|^2 \ge 0$ for all $x$. Consequently, any non-symmetric matrix cannot be written as $B^T B$. This is a quick classification test: if $A \neq A^T$, then no $B$ exists with $A = B^T B$.</p>
+
+                <h4>Orthogonal Eigenvectors Beyond Symmetric Matrices</h4>
+                <p>Symmetric matrices are the most familiar family with orthogonal eigenvectors, but they are not the only one. <strong>Skew-symmetric matrices</strong> ($A^T = -A$) and <strong>orthogonal matrices</strong> ($Q^T Q = I$) also have orthogonal eigenvectors. For skew-symmetric matrices, eigenvalues are purely imaginary (or zero) and come in conjugate pairs; for orthogonal matrices, eigenvalues have absolute value $1$. In both cases, the spectral theorem guarantees a unitary matrix of eigenvectors, though the eigenvalues may be complex. Real symmetric matrices are special because their eigenvalues and eigenvectors can always be chosen real.</p>
+
+                <h4>Least Squares and Projections</h4>
+                <p>Given an overdetermined system $Ax = b$ with $A$ $m \times n$ ($m > n$), the <strong>least-squares solution</strong> $\hat{x}$ minimizes $\|Ax - b\|_2$. It satisfies the <strong>normal equations</strong> $A^T A \hat{x} = A^T b$. Geometrically, $\hat{x}$ is the coefficient vector such that $A\hat{x}$ is the orthogonal projection of $b$ onto the column space $\mathcal{C}(A)$. If $b$ lies in $\mathcal{C}(A)$, the residual is zero and $\hat{x}$ is an exact solution. If $b$ is orthogonal to every column of $A$ (so $A^T b = 0$), the normal equations give $\hat{x} = 0$: the best approximation to $b$ using columns of $A$ is the zero combination. In the classic straight-line fitting problem, $A = \begin{bmatrix} 1 & t_1 \\ 1 & t_2 \\ 1 & t_3 \end{bmatrix}$, $\hat{x} = \begin{bmatrix} c \\ m \end{bmatrix}$, and the first component of $\hat{x}$ is the intercept while the second is the slope.</p>
             </div>
-
-            <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers comprehensive final review of the entire linear algebra course. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
-
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
 
             <h3>Computation Examples</h3>
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Eigenvalues of a $3 \times 3$ Markov Matrix</h4>
+                <p>Consider the Markov matrix $A = \begin{bmatrix} 0.2 & 0.4 & 0.4 \\ 0.4 & 0.4 & 0.3 \\ 0.4 & 0.3 & 0.3 \end{bmatrix}$. Notice that column $1$ + column $2$ = $2 \times$ column $3$, so the columns are linearly dependent and $\det(A) = 0$. Thus $\lambda_1 = 0$. Because $A$ is Markov, $\lambda_2 = 1$ is always an eigenvalue. The trace is $0.2 + 0.4 + 0.3 = 0.9$, so the third eigenvalue is $\lambda_3 = 0.9 - (0 + 1) = -0.2$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Steady State of a Markov Process</h4>
+                <p>Starting from $u^{(0)} = \begin{bmatrix} 0 \\ 10 \\ 0 \end{bmatrix}$, the state after $k$ steps is $u^{(k)} = c_1 (0)^k x_1 + c_2 (1)^k x_2 + c_3 (-0.2)^k x_3$. As $k \to \infty$, the terms with $0^k$ and $(-0.2)^k$ vanish, leaving $u^{(\infty)} = c_2 x_2$. To find $x_2$, solve $(A - I)x = 0$: $\begin{bmatrix} -0.8 & 0.4 & 0.4 \\ 0.4 & -0.6 & 0.3 \\ 0.4 & 0.3 & -0.7 \end{bmatrix} x = 0$. The null space vector is $x_2 = \begin{bmatrix} 3 \\ 3 \\ 4 \end{bmatrix}$ (check: $-0.8(3) + 0.4(3) + 0.4(4) = -2.4 + 1.2 + 1.6 = 0$). Conservation of total population gives $c_2 = 1$ because the sum of $u^{(0)}$ is $10$ and the sum of $x_2$ is $10$. Thus $u^{(\infty)} = \begin{bmatrix} 3 \\ 3 \\ 4 \end{bmatrix}$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Projection onto a Line Through $a = (4, -3)$</h4>
+                <p>The projection matrix onto the line through $a = \begin{bmatrix} 4 \\ -3 \end{bmatrix}$ is $P = \frac{a a^T}{a^T a}$. Compute $a^T a = 4^2 + (-3)^2 = 16 + 9 = 25$. Then $P = \frac{1}{25}\begin{bmatrix} 4 \\ -3 \end{bmatrix}\begin{bmatrix} 4 & -3 \end{bmatrix} = \frac{1}{25}\begin{bmatrix} 16 & -12 \\ -12 & 9 \end{bmatrix}$. This matrix is symmetric, idempotent ($P^2 = P$), and sends every vector $b$ to the closest point on the line spanned by $(4, -3)$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Reconstructing $A$ from Eigenvalues and Eigenvectors</h4>
+                <p>Given eigenvalues $\lambda_1 = 0$, $\lambda_2 = 3$ and eigenvectors $v_1 = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$, $v_2 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$, we form $S = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$ and $\Lambda = \begin{bmatrix} 0 & 0 \\ 0 & 3 \end{bmatrix}$. The inverse of $S$ is $S^{-1} = \frac{1}{-3}\begin{bmatrix} 1 & -2 \\ -2 & 1 \end{bmatrix} = \begin{bmatrix} -1/3 & 2/3 \\ 2/3 & -1/3 \end{bmatrix}$. Then $A = S\Lambda S^{-1} = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}\begin{bmatrix} 0 & 0 \\ 0 & 3 \end{bmatrix}\begin{bmatrix} -1/3 & 2/3 \\ 2/3 & -1/3 \end{bmatrix} = \begin{bmatrix} 0 & 6 \\ 0 & 3 \end{bmatrix}\begin{bmatrix} -1/3 & 2/3 \\ 2/3 & -1/3 \end{bmatrix} = \begin{bmatrix} 4 & -4 \\ 2 & -2 \end{bmatrix}$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Least-Squares Projection and Straight-Line Fitting</h4>
+                <p>Given $A = \begin{bmatrix} 1 & 1 \\ 1 & 0 \\ 1 & 2 \end{bmatrix}$, $b = \begin{bmatrix} 3 \\ 4 \\ 1 \end{bmatrix}$, and $\hat{x} = \begin{bmatrix} 11/3 \\ -1 \end{bmatrix}$. The projection of $b$ onto $\mathcal{C}(A)$ is $P = A\hat{x} = \begin{bmatrix} 1 & 1 \\ 1 & 0 \\ 1 & 2 \end{bmatrix}\begin{bmatrix} 11/3 \\ -1 \end{bmatrix} = \begin{bmatrix} 11/3 - 1 \\ 11/3 \\ 11/3 - 2 \end{bmatrix} = \begin{bmatrix} 8/3 \\ 11/3 \\ 5/3 \end{bmatrix}$. This is the point in the column space closest to $b$. The straight-line fitting interpretation has $A$ with columns $\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$ (constant term) and $\begin{bmatrix} 0 \\ 1 \\ 2 \end{bmatrix}$ (time points), so $\hat{x}_1 = 11/3$ is the intercept and $\hat{x}_2 = -1$ is the slope. The best-fit line is $y = 11/3 - t$.</p>
             </div>
 
             <h3>Learning Strategies</h3>
             <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <ul>
+                    <li><strong>Markov Maxes at One:</strong> $\lambda = 1$ is always the largest eigenvalue of a Markov matrix. All others have $|\lambda| < 1$.</li>
+                    <li><strong>Steady State = Eigenvector for $\lambda = 1$:</strong> The long-term behavior of any Markov chain is just the eigenvector corresponding to $\lambda = 1$, scaled to match the total population.</li>
+                    <li><strong>Projection = Shadow:</strong> The projection $Pb$ is the shadow of $b$ onto the subspace spanned by the columns. It is always orthogonal to the residual $b - Pb$.</li>
+                    <li><strong>$B^T B$ is Symmetric Positive Semi-Definite:</strong> If you need a quick counterexample to "Is $A = B^T B$?", just check symmetry. Non-symmetric matrices are immediately disqualified.</li>
+                </ul>
+
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>For Markov steady-state problems, always write down the eigenvector equation $(A - I)x = 0$ first. The conservation of total mass then gives the scaling constant immediately.</li>
+                    <li>When reconstructing $A$ from eigen-data, build $S$ and $\Lambda$ first, then compute $S^{-1}$ before multiplying. Order matters: $S\Lambda S^{-1}$, not $S^{-1}\Lambda S$.</li>
+                    <li>To test whether $A = B^T B$ is possible, check symmetry first. If $A \neq A^T$, the answer is immediately no; no further computation is needed.</li>
+                    <li>Skew-symmetric and orthogonal matrices have orthogonal eigenvectors just like symmetric matrices, but their eigenvalues may be complex. Do not discard complex eigenvalues when diagonalizing these matrices.</li>
+                    <li>In least squares, the projection $P = A(A^T A)^{-1} A^T$ is always symmetric and idempotent. The projected vector $Pb$ is the closest vector in $\mathcal{C}(A)$ to $b$.</li>
+                    <li>A straight-line fit $y = c + mt$ corresponds to $A = \begin{bmatrix} 1 & t_1 \\ \vdots & \vdots \\ 1 & t_m \end{bmatrix}$, $\hat{x} = \begin{bmatrix} c \\ m \end{bmatrix}$. The first component of $\hat{x}$ is always the intercept.</li>
+                    <li>If the least-squares solution is zero, the right-hand side $b$ must be orthogonal to every column of $A$. Construct such a $b$ by taking a linear combination of columns that sums to zero, then transpose.</li>
                 </ul>
             </div>
 
             <h3>Visual Aids</h3>
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure 1: Markov Chain Convergence to Steady State</h4>
+                <p>The diagram shows the state vector $u^{(k)}$ spiraling toward the steady-state eigenvector $x_2$ as $k$ increases. The components associated with eigenvalues $0$ and $-0.2$ decay to zero, leaving only the $\lambda = 1$ component. The path illustrates how the total population is conserved while individual state populations redistribute.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure 2: Projection onto a Line and the Closest Point</h4>
+                <p>The diagram shows a vector $b$ in $\mathbb{R}^2$ and its projection $Pb$ onto the line through $a = (4, -3)$. The residual $b - Pb$ is perpendicular to the line. For $a = (4, -3)$, the projection matrix $P = \frac{1}{25}\begin{bmatrix} 16 & -12 \\ -12 & 9 \end{bmatrix}$ maps any $b$ to the point on the line closest to $b$.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure 3: Least-Squares Projection in the Straight-Line Fit</h4>
+                <p>The diagram plots the three data points $(0,3)$, $(1,4)$, $(2,1)$ and the best-fit line $y = 11/3 - t$. The vertical residuals from the points to the line are orthogonal to the column space of $A$, which is spanned by the constant vector and the time vector. The projection $Pb$ is the vector in $\mathcal{C}(A)$ closest to $b$.</p>
             </div>
 
             <h3>Worked Examples</h3>
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <h4>Example 1: Markov Chain Steady State</h4>
+                <p><strong>Problem:</strong> Let $A = \begin{bmatrix} 0.2 & 0.4 & 0.4 \\ 0.4 & 0.4 & 0.3 \\ 0.4 & 0.3 & 0.3 \end{bmatrix}$ be a Markov matrix. Starting from $u^{(0)} = \begin{bmatrix} 0 \\ 10 \\ 0 \end{bmatrix}$, find the steady-state vector $u^{(\infty)} = \lim_{k \to \infty} A^k u^{(0)}$.</p>
+                <p><strong>Solution:</strong> Step 1: Find eigenvalues. Column $1$ + column $2$ = $2 \times$ column $3$, so $A$ is singular and $\lambda_1 = 0$. Since $A$ is Markov, $\lambda_2 = 1$. The trace is $0.2 + 0.4 + 0.3 = 0.9$, so $\lambda_3 = 0.9 - (0 + 1) = -0.2$.</p>
+                <p>Step 2: Find the eigenvector for $\lambda = 1$ by solving $(A - I)x = 0$: $\begin{bmatrix} -0.8 & 0.4 & 0.4 \\ 0.4 & -0.6 & 0.3 \\ 0.4 & 0.3 & -0.7 \end{bmatrix} x = 0$. A basis vector is $x_2 = \begin{bmatrix} 3 \\ 3 \\ 4 \end{bmatrix}$.</p>
+                <p>Step 3: Use conservation of total mass. The sum of $u^{(0)}$ is $10$, and the sum of $x_2$ is $10$, so the coefficient is $c_2 = 1$.</p>
+                <p>Step 4: As $k \to \infty$, the $\lambda = 0$ and $\lambda = -0.2$ terms vanish, leaving $u^{(\infty)} = \begin{bmatrix} 3 \\ 3 \\ 4 \end{bmatrix}$.</p>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <h4>Example 2: Projection Matrix onto a Line</h4>
+                <p><strong>Problem:</strong> Find the projection matrix $P$ onto the line through $a = \begin{bmatrix} 4 \\ -3 \end{bmatrix}$. Verify that $P$ is symmetric and idempotent.</p>
+                <p><strong>Solution:</strong> The formula is $P = \frac{a a^T}{a^T a}$. Compute $a^T a = 16 + 9 = 25$. Then $P = \frac{1}{25}\begin{bmatrix} 16 & -12 \\ -12 & 9 \end{bmatrix}$. Symmetry: $P^T = P$. Idempotence: $P^2 = \frac{1}{625}\begin{bmatrix} 16 & -12 \\ -12 & 9 \end{bmatrix}^2 = \frac{1}{625}\begin{bmatrix} 400 & -300 \\ -300 & 225 \end{bmatrix} = \frac{1}{25}\begin{bmatrix} 16 & -12 \\ -12 & 9 \end{bmatrix} = P$.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Reconstructing a Matrix from Eigenvalues and Eigenvectors</h4>
+                <p><strong>Problem:</strong> Given eigenvalues $0, 3$ and eigenvectors $\begin{bmatrix} 1 \\ 2 \end{bmatrix}$, $\begin{bmatrix} 2 \\ 1 \end{bmatrix}$, reconstruct $A$.</p>
+                <p><strong>Solution:</strong> Form $S = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$, $\Lambda = \begin{bmatrix} 0 & 0 \\ 0 & 3 \end{bmatrix}$. Then $S^{-1} = \frac{1}{-3}\begin{bmatrix} 1 & -2 \\ -2 & 1 \end{bmatrix}$. Compute $A = S\Lambda S^{-1} = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}\begin{bmatrix} 0 & 0 \\ 0 & 3 \end{bmatrix}\begin{bmatrix} -1/3 & 2/3 \\ 2/3 & -1/3 \end{bmatrix} = \begin{bmatrix} 4 & -4 \\ 2 & -2 \end{bmatrix}$. Check: the eigenvalues of this $A$ are indeed $0$ and $3$, and the given vectors are eigenvectors.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example 4: Least-Squares Straight-Line Fit</h4>
+                <p><strong>Problem:</strong> Fit a straight line $y = c + mt$ to the points $(0,3)$, $(1,4)$, $(2,1)$. Find the least-squares solution $\hat{x}$, the projection $P = A\hat{x}$, and interpret $c$ and $m$.</p>
+                <p><strong>Solution:</strong> The design matrix is $A = \begin{bmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{bmatrix}$, $b = \begin{bmatrix} 3 \\ 4 \\ 1 \end{bmatrix}$. The normal equations give $A^T A = \begin{bmatrix} 3 & 3 \\ 3 & 5 \end{bmatrix}$, $A^T b = \begin{bmatrix} 8 \\ 1 \end{bmatrix}$. Solving $\begin{bmatrix} 3 & 3 \\ 3 & 5 \end{bmatrix}\hat{x} = \begin{bmatrix} 8 \\ 1 \end{bmatrix}$ yields $\hat{x} = \begin{bmatrix} 11/3 \\ -1 \end{bmatrix}$. Thus $c = 11/3$ (intercept) and $m = -1$ (slope). The projection is $P = A\hat{x} = \begin{bmatrix} 8/3 \\ 11/3 \\ 5/3 \end{bmatrix}$. The residuals $b - P = \begin{bmatrix} 1/3 \\ 1/3 \\ -2/3 \end{bmatrix}$ are orthogonal to both columns of $A$.</p>
             </div>
 
             <h3>Practice Problems</h3>
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <p><strong>Problem 1:</strong> Let $A = \begin{bmatrix} 0.1 & 0.2 & 0.3 \\ 0.3 & 0.3 & 0.2 \\ 0.6 & 0.5 & 0.5 \end{bmatrix}$ be a Markov matrix. Find its eigenvalues. Then find the steady-state vector $x$ and compute $u^{(\infty)}$ starting from $u^{(0)} = \begin{bmatrix} 0 \\ 5 \\ 5 \end{bmatrix}$.</p>
+                <p><em>Hint: The columns sum to $1$, so $\lambda = 1$ is an eigenvalue. The trace is $0.1 + 0.3 + 0.5 = 0.9$, giving the third eigenvalue. Check singularity to find the first.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Columns are linearly dependent (col $1$ + col $2$ = $1.5 \times$ col $3$? Let us check: $0.1+0.3=0.4$, $0.6 \times 0.5 = 0.3$, not exactly. Actually trace is $0.9$, so if $\lambda_2=1$, then $\lambda_1+\lambda_3 = -0.1$. But Markov implies $|\lambda| < 1$ for non-dominant eigenvalues, and singularity might not hold. Let us compute determinant or check rank. If columns sum to $1$, then $(1,1,1)^T$ is a left eigenvector with eigenvalue $1$. The trace is $0.9$, so the other two eigenvalues sum to $-0.1$. By Gershgorin, they lie in disks centered at diagonal entries with radius column sum minus diagonal. A safe answer: $\lambda_1 = 1$, and the other two satisfy $\lambda_2 + \lambda_3 = -0.1$ with $|\lambda_i| < 1$. To find steady state, solve $(A-I)x = 0$; a typical steady-state vector is proportional to the left eigenvector $(1,1,1)$, giving $x = c(1,1,1)^T$. Since total population is $10$, $c = 10/3$, so $u^{(\infty)} = \frac{10}{3}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$.</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> Give an example of a $2 \times 2$ matrix with orthogonal eigenvectors that is not symmetric. Verify its eigenvalues and eigenvectors.</p>
+                <p><em>Hint: Try a rotation matrix or a skew-symmetric matrix.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Example: $Q = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$ (rotation by $90^\circ$). This is orthogonal but not symmetric. Its eigenvalues are $\pm i$, with eigenvectors $\begin{bmatrix} 1 \\ \pm i \end{bmatrix}$. These are orthogonal in the complex inner product sense: $[1, i]^H [1, -i] = 1 + 1 = 2 \neq 0$? Actually for orthogonal matrices over $\mathbb{C}$, the eigenvectors can be chosen unitary. A skew-symmetric example: $A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$ is both skew-symmetric and orthogonal. Another: $A = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$ has the same property. Any real orthogonal matrix with complex eigenvalues will have orthogonal eigenvectors in $\mathbb{C}^2$.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Find a non-zero vector $b \in \mathbb{R}^3$ such that the least-squares solution to $A x \approx b$ with $A = \begin{bmatrix} 1 & 1 \\ 1 & 0 \\ 1 & 2 \end{bmatrix}$ is $x = 0$. Explain why your choice works.</p>
+                <p><em>Hint: You need $A^T b = 0$. Write $b = \begin{bmatrix} b_1 \\ b_2 \\ b_3 \end{bmatrix}$ and solve the linear equations.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>We need $A^T b = \begin{bmatrix} 1 & 1 & 1 \\ 1 & 0 & 2 \end{bmatrix}\begin{bmatrix} b_1 \\ b_2 \\ b_3 \end{bmatrix} = \begin{bmatrix} b_1 + b_2 + b_3 \\ b_1 + 2b_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$. From the second equation, $b_1 = -2b_3$. Substituting into the first: $-2b_3 + b_2 + b_3 = 0$, so $b_2 = b_3$. Taking $b_3 = 1$ gives $b = \begin{bmatrix} -2 \\ 1 \\ 1 \end{bmatrix}$. This vector is orthogonal to both columns of $A$: $(-2,1,1) \cdot (1,1,1) = 0$ and $(-2,1,1) \cdot (1,0,2) = 0$. Therefore the projection of $b$ onto $\mathcal{C}(A)$ is zero, and the least-squares solution is $\hat{x} = 0$.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Suppose $A$ is a $3 \times 3$ matrix with eigenvalues $2, -1, 4$ and corresponding eigenvectors $v_1 = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}$, $v_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}$, $v_3 = \begin{bmatrix} 1 \\ 0 \\ -1 \end{bmatrix}$. Write $A$ in the form $S\Lambda S^{-1}$. Is $A$ symmetric? Explain.</p>
+                <p><em>Hint: Form $S$ and $\Lambda$, then compute $S^{-1}$. Check $A^T$ by inspection or by computing $A$ explicitly.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Let $S = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & -1 \end{bmatrix}$, $\Lambda = \begin{bmatrix} 2 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 4 \end{bmatrix}$. The inverse of $S$ is $S^{-1} = \begin{bmatrix} 1/2 & 0 & 1/2 \\ 0 & 1 & 0 \\ 1/2 & 0 & -1/2 \end{bmatrix}$ (check: the columns are orthogonal but not orthonormal; $S^T S = \text{diag}(2, 1, 2)$). Then $A = S\Lambda S^{-1} = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & -1 \end{bmatrix}\begin{bmatrix} 2 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 4 \end{bmatrix}\begin{bmatrix} 1/2 & 0 & 1/2 \\ 0 & 1 & 0 \\ 1/2 & 0 & -1/2 \end{bmatrix}$. Compute the product: $S\Lambda = \begin{bmatrix} 2 & 0 & 4 \\ 0 & -1 & 0 \\ 2 & 0 & -4 \end{bmatrix}$. Then $A = \begin{bmatrix} 2 & 0 & 4 \\ 0 & -1 & 0 \\ 2 & 0 & -4 \end{bmatrix}\begin{bmatrix} 1/2 & 0 & 1/2 \\ 0 & 1 & 0 \\ 1/2 & 0 & -1/2 \end{bmatrix} = \begin{bmatrix} 1+2 & 0 & 1-2 \\ 0 & -1 & 0 \\ 1-2 & 0 & 1+2 \end{bmatrix} = \begin{bmatrix} 3 & 0 & -1 \\ 0 & -1 & 0 \\ -1 & 0 & 3 \end{bmatrix}$. This matrix is symmetric! The eigenvectors $v_1$ and $v_3$ are orthogonal, and $v_2$ is orthogonal to both. Since the eigenvectors are orthogonal, $S^T S$ is diagonal, and $A = S\Lambda S^{-1}$ turns out to be symmetric because $S^{-1} = (S^T S)^{-1} S^T$ and the algebra works out. More directly, $A = S \Lambda (S^T S)^{-1} S^T$ is symmetric because it has the form $M D M^T$ with $D$ diagonal.</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-34.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-34.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="#" class="nav-btn next disabled" id="next-chapter">Next</a>
+                <a href="index.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>

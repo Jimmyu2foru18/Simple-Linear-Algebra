@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 33: Quiz 3 Review</h2>
-            <p class="lead">Comprehensive review of chapters 25-32 with practice problems.</p>
+            <p class="lead">This chapter serves as a comprehensive review of the core matrix classifications and decompositions covered in Chapters 25 through 32. We revisit four fundamental matrix types—symmetric, positive definite, Markov, and projection matrices—through the lens of eigenvalue tests, then build toward the singular value decomposition (SVD). The SVD stands as one of the most important factorizations in all of linear algebra: every matrix, rectangular or square, singular or invertible, factors into an orthogonal matrix, a diagonal matrix of singular values, and another orthogonal matrix. Understanding how to compute the SVD, interpret its pieces, and extract geometric meaning from the singular values ties together the course's themes of eigenvalues, orthogonality, and the fundamental subspaces.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -51,135 +51,148 @@
             </div>
 
             <h3>Concept Breakdowns</h3>
-            <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/csgNflj69-Y"
-                                    title="Prof Dave — Quiz 3 Review"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-card-caption">
-                        <h5>Prof. Dave Explains</h5>
-                        <p>Concise breakdown of quiz 3 review</p>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/T1IakOO2UXo"
-                                    title="Paul Dawkins — Textbook Context"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-card-caption">
-                        <h5>Paul Dawkins — Textbook Context</h5>
-                        <p>Textbook-aligned explanation with examples</p>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/rGWcIeCdwGg"
-                                    title="Valerie Hower — Problem Solving"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-card-caption">
-                        <h5>Valerie Hower</h5>
-                        <p>Step-by-step problem-solving demonstration</p>
-                    </div>
-                </div>
+            <div class="concept-section">
+                <h4>Symmetric Matrices and Real Eigenvalues</h4>
+                <p>A matrix $A$ is <strong>symmetric</strong> when $A = A^T$. The spectral theorem guarantees that symmetric matrices have exclusively <strong>real eigenvalues</strong> and that eigenvectors corresponding to distinct eigenvalues are <strong>orthogonal</strong>. This is why the imaginary constant $c = i$ is immediately ruled out for symmetric matrices: the eigenvalues would fail to be real, violating the spectral theorem. For any symmetric matrix, we can write the spectral decomposition $A = Q\Lambda Q^T$, where $Q$ is orthogonal and $\Lambda$ is diagonal with the eigenvalues. The orthogonality of eigenvectors is the key property that unlocks every other classification test in this review.</p>
+
+                <h4>Positive Definite Matrices</h4>
+                <p>A symmetric matrix is <strong>positive definite</strong> when all its eigenvalues are strictly positive ($\lambda_i > 0$). It is <strong>positive semi-definite</strong> when all eigenvalues are non-negative ($\lambda_i \ge 0$). The eigenvalue test is the quickest diagnostic: if even one eigenvalue is zero, the matrix is only semi-definite, never definite. For a $2 \times 2$ symmetric matrix $A = \begin{bmatrix} c & 1 \\ 1 & c \end{bmatrix}$, the eigenvalues are $c+1$ and $c-1$. Positive definiteness requires $c > 1$; positive semi-definiteness requires $c \ge 1$. If $c = 1$, the matrix has eigenvalues $2$ and $0$, placing it on the boundary between definite and semi-definite.</p>
+
+                <h4>Markov Matrices</h4>
+                <p>A <strong>Markov matrix</strong> (or stochastic matrix) has non-negative entries and each column sums to $1$. Its most important eigenvalue property is that $\lambda = 1$ is always an eigenvalue, and it is the <strong>largest</strong> eigenvalue in magnitude. All other eigenvalues satisfy $|\lambda| < 1$. Consequently, a matrix with an eigenvalue of $2$ can never be a Markov matrix, because $2$ exceeds the spectral radius of $1$. When checking whether a given symmetric matrix could be Markov, the eigenvalue test gives an immediate "no" if any eigenvalue exceeds $1$ in magnitude.</p>
+
+                <h4>Projection Matrices</h4>
+                <p>A <strong>projection matrix</strong> $P$ satisfies $P^2 = P$. Applying the eigenvalue equation twice gives $\lambda^2 = \lambda$, so every eigenvalue must be either $0$ or $1$. No other values are possible. If we ask whether $\frac{1}{2}A$ is a projection matrix, we are asking whether $A$ has eigenvalues $0$ and $2$. For our $2 \times 2$ example with eigenvalues $c+1$ and $c-1$, this occurs when $c = 0$ (eigenvalues $1$ and $-1$, wait—actually for $c=0$ eigenvalues are $1$ and $-1$, so $\frac{1}{2}A$ would have eigenvalues $\pm 1/2$, not good) or more carefully: if $A$ has eigenvalues $0$ and $2$, then $\frac{1}{2}A$ has eigenvalues $0$ and $1$. For the matrix $\begin{bmatrix} c & 1 \\ 1 & c \end{bmatrix}$, the eigenvalues are $c \pm 1$. Setting these to $0$ and $2$ gives $c = 1$ (eigenvalues $2, 0$) or $c = -1$ (eigenvalues $0, -2$). But since projection matrices must be symmetric and have non-negative eigenvalues for $\frac{1}{2}A$, we need $c = 1$ for eigenvalues $2$ and $0$.</p>
+
+                <h4>Singular Value Decomposition (SVD)</h4>
+                <p>The <strong>singular value decomposition</strong> factorizes every matrix $A$ (rectangular, square, singular, or invertible) as $A = U\Sigma V^T$, where $U$ and $V$ are orthogonal matrices and $\Sigma$ is a rectangular diagonal matrix with non-negative entries called <strong>singular values</strong>. The singular values are the square roots of the eigenvalues of $A^T A$: $\sigma_i = \sqrt{\lambda_i(A^T A)}$. The columns of $V$ are the eigenvectors of $A^T A$. The columns of $U$ are the eigenvectors of $AA^T$, but there is a subtlety: eigenvectors are only defined up to sign. The correct way to fix the signs is to use the relationship $A v_i = \sigma_i u_i$. Having chosen $v_i$ and computed $\sigma_i$, multiplying by $A$ yields a unit vector that determines $u_i$ uniquely, eliminating the sign ambiguity. If any singular value is zero, the matrix is singular; the rank equals the number of non-zero singular values, and the null space is spanned by the columns of $V$ corresponding to zero singular values.</p>
             </div>
-
-            <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers comprehensive review of chapters 25-32 with practice problems. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
-
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
 
             <h3>Computation Examples</h3>
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Eigenvalue Tests for Matrix Classification</h4>
+                <p>Consider the symmetric matrix $A = \begin{bmatrix} c & 1 \\ 1 & c \end{bmatrix}$. We determine its classification by computing its eigenvalues. The characteristic polynomial is $\det(A - \lambda I) = (c-\lambda)^2 - 1 = 0$, giving eigenvalues $\lambda_1 = c+1$ and $\lambda_2 = c-1$.</p>
+                <ul>
+                    <li><strong>Symmetric:</strong> For all real $c$, $A$ is symmetric. If $c$ were complex ($c = i$), $A$ would not be symmetric and eigenvalues would not be real.</li>
+                    <li><strong>Positive definite:</strong> Requires $\lambda_1 > 0$ and $\lambda_2 > 0$, so $c > 1$. If $c = 1$, $\lambda_2 = 0$ and the matrix is positive semi-definite, not definite.</li>
+                    <li><strong>Markov:</strong> Requires $\lambda_1 = 1$ and $|\lambda_2| < 1$. Here $\lambda_1 = c+1 = 1$ implies $c = 0$, but then $\lambda_2 = -1$, violating $|\lambda_2| < 1$. Hence $A$ is never a Markov matrix for any choice of $c$.</li>
+                    <li><strong>Projection (via $\frac{1}{2}A$):</strong> Requires eigenvalues of $\frac{1}{2}A$ to be $0$ and $1$, so $A$ must have eigenvalues $0$ and $2$. Setting $c+1 = 2$ and $c-1 = 0$ both give $c = 1$. Thus when $c = 1$, $\frac{1}{2}A$ is a projection matrix.</li>
+                </ul>
+            </div>
+
+            <div class="derivation">
+                <h4>Computing the SVD from $A^T A$</h4>
+                <p>To compute the SVD of a matrix $A$, we first form $A^T A$. Since $(A^T A)^T = A^T A$, this matrix is symmetric and positive semi-definite. Its eigenvectors form $V$, and its eigenvalues $\lambda_i$ give the singular values $\sigma_i = \sqrt{\lambda_i}$. For example, let $A = \begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix}$. Then $A^T A = \begin{bmatrix} 9 & 0 \\ 0 & 4 \end{bmatrix}$, with eigenvalues $9$ and $4$. The singular values are $\sigma_1 = 3$ and $\sigma_2 = 2$. The eigenvector matrix is $V = I$, and $\Sigma = \begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix}$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Resolving the Sign Ambiguity for $U$</h4>
+                <p>Given $V$ and $\Sigma$, we compute $U$ column by column using $u_i = \frac{1}{\sigma_i} A v_i$ for each non-zero singular value. This formula is derived directly from $A = U\Sigma V^T$: multiplying both sides by $V$ gives $AV = U\Sigma$, so the $i$-th column satisfies $A v_i = \sigma_i u_i$. Because $A$ and $v_i$ are known, $u_i$ is completely determined—no sign ambiguity remains. For our diagonal example $A = \begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix}$, we get $u_1 = A e_1 / 3 = e_1$ and $u_2 = A e_2 / 2 = e_2$. The complete SVD is $A = I \begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix} I$, confirming that $U = V = I$ and $\Sigma$ contains the singular values.</p>
             </div>
 
             <h3>Learning Strategies</h3>
             <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <ul>
+                    <li><strong>Symmetric = Real Roots:</strong> Just as a real polynomial of odd degree has at least one real root, a symmetric matrix has only real eigenvalues. The symmetry forces reality.</li>
+                    <li><strong>Markov Maxes at One:</strong> The eigenvalue $1$ is always the spectral radius of a Markov matrix. If you see any eigenvalue larger than $1$ in magnitude, the matrix cannot be Markov.</li>
+                    <li><strong>Projections are 0 or 1:</strong> From $P^2 = P$, eigenvalues satisfy $\lambda^2 = \lambda$, so the only possibilities are $0$ and $1$. No other eigenvalues are permitted.</li>
+                </ul>
+
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>Always check symmetry first—it unlocks orthogonal eigenvectors and real eigenvalues, which simplify every subsequent test.</li>
+                    <li>Use eigenvalue tests as quick filters before computing determinants or pivots; they tell you immediately whether a matrix can belong to a given class.</li>
+                    <li>Remember the SVD sign rule: compute $U$ from $A v_i = \sigma_i u_i$, not from $AA^T$ alone, because the latter inherits the sign ambiguity of eigenvectors.</li>
+                    <li>The rank of $A$ equals the number of non-zero singular values, not the dimension of the matrix. A $100 \times 100$ matrix with one non-zero singular value has rank $1$.</li>
+                    <li>The null space of $A$ comes from the right singular vectors $v_i$ corresponding to zero singular values. These are the eigenvectors of $A^T A$ with eigenvalue $0$.</li>
+                    <li>Every review problem is a chance to practice connecting matrix properties—symmetry, definiteness, Markov structure, projection—to their eigen-solutions. Write the eigenvalues first; everything else follows.</li>
                 </ul>
             </div>
 
             <h3>Visual Aids</h3>
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure 1: Eigenvalue Spectrum for Matrix Classifications</h4>
+                <p>The diagram places four matrix types on the real line according to their allowed eigenvalues. Symmetric matrices occupy the entire real line. Positive definite matrices occupy the positive half-line $(0, \infty)$. Markov matrices have $\lambda = 1$ as their rightmost point, with all others strictly inside the unit disk. Projection matrices have atoms at exactly $0$ and $1$.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure 2: SVD Geometry — Mapping the Unit Circle to an Ellipse</h4>
+                <p>The SVD reveals that any linear transformation $A$ maps the unit circle in the domain to an ellipse in the codomain. The singular values $\sigma_1 \ge \sigma_2 \ge \cdots \ge \sigma_r$ are the semi-axis lengths of this ellipse. The directions of the axes are given by the columns of $U$, and the pre-image directions are given by the columns of $V$. If $\sigma_r = 0$, the ellipse collapses to a lower-dimensional subspace, signaling singularity.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure 3: Resolving Sign Ambiguity in the SVD</h4>
+                <p>Computing $U$ from $AA^T$ alone leaves each eigenvector ambiguous up to a sign flip. The diagram shows two candidate matrices $U$ and $-U$, both of which diagonalize $AA^T$. The correct choice is determined by checking $A v_i = \sigma_i u_i$: if the equality holds with the chosen sign, the orientation is correct; if not, flip the sign of $u_i$.</p>
             </div>
 
             <h3>Worked Examples</h3>
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <h4>Example 1: Classifying a Symmetric Matrix by Eigenvalues</h4>
+                <p><strong>Problem:</strong> Let $A = \begin{bmatrix} c & 1 \\ 1 & c \end{bmatrix}$. Determine the values of $c$ for which $A$ is (a) symmetric, (b) positive definite, (c) positive semi-definite, (d) a Markov matrix, and (e) such that $\frac{1}{2}A$ is a projection matrix.</p>
+                <p><strong>Solution:</strong> (a) $A$ is symmetric for all real $c$ because $A = A^T$.</p>
+                <p>(b) The eigenvalues are $\lambda = c \pm 1$. For positive definiteness we need $c-1 > 0$, so $c > 1$.</p>
+                <p>(c) For positive semi-definiteness we need $c-1 \ge 0$, so $c \ge 1$. When $c = 1$, the eigenvalues are $2$ and $0$.</p>
+                <p>(d) A Markov matrix must have $\lambda = 1$ as its largest eigenvalue. Here $\lambda_1 = c+1$. Setting $c+1 = 1$ gives $c = 0$, but then $\lambda_2 = -1$, which has magnitude $1$, violating the strict inequality $|\lambda_2| < 1$ required for a Markov matrix. Hence $A$ is never a Markov matrix.</p>
+                <p>(e) For $\frac{1}{2}A$ to be a projection matrix, $A$ must have eigenvalues $0$ and $2$. Setting $c-1 = 0$ and $c+1 = 2$ both yield $c = 1$. When $c = 1$, $A = \begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$ has eigenvalues $2$ and $0$, so $\frac{1}{2}A$ has eigenvalues $1$ and $0$, satisfying the projection requirement.</p>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <h4>Example 2: Computing the SVD of a Diagonal Matrix</h4>
+                <p><strong>Problem:</strong> Compute the SVD of $A = \begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix}$.</p>
+                <p><strong>Solution:</strong> Step 1: Compute $A^T A = \begin{bmatrix} 9 & 0 \\ 0 & 4 \end{bmatrix}$. This is already diagonal with eigenvalues $9$ and $4$.</p>
+                <p>Step 2: The singular values are $\sigma_1 = \sqrt{9} = 3$ and $\sigma_2 = \sqrt{4} = 2$. So $\Sigma = \begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix}$.</p>
+                <p>Step 3: The eigenvectors of $A^T A$ are $v_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$ and $v_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$, so $V = I$.</p>
+                <p>Step 4: Compute $U$ using $A v_i = \sigma_i u_i$. For $i=1$: $A v_1 = \begin{bmatrix} 3 \\ 0 \end{bmatrix} = 3 u_1$, so $u_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$. For $i=2$: $A v_2 = \begin{bmatrix} 0 \\ 2 \end{bmatrix} = 2 u_2$, so $u_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$. Thus $U = I$.</p>
+                <p>The SVD is $A = U\Sigma V^T = I \begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix} I$. Since $A$ was already diagonal with positive entries, the orthogonal factors are trivial.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: SVD of a Rank-1 Matrix and Its Null Space</h4>
+                <p><strong>Problem:</strong> Find the SVD of $A = \begin{bmatrix} 1 \\ 2 \end{bmatrix} \begin{bmatrix} 1 & 2 \end{bmatrix} = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$ and identify its null space.</p>
+                <p><strong>Solution:</strong> Step 1: Compute $A^T A = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}^T \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} = \begin{bmatrix} 5 & 10 \\ 10 & 20 \end{bmatrix}$.</p>
+                <p>Step 2: The eigenvalues of $A^T A$ satisfy $\det(\begin{bmatrix} 5-\lambda & 10 \\ 10 & 20-\lambda \end{bmatrix}) = (5-\lambda)(20-\lambda) - 100 = \lambda^2 - 25\lambda = 0$. So $\lambda_1 = 25$, $\lambda_2 = 0$.</p>
+                <p>Step 3: The singular values are $\sigma_1 = \sqrt{25} = 5$ and $\sigma_2 = 0$. The rank is $1$.</p>
+                <p>Step 4: An eigenvector for $\lambda_1 = 25$ satisfies $(A^T A - 25I)v = 0$, giving $v_1 = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 \\ 2 \end{bmatrix}$. An eigenvector for $\lambda_2 = 0$ satisfies $A^T A v = 0$, giving $v_2 = \frac{1}{\sqrt{5}}\begin{bmatrix} 2 \\ -1 \end{bmatrix}$. So $V = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 & 2 \\ 2 & -1 \end{bmatrix}$.</p>
+                <p>Step 5: Compute $u_1$ from $A v_1 = \sigma_1 u_1$. We have $A v_1 = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} \frac{1}{\sqrt{5}}\begin{bmatrix} 1 \\ 2 \end{bmatrix} = \frac{1}{\sqrt{5}}\begin{bmatrix} 5 \\ 10 \end{bmatrix} = 5 \cdot \frac{1}{\sqrt{5}}\begin{bmatrix} 1 \\ 2 \end{bmatrix} = \sigma_1 u_1$. So $u_1 = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 \\ 2 \end{bmatrix}$. For $u_2$, since $\sigma_2 = 0$, we only need $u_2$ to be any unit vector orthogonal to $u_1$; choosing $u_2 = \frac{1}{\sqrt{5}}\begin{bmatrix} 2 \\ -1 \end{bmatrix}$ completes the orthogonal matrix $U$.</p>
+                <p>The SVD is $A = U\Sigma V^T$ with $U = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 & 2 \\ 2 & -1 \end{bmatrix}$, $\Sigma = \begin{bmatrix} 5 & 0 \\ 0 & 0 \end{bmatrix}$, and $V$ as above. The null space of $A$ is spanned by $v_2 = \frac{1}{\sqrt{5}}\begin{bmatrix} 2 \\ -1 \end{bmatrix}$, the right singular vector corresponding to the zero singular value.</p>
             </div>
 
             <h3>Practice Problems</h3>
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <p><strong>Problem 1:</strong> Let $A = \begin{bmatrix} c & -1 \\ -1 & c \end{bmatrix}$. For what values of $c$ is $A$ (a) positive definite, (b) positive semi-definite, (c) a Markov matrix, and (d) such that $\frac{1}{2}A$ is a projection matrix?</p>
+                <p><em>Hint: Compute the eigenvalues $c \pm 1$ and apply the eigenvalue tests for each matrix class.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>The eigenvalues are $c+1$ and $c-1$. (a) Positive definite: $c > 1$. (b) Positive semi-definite: $c \ge 1$. (c) Markov: $\lambda_1 = c+1$ must equal $1$, giving $c=0$, but then $\lambda_2 = -1$, so never Markov. (d) Projection via $\frac{1}{2}A$: $A$ must have eigenvalues $0$ and $2$, giving $c=1$ (eigenvalues $2,0$) or $c=-1$ (eigenvalues $0,-2$). Since $\frac{1}{2}A$ needs non-negative eigenvalues, $c=1$ is the valid choice.</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> True or False: If $A$ is symmetric with eigenvalues $3, 0, -2$, then $\frac{1}{3}A$ could be a projection matrix. Explain your reasoning.</p>
+                <p><em>Hint: What eigenvalues must a projection matrix have?</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>False. A projection matrix must have eigenvalues $0$ and $1$. The eigenvalues of $\frac{1}{3}A$ are $1, 0, -2/3$. The presence of $-2/3$ violates the requirement that projection eigenvalues be only $0$ or $1$.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Suppose the SVD of a matrix $A$ is given by $\Sigma = \begin{bmatrix} 4 & 0 \\ 0 & 1 \end{bmatrix}$, $U = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$, and $V = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$. Reconstruct $A$ and find a basis for its null space.</p>
+                <p><em>Hint: Compute $A = U\Sigma V^T$ directly. The null space comes from the singular value equal to zero, if any.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>First compute $V^T = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$. Then $A = U\Sigma V^T = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} \begin{bmatrix} 4 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 4 \\ 1 & -4 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix} 4 & 1 \\ -4 & 1 \end{bmatrix}$. Both singular values are non-zero, so $\text{rank}(A) = 2$ and the null space is trivial (only the zero vector).</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Explain why computing $U$ from $AA^T$ alone can lead to the wrong sign for one or more columns of $U$, but computing $U$ from $A v_i = \sigma_i u_i$ always gives the correct orientation.</p>
+                <p><em>Hint: Eigenvectors are defined only up to a scalar multiple. What scalar ambiguity remains after normalizing an eigenvector of $AA^T$?</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>If $u$ is an eigenvector of $AA^T$, then $-u$ is also an eigenvector with the same eigenvalue. Normalization removes the magnitude ambiguity but not the sign ambiguity: both $u$ and $-u$ are unit eigenvectors. When we compute $U$ from $AA^T$ alone, we have no way to decide which sign is correct for each column. However, the relationship $A v_i = \sigma_i u_i$ involves the original matrix $A$, not just $AA^T$. Multiplying the chosen $v_i$ by $A$ produces a specific vector whose direction is fixed by the data. Dividing by $\sigma_i$ yields the unique unit vector $u_i$ that satisfies $A v_i = \sigma_i u_i$. Any other choice of sign for $u_i$ would violate this equation. Thus the $A v_i = \sigma_i u_i$ rule resolves the sign ambiguity completely.</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-32.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-32.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-34.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-34.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>

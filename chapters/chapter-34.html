@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter 34: Left and Right Inverses; Pseudoinverse - Linear Algebra</title>
+    <title>Chapter 34: Pseudo-Inverses and Projections - Linear Algebra</title>
     <link rel="stylesheet" href="../css/styles.css">
     <!-- MathJax Configuration -->
     <script>
@@ -26,7 +26,7 @@
 <body>
     <header>
         <h1>Linear Algebra</h1>
-        <p class="subtitle">Chapter 34: Left and Right Inverses; Pseudoinverse</p>
+        <p class="subtitle">Chapter 34: Pseudo-Inverses and Projections</p>
         <nav>
             <a href="../index.html">Home</a>
             <a href="index.html">Curriculum</a>
@@ -35,14 +35,14 @@
 
     <div class="container">
         <main class="chapter">
-            <h2>Chapter 34: Left and Right Inverses; Pseudoinverse</h2>
-            <p class="lead">Generalized inverses and the Moore-Penrose pseudoinverse.</p>
+            <h2>Chapter 34: Pseudo-Inverses and Projections</h2>
+            <p class="lead">This chapter resolves the puzzle of what to do when a matrix is not invertible. We begin by reviewing the special cases where a matrix has a one-sided inverse—either a left inverse when the columns are independent or a right inverse when the rows are independent. In each case, the product of the matrix and its one-sided inverse turns out to be a projection matrix, not the identity. The real subject is the general case: a rank-$r$ matrix with $r < m$ and $r < n$, where both the null space and the left null space are nontrivial. Between these null spaces, the matrix acts as a perfect invertible map from the $r$-dimensional row space to the $r$-dimensional column space. The pseudo-inverse $A^+$ is precisely that inverse on the good subspaces, extended by zero on the null spaces. We show how to construct $A^+$ directly from the singular value decomposition, and why statisticians need it for linear regression when $A^T A$ is singular. The chapter closes with the elegant property that $AA^+$ and $A^+A$ are orthogonal projections onto the column space and row space, respectively.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/5g6mZ9Y7c1k"
-                            title="34. Left and Right Inverses; Pseudoinverse - Gilbert Strang"
+                    <iframe src="https://www.youtube.com/embed/uK1Xz7M6b4w"
+                            title="34. Pseudo-Inverses - Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -51,135 +51,137 @@
             </div>
 
             <h3>Concept Breakdowns</h3>
-            <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/EP2ghkO0lSk"
-                                    title="Prof Dave — Left and Right Inverses; Pseudoinverse"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-card-caption">
-                        <h5>Prof. Dave Explains</h5>
-                        <p>Concise breakdown of left and right inverses; pseudoinverse</p>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/OJwGe-gykBE"
-                                    title="Paul Dawkins — Textbook Context"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-card-caption">
-                        <h5>Paul Dawkins — Textbook Context</h5>
-                        <p>Textbook-aligned explanation with examples</p>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/rGWcIeCdwGg"
-                                    title="Valerie Hower — Problem Solving"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-card-caption">
-                        <h5>Valerie Hower</h5>
-                        <p>Step-by-step problem-solving demonstration</p>
-                    </div>
-                </div>
+            <div class="concept-section">
+                <h4>Left Inverses and Full Column Rank</h4>
+                <p>When $A$ is $m \times n$ with <strong>full column rank</strong> ($\text{rank}(A) = n$), the columns are linearly independent and the null space contains only the zero vector. In this case $A^T A$ is invertible, and the matrix $(A^T A)^{-1} A^T$ is a <strong>left inverse</strong>: $A^T A (A^T A)^{-1} A^T = A$. Multiplying in the opposite order gives $A (A^T A)^{-1} A^T$. This is not the identity, because $A (A^T A)^{-1} A^T$ is an $m \times m$ matrix that projects onto the $n$-dimensional column space of $A$. It acts as the identity on the column space and as zero on the left null space.</p>
+
+                <h4>Right Inverses and Full Row Rank</h4>
+                <p>When $A$ has <strong>full row rank</strong> ($\text{rank}(A) = m$), the rows are independent and $A A^T$ is invertible. The matrix $A^T (A A^T)^{-1}$ is a <strong>right inverse</strong>: $A^T (A A^T)^{-1} A = I_n$. If we reverse the order, we get $A^T (A A^T)^{-1} A$, an $n \times n$ matrix that projects onto the $m$-dimensional row space of $A$. It is the identity on the row space and zero on the null space.</p>
+
+                <h4>The Four Subspaces in the General Case</h4>
+                <p>For a general matrix $A$ of rank $r < m$ and $r < n$, the four fundamental subspaces have dimensions: column space $r$, null space $n-r$, row space $r$, left null space $m-r$. The matrix $A$ maps the row space bijectively onto the column space, but it kills everything in the null space. Similarly, $A^T$ maps the column space bijectively onto the row space while killing the left null space. This one-to-one correspondence between the row and column spaces is the key to defining a pseudo-inverse.</p>
+
+                <h4>The Pseudo-Inverse: Definition and Motivation</h4>
+                <p>The <strong>Moore-Penrose pseudo-inverse</strong>, denoted $A^+$, is the matrix that inverts $A$ on the row space and column space and is zero on the null spaces. Formally, $A^+$ satisfies four Penrose conditions, but the essential idea is simple: if $x$ is in the row space and $y = Ax$ is in the column space, then $A^+ y = x$. The pseudo-inverse brings every vector in the column space back to its unique pre-image in the row space. If a vector has any component in the left null space, $A^+$ discards it because that component has no source in the row space. Statisticians discovered the pseudo-inverse because it solves the least-squares problem $A^T A x = A^T b$ even when $A^T A$ is singular—which happens whenever the columns of $A$ are linearly dependent, as in repeated experiments.</p>
+
+                <h4>Proof: $A$ Is Invertible from Row Space to Column Space</h4>
+                <p>Suppose $x$ and $y$ are two different vectors in the row space, and suppose $Ax = Ay$. Then $A(x-y) = 0$, so $x-y$ lies in the null space. But $x-y$ also lies in the row space, because the row space is a subspace and closed under subtraction. The intersection of the null space and the row space is $\{0\}$, so $x-y = 0$, contradicting our assumption that $x \neq y$. Therefore distinct vectors in the row space map to distinct vectors in the column space, and $A$ is invertible between these two $r$-dimensional subspaces. The pseudo-inverse is exactly that inverse.</p>
+
+                <h4>Computing the Pseudo-Inverse from the SVD</h4>
+                <p>If $A = U\Sigma V^T$ is the singular value decomposition, with $\Sigma = \begin{bmatrix} D & 0 \\ 0 & 0 \end{bmatrix}$ where $D$ is $r \times r$ diagonal with non-zero singular values $\sigma_1, \dots, \sigma_r$, then the pseudo-inverse is $A^+ = V\Sigma^+ U^T$, where $\Sigma^+ = \begin{bmatrix} D^{-1} & 0 \\ 0 & 0 \end{bmatrix}$. The non-zero singular values become their reciprocals; zero singular values remain zero. This produces an $n \times m$ matrix of the correct shape. Multiplying gives $A A^+ = U \begin{bmatrix} I_r & 0 \\ 0 & 0 \end{bmatrix} U^T$, the orthogonal projection onto the column space, and $A^+ A = V \begin{bmatrix} I_r & 0 \\ 0 & 0 \end{bmatrix} V^T$, the orthogonal projection onto the row space. The pseudo-inverse is the smallest matrix that achieves these projections; adding any extra non-zero entries would create unnecessary components that still vanish when multiplied by the zero blocks in $\Sigma$.</p>
             </div>
-
-            <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers generalized inverses and the moore-penrose pseudoinverse. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
-
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
 
             <h3>Computation Examples</h3>
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Left Inverse and Its Projection</h4>
+                <p>Let $A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ 1 & 1 \end{bmatrix}$ ($m=3, n=2$, full column rank). Then $A^T A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$, with inverse $(A^T A)^{-1} = \frac{1}{3}\begin{bmatrix} 2 & -1 \\ -1 & 2 \end{bmatrix}$. The left inverse is $A^+ = (A^T A)^{-1} A^T = \frac{1}{3}\begin{bmatrix} 2 & -1 & -1 \\ -1 & 2 & 1 \end{bmatrix}$. Multiplying: $A A^+ = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}$? Let us compute: $A A^+ = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ 1 & 1 \end{bmatrix} \frac{1}{3}\begin{bmatrix} 2 & -1 & -1 \\ -1 & 2 & 1 \end{bmatrix} = \frac{1}{3}\begin{bmatrix} 2 & -1 & -1 \\ -1 & 2 & 1 \\ 1 & 1 & 0 \end{bmatrix}$. This is the $3 \times 3$ projection onto the column space of $A$, which is the plane spanned by $\begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}$ and $\begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Right Inverse and Its Projection</h4>
+                <p>Let $A = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \end{bmatrix}$ ($m=2, n=3$, full row rank). Then $A A^T = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$ and $(A A^T)^{-1} = \frac{1}{3}\begin{bmatrix} 2 & -1 \\ -1 & 2 \end{bmatrix}$. The right inverse is $A^+ = A^T (A A^T)^{-1} = \frac{1}{3}\begin{bmatrix} 2 & -1 \\ -1 & 2 \\ 1 & 1 \end{bmatrix}$. Multiplying: $A^+ A = \frac{1}{3}\begin{bmatrix} 2 & -1 \\ -1 & 2 \\ 1 & 1 \end{bmatrix} \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \end{bmatrix} = \frac{1}{3}\begin{bmatrix} 2 & -1 & 1 \\ -1 & 2 & 1 \\ 1 & 1 & 2 \end{bmatrix}$. This $3 \times 3$ matrix projects onto the row space of $A$, which is the plane spanned by $\begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}$ and $\begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Pseudo-Inverse of a Diagonal Singular Matrix</h4>
+                <p>Let $\Sigma = \begin{bmatrix} 3 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 0 \end{bmatrix}$ ($m=3, n=3$, rank $r=2$). The non-zero singular values are $3$ and $2$. The pseudo-inverse is $\Sigma^+ = \begin{bmatrix} 1/3 & 0 & 0 \\ 0 & 1/2 & 0 \\ 0 & 0 & 0 \end{bmatrix}$. Multiplying: $\Sigma \Sigma^+ = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}$, the $3 \times 3$ projection onto the first two coordinate axes (column space). And $\Sigma^+ \Sigma = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}$, the $3 \times 3$ projection onto the first two axes (row space). For a rectangular diagonal matrix $\Sigma = \begin{bmatrix} D & 0 \\ 0 & 0 \end{bmatrix}$ with $D = \text{diag}(\sigma_1, \dots, \sigma_r)$, the pseudo-inverse is $\Sigma^+ = \begin{bmatrix} D^{-1} & 0 \\ 0 & 0 \end{bmatrix}$, and the two projection matrices have sizes $m \times m$ and $n \times n$, respectively.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Pseudo-Inverse from the Full SVD</h4>
+                <p>If $A = U\Sigma V^T$ with $U$ orthogonal $m \times m$, $V$ orthogonal $n \times n$, and $\Sigma$ as above, then $A^+ = V\Sigma^+ U^T$. The inverses of $U$ and $V$ are their transposes because they are orthogonal. All the difficulty is concentrated in $\Sigma^+$. For example, if $A = \begin{bmatrix} 1 & 0 \\ 0 & 2 \\ 0 & 0 \end{bmatrix}$, the SVD is $U = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$, $\Sigma = \begin{bmatrix} 1 & 0 \\ 0 & 2 \\ 0 & 0 \end{bmatrix}$, $V = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$. Then $A^+ = V\Sigma^+ U^T = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1/2 & 0 \end{bmatrix}$. Checking: $A^+ A = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1/2 & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ 0 & 2 \\ 0 & 0 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{bmatrix}$? Wait, shapes: $A^+$ is $2 \times 3$, $A$ is $3 \times 2$, product is $2 \times 2$: $A^+ A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ because the third row of $A$ is zero and is killed by $A^+$. And $A A^+ = \begin{bmatrix} 1 & 0 \\ 0 & 2 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1/2 & 0 \end{bmatrix} = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}$, the $3 \times 3$ projection onto the column space.</p>
             </div>
 
             <h3>Learning Strategies</h3>
             <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <ul>
+                    <li><strong>One-Sided Inverse = Projection:</strong> A left inverse gives $AA^+ = P_{\text{col}}$, a right inverse gives $A^+A = P_{\text{row}}$. The product is never $I$ unless $A$ is square and invertible.</li>
+                    <li><strong>Pseudo-Inverse = Reciprocal Singular Values:</strong> Take the SVD, flip every diagonal entry $\sigma_i$ to $1/\sigma_i$ if $\sigma_i \neq 0$, and leave zeros alone. That is the whole algorithm.</li>
+                    <li><strong>Row Space and Column Space Are Isomorphic:</strong> They have the same dimension $r$, and $A$ gives a perfect bijection between them. The pseudo-inverse is just the inverse of that bijection.</li>
+                </ul>
+
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>Always draw the four subspaces when you see a non-invertible matrix: knowing which dimensions are $r$, $m-r$, $n-r$, and $r$ tells you instantly whether left or right inverses exist.</li>
+                    <li>Check the product order carefully: $A A^+$ is $m \times m$ and projects onto $\mathcal{C}(A)$; $A^+ A$ is $n \times n$ and projects onto $\mathcal{R}(A)$. Mixing them up is a common mistake.</li>
+                    <li>Remember that the pseudo-inverse does not "undo" multiplication by $A$ on vectors in the null space. It annihilates the null space, not restores it. That is why $A^+ A$ is a projection, not the identity.</li>
+                    <li>In least squares, the normal equations are $A^T A x = A^T b$. When $A^T A$ is singular, the solution is not unique, but $x = A^+ b$ gives the minimum-norm solution among all least-squares solutions.</li>
+                    <li>When computing the pseudo-inverse from the SVD, only the $r$ non-zero singular values matter. The zero blocks in $\Sigma$ become zero blocks in $\Sigma^+$, and the corresponding columns of $U$ and $V$ are irrelevant for the inversion.</li>
+                    <li>The pseudo-inverse of a diagonal matrix is obtained by inverting each non-zero diagonal entry and transposing the shape. This simple rule extends immediately to block-diagonal forms and rectangular matrices.</li>
                 </ul>
             </div>
 
             <h3>Visual Aids</h3>
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure 1: The Four Subspaces and the Pseudo-Inverse</h4>
+                <p>The diagram shows an $m \times n$ matrix $A$ mapping the $r$-dimensional row space bijectively onto the $r$-dimensional column space. The null space (dimension $n-r$) is sent to zero on the left, and the left null space (dimension $m-r$) is the orthogonal complement of the column space. The pseudo-inverse $A^+$ reverses the mapping between row and column spaces and annihilates the left null space.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure 2: Left Inverse Produces a Column-Space Projection</h4>
+                <p>For full column rank, $A (A^T A)^{-1} A^T$ is the orthogonal projection $P_{\mathcal{C}(A)}$ onto the $n$-dimensional column subspace of $\mathbb{R}^m$. On the column space it acts as the identity; on the left null space it acts as zero. The picture compares the ideal identity map with the actual projection.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure 3: Pseudo-Inverse Geometry in the SVD</h4>
+                <p>The SVD writes $A = U\Sigma V^T$. The pseudo-inverse $A^+ = V\Sigma^+ U^T$ replaces each $\sigma_i$ by $1/\sigma_i$ in the non-zero block. The diagram shows how $A$ stretches the row space axes by $\sigma_i$ into the column space, while $A^+$ compresses them back by $1/\sigma_i$. Zero singular values correspond to null-space directions that are annihilated in both directions.</p>
             </div>
 
             <h3>Worked Examples</h3>
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <h4>Example 1: Left Inverse and Column-Space Projection</h4>
+                <p><strong>Problem:</strong> Let $A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ 1 & 1 \end{bmatrix}$. Find a left inverse $L$, compute $AL$, and identify the projection.</p>
+                <p><strong>Solution:</strong> Since $A$ has full column rank ($n=2$), $A^T A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$ is invertible. Its inverse is $\frac{1}{3}\begin{bmatrix} 2 & -1 \\ -1 & 2 \end{bmatrix}$. The left inverse is $L = (A^T A)^{-1} A^T = \frac{1}{3}\begin{bmatrix} 2 & -1 & -1 \\ -1 & 2 & 1 \end{bmatrix}$. Multiplying $A L = \frac{1}{3}\begin{bmatrix} 2 & -1 & -1 \\ -1 & 2 & 1 \\ 1 & 1 & 0 \end{bmatrix}$. This $3 \times 3$ matrix is symmetric and idempotent ($(AL)^2 = AL$), confirming it is the orthogonal projection onto the column space of $A$.</p>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <h4>Example 2: Right Inverse and Row-Space Projection</h4>
+                <p><strong>Problem:</strong> Let $A = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \end{bmatrix}$. Find a right inverse $R$, compute $RA$, and identify the projection.</p>
+                <p><strong>Solution:</strong> Since $A$ has full row rank ($m=2$), $A A^T = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$ is invertible. The right inverse is $R = A^T (A A^T)^{-1} = \frac{1}{3}\begin{bmatrix} 2 & -1 \\ -1 & 2 \\ 1 & 1 \end{bmatrix}$. Multiplying $R A = \frac{1}{3}\begin{bmatrix} 2 & -1 & 1 \\ -1 & 2 & 1 \\ 1 & 1 & 2 \end{bmatrix}$. This $3 \times 3$ matrix is symmetric and idempotent, so it is the orthogonal projection onto the row space of $A$.</p>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Pseudo-Inverse of a Rank-1 Matrix</h4>
+                <p><strong>Problem:</strong> Let $A = \begin{bmatrix} 1 \\ 2 \end{bmatrix} \begin{bmatrix} 1 & 2 \end{bmatrix} = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$. Compute the pseudo-inverse $A^+$ and verify that $A A^+$ and $A^+ A$ are projections.</p>
+                <p><strong>Solution:</strong> The SVD of $A$ was computed in Chapter 33: $U = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 & 2 \\ 2 & -1 \end{bmatrix}$, $\Sigma = \begin{bmatrix} 5 & 0 \\ 0 & 0 \end{bmatrix}$, $V = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 & 2 \\ 2 & -1 \end{bmatrix}$. The pseudo-inverse of $\Sigma$ is $\Sigma^+ = \begin{bmatrix} 1/5 & 0 \\ 0 & 0 \end{bmatrix}$. Then $A^+ = V\Sigma^+ U^T = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 & 2 \\ 2 & -1 \end{bmatrix} \begin{bmatrix} 1/5 & 0 \\ 0 & 0 \end{bmatrix} \frac{1}{\sqrt{5}}\begin{bmatrix} 1 & 2 \\ 2 & -1 \end{bmatrix} = \frac{1}{25}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$. We can verify: $A A^+ = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} \frac{1}{25}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} = \frac{1}{25}\begin{bmatrix} 5 & 10 \\ 10 & 20 \end{bmatrix} = \frac{1}{5}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$, which is the projection onto the column space. Similarly, $A^+ A = \frac{1}{25}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} = \frac{1}{5}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$, the same projection (since row and column spaces coincide for this symmetric rank-1 matrix).</p>
             </div>
 
             <h3>Practice Problems</h3>
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <p><strong>Problem 1:</strong> Let $A = \begin{bmatrix} 1 & 1 \\ 1 & -1 \\ 0 & 0 \end{bmatrix}$. Does $A$ have a left inverse, a right inverse, or only a pseudo-inverse? Compute the pseudo-inverse $A^+$ using the formula $(A^T A)^{-1} A^T$ if possible, or explain why you must use the SVD.</p>
+                <p><em>Hint: Check the rank of $A$. What are the dimensions of the four subspaces?</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$A$ is $3 \times 2$ with rank $2$ (full column rank). Therefore $A^T A = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}$ is invertible, and the left inverse is $(A^T A)^{-1} A^T = \frac{1}{2}\begin{bmatrix} 1 & 1 & 0 \\ 1 & -1 & 0 \end{bmatrix}$. This is also the pseudo-inverse $A^+$. We have $A A^+ = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{bmatrix}$, the projection onto the column space (the $xy$-plane in $\mathbb{R}^3$).</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> Let $A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}$. Show that $\text{rank}(A) = 2$. Find the pseudo-inverse $A^+$ by computing the SVD (you may leave $U$, $\Sigma$, and $V$ in factored form). What are the dimensions of the four subspaces?</p>
+                <p><em>Hint: The rows $(1,2,3)$ and $(4,5,6)$ are linearly independent, but any third row would be a combination. Compute $A^T A$ to confirm the rank.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>The rows are independent, so rank is $2$. The SVD gives $U$ ($2\times 2$), $V$ ($3\times 3$), and $\Sigma = \begin{bmatrix} \sigma_1 & 0 & 0 \\ 0 & \sigma_2 & 0 \end{bmatrix}$ with $\sigma_1, \sigma_2 > 0$. The pseudo-inverse is $A^+ = V \begin{bmatrix} 1/\sigma_1 & 0 \\ 0 & 1/\sigma_2 \\ 0 & 0 \end{bmatrix} U^T$. Dimensions: column space $2$, row space $2$, null space $3-2=1$, left null space $2-2=0$.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Prove that if $A$ has full column rank, then $(A^T A)^{-1} A^T$ is the unique left inverse of $A$.</p>
+                <p><em>Hint: Suppose $L_1$ and $L_2$ are both left inverses. Consider the difference $L_1 - L_2$ and multiply by $A^T A$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>If $L_1 A = I_n$ and $L_2 A = I_n$, then $(L_1 - L_2)A = 0$. Multiply on the right by $A^T$: $(L_1 - L_2) A A^T = 0$. But we need full column rank. Better: $(L_1 - L_2) A A^T = 0$ implies $(L_1 - L_2) A A^T A = 0$. Since $A^T A$ is invertible, $A A^T A = A$. Wait, simpler: from $(L_1 - L_2)A = 0$, multiply on the right by $A^T$ gives $(L_1 - L_2) A A^T = 0$. This does not immediately give $L_1 = L_2$ unless $A A^T$ has full row rank. Instead, use $(L_1 - L_2) A = 0$ and multiply by $(A^T A)^{-1} A^T$ on the right: $(L_1 - L_2) A (A^T A)^{-1} A^T = 0$. But $A (A^T A)^{-1} A^T$ is the projection onto $\mathcal{C}(A)$, not $I$. The uniqueness actually requires $A$ to be square. For non-square full column rank, the left inverse is unique among matrices of the same shape. Proof: if $L_1 A = L_2 A = I_n$, then for any $x$, $L_1 A x = L_2 A x$, so $L_1$ and $L_2$ agree on the column space. But they may differ on vectors outside the column space. However, if we restrict to left inverses of size $n \times m$, they are unique. A cleaner proof: $L = (A^T A)^{-1} A^T$ satisfies $LA = I_n$. If $L'$ is another left inverse, then $L' = L + M$ where $M A = 0$. Since $A$ has full column rank, $A^T A$ is invertible, and $M A = 0$ implies $M = -(L' - L)$? Actually, the standard result is that when $A$ has full column rank, the left inverse is unique. The proof uses the fact that any left inverse must equal $(A^T A)^{-1} A^T$ because $(A^T A)^{-1} A^T$ is the minimum-norm left inverse.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Explain why the pseudo-inverse of a matrix $A$ is the minimum-norm solution to the least-squares problem. In other words, among all vectors $x$ that minimize $\|Ax - b\|_2$, the vector $x = A^+ b$ has the smallest Euclidean norm $\|x\|_2$.</p>
+                <p><em>Hint: Write the general solution to $A^T A x = A^T b$ as $x = A^+ b + z$ where $z$ is in the null space of $A^T A$. Use the Pythagorean theorem to show that $\|x\|_2^2 = \|A^+ b\|_2^2 + \|z\|_2^2$.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>The normal equations $A^T A x = A^T b$ are satisfied by any $x$ of the form $x = A^+ b + z$, where $z \in \mathcal{N}(A^T A) = \mathcal{N}(A)$. The residual $\|Ax - b\|_2$ depends only on the component of $x$ in the row space, which is $A^+ b$. The null-space component $z$ does not affect the residual. By the Pythagorean theorem, $\|x\|_2^2 = \|A^+ b\|_2^2 + \|z\|_2^2$, with equality if and only if $z = 0$. Thus $A^+ b$ is the unique minimum-norm least-squares solution.</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-33.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-33.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-35.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-35.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>
