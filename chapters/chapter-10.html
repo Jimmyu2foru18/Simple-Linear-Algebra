@@ -39,7 +39,7 @@
             <p class="lead">Column space, nullspace, row space, and left nullspace. This chapter unifies the fundamental subspaces associated with a matrix and reveals their deep relationships through the Fundamental Theorem of Linear Algebra.</p>
 
             <div class="video-section">
-                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/nHlE7rZJ738"
                             title="10. The Four Fundamental Subspaces - Gilbert Strang"
@@ -76,7 +76,7 @@
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <h5>Paul Dawkins — Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
             </div>
 
             <div class="video-section">
-                <h4>Quick Overview â€” Early Orbit Math</h4>
+                <h4>Quick Overview — Early Orbit Math</h4>
                 <p>For a rapid summary of this chapter's key concepts, check out:</p>
                 <a href="https://www.youtube.com/@EarlyOrbitMath" target="_blank" rel="noopener noreferrer" class="nav-btn">
 $$Early Orbit Math - Linear Algebra Series$$
@@ -142,7 +142,7 @@ dim(C(A^T)) = r
 dim(N(A^T)) = m - r$$
 
 $$Sum of dimensions in $\mathbb{R}^m$: r + (m-r) = m  âœ“
-Sum of dimensions in $\mathbb{R}^n$: r + (n-r) = n  âœ“$$$$
+Sum of dimensions in $\mathbb{R}^n$: r + (n-r) = n  âœ“$$
                 <p>The orthogonal complement dimensions sum to the ambient space dimension, as expected.</p>
             </div>
 
@@ -176,11 +176,11 @@ Sum of dimensions in $\mathbb{R}^n$: r + (n-r) = n  âœ“$$$$
             <div class="visual-aid">
                 <h4>Figure: The Four Subspaces Diagram</h4>
                 <p>Visual representation of the Fundamental Theorem:</p>
-                $$$\mathbb{R}^m$:                     C(A) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ N(A^T)
-(rank r)                (dim r)  âŠ¥  (dim m-r)
+                $$$\mathbb{R}^m$:                     C(A) ─────────── N(A^T)
+(rank r)                (dim r)  ⊥  (dim m-r)
 
-$\mathbb{R}^n$:                     C(A^T) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ N(A)
-(rank r)                (dim r)  âŠ¥  (dim n-r)$$
+$\mathbb{R}^n$:                     C(A^T) ────────── N(A)
+(rank r)                (dim r)  ⊥  (dim n-r)$$
                 <p>Row space and column space share the same dimension (rank). Each orthogonal pair sums to the full space dimension.</p>
             </div>
 
@@ -190,10 +190,10 @@ $\mathbb{R}^n$:                     C(A^T) â”€â”€â”€â”€â”
                 $$A = [[1, 2, 0, 3], [2, 4, 1, 7]]
 $$RREF = [[1, 2, 0, 3], [0, 0, 1, 1]]$$
 
-C(A) basis: cols 1,3 of A  â†’  {[1,2]^T, [0,1]^T}
-Row space basis: rows of RREF  â†’  {[1,2,0,3], [0,0,1,1]}
-$$N(A): solve Rx=0  â†’  span{[2,1,0,0]^T, [3,0,1,1]^T}
-N(A^T): solve A^T y=0  â†’  span{[2,1]^T}$$$$
+C(A) basis: cols 1,3 of A  →  {[1,2]^T, [0,1]^T}
+Row space basis: rows of RREF  →  {[1,2,0,3], [0,0,1,1]}
+$$N(A): solve Rx=0  →  span{[2,1,0,0]^T, [3,0,1,1]^T}
+N(A^T): solve A^T y=0  →  span{[2,1]^T}$$
             </div>
 
             <h3>Worked Examples</h3>
@@ -224,7 +224,7 @@ $$Dot product: 1*(-2) + 2*1 + 3*0 = -2 + 2 + 0 = 0  âœ“$$
 Row space vector: [1, 2, 3]
 $$Nullspace vector: [-3, 0, 1]$$
 
-$$Dot product: 1*(-3) + 2*0 + 3*1 = -3 + 0 + 3 = 0  âœ“$$$$
+$$Dot product: 1*(-3) + 2*0 + 3*1 = -3 + 0 + 3 = 0  âœ“$$
             </div>
 
             <h3>Practice Problems</h3>
@@ -262,7 +262,7 @@ $$Dot product: 1*(-3) + 2*0 + 3*1 = -3 + 0 + 3 = 0  âœ“$$$$
                 <p><em>Hint: Use the definition of <code>N(A^T)</code> and the argument from the derivation section.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>If <code>y âˆˆ N(A^T)</code>, then <code>A^T y = 0</code>. For any <code>b âˆˆ C(A)</code>, <code>b = Ax</code>. Then <code>y^T b = y^T Ax = (A^T y)^T x = 0</code>. So y is orthogonal to all vectors in <code>C(A)</code>. Thus <code>N(A^T) = C(A)^perp</code>.</p>
+                    <p>If <code>y ∈ N(A^T)</code>, then <code>A^T y = 0</code>. For any <code>b ∈ C(A)</code>, <code>b = Ax</code>. Then <code>y^T b = y^T Ax = (A^T y)^T x = 0</code>. So y is orthogonal to all vectors in <code>C(A)</code>. Thus <code>N(A^T) = C(A)^perp</code>.</p>
                 </details>
             </div>
 

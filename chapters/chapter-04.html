@@ -39,7 +39,7 @@
             <p class="lead">LU decomposition and its applications in solving linear systems. This chapter shows how the elimination process naturally factors a matrix into a lower triangular matrix L and an upper triangular matrix U.</p>
 
             <div class="video-section">
-                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/jWjqUNu2SEC"
                             title="4. Factorization into A = LU - Gilbert Strang"
@@ -76,7 +76,7 @@
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <h5>Paul Dawkins — Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
             </div>
 
             <div class="video-section">
-                <h4>Quick Overview â€” Early Orbit Math</h4>
+                <h4>Quick Overview — Early Orbit Math</h4>
                 <p>For a rapid summary of this chapter's key concepts, check out:</p>
                 <a href="https://www.youtube.com/@EarlyOrbitMath" target="_blank" rel="noopener noreferrer" class="nav-btn">
 $$Early Orbit Math - Linear Algebra Series$$
@@ -125,7 +125,7 @@ $$Early Orbit Math - Linear Algebra Series$$
                 <p>For a 3x3 system, suppose the multipliers are <code>l_21, l_31, l_32</code>. The elimination matrices ltiply as:</p>
                 $$E_32 * E_31 * E_21 * A = U
 
-$$Therefore: A = (E_21)^-1 * (E_31)^-1 * (E_32)^-1 * U = L * U$$$$
+$$Therefore: A = (E_21)^-1 * (E_31)^-1 * (E_32)^-1 * U = L * U$$
                 <p>Where <code>L = (E_21)^-1 * (E_31)^-1 * (E_32)^-1</code> is lower triangular with the multipliers in the appropriate positions.</p>
             </div>
 
@@ -133,7 +133,7 @@ $$Therefore: A = (E_21)^-1 * (E_31)^-1 * (E_32)^-1 * U = L * U$$$$
                 <h4>Derivation: Solving $A\mathbf{x} = \mathbf{b}$ via LU</h4>
                 <p>Once <code>A = LU</code>, solving <code>$A\mathbf{x} = \mathbf{b}$</code> becomes a two-step process:</p>
                 $$Step 1: Forward substitution   Ly = b   (solve for y)
-$$Step 2: Back substitution       Ux = y   (solve for x)$$$$
+$$Step 2: Back substitution       Ux = y   (solve for x)$$
                 <p>Forward substitution is efficient because L is lower triangular. Each step requires only one division and a few subtractions.</p>
             </div>
 
@@ -185,7 +185,7 @@ Total for LU solve:       ~n^2    operations
 Gaussian Elimination:     ~n^3/3  operations
 Inverse computation:      ~n^3    operations
 
-$$For n=1000: LU is ~300x faster than computing A^-1!$$$$
+$$For n=1000: LU is ~300x faster than computing A^-1!$$
             </div>
 
             <h3>Worked Examples</h3>
