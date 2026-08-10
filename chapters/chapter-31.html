@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 31: Linear Transformations and Their Matrices</h2>
-            <p class="lead">Linear transformations between vector spaces and matrix representations.</p>
+            <p class="lead">This chapter bridges the gap between coordinate-free linear transformations and the matrices that represent them. The key insight is that a linear transformation is completely determined by its action on a basis: if you know $T(v_1), T(v_2), \ldots, T(v_n)$ for a basis $\{v_1, \ldots, v_n\}$, then linearity tells you $T(c_1 v_1 + \cdots + c_n v_n) = c_1 T(v_1) + \cdots + c_n T(v_n)$ for all inputs. Choosing an input basis and an output basis converts the transformation into a matrix: the $j$-th column of the matrix is $T(v_j)$ expressed in the output basis. Different choices of basis give different matrices for the same transformation; the eigenvector basis gives the diagonal matrix of eigenvalues.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -57,8 +57,8 @@
                         <iframe src="https://www.youtube.com/embed/csgNflj69-Y"
                                     title="Prof Dave — Linear Transformations and Their Matrices"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -71,8 +71,8 @@
                         <iframe src="https://www.youtube.com/embed/T1IakOO2UXo"
                                     title="Paul Dawkins — Textbook Context"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -85,8 +85,8 @@
                         <iframe src="https://www.youtube.com/embed/rGWcIeCdwGg"
                                     title="Valerie Hower — Problem Solving"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -97,89 +97,188 @@
             </div>
 
             <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers linear transformations between vector spaces and matrix representations. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
 
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
+            <h4>A Linear Transformation Is Determined by Its Action on a Basis</h4>
+            <p>The fundamental fact is that a linear transformation $T: V \to W$ is completely determined by what it does to a basis of $V$. If $\{v_1, v_2, \ldots, v_n\}$ is a basis for $V$, then every vector $v \in V$ can be written uniquely as $v = c_1 v_1 + c_2 v_2 + \cdots + c_n v_n$. By linearity, $T(v) = c_1 T(v_1) + c_2 T(v_2) + \cdots + c_n T(v_n)$. So if you know $T(v_1), \ldots, T(v_n)$, you know $T(v)$ for all $v$. The scalars $c_1, \ldots, c_n$ are the coordinates of $v$ in the chosen basis. Change the basis, change the coordinates, but the underlying vector stays the same.</p>
+
+            <h4>Coordinates and Bases</h4>
+            <p>Coordinates are not absolute—they depend on the choice of basis. The standard basis $\{e_1, e_2, \ldots, e_n\}$ gives the familiar coordinate representation: $v = [3, 2, 4]^T$ means $3e_1 + 2e_2 + 4e_3$. But if we choose a different basis, say the eigenvectors of a matrix, the coordinates change. The vector itself is coordinate-free; the coordinates are just the coefficients in the chosen basis expansion. This is why linear algebra can be done without coordinates initially—the transformation $T$ exists independently of any basis—and then coordinates are introduced only when we need to write down a matrix.</p>
+
+            <h4>Constructing the Matrix of a Linear Transformation</h4>
+            <p>To construct the matrix $A$ representing $T: \mathbb{R}^n \to \mathbb{R}^m$, we need two bases: an input basis $\{v_1, \ldots, v_n\}$ for $\mathbb{R}^n$ and an output basis $\{w_1, \ldots, w_m\}$ for $\mathbb{R}^m$. The rule is simple: the $j$-th column of $A$ is the coordinate vector of $T(v_j)$ expressed in the output basis. That is, write $T(v_j) = a_{1j} w_1 + a_{2j} w_2 + \cdots + a_{mj} w_m$, and the coefficients $a_{1j}, \ldots, a_{mj}$ form the $j$-th column of $A$. Then for any input $v$ with coordinates $c_1, \ldots, c_n$, the output coordinates are given by $A$ times the input coordinate vector: $A [c_1, \ldots, c_n]^T = [\text{output coordinates}]^T$.</p>
+
+            <h4>Projection Example: Eigenvector Basis vs Standard Basis</h4>
+            <p>Consider the projection onto the line $y=x$ in $\mathbb{R}^2$. If we choose the input and output basis to be the eigenvectors of the projection—$v_1 = \frac{1}{\sqrt{2}}[1,1]^T$ (along the line, eigenvalue 1) and $v_2 = \frac{1}{\sqrt{2}}[1,-1]^T$ (perpendicular to the line, eigenvalue 0)—then the matrix is diagonal: $A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$. But if we use the standard basis $\{e_1, e_2\}$ for both inputs and outputs, the matrix is $A = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$, the familiar projection matrix $P = \frac{AA^T}{A^T A}$. The same transformation, different bases, different matrices. The eigenvector basis gives the diagonal matrix; the standard basis gives a symmetric but non-diagonal matrix.</p>
+
+            <h4>The Derivative as a Linear Transformation</h4>
+            <p>Consider the transformation $T: P_3 \to P_2$ that takes a polynomial $p(x) = c_1 + c_2 x + c_3 x^2$ to its derivative $p'(x) = c_2 + 2c_3 x$. With input basis $\{1, x, x^2\}$ and output basis $\{1, x\}$, the matrix is:
+                $$A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{bmatrix}$$
+            The first column is $T(1) = 0$ expressed as $[0, 0]^T$ in the output basis. The second column is $T(x) = 1$ expressed as $[1, 0]^T$. The third column is $T(x^2) = 2x$ expressed as $[0, 2]^T$. This $2 \times 3$ matrix maps the input coordinates $[c_1, c_2, c_3]^T$ to the output coordinates $[c_2, 2c_3]^T$, which is exactly the derivative. The derivative is a linear transformation, and its matrix representation makes this explicit.</p>
 
             <h3>Computation Examples</h3>
+
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Derivation: The Matrix of a Linear Transformation</h4>
+                <p>Let $T: \mathbb{R}^n \to \mathbb{R}^m$ be linear. Let $\{v_1, \ldots, v_n\}$ be a basis for the input space and $\{w_1, \ldots, w_m\}$ be a basis for the output space. For each $j = 1, \ldots, n$, express $T(v_j)$ in the output basis:
+                    $$T(v_j) = a_{1j} w_1 + a_{2j} w_2 + \cdots + a_{mj} w_m$$
+                The coefficients $a_{ij}$ form the matrix $A = [a_{ij}]$. For any input $v = \sum c_j v_j$ with coordinate vector $c = [c_1, \ldots, c_n]^T$, the output is:
+                    $$T(v) = \sum c_j T(v_j) = \sum c_j \left(\sum_i a_{ij} w_i\right) = \sum_i \left(\sum_j a_{ij} c_j\right) w_i$$
+                Thus the output coordinates are $Ac$. The matrix $A$ correctly reproduces the linear transformation in the chosen coordinate systems.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Projection Matrix in the Eigenvector Basis</h4>
+                <p>For projection onto the line spanned by $v_1 = \frac{1}{\sqrt{2}}[1,1]^T$, choose input and output bases $\{v_1, v_2\}$ where $v_2 = \frac{1}{\sqrt{2}}[1,-1]^T$. Then $T(v_1) = v_1$ and $T(v_2) = 0$. The first column of $A$ is the coordinates of $T(v_1) = v_1$ in the output basis: $[1, 0]^T$. The second column is the coordinates of $T(v_2) = 0$: $[0, 0]^T$. Thus $A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix} = \Lambda$, the diagonal matrix of eigenvalues. In the standard basis, the same projection has matrix $P = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$, which is similar to $\Lambda$ via the change-of-basis matrix $S = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$: $P = S \Lambda S^{-1}$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: The Derivative Matrix</h4>
+                <p>Let $T: P_3 \to P_2$ be differentiation. Input basis: $\{1, x, x^2\}$. Output basis: $\{1, x\}$. Compute $T$ on each input basis vector:
+                    $$T(1) = 0 = 0 \cdot 1 + 0 \cdot x \Rightarrow \text{column 1} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$$
+                    $$T(x) = 1 = 1 \cdot 1 + 0 \cdot x \Rightarrow \text{column 2} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$$
+                    $$T(x^2) = 2x = 0 \cdot 1 + 2 \cdot x \Rightarrow \text{column 3} = \begin{bmatrix} 0 \\ 2 \end{bmatrix}$$
+                Thus $A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{bmatrix}$. For $p(x) = c_1 + c_2 x + c_3 x^2$, the input coordinates are $[c_1, c_2, c_3]^T$, and $A[c_1, c_2, c_3]^T = [c_2, 2c_3]^T$, which are the coordinates of $p'(x) = c_2 + 2c_3 x$ in the output basis.</p>
             </div>
 
             <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Know T on Basis, Know T Everywhere"</strong>
+                    <p>If you know what a linear transformation does to each vector in a basis, you know it everywhere. Linearity does the rest: $T(\sum c_i v_i) = \sum c_i T(v_i)$.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Column j = T(v_j) in Output Coordinates"</strong>
+                    <p>To build the matrix: apply $T$ to the $j$-th input basis vector, express the result in the output basis, and those coefficients become column $j$.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Eigenvector Basis Gives Diagonal Matrix"</strong>
+                    <p>The best basis for a linear transformation is the eigenvector basis. In this basis, the matrix is diagonal with eigenvalues on the diagonal. The standard basis usually gives a full matrix.</p>
+                </div>
+            </div>
+
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>Always identify the input basis and output basis before constructing the matrix</li>
+                    <li>The $j$-th column of $A$ is $T(v_j)$ written in the output basis—not the input basis</li>
+                    <li>If input basis = output basis = eigenvector basis, the matrix is diagonal</li>
+                    <li>If input basis = output basis = standard basis, the matrix is the "usual" one</li>
+                    <li>For the derivative transformation, the matrix is always a shift: row $i$ has nonzeros in column $i+1$</li>
+                    <li>Similarity $B = S^{-1}AS$ corresponds to changing both input and output bases</li>
                 </ul>
             </div>
 
             <h3>Visual Aids</h3>
+
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure: From Transformation to Matrix</h4>
+                <p>The construction process:
+                    $$v \xrightarrow{\text{coordinates } c} Ac \xrightarrow{\text{output coordinates}} T(v)$$
+                The matrix $A$ encodes the transformation $T$ with respect to the chosen bases. Change the bases, change $A$.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Projection in Two Different Bases</h4>
+                <p>Same transformation, different matrices:
+                    $$\text{Eigenvector basis: } A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$$
+                    $$\text{Standard basis: } P = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$$
+                The eigenvector basis diagonalizes the projection; the standard basis does not. Both represent the same linear map.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: The Derivative as a Matrix</h4>
+                <p>Differentiation $T: P_3 \to P_2$ with bases $\{1, x, x^2\}$ and $\{1, x\}$:
+                    $$A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{bmatrix}$$
+                The matrix shifts coefficients: $[c_1, c_2, c_3]^T \mapsto [c_2, 2c_3]^T$. This is the matrix representation of the derivative operator.</p>
             </div>
 
             <h3>Worked Examples</h3>
+
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
+                <h4>Example 1: Matrix of a Projection in the Eigenvector Basis</h4>
+                <p><strong>Problem:</strong> Find the matrix of the projection onto the line $y=x$ in $\mathbb{R}^2$, using the basis $\{v_1, v_2\}$ where $v_1 = \frac{1}{\sqrt{2}}[1,1]^T$ and $v_2 = \frac{1}{\sqrt{2}}[1,-1]^T$ for both inputs and outputs.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <ul>
+                    <li>$T(v_1) = v_1$ (projection leaves the line unchanged)</li>
+                    <li>$T(v_2) = 0$ (projection kills the perpendicular direction)</li>
+                    <li>Column 1: coordinates of $T(v_1) = v_1$ in the output basis are $[1, 0]^T$</li>
+                    <li>Column 2: coordinates of $T(v_2) = 0$ are $[0, 0]^T$</li>
+                    <li>Matrix: $A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$</li>
+                    <li>This is diagonal because the chosen basis consists of eigenvectors</li>
+                    <li>In the standard basis, the same projection has matrix $P = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$</li>
+                </ul>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
+                <h4>Example 2: Matrix of a Projection in the Standard Basis</h4>
+                <p><strong>Problem:</strong> Find the matrix of projection onto the line $y=x$ using the standard basis $\{e_1, e_2\}$ for both inputs and outputs.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <ul>
+                    <li>$T(e_1) = T([1,0]^T) = \text{proj}_{y=x}[1,0] = \frac{1}{2}[1,1]^T$</li>
+                    <li>$T(e_2) = T([0,1]^T) = \text{proj}_{y=x}[0,1] = \frac{1}{2}[1,1]^T$</li>
+                    <li>Column 1: coordinates of $T(e_1) = [1/2, 1/2]^T$ in standard basis are $[1/2, 1/2]^T$</li>
+                    <li>Column 2: coordinates of $T(e_2) = [1/2, 1/2]^T$ are $[1/2, 1/2]^T$</li>
+                    <li>Matrix: $P = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$</li>
+                    <li>This matches $P = A(A^T A)^{-1} A^T$ with $A = [1,1]^T$</li>
+                    <li>The matrix is symmetric ($P^T = P$) and idempotent ($P^2 = P$), but not diagonal</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Matrix of the Derivative Transformation</h4>
+                <p><strong>Problem:</strong> Let $T: P_3 \to P_2$ be differentiation. Use input basis $\{1, x, x^2\}$ and output basis $\{1, x\}$. Find the matrix $A$ and verify it reproduces the derivative.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>$T(1) = 0 = 0 \cdot 1 + 0 \cdot x \Rightarrow$ column 1 = $[0, 0]^T$</li>
+                    <li>$T(x) = 1 = 1 \cdot 1 + 0 \cdot x \Rightarrow$ column 2 = $[1, 0]^T$</li>
+                    <li>$T(x^2) = 2x = 0 \cdot 1 + 2 \cdot x \Rightarrow$ column 3 = $[0, 2]^T$</li>
+                    <li>Matrix: $A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{bmatrix}$</li>
+                    <li>For $p(x) = 3 + 2x - x^2$, input coordinates are $[3, 2, -1]^T$</li>
+                    <li>$A[3, 2, -1]^T = [2, -2]^T$, meaning $p'(x) = 2 - 2x$ ✓</li>
+                    <li>The matrix shifts the coefficient of $x$ to the constant term and doubles the coefficient of $x^2$ to the $x$ term</li>
+                </ul>
             </div>
 
             <h3>Practice Problems</h3>
+
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <h4>Problem Set 31</h4>
+
+                <p><strong>Problem 1:</strong> Let $T: \mathbb{R}^2 \to \mathbb{R}^2$ be the linear transformation that rotates every vector by 90° counterclockwise: $T([x,y]^T) = [-y, x]^T$. Find the matrix of $T$ with respect to the standard basis.</p>
+                <p><em>Hint: Compute $T(e_1)$ and $T(e_2)$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$T(e_1) = T([1,0]^T) = [0,1]^T$, so column 1 is $[0,1]^T$. $T(e_2) = T([0,1]^T) = [-1,0]^T$, so column 2 is $[-1,0]^T$. Matrix: $A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$. Verify: $A[x,y]^T = [-y, x]^T$ ✓.</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> Let $T: \mathbb{R}^3 \to \mathbb{R}^2$ be defined by $T([x,y,z]^T) = [x+y, y+z]^T$. Find the matrix of $T$ with respect to the standard bases.</p>
+                <p><em>Hint: Compute $T(e_1), T(e_2), T(e_3)$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$T(e_1) = T([1,0,0]^T) = [1,0]^T$, column 1 = $[1,0]^T$. $T(e_2) = T([0,1,0]^T) = [1,1]^T$, column 2 = $[1,1]^T$. $T(e_3) = T([0,0,1]^T) = [0,1]^T$, column 3 = $[0,1]^T$. Matrix: $A = \begin{bmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \end{bmatrix}$.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Let $T: \mathbb{R}^2 \to \mathbb{R}^2$ be the projection onto the line spanned by $[1,2]^T$. Find the matrix of $T$ in the standard basis. Then find the matrix in the basis consisting of $[1,2]^T$ and $[-2,1]^T$ (the eigenvector basis).</p>
+                <p><em>Hint: In the eigenvector basis, the matrix should be diagonal. In the standard basis, use $P = A(A^T A)^{-1} A^T$ with $A = [1,2]^T$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Standard basis: $P = \frac{1}{5}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$. Eigenvector basis: $v_1 = [1,2]^T$ (eigenvalue 1), $v_2 = [-2,1]^T$ (eigenvalue 0). $T(v_1) = v_1 \Rightarrow$ column 1 = $[1,0]^T$. $T(v_2) = 0 \Rightarrow$ column 2 = $[0,0]^T$. Matrix: $A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$. The two matrices are similar: $P = S A S^{-1}$ where $S = \begin{bmatrix} 1 & -2 \\ 2 & 1 \end{bmatrix}$.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Let $T: P_2 \to P_3$ be the transformation $T(p(x)) = \int_0^x p(t)\,dt$. Find the matrix of $T$ with respect to the bases $\{1, x, x^2\}$ for $P_2$ and $\{1, x, x^2, x^3\}$ for $P_3$.</p>
+                <p><em>Hint: Compute $T(1) = x$, $T(x) = x^2/2$, $T(x^2) = x^3/3$.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>$T(1) = x = 0 \cdot 1 + 1 \cdot x + 0 \cdot x^2 + 0 \cdot x^3 \Rightarrow$ column 1 = $[0, 1, 0, 0]^T$. $T(x) = x^2/2 = 0 \cdot 1 + 0 \cdot x + \frac{1}{2} \cdot x^2 + 0 \cdot x^3 \Rightarrow$ column 2 = $[0, 0, 1/2, 0]^T$. $T(x^2) = x^3/3 \Rightarrow$ column 3 = $[0, 0, 0, 1/3]^T$. Matrix: $A = \begin{bmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & 1/2 & 0 \\ 0 & 0 & 1/3 \end{bmatrix}$. This is a $4 \times 3$ matrix that integrates polynomials.</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-30.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-30.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-32.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-32.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>

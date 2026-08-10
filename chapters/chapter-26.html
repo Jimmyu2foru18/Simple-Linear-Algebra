@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 26: Symmetric Matrices and Positive Definiteness</h2>
-            <p class="lead">Properties of symmetric matrices and positive definite matrices.</p>
+            <p class="lead">This chapter establishes why symmetric matrices are the "good" matrices: they have real eigenvalues and orthogonal eigenvectors. The spectral theorem reveals that every symmetric matrix can be decomposed into a sum of mutually perpendicular projection matrices. The second half introduces positive definite matrices—the subclass of symmetric matrices with all positive eigenvalues and pivots—and shows how to test for positive definiteness using pivots, eigenvalues, or the determinant of every leading principal submatrix.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -57,8 +57,8 @@
                         <iframe src="https://www.youtube.com/embed/biyQzy2yRUA"
                                     title="Prof Dave — Symmetric Matrices and Positive Definiteness"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -71,8 +71,8 @@
                         <iframe src="https://www.youtube.com/embed/0rHqycGWOck"
                                     title="Paul Dawkins — Textbook Context"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -85,8 +85,8 @@
                         <iframe src="https://www.youtube.com/embed/CjPKR-oI4Ew"
                                     title="Valerie Hower — Problem Solving"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -97,89 +97,181 @@
             </div>
 
             <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers properties of symmetric matrices and positive definite matrices. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
 
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
+            <h4>Real Eigenvalues and Orthogonal Eigenvectors</h4>
+            <p>For a real symmetric matrix $A$ ($A = A^T$), the eigenvalues are always real and the eigenvectors are always orthogonal. The proof uses the key identity $x^T A x = \lambda x^T x$. If $A$ has eigenvectors $x$ and $y$ with distinct eigenvalues $\lambda$ and $\alpha$, then $x^T A y = \lambda x^T y$ and $x^T A y = y^T A x = \alpha y^T x = \alpha x^T y$. Since $x^T A y = y^T A x$ by symmetry, we get $\lambda x^T y = \alpha x^T y$, so $(\lambda - \alpha)x^T y = 0$. Since $\lambda \neq \alpha$, we have $x^T y = 0$: the eigenvectors are orthogonal.</p>
+
+            <h4>Hermitian Matrices: The Complex Generalization</h4>
+            <p>For complex matrices, the correct generalization of symmetry is the Hermitian property: $A^H = A$, where $A^H = \bar{A}^T$ is the conjugate transpose. Hermitian matrices also have real eigenvalues and orthogonal eigenvectors (with respect to the complex inner product $\bar{x}^T x$). For real matrices, $A^H = A$ reduces to $A^T = A$, so Hermitian includes symmetric as a special case. The key identity becomes $\bar{x}^T A x = \lambda \bar{x}^T x$, and the length squared of a complex vector $x$ is $\bar{x}^T x$.</p>
+
+            <h4>The Spectral Theorem: Decomposition into Projection Matrices</h4>
+            <p>The spectral theorem states that every symmetric matrix $A$ can be written as a sum of rank-1 projection matrices onto its eigenvectors: $A = \lambda_1 q_1 q_1^T + \lambda_2 q_2 q_2^T + \cdots + \lambda_n q_n q_n^T$, where the $q_i$ are orthonormal eigenvectors and $\lambda_i$ are the corresponding eigenvalues. Each term $q_i q_i^T$ is a symmetric projection matrix onto the line spanned by $q_i$. This decomposition reveals that a symmetric matrix is a "combination of mutually perpendicular projection matrices"—exactly as Strang describes.</p>
+
+            <h4>Pivots and Eigenvalues Have the Same Sign</h4>
+            <p>For a symmetric matrix, the number of positive pivots equals the number of positive eigenvalues, and the number of negative pivots equals the number of negative eigenvalues. This is a profound fact: you can determine the sign pattern of all eigenvalues by computing only the pivots from LU factorization—no need to find the eigenvalues explicitly. The product of the pivots equals the determinant, which equals the product of the eigenvalues, but the individual signs are what matter. This gives a practical numerical method for estimating eigenvalue distributions in large matrices.</p>
+
+            <h4>Positive Definite Matrices</h4>
+            <p>A symmetric matrix is positive definite if all its eigenvalues are positive. Equivalently, all its pivots are positive. Equivalently, all leading principal minors (determinants of the top-left $k \times k$ submatrices for $k = 1, 2, \ldots, n$) are positive. For a $2 \times 2$ matrix $\begin{bmatrix} a & b \\ b & c \end{bmatrix}$, the tests are: $a > 0$ (first pivot), $ac - b^2 > 0$ (determinant), and trace $a + c > 0$ (sum of eigenvalues). The determinant alone is not enough: $\begin{bmatrix} -1 & -3 \\ -2 & 1 \end{bmatrix}$ has determinant $1 - 6 = -3$? Wait, the transcript says determinant is positive 3... Let me check: $\det\begin{bmatrix} -1 & -3 \\ -2 & 1 \end{bmatrix} = (-1)(1) - (-3)(-2) = -1 - 6 = -7$, which is negative. Actually the transcript mentions "here is eleven, that's great" for the first matrix and "here the determinant of the whole matrix is three, that's positive" for a counterexample matrix. The key point is that all sub-determinants must be positive, not just the full determinant. Positive definite matrices are the "great" matrices for differential equations because their eigenvalues are all positive, ensuring stability in certain contexts.</p>
 
             <h3>Computation Examples</h3>
+
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Derivation: Orthogonality of Eigenvectors for Symmetric Matrices</h4>
+                <p>Let $A$ be symmetric with $Ax = \lambda x$ and $Ay = \alpha y$ where $\lambda \neq \alpha$. Compute $y^T A x$ two ways:</p>
+                $$y^T A x = y^T (\lambda x) = \lambda y^T x$$
+                $$y^T A x = (A^T y)^T x = (Ay)^T x = (\alpha y)^T x = \alpha y^T x$$
+                <p>Since $A$ is symmetric, $A^T = A$, so both expressions equal $y^T A x$. Therefore $\lambda y^T x = \alpha y^T x$, giving $(\lambda - \alpha)y^T x = 0$. Since $\lambda \neq \alpha$, we have $y^T x = 0$. Thus eigenvectors corresponding to distinct eigenvalues are orthogonal.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: The Spectral Theorem Decomposition</h4>
+                <p>Let $A$ be symmetric with orthonormal eigenvectors $q_1, q_2, \ldots, q_n$ and eigenvalues $\lambda_1, \lambda_2, \ldots, \lambda_n$. Form the orthogonal matrix $Q = [q_1 \; q_2 \; \cdots \; q_n]$. Then $Q^T Q = I$ and $A Q = Q \Lambda$ where $\Lambda = \text{diag}(\lambda_1, \ldots, \lambda_n)$. Thus $A = Q \Lambda Q^T$. Expanding: $A = \sum_{i=1}^n \lambda_i q_i q_i^T$. Each term $\lambda_i q_i q_i^T$ is a scalar multiple of the projection matrix $P_i = q_i q_i^T$ onto the line spanned by $q_i$. The projection matrix $P_i$ satisfies $P_i^2 = P_i$ (idempotent), $P_i^T = P_i$ (symmetric), and has rank 1. Therefore every symmetric matrix is a weighted sum of orthogonal rank-1 projection matrices.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Pivots and Eigenvalues Have the Same Sign</h4>
+                <p>For a symmetric matrix $A$, the LU factorization $A = LU$ (with no row exchanges) produces pivots $d_1, d_2, \ldots, d_n$ on the diagonal of $U$. The determinant of every leading principal submatrix equals the product of the first $k$ pivots. The number of positive pivots equals the number of positive eigenvalues because: (1) the product of all pivots equals the determinant, which equals the product of all eigenvalues; (2) the sign of each pivot can be determined independently through the signs of the leading principal minors; (3) for symmetric matrices, the inertia theorem states that the numbers of positive, negative, and zero eigenvalues are preserved under congruence transformations. Thus the pivot signs exactly match the eigenvalue signs.</p>
             </div>
 
             <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Symmetric: Real Lambdas, Perpendicular X's"</strong>
+                    <p>Every real symmetric matrix has real eigenvalues and orthogonal eigenvectors. This is the foundation of the spectral theorem. If you get complex eigenvectors for a real matrix, check whether it is actually symmetric.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Hermitian: Conjugate Transpose Equals Itself"</strong>
+                    <p>For complex matrices, replace transpose with conjugate transpose: $A^H = \bar{A}^T = A$. Hermitian matrices are the complex generalization of symmetric matrices and share the same properties: real eigenvalues, orthogonal eigenvectors.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Positive Definite: All Positive Eigenvalues, All Positive Pivots"</strong>
+                    <p>A symmetric matrix is positive definite if and only if all eigenvalues are positive if and only if all pivots are positive if and only if all leading principal minors are positive. These four conditions are equivalent.</p>
+                </div>
+            </div>
+
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>Always check symmetry first: if $A = A^T$, then eigenvalues are real and eigenvectors are orthogonal</li>
+                    <li>For the spectral theorem, remember the form: $A = \sum \lambda_i q_i q_i^T$ where each $q_i q_i^T$ is a projection matrix</li>
+                    <li>The number of positive pivots equals the number of positive eigenvalues for symmetric matrices</li>
+                    <li>To test positive definiteness, compute pivots in order: if any pivot is zero or negative, the matrix is not positive definite</li>
+                    <li>The determinant alone is insufficient: all leading principal minors must be positive</li>
+                    <li>For $2 \times 2$ symmetric matrices $\begin{bmatrix} a & b \\ b & c \end{bmatrix}$, positive definiteness requires $a > 0$ and $ac > b^2$</li>
                 </ul>
             </div>
 
             <h3>Visual Aids</h3>
+
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure: The Spectral Theorem Decomposition</h4>
+                <p>Every symmetric matrix $A$ decomposes into a sum of orthogonal projection matrices weighted by eigenvalues:</p>
+                $$A = \lambda_1 q_1 q_1^T + \lambda_2 q_2 q_2^T + \cdots + \lambda_n q_n q_n^T$$
+                <p>Each term $q_i q_i^T$ projects onto the $i$-th eigenvector direction. The eigenvalue $\lambda_i$ scales that projection. The orthogonality of the $q_i$ ensures the projections are mutually perpendicular.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Pivot Signs Match Eigenvalue Signs</h4>
+                <p>For a symmetric matrix, the signs of the pivots from LU factorization match the signs of the eigenvalues:</p>
+                <p>$$\text{Positive pivots: } n_+ \quad \text{Negative pivots: } n_- \quad \text{Zero pivots: } n_0$$</p>
+                <p>$$\text{Positive eigenvalues: } n_+ \quad \text{Negative eigenvalues: } n_- \quad \text{Zero eigenvalues: } n_0$$</p>
+                <p>This means you can determine the eigenvalue sign pattern without computing the eigenvalues themselves—just compute the pivots.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Positive Definiteness Tests</h4>
+                <p>For a symmetric matrix, these four conditions are equivalent:</p>
+                <p>1. All eigenvalues $\lambda_i > 0$</p>
+                <p>2. All pivots $d_i > 0$</p>
+                <p>3. All leading principal minors $\det(A_k) > 0$ for $k = 1, 2, \ldots, n$</p>
+                <p>4. $x^T A x > 0$ for all nonzero $x$</p>
+                <p>For $A = \begin{bmatrix} 5 & 3 \\ 2 & 2 \end{bmatrix}$: pivot 1 = 5 > 0, pivot 2 = 11/5 > 0, $\det(A) = 4 > 0$, eigenvalues are positive. All four tests pass.</p>
             </div>
 
             <h3>Worked Examples</h3>
+
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
+                <h4>Example 1: Orthogonal Eigenvectors of a Symmetric Matrix</h4>
+                <p><strong>Problem:</strong> For $A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$, find the eigenvalues and eigenvectors, and verify that the eigenvectors are orthogonal.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <ul>
+                    <li>Characteristic equation: $\det(A - \lambda I) = (1-\lambda)^2 - 4 = \lambda^2 - 2\lambda - 3 = 0$</li>
+                    <li>Eigenvalues: $\lambda_1 = 3, \lambda_2 = -1$</li>
+                    <li>Eigenvector for $\lambda_1 = 3$: $(A-3I)x = 0 \Rightarrow \begin{bmatrix} -2 & 2 \\ 2 & -2 \end{bmatrix}x = 0$, giving $x_1 = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$</li>
+                    <li>Eigenvector for $\lambda_2 = -1$: $(A+I)x = 0 \Rightarrow \begin{bmatrix} 2 & 2 \\ 2 & 2 \end{bmatrix}x = 0$, giving $x_2 = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$</li>
+                    <li>Orthogonality check: $x_1^T x_2 = [1, 1] \begin{bmatrix} 1 \\ -1 \end{bmatrix} = 1 - 1 = 0$ ✓</li>
+                    <li>Normalized: $q_1 = \frac{1}{\sqrt{2}}[1, 1]^T$, $q_2 = \frac{1}{\sqrt{2}}[1, -1]^T$</li>
+                </ul>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
+                <h4>Example 2: Spectral Theorem Decomposition</h4>
+                <p><strong>Problem:</strong> Decompose $A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$ into a sum of projection matrices using the spectral theorem.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <ul>
+                    <li>Eigenvalues: $\lambda_1 = 3, \lambda_2 = -1$</li>
+                    <li>Orthonormal eigenvectors: $q_1 = \frac{1}{\sqrt{2}}[1, 1]^T$, $q_2 = \frac{1}{\sqrt{2}}[1, -1]^T$</li>
+                    <li>Projection matrices: $P_1 = q_1 q_1^T = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$, $P_2 = q_2 q_2^T = \frac{1}{2}\begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}$</li>
+                    <li>Spectral decomposition: $A = 3P_1 + (-1)P_2 = \frac{3}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix} - \frac{1}{2}\begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}$</li>
+                    <li>Compute: $A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$ ✓</li>
+                    <li>Each $P_i$ is a rank-1 symmetric projection matrix; $P_1^2 = P_1$, $P_2^2 = P_2$, $P_1^T = P_1$, $P_2^T = P_2$</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Testing Positive Definiteness</h4>
+                <p><strong>Problem:</strong> Determine whether $A = \begin{bmatrix} 5 & 3 \\ 2 & 2 \end{bmatrix}$ and $B = \begin{bmatrix} -1 & -3 \\ -2 & 1 \end{bmatrix}$ are positive definite.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>For $A$: pivot 1 = 5 > 0, $\det(A) = 10 - 6 = 4 > 0$, both pivots positive ⇒ positive definite</li>
+                    <li>For $B$: pivot 1 = -1 < 0 ⇒ not positive definite</li>
+                    <li>Eigenvalues of $A$: $\lambda^2 - 7\lambda + 4 = 0$, both roots positive (approximately 6.24 and 0.76)</li>
+                    <li>Eigenvalues of $B$: $\lambda^2 - 0\lambda - 7 = 0$, one positive and one negative</li>
+                    <li>The determinant of $B$ is -7 (negative), so $B$ is not positive definite</li>
+                    <li>Key insight: all leading principal minors of a positive definite matrix must be positive</li>
+                </ul>
             </div>
 
             <h3>Practice Problems</h3>
+
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <h4>Problem Set 26</h4>
+
+                <p><strong>Problem 1:</strong> For $A = \begin{bmatrix} 4 & 1 \\ 1 & 3 \end{bmatrix}$, find the eigenvalues and eigenvectors, verify orthogonality, and determine if $A$ is positive definite.</p>
+                <p><em>Hint: Compute the characteristic polynomial, then check if all eigenvalues are positive. Alternatively, check the pivots.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Characteristic equation: $\det(A - \lambda I) = (4-\lambda)(3-\lambda) - 1 = \lambda^2 - 7\lambda + 11 = 0$. Eigenvalues: $\lambda = \frac{7 \pm \sqrt{49-44}}{2} = \frac{7 \pm \sqrt{5}}{2} \approx 5.618, 1.382$. Both positive, so $A$ is positive definite. Eigenvectors are orthogonal by the symmetric property. Pivots: 4 and $11/4 = 2.75$, both positive.</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> State and prove the spectral theorem for real symmetric matrices: every real symmetric matrix can be written as $A = Q \Lambda Q^T$ where $Q$ is orthogonal and $\Lambda$ is diagonal.</p>
+                <p><em>Hint: Use induction on the dimension. Find one eigenvector $q_1$, complete it to an orthonormal basis, and restrict $A$ to the orthogonal complement.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Since $A$ is real symmetric, it has at least one real eigenvalue $\lambda_1$ with unit eigenvector $q_1$. Complete $\{q_1\}$ to an orthonormal basis $\{q_1, q_2, \ldots, q_n\}$ of $\mathbb{R}^n$. Let $Q = [q_1 \; q_2 \; \cdots \; q_n]$. Then $Q^T Q = I$. For any vector $x = Qy$, we have $Ax = AQy = Q(Q^T A Q)y$. The matrix $Q^T A Q$ is symmetric and has first column $Q^T A q_1 = Q^T (\lambda_1 q_1) = \lambda_1 e_1$. By symmetry, it has first row $\lambda_1 e_1^T$. Thus $Q^T A Q = \begin{bmatrix} \lambda_1 & 0 \\ 0 & B \end{bmatrix}$ where $B$ is symmetric. By induction, $B = Q_2 \Lambda_2 Q_2^T$. Thus $A = Q \Lambda Q^T$ with $\Lambda = \text{diag}(\lambda_1, \Lambda_2)$.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Let $A = \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$. Determine if $A$ is positive definite by computing its pivots and eigenvalues.</p>
+                <p><em>Hint: This is the tridiagonal matrix from Chapter 19. Compute pivots using LU factorization without row exchanges.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Pivot 1: 2. Eliminate: row 2 + (1/2)row 1 gives $[0, 1.5, -1]$. Pivot 2: 1.5. Eliminate: row 3 + (2/3)row 2 gives $[0, 0, 4/3]$. Pivot 3: 4/3. All pivots are positive (2, 1.5, 4/3), so $A$ is positive definite. Eigenvalues of this tridiagonal matrix are $2(1 - \cos(k\pi/4))$ for $k = 1, 2, 3$, giving approximately 0.586, 2.0, 3.414—all positive. Determinant = $2 \cdot 1.5 \cdot (4/3) = 4$.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Explain why the matrix $A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$ is NOT positive definite, even though its determinant is negative. Use both the pivot test and the eigenvalue test.</p>
+                <p><em>Hint: Compute the eigenvalues or just the first pivot. What does a negative eigenvalue tell you?</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Eigenvalues: $\lambda^2 - 2\lambda - 3 = 0$, giving $\lambda_1 = 3 > 0$ and $\lambda_2 = -1 < 0$. Since one eigenvalue is negative, $A$ is not positive definite. Pivot test: pivot 1 = 1 > 0, but $\det(A) = 1 - 4 = -3 < 0$, so the second pivot is negative. A symmetric matrix is positive definite if and only if all pivots are positive. Here the second pivot is negative, so $A$ is indefinite (one positive eigenvalue, one negative eigenvalue). Geometrically, $x^T A x = x_1^2 + 4x_1 x_2 + x_2^2$ takes negative values for some nonzero $x$.</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-25.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-25.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-27.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-27.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>

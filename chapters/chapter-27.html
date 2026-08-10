@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 27: Complex Matrices; Fast Fourier Transform</h2>
-            <p class="lead">Complex matrix algebra and the FFT algorithm.</p>
+            <p class="lead">This chapter makes the leap from real to complex vector spaces, introducing the Fourier matrix as the most important example of a complex matrix with orthonormal columns. The $n \times n$ Fourier matrix $F_n$ is constructed from the $n$-th roots of unity, and its orthogonal columns make the inverse immediate: $F_n^{-1} = \bar{F}_n^T / n$. The climax is the Fast Fourier Transform (FFT), the algorithm that reduces the cost of multiplying by an $n \times n$ matrix from $n^2$ operations to $\frac{1}{2}n \log_2 n$ operations by recursively factoring $F_n$ into smaller Fourier matrices—a reduction by a factor of 200 for $n = 1024$.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -57,13 +57,13 @@
                         <iframe src="https://www.youtube.com/embed/zHbfZWZJTGc"
                                     title="Prof Dave — Complex Matrices; Fast Fourier Transform"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
                         <h5>Prof. Dave Explains</h5>
-                        <p>Concise breakdown of complex matrices; fast fourier transform</p>
+                        <p>Concise breakdown of complex matrices and FFT</p>
                     </div>
                 </div>
                 <div class="video-card">
@@ -71,8 +71,8 @@
                         <iframe src="https://www.youtube.com/embed/L2UI_waWqNs"
                                     title="Paul Dawkins — Textbook Context"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -85,8 +85,8 @@
                         <iframe src="https://www.youtube.com/embed/NWwHDv3u_Ks"
                                     title="Valerie Hower — Problem Solving"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -97,89 +97,189 @@
             </div>
 
             <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers complex matrix algebra and the fft algorithm. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
 
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
+            <h4>Roots of Unity and the Primitive Root $W$</h4>
+            <p>The $n$-th roots of unity are the complex numbers $1, W, W^2, \ldots, W^{n-1}$ where $W = e^{2\pi i/n}$. These lie on the unit circle in the complex plane at angles $0, 2\pi/n, 4\pi/n, \ldots, 2\pi(n-1)/n$. The number $W$ is called the primitive $n$-th root of unity because all other roots are powers of $W$. For $n=4$, $W = e^{2\pi i/4} = e^{i\pi/2} = i$, and the four roots are $1, i, -1, -i$. For $n=6$, $W = e^{2\pi i/6} = e^{i\pi/3} = \frac{1}{2} + i\frac{\sqrt{3}}{2}$, and the six roots include $W^6 = 1$. Every power of $W$ has absolute value 1, so all roots lie on the unit circle.</p>
+
+            <h4>The Fourier Matrix $F_n$</h4>
+            <p>The $n \times n$ Fourier matrix $F_n$ has entries $(F_n)_{jk} = W^{jk}$ where $W = e^{2\pi i/n}$ and the indices $j, k$ start at 0. For $n=4$, the matrix is:
+                $$F_4 = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & i & -1 & -i \\ 1 & -1 & 1 & -1 \\ 1 & -i & -1 & i \end{bmatrix}$$
+            The entry in row $j$, column $k$ is $W^{jk} = i^{jk}$. The pattern is clear: the exponents are the product of the row number and column number. The Fourier matrix is the matrix that computes the discrete Fourier transform: multiplying a vector $x$ by $F_n$ gives its Fourier coefficients.</p>
+
+            <h4>Orthogonal Columns and the Inverse</h4>
+            <p>The columns of $F_n$ are orthogonal but not orthonormal. The inner product of column $j$ with column $k$ is $\sum_{m=0}^{n-1} W^{mj} \bar{W}^{mk} = \sum_{m=0}^{n-1} W^{m(j-k)}$. When $j \neq k$, this is a geometric series that sums to 0. When $j = k$, each term is $W^0 = 1$, so the sum is $n$. Thus the columns are orthogonal and each has length squared $n$. Dividing by $\sqrt{n}$ gives orthonormal columns. The inverse of $F_n$ is therefore $F_n^{-1} = \frac{1}{n} \bar{F}_n^T$, where $\bar{F}_n$ is the complex conjugate of $F_n$. This is the complex analogue of $Q^{-1} = Q^T$ for real orthogonal matrices.</p>
+
+            <h4>The Fast Fourier Transform (FFT)</h4>
+            <p>The FFT is an algorithm that multiplies by $F_n$ (or $F_n^{-1}$) in $\frac{1}{2}n \log_2 n$ operations instead of $n^2$. The key insight is that $F_{2n}$ can be expressed in terms of two copies of $F_n$ separated by a permutation matrix that selects even and odd indexed components. Specifically, for $n=2m$:
+                $$F_{2n} = \begin{bmatrix} I & D \\ I & -D \end{bmatrix} \begin{bmatrix} F_n & 0 \\ 0 & F_n \end{bmatrix} \begin{bmatrix} P \\ 0 & I \end{bmatrix}$$
+            where $P$ is the permutation matrix that reorders $[x_0, x_1, \ldots, x_{2n-1}]$ into $[x_0, x_2, \ldots, x_{2n-2}, x_1, x_3, \ldots, x_{2n-1}]$ and $D$ is a diagonal matrix of powers of $W$. The recursive structure means we solve two problems of size $n$ instead of one problem of size $2n$. The recurrence for the operation count is $M(2n) = 2M(n) + O(n)$, which solves to $M(n) = O(n \log n)$. For $n=1024$, this is $512 \times 10 = 5120$ operations instead of $1,048,576$—a factor of 200 reduction.</p>
 
             <h3>Computation Examples</h3>
+
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Derivation: The Fourier Matrix for $n=4$</h4>
+                <p>For $n=4$, the primitive root is $W = e^{2\pi i/4} = e^{i\pi/2} = i$. The entries of $F_4$ are $W^{jk} = i^{jk}$ for $j, k = 0, 1, 2, 3$:</p>
+                $$F_4 = \begin{bmatrix} i^{0\cdot0} & i^{0\cdot1} & i^{0\cdot2} & i^{0\cdot3} \\ i^{1\cdot0} & i^{1\cdot1} & i^{1\cdot2} & i^{1\cdot3} \\ i^{2\cdot0} & i^{2\cdot1} & i^{2\cdot2} & i^{2\cdot3} \\ i^{3\cdot0} & i^{3\cdot1} & i^{3\cdot2} & i^{3\cdot3} \end{bmatrix} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & i & -1 & -i \\ 1 & -1 & 1 & -1 \\ 1 & -i & -1 & i \end{bmatrix}$$
+                <p>Each column has length squared $1^2 + 1^2 + 1^2 + 1^2 = 4$. The inner product of column 0 and column 2 is $1\cdot1 + 1\cdot(-1) + 1\cdot1 + 1\cdot(-1) = 0$, confirming orthogonality.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Orthogonality of Fourier Matrix Columns</h4>
+                <p>For $F_n$, the inner product of column $j$ and column $k$ is $\langle c_j, c_k \rangle = \sum_{m=0}^{n-1} W^{mj} \bar{W}^{mk} = \sum_{m=0}^{n-1} W^{m(j-k)}$. When $j = k$, this is $\sum_{m=0}^{n-1} 1 = n$. When $j \neq k$, this is a geometric series with ratio $W^{j-k} \neq 1$:</p>
+                $$\sum_{m=0}^{n-1} (W^{j-k})^m = \frac{1 - (W^{j-k})^n}{1 - W^{j-k}} = \frac{1 - (W^n)^{j-k}}{1 - W^{j-k}} = \frac{1 - 1^{j-k}}{1 - W^{j-k}} = 0$$
+                <p>Thus $\langle c_j, c_k \rangle = n\delta_{jk}$. The columns are orthogonal with length squared $n$. Dividing by $\sqrt{n}$ gives an orthonormal basis.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: The FFT Operation Count</h4>
+                <p>Direct multiplication by $F_n$ requires $n^2$ complex multiplications. The FFT recursively factors $F_{2n}$ into two copies of $F_n$ plus $O(n)$ overhead for the permutation and diagonal matrices. Let $M(n)$ be the operation count for size $n$. Then $M(2n) = 2M(n) + O(n)$. Assuming $M(1) = 0$, unfolding the recurrence for $n = 2^k$:</p>
+                $$M(2^k) = 2M(2^{k-1}) + c \cdot 2^{k-1}$$
+                <p>Dividing by $2^k$: $M(2^k)/2^k = M(2^{k-1})/2^{k-1} + c/2$. Telescoping gives $M(2^k)/2^k = k \cdot c/2$, so $M(2^k) = \frac{c}{2} \cdot k \cdot 2^k = \frac{c}{2} n \log_2 n$. Thus the FFT computes the transform in $O(n \log n)$ operations.</p>
             </div>
 
             <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "W is the Primitive Root: W^n = 1, All Others Are Powers"</strong>
+                    <p>The Fourier matrix is built from $W = e^{2\pi i/n}$. All $n$-th roots of unity are $1, W, W^2, \ldots, W^{n-1}$. The entry in row $j$, column $k$ is $W^{jk}$. Every entry is a power of the same primitive root.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Columns Orthogonal, Length Squared Is n"</strong>
+                    <p>The columns of $F_n$ are orthogonal but not orthonormal. Each column has length squared $n$, so the inverse is $F_n^{-1} = \frac{1}{n}\bar{F}_n^T$. Divide by $\sqrt{n}$ to get an orthonormal matrix.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "FFT: n Squared Becomes n log n"</strong>
+                    <p>The Fast Fourier Transform reduces matrix multiplication from $n^2$ to $n \log_2 n$ by recursively splitting the problem in half. For $n=1024$: $n^2 \approx 10^6$ becomes $n \log_2 n \approx 512 \times 10 = 5120$.</p>
+                </div>
+            </div>
+
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>Memorize the pattern: $F_n$ has entries $W^{jk}$ where $W = e^{2\pi i/n}$ and indices start at 0</li>
+                    <li>For $n=4$, know that $W = i$ and the matrix entries follow $i^{jk}$</li>
+                    <li>To check orthogonality of columns, compute the inner product with conjugation: $\sum W^{mj} \bar{W}^{mk}$</li>
+                    <li>The inverse formula $F_n^{-1} = \frac{1}{n}\bar{F}_n^T$ mirrors $Q^{-1} = Q^T$ for real orthogonal matrices</li>
+                    <li>The FFT recursion is $F_{2n} \to$ two copies of $F_n$ plus permutation and diagonal fix-up</li>
+                    <li>The operation count goes from $n^2$ to $\frac{1}{2}n \log_2 n$—memorize this for exam questions</li>
                 </ul>
             </div>
 
             <h3>Visual Aids</h3>
+
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure: The 6th Roots of Unity</h4>
+                <p>The six 6th roots of unity are $W^k$ for $k = 0, 1, \ldots, 5$ where $W = e^{2\pi i/6} = e^{i\pi/3}$:</p>
+                $$W^0 = 1, \quad W^1 = \tfrac{1}{2} + i\tfrac{\sqrt{3}}{2}, \quad W^2 = -\tfrac{1}{2} + i\tfrac{\sqrt{3}}{2}, \quad W^3 = -1, \quad W^4 = -\tfrac{1}{2} - i\tfrac{\sqrt{3}}{2}, \quad W^5 = \tfrac{1}{2} - i\tfrac{\sqrt{3}}{2}$$
+                <p>All lie on the unit circle at angles $0, \pi/3, 2\pi/3, \pi, 4\pi/3, 5\pi/3$. The primitive root $W = e^{i\pi/3}$ generates all others by taking powers.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: The 4×4 Fourier Matrix</h4>
+                <p>For $n=4$, $W = e^{2\pi i/4} = i$. The Fourier matrix is:</p>
+                $$F_4 = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & i & -1 & -i \\ 1 & -1 & 1 & -1 \\ 1 & -i & -1 & i \end{bmatrix}$$
+                <p>Each column has length squared $1^2+1^2+1^2+1^2=4$. The columns are orthogonal: $\bar{c}_0^T c_2 = 1-1+1-1 = 0$. The inverse is $F_4^{-1} = \frac{1}{4}\bar{F}_4^T = \frac{1}{4}\begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & -i & -1 & i \\ 1 & -1 & 1 & -1 \\ 1 & i & -1 & -i \end{bmatrix}$.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: FFT Recursion Tree</h4>
+                <p>The FFT recursively splits an $n$-point transform into two $n/2$-point transforms:</p>
+                <p>$$F_{64} \to \begin{bmatrix} F_{32} & 0 \\ 0 & F_{32} \end{bmatrix} + \text{permutation} + \text{diagonal fix-up}$$</p>
+                <p>$$F_{32} \to \begin{bmatrix} F_{16} & 0 \\ 0 & F_{16} \end{bmatrix} + \cdots$$</p>
+                <p>The recursion depth is $\log_2 n$. At each level, the cost is $O(n)$ for the fix-up diagonal matrices. Total cost: $O(n \log n)$ instead of $O(n^2)$.</p>
             </div>
 
             <h3>Worked Examples</h3>
+
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
+                <h4>Example 1: Constructing the 4×4 Fourier Matrix</h4>
+                <p><strong>Problem:</strong> Construct $F_4$ explicitly, verify that its columns are orthogonal, and find $F_4^{-1}$.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <ul>
+                    <li>$W = e^{2\pi i/4} = i$</li>
+                    <li>$F_4 = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & i & -1 & -i \\ 1 & -1 & 1 & -1 \\ 1 & -i & -1 & i \end{bmatrix}$</li>
+                    <li>Column 0: $[1, 1, 1, 1]^T$, length squared = 4</li>
+                    <li>Column 1: $[1, i, -1, -i]^T$, length squared = $1+1+1+1=4$</li>
+                    <li>Column 2: $[1, -1, 1, -1]^T$, length squared = 4</li>
+                    <li>Column 3: $[1, -i, -1, i]^T$, length squared = 4</li>
+                    <li>Inner product col 0 · col 2: $1\cdot1 + 1\cdot(-1) + 1\cdot1 + 1\cdot(-1) = 0$ ✓</li>
+                    <li>Inner product col 1 · col 3: $1\cdot1 + i\cdot i + (-1)\cdot(-1) + (-i)\cdot(-i) = 1 - 1 + 1 - 1 = 0$ ✓</li>
+                    <li>Inverse: $F_4^{-1} = \frac{1}{4}\bar{F}_4^T = \frac{1}{4}\begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & -i & -1 & i \\ 1 & -1 & 1 & -1 \\ 1 & i & -1 & -i \end{bmatrix}$</li>
+                </ul>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
+                <h4>Example 2: The 6th Roots of Unity</h4>
+                <p><strong>Problem:</strong> For $n=6$, find $W = e^{2\pi i/6}$, list all six roots, verify that $W^6 = 1$, and compute the magnitude of each root.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <ul>
+                    <li>$W = e^{2\pi i/6} = e^{i\pi/3} = \cos(\pi/3) + i\sin(\pi/3) = \frac{1}{2} + i\frac{\sqrt{3}}{2}$</li>
+                    <li>$W^0 = 1$</li>
+                    <li>$W^1 = \frac{1}{2} + i\frac{\sqrt{3}}{2}$</li>
+                    <li>$W^2 = -\frac{1}{2} + i\frac{\sqrt{3}}{2}$</li>
+                    <li>$W^3 = -1$</li>
+                    <li>$W^4 = -\frac{1}{2} - i\frac{\sqrt{3}}{2}$</li>
+                    <li>$W^5 = \frac{1}{2} - i\frac{\sqrt{3}}{2}$</li>
+                    <li>$W^6 = (e^{i\pi/3})^6 = e^{2\pi i} = 1$ ✓</li>
+                    <li>All roots have magnitude 1: they lie on the unit circle</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: FFT Operation Count for $n=8$</h4>
+                <p><strong>Problem:</strong> Compute the number of operations saved by the FFT for $n=8$. Compare $n^2$ vs $\frac{1}{2}n \log_2 n$.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Direct method: $n^2 = 8^2 = 64$ operations</li>
+                    <li>FFT method: $\frac{1}{2}n \log_2 n = \frac{1}{2} \cdot 8 \cdot 3 = 12$ operations</li>
+                    <li>Speedup: $64/12 \approx 5.33$×</li>
+                    <li>Recursion tree: $F_8 \to 2F_4$ (cost 8 for fix-up), each $F_4 \to 2F_2$ (cost 4 each, total 8), each $F_2 \to 2F_1$ (cost 2 each, total 4×2=8)</li>
+                    <li>Total fix-up cost: $8 + 8 + 8 = 24$ for the three levels... wait, let me recalculate more carefully</li>
+                    <li>Actually, the standard FFT for $n=8$ (radix-2 Cooley-Tukey) does: split into evens and odds, compute two FFTs of size 4, combine with twiddle factors. Two FFTs of size 4: each costs $2 \cdot 2^2 = 8$ at the next level? Let me use the formula: $M(8) = 2M(4) + 4$ (for the diagonal fix-up). $M(4) = 2M(2) + 2$. $M(2) = 2M(1) + 1 = 1$. So $M(4) = 2(1)+2 = 4$, $M(8) = 2(4)+4 = 12$. ✓</li>
+                    <li>For $n=1024$: $n^2 = 1,048,576$, FFT cost $= \frac{1}{2} \cdot 1024 \cdot 10 = 5120$. Speedup: $1,048,576/5120 \approx 205$×.</li>
+                </ul>
             </div>
 
             <h3>Practice Problems</h3>
+
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <h4>Problem Set 27</h4>
+
+                <p><strong>Problem 1:</strong> For $n=8$, find the primitive root $W = e^{2\pi i/8}$, list all eight 8th roots of unity, and verify that $W^8 = 1$.</p>
+                <p><em>Hint: $W = e^{i\pi/4} = \cos(\pi/4) + i\sin(\pi/4) = \frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$W = e^{i\pi/4} = \frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}$. The 8th roots are $W^0=1, W^1, W^2=i, W^3, W^4=-1, W^5, W^6=-i, W^7$. Specifically: $W^0=1$, $W^1=\frac{\sqrt{2}}{2}+i\frac{\sqrt{2}}{2}$, $W^2=i$, $W^3=-\frac{\sqrt{2}}{2}+i\frac{\sqrt{2}}{2}$, $W^4=-1$, $W^5=-\frac{\sqrt{2}}{2}-i\frac{\sqrt{2}}{2}$, $W^6=-i$, $W^7=\frac{\sqrt{2}}{2}-i\frac{\sqrt{2}}{2}$. All have magnitude 1.</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> Write down the $4 \times 4$ Fourier matrix $F_4$ explicitly. Verify that $\bar{F}_4^T F_4 = 4I$.</p>
+                <p><em>Hint: The entry in row $j$, column $k$ is $i^{jk}$ for $j, k = 0, 1, 2, 3$. Compute the conjugate transpose and multiply.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$F_4 = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & i & -1 & -i \\ 1 & -1 & 1 & -1 \\ 1 & -i & -1 & i \end{bmatrix}$. Then $\bar{F}_4^T = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & -i & -1 & i \\ 1 & -1 & 1 & -1 \\ 1 & i & -1 & -i \end{bmatrix}$. Multiplying: each diagonal entry of $\bar{F}_4^T F_4$ is the inner product of a column with itself, which is 4. Each off-diagonal entry is the inner product of two different columns, which is 0 by orthogonality. Thus $\bar{F}_4^T F_4 = 4I$, so $F_4^{-1} = \frac{1}{4}\bar{F}_4^T$.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Explain why the columns of the Fourier matrix $F_n$ are orthogonal. What is the length of each column? Why does this make $F_n^{-1}$ easy to compute?</p>
+                <p><em>Hint: Compute the inner product of column $j$ and column $k$ using the geometric series formula for $\sum_{m=0}^{n-1} W^{m(j-k)}$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>The inner product of column $j$ and column $k$ is $\sum_{m=0}^{n-1} W^{mj} \bar{W}^{mk} = \sum_{m=0}^{n-1} W^{m(j-k)}$. When $j=k$, this is $n$. When $j \neq k$, this is a geometric series with ratio $W^{j-k} \neq 1$: $\sum_{m=0}^{n-1} (W^{j-k})^m = \frac{1-(W^{j-k})^n}{1-W^{j-k}} = \frac{1-1}{1-W^{j-k}} = 0$. Thus the columns are orthogonal. Each column has length $\sqrt{n}$. Since the columns are orthogonal, $F_n^H F_n = nI$, so $F_n^{-1} = \frac{1}{n}F_n^H = \frac{1}{n}\bar{F}_n^T$. This is exactly analogous to $Q^{-1} = Q^T$ for real orthogonal matrices.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> For the FFT, explain why the operation count is $O(n \log n)$ instead of $O(n^2)$. Use the recurrence $M(2n) = 2M(n) + cn$ and solve it for $n = 2^k$.</p>
+                <p><em>Hint: Unfold the recurrence: $M(2^k) = 2M(2^{k-1}) + c \cdot 2^{k-1}$. Divide by $2^k$ and telescope.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>$M(2^k) = 2M(2^{k-1}) + c \cdot 2^{k-1}$. Divide by $2^k$: $M(2^k)/2^k = M(2^{k-1})/2^{k-1} + c/2$. Telescoping: $M(2^k)/2^k = k \cdot c/2$. Thus $M(2^k) = \frac{c}{2} k \cdot 2^k = \frac{c}{2} n \log_2 n$. The $n^2$ term from direct multiplication is replaced by $n \log_2 n$. For $n=1024$: $n^2 = 1,048,576$, while $n \log_2 n \approx 10,240$. The FFT is about 100× faster.</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-26.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-26.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-28.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-28.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>

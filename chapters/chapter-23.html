@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 23: Differential Equations and exp(At)</h2>
-            <p class="lead">Matrix exponentials and solving systems of differential equations.</p>
+            <p class="lead">Solving systems of first-order, constant-coefficient linear differential equations through matrix exponentials. This chapter reveals the beautiful connection between differential equations and linear algebra: the solutions to constant coefficient linear equations are exponentials, and finding those exponentials is exactly the eigenvalue/eigenvector problem. The matrix exponential $e^{At}$ generalizes the scalar exponential $e^{at}$ to matrices, producing solutions of the form $u(t) = e^{At}u(0)$ that describe the evolution of dynamic systems over continuous time.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -57,8 +57,8 @@
                         <iframe src="https://www.youtube.com/embed/9kDpbZCK62Y"
                                     title="Prof Dave — Differential Equations and exp(At)"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -71,8 +71,8 @@
                         <iframe src="https://www.youtube.com/embed/SBa0UrZ9aZo"
                                     title="Paul Dawkins — Textbook Context"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -85,8 +85,8 @@
                         <iframe src="https://www.youtube.com/embed/NWwHDv3u_Ks"
                                     title="Valerie Hower — Problem Solving"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -97,89 +97,190 @@
             </div>
 
             <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers matrix exponentials and solving systems of differential equations. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
 
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
+            <h4>From Difference Equations to Differential Equations</h4>
+            <p>Chapter 22 solved $u_{k+1} = Au_k$ by finding eigenvalues and eigenvectors, giving $u_k = c_1\lambda_1^k x_1 + c_2\lambda_2^k x_2$. Now we solve the continuous version: $\frac{du}{dt} = Au$. The powers $\lambda^k$ become exponentials $e^{\lambda t}$. The formula becomes $u(t) = c_1 e^{\lambda_1 t} x_1 + c_2 e^{\lambda_2 t} x_2$. The structure is identical: eigenvalues control growth or decay, eigenvectors give the directions.</p>
+
+            <h4>The Key Insight: Solutions Are Exponentials</h4>
+            <p>The central idea is that solutions to constant coefficient linear differential equations are exponentials. If we look for a solution of the form $u(t) = e^{\lambda t} x$, then substituting into $\frac{du}{dt} = Au$ gives $\lambda e^{\lambda t} x = A e^{\lambda t} x$, which simplifies to $Ax = \lambda x$. This is exactly the eigenvalue equation! The exponentials handle the time dependence, and the eigenvalue problem handles the spatial direction. All the linear algebra machinery from Chapter 21 applies directly.</p>
+
+            <h4>Steady State and Stability</h4>
+            <p>The eigenvalues determine the long-term behavior. A zero eigenvalue ($\lambda = 0$) produces a constant term $e^{0t} = 1$ that never decays—this is the steady state. A negative real eigenvalue ($\lambda < 0$) produces decay $e^{\lambda t} \to 0$ as $t \to \infty$—this gives stability. A positive real eigenvalue ($\lambda > 0$) produces exponential growth—this is instability. For complex eigenvalues $\lambda = \alpha + i\beta$, only the real part $\alpha$ matters for growth/decay: $|e^{\lambda t}| = e^{\alpha t}$. The imaginary part $\beta$ causes oscillation without changing magnitude.</p>
+
+            <h4>Worked Example: A 2×2 System</h4>
+            <p>Consider $A = \begin{bmatrix} -1 & 2 \\ 1 & -2 \end{bmatrix}$ with initial condition $u(0) = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$. The matrix is singular (column 2 is $-2$ times column 1), so $\lambda_1 = 0$. The trace is $-3$, so $\lambda_2 = -3$. The characteristic polynomial is $\lambda(\lambda+3) = 0$. The eigenvector for $\lambda = 0$ is in the null space of $A$: $x_1 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$. For $\lambda = -3$, solve $(A+3I)x = 0$: $x_2 = \begin{bmatrix} -1 \\ 1 \end{bmatrix}$. The general solution is $u(t) = c_1 e^{0t} \begin{bmatrix} 2 \\ 1 \end{bmatrix} + c_2 e^{-3t} \begin{bmatrix} -1 \\ 1 \end{bmatrix}$. Using $u(0) = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$: $2c_1 - c_2 = 1$ and $c_1 + c_2 = 0$, giving $c_1 = c_2 = 1/3$. Thus $u(t) = \frac{1}{3}\begin{bmatrix} 2 \\ 1 \end{bmatrix} + \frac{1}{3}e^{-3t}\begin{bmatrix} -1 \\ 1 \end{bmatrix}$. As $t \to \infty$, the exponential term vanishes and the steady state is $u_\infty = \begin{bmatrix} 2/3 \\ 1/3 \end{bmatrix}$.</p>
+
+            <h4>Summary: Three Possible Long-Term Behaviors</h4>
+            <p>For any system $\frac{du}{dt} = Au$, the eigenvalues of $A$ determine the fate of the solution. (1) <strong>Stability (decay to zero):</strong> All eigenvalues have negative real parts. Every term $e^{\lambda t} \to 0$, so $u(t) \to 0$ regardless of initial conditions. (2) <strong>Steady state:</strong> One eigenvalue is zero and all others have negative real parts. The zero eigenvalue produces a constant component; the others decay. The solution approaches a fixed non-zero vector. (3) <strong>Instability (blow-up):</strong> At least one eigenvalue has positive real part. The corresponding exponential grows without bound, and $u(t) \to \infty$ in that direction.</p>
 
             <h3>Computation Examples</h3>
+
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Derivation: Why $e^{\lambda t} x$ Solves the Differential Equation</h4>
+                <p>Suppose $u(t) = e^{\lambda t} x$ where $x$ is a constant vector. Then:</p>
+                $$\frac{du}{dt} = \frac{d}{dt}(e^{\lambda t} x) = \lambda e^{\lambda t} x$$
+                <p>The right-hand side of the differential equation is:</p>
+                $$Au(t) = A(e^{\lambda t} x) = e^{\lambda t} (Ax)$$
+                <p>For these to be equal for all $t$, we need:</p>
+                $$\lambda e^{\lambda t} x = e^{\lambda t} (Ax) \implies Ax = \lambda x$$
+                <p>This is the eigenvalue equation. If $x$ is an eigenvector with eigenvalue $\lambda$, then $u(t) = e^{\lambda t} x$ is a solution to $\frac{du}{dt} = Au$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: The General Solution as a Linear Combination</h4>
+                <p>If $A$ has $n$ independent eigenvectors $x_1, x_2, \ldots, x_n$ with eigenvalues $\lambda_1, \lambda_2, \ldots, \lambda_n$, then each $e^{\lambda_i t} x_i$ is a solution. By superposition, any linear combination is also a solution:</p>
+                $$u(t) = c_1 e^{\lambda_1 t} x_1 + c_2 e^{\lambda_2 t} x_2 + \cdots + c_n e^{\lambda_n t} x_n$$
+                <p>The constants $c_1, c_2, \ldots, c_n$ are determined by the initial condition $u(0) = u_0$:</p>
+                $$u_0 = c_1 x_1 + c_2 x_2 + \cdots + c_n x_n$$
+                <p>This is just expressing $u_0$ in the eigenvector basis. The matrix form is $u(t) = S e^{\Lambda t} S^{-1} u_0$, where $S = [x_1 \; x_2 \; \cdots \; x_n]$ and $e^{\Lambda t} = \text{diag}(e^{\lambda_1 t}, e^{\lambda_2 t}, \ldots, e^{\lambda_n t})$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Stability Test via Eigenvalues</h4>
+                <p>The solution $u(t) = \sum c_i e^{\lambda_i t} x_i$ tends to zero as $t \to \infty$ if and only if every exponential factor tends to zero. For a real eigenvalue $\lambda$: $e^{\lambda t} \to 0$ iff $\lambda < 0$. For a complex eigenvalue $\lambda = \alpha + i\beta$: $|e^{\lambda t}| = |e^{\alpha t} e^{i\beta t}| = e^{\alpha t} \cdot 1 = e^{\alpha t}$, so $e^{\lambda t} \to 0$ iff $\alpha < 0$. Therefore, $u(t) \to 0$ for all initial conditions if and only if every eigenvalue of $A$ has negative real part. This is the continuous-time analogue of $|\lambda| < 1$ for discrete-time stability.</p>
             </div>
 
             <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Powers Become Exponentials"</strong>
+                    <p>Chapter 22 had $u_k = c_1\lambda_1^k x_1 + c_2\lambda_2^k x_2$ for difference equations. Chapter 23 replaces powers with exponentials: $u(t) = c_1 e^{\lambda_1 t} x_1 + c_2 e^{\lambda_2 t} x_2$ for differential equations. Same structure, just replace $\lambda^k$ with $e^{\lambda t}$.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Real Part Rules Stability"</strong>
+                    <p>For stability, we need all exponentials to decay to zero. A real eigenvalue $\lambda < 0$ decays; $\lambda > 0$ blows up. A complex eigenvalue $\alpha + i\beta$ decays if $\alpha < 0$, regardless of $\beta$. The imaginary part only adds oscillation; the real part controls growth.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Zero Eigenvalue = Steady State"</strong>
+                    <p>A zero eigenvalue means $e^{0t} = 1$, which is a constant that never decays. This produces the steady state: the part of the solution that persists as $t \to \infty$. All other eigenvalues must have negative real parts for a true steady state.</p>
+                </div>
+            </div>
+
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>Always find eigenvalues and eigenvectors first—they are the heart of the solution</li>
+                    <li>Check the trace and determinant as quick sanity checks for your eigenvalues</li>
+                    <li>For singular matrices, $\lambda = 0$ is immediate—find the null space for that eigenvector</li>
+                    <li>When solving for $c_1, c_2$, set up the system at $t = 0$ where all exponentials equal 1</li>
+                    <li>For complex eigenvalues, write the solution using real and imaginary parts, or use the magnitude-angle form</li>
+                    <li>The steady state is the null space component: solve $Au = 0$ for the persistent mode</li>
                 </ul>
             </div>
 
             <h3>Visual Aids</h3>
+
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure: From Difference Equations to Differential Equations</h4>
+                <p>The parallel between discrete and continuous dynamics:</p>
+                $$u_{k+1} = Au_k \implies u_k = c_1\lambda_1^k x_1 + c_2\lambda_2^k x_2$$
+                $$\frac{du}{dt} = Au \implies u(t) = c_1 e^{\lambda_1 t} x_1 + c_2 e^{\lambda_2 t} x_2$$
+                <p>Powers $\lambda^k$ become exponentials $e^{\lambda t}$. The eigenvectors and their coefficients are the same. Only the time functions change.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Eigenvalue Behavior and Long-Term Solutions</h4>
+                <p>How different eigenvalues shape the solution $u(t)$ over time:</p>
+                $$e^{-3t}: \text{decays to zero (stable mode)}$$
+                $$e^{0t} = 1: \text{persists forever (steady state)}$$
+                $$e^{2t}: \text{grows exponentially (unstable mode)}$$
+                $$e^{(-1+6i)t}: \text{decaying oscillation (stable spiral)}$$
+                <p>The real part of $\lambda$ determines whether the mode grows or decays; the imaginary part determines the oscillation frequency.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Phase Plane Portrait for the Example System</h4>
+                <p>For $A = \begin{bmatrix} -1 & 2 \\ 1 & -2 \end{bmatrix}$ with eigenvalues $0$ and $-3$, all trajectories approach the line spanned by $\begin{bmatrix} 2 \\ 1 \end{bmatrix}$ (the $\lambda = 0$ eigenspace). The $\lambda = -3$ eigenvector $\begin{bmatrix} -1 \\ 1 \end{bmatrix}$ is the direction of fastest decay. The steady state is at $\begin{bmatrix} 2/3 \\ 1/3 \end{bmatrix}$.</p>
+                $$u(t) = \frac{1}{3}\begin{bmatrix} 2 \\ 1 \end{bmatrix} + \frac{1}{3}e^{-3t}\begin{bmatrix} -1 \\ 1 \end{bmatrix}$$
             </div>
 
             <h3>Worked Examples</h3>
+
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
+                <h4>Example 1: Solving a 2×2 System with a Zero Eigenvalue</h4>
+                <p><strong>Problem:</strong> Solve $\frac{du}{dt} = Au$ with $A = \begin{bmatrix} -1 & 2 \\ 1 & -2 \end{bmatrix}$ and $u(0) = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$. Describe the long-term behavior.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <ul>
+                    <li>$A$ is singular (column 2 = $-2 \times$ column 1), so $\lambda_1 = 0$</li>
+                    <li>Trace $= -3$, so $\lambda_2 = -3$</li>
+                    <li>Eigenvector for $\lambda = 0$: null space of $A$ gives $x_1 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$</li>
+                    <li>Eigenvector for $\lambda = -3$: null space of $A+3I$ gives $x_2 = \begin{bmatrix} -1 \\ 1 \end{bmatrix}$</li>
+                    <li>General solution: $u(t) = c_1 \begin{bmatrix} 2 \\ 1 \end{bmatrix} + c_2 e^{-3t} \begin{bmatrix} -1 \\ 1 \end{bmatrix}$</li>
+                    <li>At $t=0$: $2c_1 - c_2 = 1$, $c_1 + c_2 = 0 \Rightarrow c_1 = c_2 = 1/3$</li>
+                    <li>Solution: $u(t) = \frac{1}{3}\begin{bmatrix} 2 \\ 1 \end{bmatrix} + \frac{1}{3}e^{-3t}\begin{bmatrix} -1 \\ 1 \end{bmatrix}$</li>
+                    <li>Steady state: $u_\infty = \begin{bmatrix} 2/3 \\ 1/3 \end{bmatrix}$ as $t \to \infty$</li>
+                </ul>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
+                <h4>Example 2: Stability Analysis with Complex Eigenvalues</h4>
+                <p><strong>Problem:</strong> Let $A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$ (90° rotation). Solve $\frac{du}{dt} = Au$ with $u(0) = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$. Is the system stable?</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <ul>
+                    <li>Eigenvalues: $\lambda = \pm i$ (purely imaginary)</li>
+                    <li>Real parts are zero, so $|e^{\lambda t}| = 1$—no growth, no decay</li>
+                    <li>Solution traces a circle: $u(t) = \begin{bmatrix} \cos t \\ \sin t \end{bmatrix}$</li>
+                    <li>The solution is bounded but does not approach any steady state</li>
+                    <li>This is marginally stable: the origin is a center</li>
+                    <li>For stability (decay to zero), we need $\text{Re}(\lambda) < 0$ for all eigenvalues</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Blow-Up and the Effect of Positive Eigenvalues</h4>
+                <p><strong>Problem:</strong> Let $A = \begin{bmatrix} 2 & 0 \\ 0 & -1 \end{bmatrix}$. Solve $\frac{du}{dt} = Au$ with $u(0) = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$. Describe what happens as $t \to \infty$.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Eigenvalues: $\lambda_1 = 2$ (positive), $\lambda_2 = -1$ (negative)</li>
+                    <li>Eigenvectors: $x_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $x_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$</li>
+                    <li>General solution: $u(t) = c_1 e^{2t} \begin{bmatrix} 1 \\ 0 \end{bmatrix} + c_2 e^{-t} \begin{bmatrix} 0 \\ 1 \end{bmatrix}$</li>
+                    <li>At $t=0$: $c_1 = 1$, $c_2 = 1$</li>
+                    <li>Solution: $u(t) = \begin{bmatrix} e^{2t} \\ e^{-t} \end{bmatrix}$</li>
+                    <li>As $t \to \infty$: first component blows up ($e^{2t} \to \infty$), second component decays ($e^{-t} \to 0$)</li>
+                    <li>This system is unstable because of the positive eigenvalue $\lambda_1 = 2$</li>
+                </ul>
             </div>
 
             <h3>Practice Problems</h3>
+
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <h4>Problem Set 23</h4>
+
+                <p><strong>Problem 1:</strong> Solve $\frac{du}{dt} = Au$ with $A = \begin{bmatrix} -1 & 2 \\ 1 & -2 \end{bmatrix}$ and $u(0) = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$. Find the steady state as $t \to \infty$.</p>
+                <p><em>Hint: Find eigenvalues and eigenvectors first. The matrix is singular, so one eigenvalue is zero.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Eigenvalues: $\lambda_1 = 0$, $\lambda_2 = -3$. Eigenvectors: $x_1 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$, $x_2 = \begin{bmatrix} -1 \\ 1 \end{bmatrix}$. General solution: $u(t) = c_1 \begin{bmatrix} 2 \\ 1 \end{bmatrix} + c_2 e^{-3t} \begin{bmatrix} -1 \\ 1 \end{bmatrix}$. Initial condition: $2c_1 - c_2 = 1$, $c_1 + c_2 = 0 \Rightarrow c_1 = c_2 = 1/3$. Solution: $u(t) = \frac{1}{3}\begin{bmatrix} 2 \\ 1 \end{bmatrix} + \frac{1}{3}e^{-3t}\begin{bmatrix} -1 \\ 1 \end{bmatrix}$. Steady state: $u_\infty = \begin{bmatrix} 2/3 \\ 1/3 \end{bmatrix}$.</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> Let $A = \begin{bmatrix} -2 & 0 \\ 0 & -5 \end{bmatrix}$. Solve $\frac{du}{dt} = Au$. Is the system stable?</p>
+                <p><em>Hint: Both eigenvalues are real and negative. What does $e^{\lambda t}$ do when $\lambda < 0$?</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Eigenvalues: $\lambda_1 = -2$, $\lambda_2 = -5$. Eigenvectors: $x_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $x_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$. Solution: $u(t) = c_1 e^{-2t} \begin{bmatrix} 1 \\ 0 \end{bmatrix} + c_2 e^{-5t} \begin{bmatrix} 0 \\ 1 \end{bmatrix}$. Since both eigenvalues are negative, $u(t) \to 0$ as $t \to \infty$ for any initial condition. The system is stable.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Let $A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$. Solve $\frac{du}{dt} = Au$ with $u(0) = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$. Describe the trajectory.</p>
+                <p><em>Hint: The eigenvalues are purely imaginary. Write the solution using sine and cosine.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Eigenvalues: $\lambda = \pm i$. The solution is $u(t) = c_1 e^{it} x_1 + c_2 e^{-it} x_2$. Using Euler's formula $e^{i\theta} = \cos\theta + i\sin\theta$, the real solution is $u(t) = \begin{bmatrix} \cos t \\ \sin t \end{bmatrix}$. The trajectory is a circle of radius 1 centered at the origin. The solution is bounded but does not approach a steady state.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> For what values of $a$ is the system $\frac{du}{dt} = \begin{bmatrix} a & 1 \\ -1 & a \end{bmatrix} u$ stable? Unstable? When does it have a steady state?</p>
+                <p><em>Hint: Compute the eigenvalues. The characteristic equation is $(a-\lambda)^2 + 1 = 0$.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Eigenvalues: $\lambda = a \pm i$. The real part is $a$. If $a < 0$, the system is stable (solutions spiral into the origin). If $a > 0$, the system is unstable (solutions spiral outward). If $a = 0$, the system has purely imaginary eigenvalues $\pm i$ and exhibits neutral stability (circular orbits). There is never a zero eigenvalue, so there is no steady state for any value of $a$.</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-22.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-22.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-24.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-24.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>

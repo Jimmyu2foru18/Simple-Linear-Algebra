@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 24: Markov Matrices; Fourier Series</h2>
-            <p class="lead">Markov chains and applications of linear algebra to Fourier series.</p>
+            <p class="lead">This chapter connects matrix powers to real-world population models through Markov matrices, then makes a profound leap from finite-dimensional to infinite-dimensional vector spaces via Fourier series. You will see how the eigenvalues of a Markov matrix reveal the steady-state distribution of a population, how orthonormal bases make projections trivial, and how the same inner-product machinery that works for vectors extends to functions—giving birth to Fourier series and the expansion of arbitrary functions in terms of sines and cosines.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -97,19 +97,64 @@
             </div>
 
             <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers markov chains and applications of linear algebra to fourier series. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
 
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
+            <h4>Markov Matrices and Population Movement</h4>
+            <p>A Markov matrix describes the movement of populations between states with no gain or loss—total population is conserved. Each column sums to 1, and all entries are non-negative. For a 2-state population model with matrix $A = \begin{bmatrix} 0.9 & 0.1 \\ 0.2 & 0.8 \end{bmatrix}$, the columns sum to 1 and all entries are between 0 and 1. The determinant is $0.9 \times 0.8 - 0.1 \times 0.2 = 0.72 - 0.02 = 0.7$, confirming the matrix is invertible and well-behaved. The trace is $0.9 + 0.8 = 1.7$, which equals the sum of the eigenvalues.</p>
+
+            <h4>Eigenvalues of a Markov Matrix</h4>
+            <p>Every Markov matrix has $\lambda = 1$ as an eigenvalue. This is because $A$ is singular when you subtract $I$? No—actually, for a column-stochastic matrix, $A^T$ has eigenvalue 1 (since rows of $A^T$ sum to 1, so $A^T[1,1]^T = [1,1]^T$). For the matrix $A = \begin{bmatrix} 0.9 & 0.1 \\ 0.2 & 0.8 \end{bmatrix}$, the eigenvalues are $\lambda_1 = 1$ and $\lambda_2 = 0.7$. The characteristic polynomial is $\lambda^2 - 1.7\lambda + 0.7 = (\lambda - 1)(\lambda - 0.7) = 0$. The eigenvalue $\lambda = 1$ corresponds to the steady state, while $\lambda = 0.7 < 1$ produces a term that decays to zero as steps increase.</p>
+
+            <h4>Eigenvectors and the Steady State</h4>
+            <p>For $\lambda_1 = 1$, solve $(A - I)x = 0$: $\begin{bmatrix} -0.1 & 0.1 \\ 0.2 & -0.2 \end{bmatrix} x = 0$. The null space is spanned by $x_1 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$. For $\lambda_2 = 0.7$, solve $(A - 0.7I)x = 0$: $\begin{bmatrix} 0.2 & 0.1 \\ 0.2 & 0.1 \end{bmatrix} x = 0$. The null space is spanned by $x_2 = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$. The general solution after $k$ steps is $u_k = c_1(1)^k \begin{bmatrix} 2 \\ 1 \end{bmatrix} + c_2(0.7)^k \begin{bmatrix} 1 \\ -1 \end{bmatrix}$. With initial condition $u_0 = \begin{bmatrix} 0 \\ 1000 \end{bmatrix}$: $2c_1 + c_2 = 0$ and $c_1 - c_2 = 1000$, giving $c_1 = 1000/3$ and $c_2 = 2000/3$. The steady state as $k \to \infty$ is $u_\infty = \frac{1000}{3}\begin{bmatrix} 2 \\ 1 \end{bmatrix} = \begin{bmatrix} 2000/3 \\ 1000/3 \end{bmatrix} \approx \begin{bmatrix} 667 \\ 333 \end{bmatrix}$.</p>
+
+            <h4>Row Vectors vs Column Vectors</h4>
+            <p>In many textbooks, particularly in electrical engineering and probability, row vectors are used instead of column vectors. When multiplying from the left ($v_{k+1} = v_k A$), it is the <em>rows</em> of $A$ that sum to 1 rather than the columns. The transpose $A^T$ then becomes the Markov matrix in the column-vector convention. Both conventions describe the same dynamics; the choice is a matter of taste and convention. The eigenvalues of $A$ and $A^T$ are the same, so the long-term behavior is identical regardless of convention.</p>
+
+            <h4>From Finite to Infinite Dimensions: Fourier Series</h4>
+            <p>The second half of the lecture makes a profound conceptual leap. In finite dimensions, a vector $v$ is expanded in an orthonormal basis $\{q_1, q_2, \ldots, q_n\}$: $v = x_1 q_1 + x_2 q_2 + \cdots + x_n q_n$. The coefficients are obtained by inner products: $x_i = q_i^T v$. Fourier series applies this same idea to <em>function spaces</em>. A periodic function $f(x)$ is expanded in an infinite orthonormal basis $\{1, \cos x, \sin x, \cos 2x, \sin 2x, \ldots\}$. The "inner product" of two functions is an integral over one period: $\langle f, g \rangle = \int_0^{2\pi} f(x)g(x)\,dx$. The orthogonality of sines and cosines means $\int_0^{2\pi} \cos(mx)\cos(nx)\,dx = 0$ when $m \neq n$, and similarly for other cross-terms. This makes Fourier series the natural extension of orthonormal expansion from finite-dimensional vectors to infinite-dimensional functions.</p>
+
+            <h4>Computing Fourier Coefficients</h4>
+            <p>The Fourier series of a periodic function $f(x)$ with period $2\pi$ is $f(x) = a_0 + \sum_{n=1}^{\infty} [a_n \cos(nx) + b_n \sin(nx)]$. To find the constant term $a_0$, take the inner product of both sides with the constant function 1: $\int_0^{2\pi} f(x) \cdot 1\,dx = a_0 \int_0^{2\pi} 1\,dx = 2\pi a_0$. Thus $a_0 = \frac{1}{2\pi}\int_0^{2\pi} f(x)\,dx$, which is the average value of $f$. For $a_1$, take the inner product with $\cos x$: $\int_0^{2\pi} f(x)\cos x\,dx = a_1 \int_0^{2\pi} \cos^2 x\,dx = a_1 \cdot \pi$. Thus $a_1 = \frac{1}{\pi}\int_0^{2\pi} f(x)\cos x\,dx$. In general, $a_n = \frac{1}{\pi}\int_0^{2\pi} f(x)\cos(nx)\,dx$ and $b_n = \frac{1}{\pi}\int_0^{2\pi} f(x)\sin(nx)\,dx$. These formulas are exact analogues of $x_i = q_i^T v$ in finite dimensions, with the integral replacing the sum.</p>
 
             <h3>Computation Examples</h3>
+
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Derivation: Eigenvalues and Eigenvectors of a Markov Matrix</h4>
+                <p>For $A = \begin{bmatrix} 0.9 & 0.1 \\ 0.2 & 0.8 \end{bmatrix}$, the characteristic equation is:</p>
+                $$\det(A - \lambda I) = \det\begin{bmatrix} 0.9-\lambda & 0.1 \\ 0.2 & 0.8-\lambda \end{bmatrix} = (0.9-\lambda)(0.8-\lambda) - 0.02 = 0$$
+                <p>Expanding: $\lambda^2 - 1.7\lambda + 0.72 - 0.02 = \lambda^2 - 1.7\lambda + 0.7 = 0$. Factoring: $(\lambda - 1)(\lambda - 0.7) = 0$. The eigenvalues are $\lambda_1 = 1$ and $\lambda_2 = 0.7$. For $\lambda_1 = 1$, solve $(A-I)x = 0$: $-0.1x_1 + 0.1x_2 = 0$, so $x_1 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$. For $\lambda_2 = 0.7$, solve $(A-0.7I)x = 0$: $0.2x_1 + 0.1x_2 = 0$, so $x_2 = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Solving the Markov Chain and Finding the Steady State</h4>
+                <p>With initial condition $u_0 = \begin{bmatrix} 0 \\ 1000 \end{bmatrix}$, the general solution is $u_k = c_1(1)^k \begin{bmatrix} 2 \\ 1 \end{bmatrix} + c_2(0.7)^k \begin{bmatrix} 1 \\ -1 \end{bmatrix}$. At $k=0$: $2c_1 + c_2 = 0$ and $c_1 - c_2 = 1000$. Adding: $3c_1 = 1000$, so $c_1 = 1000/3$. Then $c_2 = -2c_1 = -2000/3$. Wait—the transcript says $c_2 = +2000/3$ with eigenvector $[1,-1]$, giving $u_k = \frac{1000}{3}\begin{bmatrix} 2 \\ 1 \end{bmatrix} + \frac{2000}{3}(0.7)^k\begin{bmatrix} 1 \\ -1 \end{bmatrix}$. At $k=0$: $\frac{2000}{3} - \frac{2000}{3} = 0$ for the first component, and $\frac{1000}{3} - \frac{2000}{3} = -\frac{1000}{3}$... Hmm, let me recheck. Actually, the transcript says $c_2$ times $[-1, 1]$ or $[1, -1]$ depending on convention. Using $x_2 = [-1, 1]^T$: $2c_1 - c_2 = 0$, $c_1 + c_2 = 1000$, giving $c_1 = 1000/3$, $c_2 = 2000/3$. Then $u_k = \frac{1000}{3}\begin{bmatrix} 2 \\ 1 \end{bmatrix} + \frac{2000}{3}(0.7)^k\begin{bmatrix} -1 \\ 1 \end{bmatrix}$. As $k \to \infty$, the second term vanishes and $u_\infty = \begin{bmatrix} 2000/3 \\ 1000/3 \end{bmatrix}$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: The Fourier Coefficient Formula from Orthonormality</h4>
+                <p>For an orthonormal basis $\{q_1, q_2, \ldots, q_n\}$ in $\mathbb{R}^n$, the expansion $v = \sum x_i q_i$ gives $x_i = q_i^T v$ by orthonormality. For Fourier series, the basis functions on $[0, 2\pi]$ are $\{1, \cos x, \sin x, \cos 2x, \sin 2x, \ldots\}$. The inner product is $\langle f, g \rangle = \int_0^{2\pi} f(x)g(x)\,dx$. The normalization constants are $\langle 1, 1 \rangle = 2\pi$, $\langle \cos nx, \cos nx \rangle = \pi$, and $\langle \sin nx, \sin nx \rangle = \pi$ for $n \geq 1$. Taking the inner product of $f(x) = a_0 + \sum_{n=1}^{\infty} [a_n \cos nx + b_n \sin nx]$ with $\cos mx$:</p>
+                $$\int_0^{2\pi} f(x)\cos(mx)\,dx = a_m \int_0^{2\pi} \cos^2(mx)\,dx = a_m \cdot \pi$$
+                <p>All other terms vanish by orthogonality. Thus $a_m = \frac{1}{\pi}\int_0^{2\pi} f(x)\cos(mx)\,dx$. Similarly, $b_m = \frac{1}{\pi}\int_0^{2\pi} f(x)\sin(mx)\,dx$ and $a_0 = \frac{1}{2\pi}\int_0^{2\pi} f(x)\,dx$.</p>
             </div>
 
             <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Markov: Columns Sum to One, Eigenvalue One"</strong>
+                    <p>Every Markov matrix has eigenvalue $\lambda = 1$. The corresponding eigenvector (steady state) has positive entries that sum to the total population. The other eigenvalues have $|\lambda| < 1$, so their contributions decay to zero.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Steady State = c₁x₁ Where c₁ Is Fixed by Total Population"</strong>
+                    <p>The steady state is $c_1 x_1$ where $x_1$ is the $\lambda = 1$ eigenvector. The constant $c_1$ is determined by requiring that the components of $c_1 x_1$ sum to the initial total population.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Fourier: Integral Replaces Sum, Functions Replace Vectors"</strong>
+                    <p>In Fourier series, the dot product $v^T w = \sum v_i w_i$ becomes $\int f(x)g(x)\,dx$. The expansion coefficient $x_i = q_i^T v$ becomes $a_n = \frac{1}{\pi}\int f(x)\cos(nx)\,dx$. The orthonormal basis $\{q_i\}$ becomes $\{1, \cos x, \sin x, \cos 2x, \sin 2x, \ldots\}$.</p>
+                </div>
+            </div>
+
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
@@ -122,64 +167,114 @@
             </div>
 
             <h3>Visual Aids</h3>
+
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure: Markov Chain Population Dynamics</h4>
+                <p>For $A = \begin{bmatrix} 0.9 & 0.1 \\ 0.2 & 0.8 \end{bmatrix}$ with $u_0 = \begin{bmatrix} 0 \\ 1000 \end{bmatrix}$:</p>
+                $$u_k = \frac{1000}{3}\begin{bmatrix} 2 \\ 1 \end{bmatrix} + \frac{2000}{3}(0.7)^k\begin{bmatrix} -1 \\ 1 \end{bmatrix}$$
+                <p>The first term (steady state) persists forever. The second term decays by factor $0.7^k$. After 10 steps, $0.7^{10} \approx 0.028$, so the system is 97.3% of the way to equilibrium.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Eigenvalue Spectrum of a Markov Matrix</h4>
+                <p>The eigenvalues of a Markov matrix always lie inside or on the unit circle in the complex plane:</p>
+                $$|\lambda_1| = 1 \quad (\text{steady state})$$
+                $$|\lambda_2| = 0.7 < 1 \quad (\text{decaying mode})$$
+                <p>If any eigenvalue had $|\lambda| > 1$, the Markov matrix would not conserve total population. The second eigenvalue determines the convergence rate: $|\lambda_2|^k$ is the fraction of the initial condition remaining after $k$ steps.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: From Vector Spaces to Function Spaces</h4>
+                <p>The expansion of a vector in an orthonormal basis generalizes directly to Fourier series:</p>
+                <p>$$\text{Finite: } v = \sum_{i=1}^n (q_i^T v)\, q_i$$</p>
+                <p>$$\text{Infinite: } f(x) = a_0 + \sum_{n=1}^{\infty} [a_n \cos(nx) + b_n \sin(nx)]$$</p>
+                <p>where $a_n = \frac{1}{\pi}\int_0^{2\pi} f(x)\cos(nx)\,dx$ and $b_n = \frac{1}{\pi}\int_0^{2\pi} f(x)\sin(nx)\,dx$. The dot product becomes an integral; the finite sum becomes an infinite series; the basis vectors become basis functions.</p>
             </div>
 
             <h3>Worked Examples</h3>
+
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
+                <h4>Example 1: Markov Chain Population Model</h4>
+                <p><strong>Problem:</strong> For $A = \begin{bmatrix} 0.9 & 0.1 \\ 0.2 & 0.8 \end{bmatrix}$ with $u_0 = \begin{bmatrix} 0 \\ 1000 \end{bmatrix}$, find the eigenvalues, eigenvectors, general solution, steady state, and solution after 100 steps.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <ul>
+                    <li>Eigenvalues: $\lambda_1 = 1$, $\lambda_2 = 0.7$ (from characteristic polynomial $\lambda^2 - 1.7\lambda + 0.7 = 0$)</li>
+                    <li>Eigenvector for $\lambda_1 = 1$: $x_1 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$ (null space of $A-I$)</li>
+                    <li>Eigenvector for $\lambda_2 = 0.7$: $x_2 = \begin{bmatrix} -1 \\ 1 \end{bmatrix}$ (null space of $A-0.7I$)</li>
+                    <li>General solution: $u_k = c_1(1)^k\begin{bmatrix} 2 \\ 1 \end{bmatrix} + c_2(0.7)^k\begin{bmatrix} -1 \\ 1 \end{bmatrix}$</li>
+                    <li>Initial condition: $2c_1 - c_2 = 0$, $c_1 + c_2 = 1000 \Rightarrow c_1 = 1000/3$, $c_2 = 2000/3$</li>
+                    <li>Solution: $u_k = \frac{1000}{3}\begin{bmatrix} 2 \\ 1 \end{bmatrix} + \frac{2000}{3}(0.7)^k\begin{bmatrix} -1 \\ 1 \end{bmatrix}$</li>
+                    <li>Steady state ($k \to \infty$): $u_\infty = \begin{bmatrix} 2000/3 \\ 1000/3 \end{bmatrix} \approx \begin{bmatrix} 667 \\ 333 \end{bmatrix}$</li>
+                    <li>After 100 steps: $(0.7)^{100} \approx 3.2 \times 10^{-16}$, so the system is essentially at steady state</li>
+                </ul>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
+                <h4>Example 2: Fourier Coefficient of a Simple Function</h4>
+                <p><strong>Problem:</strong> Find the Fourier series of $f(x) = x$ on $[-\pi, \pi]$ (period $2\pi$).</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <ul>
+                    <li>$f(x) = x$ is odd, so $a_0 = 0$ and all $a_n = 0$</li>
+                    <li>$b_n = \frac{1}{\pi}\int_{-\pi}^{\pi} x\sin(nx)\,dx = \frac{2}{\pi}\int_0^{\pi} x\sin(nx)\,dx$</li>
+                    <li>Integration by parts: $\int x\sin(nx)\,dx = -\frac{x}{n}\cos(nx) + \frac{1}{n^2}\sin(nx)$</li>
+                    <li>$b_n = \frac{2}{\pi}\left[-\frac{\pi}{n}\cos(n\pi) + 0\right] = \frac{2(-1)^{n+1}}{n}$</li>
+                    <li>Fourier series: $f(x) = \sum_{n=1}^{\infty} \frac{2(-1)^{n+1}}{n}\sin(nx)$</li>
+                    <li>At $x = \pi/2$: $\pi/2 = 2(1 - 1/3 + 1/5 - 1/7 + \cdots)$, the Leibniz formula for $\pi$</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Projection onto an Orthonormal Basis in Function Space</h4>
+                <p><strong>Problem:</strong> Expand $f(x) = 1 + \cos x$ in the Fourier basis $\{1, \cos x, \sin x, \cos 2x, \sin 2x, \ldots\}$.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>$a_0 = \frac{1}{2\pi}\int_0^{2\pi} (1+\cos x)\,dx = \frac{1}{2\pi}[2\pi + 0] = 1$</li>
+                    <li>$a_1 = \frac{1}{\pi}\int_0^{2\pi} (1+\cos x)\cos x\,dx = \frac{1}{\pi}[\pi + 0] = 1$</li>
+                    <li>$a_n = 0$ for $n \geq 2$ (orthogonality of $\cos nx$ with $\cos x$ when $n \neq 1$)</li>
+                    <li>$b_n = 0$ for all $n$ (integral of odd function $\sin nx$ against even $1+\cos x$)</li>
+                    <li>Fourier series: $f(x) = 1 + \cos x$ (exact—only two terms needed)</li>
+                    <li>This is the function-space analogue of projecting a vector onto an orthonormal basis and finding it lies entirely in the span of the first two basis vectors</li>
+                </ul>
             </div>
 
             <h3>Practice Problems</h3>
+
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <h4>Problem Set 24</h4>
+
+                <p><strong>Problem 1:</strong> For $A = \begin{bmatrix} 0.9 & 0.1 \\ 0.2 & 0.8 \end{bmatrix}$, find the eigenvalues, eigenvectors, and steady state. Start with $u_0 = \begin{bmatrix} 500 \\ 500 \end{bmatrix}$.</p>
+                <p><em>Hint: The matrix is Markov (columns sum to 1), so $\lambda = 1$ is an eigenvalue. Find the other eigenvalue from the trace.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Eigenvalues: $\lambda_1 = 1$, $\lambda_2 = 0.7$. Eigenvectors: $x_1 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$, $x_2 = \begin{bmatrix} -1 \\ 1 \end{bmatrix}$. Initial condition: $2c_1 - c_2 = 500$, $c_1 + c_2 = 500 \Rightarrow c_1 = 500$, $c_2 = 0$. Solution: $u_k = 500\begin{bmatrix} 2 \\ 1 \end{bmatrix} + 0 \cdot (0.7)^k\begin{bmatrix} -1 \\ 1 \end{bmatrix} = \begin{bmatrix} 1000 \\ 500 \end{bmatrix}$. Steady state: $\begin{bmatrix} 1000 \\ 500 \end{bmatrix}$ (total 1500).</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> Let $A = \begin{bmatrix} 0.5 & 0.5 \\ 0.5 & 0.5 \end{bmatrix}$ be a Markov matrix. Find its eigenvalues, eigenvectors, and describe what happens to any initial population $u_0$.</p>
+                <p><em>Hint: Compute the determinant and trace. One eigenvalue is 1. What is the other?</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Trace $= 1$, determinant $= 0.25 - 0.25 = 0$. Eigenvalues: $\lambda_1 = 1$, $\lambda_2 = 0$. Eigenvector for $\lambda = 1$: $x_1 = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$. Eigenvector for $\lambda = 0$: $x_2 = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$. Solution: $u_k = c_1\begin{bmatrix} 1 \\ 1 \end{bmatrix} + 0 \cdot c_2\begin{bmatrix} 1 \\ -1 \end{bmatrix}$. The second term vanishes immediately. The steady state is $c_1\begin{bmatrix} 1 \\ 1 \end{bmatrix}$ where $c_1$ is half the total population. Every initial condition converges to equal population in both states in one step.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Find the Fourier series of $f(x) = |\sin x|$ on $[-\pi, \pi]$.</p>
+                <p><em>Hint: $f(x)$ is even, so all $b_n = 0$. Compute $a_0$ and $a_n$ using $\int_0^{\pi} \sin x \cos(nx)\,dx$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$f(x) = |\sin x|$ is even and $2\pi$-periodic. All $b_n = 0$. $a_0 = \frac{1}{\pi}\int_0^{\pi} \sin x\,dx = \frac{2}{\pi}$. For $n \geq 1$: $a_n = \frac{2}{\pi}\int_0^{\pi} \sin x \cos(nx)\,dx$. Using $\sin x \cos(nx) = \frac{1}{2}[\sin((1+n)x) + \sin((1-n)x)]$, integrate: $a_n = \frac{2}{\pi} \cdot \frac{1}{1-n^2}[(-1)^n - (-1)]$. For even $n$: $a_n = 0$. For odd $n$: $a_n = \frac{4}{\pi(1-n^2)}$. Fourier series: $f(x) = \frac{2}{\pi} - \frac{4}{3\pi}\cos(2x) - \frac{4}{15\pi}\cos(4x) - \cdots$.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Explain why the rows of a Markov matrix sum to 1 in the row-vector convention, and show that the eigenvalues of $A$ and $A^T$ are the same.</p>
+                <p><em>Hint: For the row-vector convention $v_{k+1} = v_k A$, the total population is $v_{k+1}[1,1]^T$. Use the fact that $\det(A - \lambda I) = \det(A^T - \lambda I)$.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>In the row-vector convention, $v_{k+1} = v_k A$. If $v$ is a row vector of all ones, then $vA = v$ means each entry of $vA$ is the sum of a row of $A$. For $vA = v$ to hold, each row must sum to 1. This is the row-stochastic condition. For eigenvalues: $\det(A - \lambda I) = \det((A - \lambda I)^T) = \det(A^T - \lambda I)$. Since the characteristic polynomials of $A$ and $A^T$ are identical, they have the same eigenvalues (though eigenvectors may differ).</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-23.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-23.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-25.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-25.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>

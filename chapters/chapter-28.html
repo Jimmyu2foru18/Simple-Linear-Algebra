@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 28: Positive Definite Matrices and Minima</h2>
-            <p class="lead">Optimization applications of positive definite matrices.</p>
+            <p class="lead">This chapter reveals the deep connection between positive definite matrices and optimization. Just as a positive second derivative guarantees a minimum in single-variable calculus, a positive definite matrix of second derivatives guarantees a minimum in multivariable calculus. The chapter shows how completing the square is exactly Gaussian elimination in disguise, how pivots appear outside the squares and multipliers inside, and how the geometry of the graph—a bowl, an ellipsoid, a paraboloid—reflects the eigenvalue structure of the matrix. The principal axis theorem states that every positive definite matrix can be diagonalized by an orthogonal transformation, aligning the axes of the bowl with the eigenvectors.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -57,8 +57,8 @@
                         <iframe src="https://www.youtube.com/embed/biyQzy2yRUA"
                                     title="Prof Dave — Positive Definite Matrices and Minima"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -71,8 +71,8 @@
                         <iframe src="https://www.youtube.com/embed/0rHqycGWOck"
                                     title="Paul Dawkins — Textbook Context"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -85,8 +85,8 @@
                         <iframe src="https://www.youtube.com/embed/CjPKR-oI4Ew"
                                     title="Valerie Hower — Problem Solving"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -97,89 +97,182 @@
             </div>
 
             <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers optimization applications of positive definite matrices. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
 
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
+            <h4>From Calculus to Linear Algebra: The Second Derivative Test</h4>
+            <p>In single-variable calculus, a function $f(x)$ has a minimum at $x = a$ when $f'(a) = 0$ and $f''(a) > 0$. The first derivative being zero finds the critical point; the second derivative being positive ensures it is a minimum rather than a maximum. In multivariable calculus, the first derivative becomes the gradient $\nabla f = 0$, and the second derivative becomes the Hessian matrix $H$ of second partial derivatives. The condition $f''(a) > 0$ generalizes to $H$ being positive definite. For a function $f(x_1, x_2, \ldots, x_n)$, the Hessian is the symmetric matrix $H_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}$. By Clairaut's theorem, mixed partials are equal: $\frac{\partial^2 f}{\partial x_i \partial x_j} = \frac{\partial^2 f}{\partial x_j \partial x_i}$, so $H$ is symmetric.</p>
+
+            <h4>Completing the Square Is Elimination</h4>
+            <p>For a quadratic form $Q(x) = x^T A x$ with $A = \begin{bmatrix} 2 & 6 \\ 6 & 20 \end{bmatrix}$, completing the square gives $Q(x) = 2(x_1 + 3x_2)^2 + 2x_2^2$. The numbers outside the squares (2 and 2) are the pivots from Gaussian elimination. The numbers inside the squares (3) are the multipliers from elimination. This is not a coincidence: completing the square is exactly Gaussian elimination expressed in terms of squares. The pivot is the coefficient outside the first square; the multiplier is the coefficient inside. Positive pivots guarantee a sum of positive squares, which guarantees $Q(x) > 0$ for all nonzero $x$.</p>
+
+            <h4>The Matrix of Second Derivatives</h4>
+            <p>For a function $f(x, y)$, the matrix of second derivatives at a critical point is:
+                $$H = \begin{bmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{bmatrix}$$
+            where $f_{xx} = \frac{\partial^2 f}{\partial x^2}$, $f_{yy} = \frac{\partial^2 f}{\partial y^2}$, and $f_{xy} = f_{yx} = \frac{\partial^2 f}{\partial x \partial y}$. The diagonal entries $f_{xx}$ and $f_{yy}$ must be positive for a minimum. But that is not enough: the cross-derivative $f_{xy}$ must not be too large. The determinant condition $f_{xx} f_{yy} - f_{xy}^2 > 0$ ensures the cross-term is controlled. In matrix language, $H$ must be positive definite: all eigenvalues positive, all pivots positive, all leading principal minors positive.</p>
+
+            <h4>Geometry: Bowls, Ellipsoids, and the Principal Axis Theorem</h4>
+            <p>The graph of $f(x) = x^T A x$ with $A$ positive definite is a bowl-shaped surface called a paraboloid. For $A = \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$, the function is $f(x) = 2x_1^2 + 2x_2^2 + 2x_3^2 - 2x_1x_2 - 2x_2x_3$. The level set $f(x) = 1$ is an ellipsoid—a "football" shape in 3D. The principal axis theorem states that $A = Q \Lambda Q^T$ where $Q$ has orthonormal eigenvectors and $\Lambda$ is diagonal with eigenvalues $\lambda_i$. The eigenvectors give the principal axes of the ellipsoid; the eigenvalues determine the lengths of those axes. Specifically, the axis in direction $q_i$ has length proportional to $1/\sqrt{\lambda_i}$.</p>
+
+            <h4>The Test for Positive Definiteness</h4>
+            <p>For a symmetric matrix $A$, these conditions are equivalent: (1) all eigenvalues $\lambda_i > 0$; (2) all pivots $d_i > 0$; (3) all leading principal minors $\det(A_k) > 0$ for $k = 1, 2, \ldots, n$; (4) $x^T A x > 0$ for all nonzero $x$; (5) $A$ can be written as $A = L D L^T$ with $D$ having positive diagonal entries. The pivot test is often fastest computationally. For the matrix $\begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$, the pivots are $2, 3/2, 4/3$, all positive, so the matrix is positive definite. The eigenvalues are $2 - \sqrt{2} \approx 0.586$, $2$, and $2 + \sqrt{2} \approx 3.414$, all positive. The determinants of leading principal minors are $2, 3, 4$, all positive.</p>
 
             <h3>Computation Examples</h3>
+
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Derivation: Completing the Square = Gaussian Elimination</h4>
+                <p>For $A = \begin{bmatrix} 2 & 6 \\ 6 & 20 \end{bmatrix}$, the quadratic form is $Q(x) = 2x_1^2 + 12x_1x_2 + 20x_2^2$. Completing the square in $x_1$: factor out 2, add and subtract $(6x_2)^2/2 = 18x_2^2$:
+                    $$Q(x) = 2\left(x_1^2 + 6x_1x_2 + 9x_2^2\right) + 20x_2^2 - 18x_2^2 = 2(x_1 + 3x_2)^2 + 2x_2^2$$
+                The pivot 2 is outside the first square; the multiplier 3 is inside. The second pivot is 2. Gaussian elimination gives $L = \begin{bmatrix} 1 & 0 \\ 3 & 1 \end{bmatrix}$, $U = \begin{bmatrix} 2 & 6 \\ 0 & 2 \end{bmatrix}$, so $A = LU$. The pivots are exactly the coefficients outside the squares.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Positive Definiteness from Pivots and Eigenvalues</h4>
+                <p>For $A = \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$, compute pivots by elimination: pivot 1 = 2. Eliminate: row 2 + (1/2)row 1 gives $[0, 1.5, -1]$. Pivot 2 = 1.5. Eliminate: row 3 + (2/3)row 2 gives $[0, 0, 4/3]$. Pivot 3 = 4/3. All pivots positive. Determinants of leading principal minors: $\det(A_1) = 2 > 0$, $\det(A_2) = 3 > 0$, $\det(A_3) = 4 > 0$. Eigenvalues of this tridiagonal matrix are $2(1 - \cos(k\pi/4))$ for $k=1,2,3$: approximately $0.586, 2.0, 3.414$, all positive. All five tests confirm $A$ is positive definite.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: The Principal Axis Theorem</h4>
+                <p>For a positive definite symmetric matrix $A$, the spectral theorem gives $A = Q \Lambda Q^T$ with orthonormal eigenvectors $q_i$ and positive eigenvalues $\lambda_i$. The quadratic form becomes:
+                    $$x^T A x = x^T Q \Lambda Q^T x = y^T \Lambda y = \lambda_1 y_1^2 + \lambda_2 y_2^2 + \cdots + \lambda_n y_n^2$$
+                where $y = Q^T x$ is the coordinate vector in the eigenvector basis. The level set $x^T A x = 1$ becomes $\lambda_1 y_1^2 + \cdots + \lambda_n y_n^2 = 1$, which is an ellipsoid with semi-axes $1/\sqrt{\lambda_i}$ in the directions $q_i$. The eigenvectors determine the orientation of the ellipsoid; the eigenvalues determine its shape.</p>
             </div>
 
             <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Second Derivative Positive = Minimum; Matrix Positive Definite = Minimum"</strong>
+                    <p>In calculus: $f''(a) > 0$ means minimum. In linear algebra: $H$ positive definite means minimum. The scalar second derivative becomes the Hessian matrix of second derivatives.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Completing the Square = Elimination: Pivots Outside, Multipliers Inside"</strong>
+                    <p>When you complete the square for $x^T A x$, the numbers outside the squares are the pivots and the numbers inside are the multipliers from Gaussian elimination. Positive pivots mean a sum of positive squares.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Eigenvalues Tell Axis Lengths: 1/sqrt(lambda)"</strong>
+                    <p>For the ellipsoid $x^T A x = 1$, the principal axes are in the eigenvector directions. The semi-axis length in direction $q_i$ is $1/\sqrt{\lambda_i}$. Larger eigenvalue = shorter axis.</p>
+                </div>
+            </div>
+
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>For a minimum of $f(x)$, first set $\nabla f = 0$, then check that the Hessian is positive definite</li>
+                    <li>Completing the square is just Gaussian elimination in disguise: pivots go outside, multipliers go inside</li>
+                    <li>For $2 \times 2$ matrices, the test $a > 0$ and $ac > b^2$ is equivalent to positive definiteness</li>
+                    <li>The geometry of $x^T A x = 1$ is an ellipsoid when $A$ is positive definite, a hyperboloid when indefinite</li>
+                    <li>Pivots are usually faster to compute than eigenvalues for testing positive definiteness</li>
+                    <li>If any pivot is zero or negative, the matrix is NOT positive definite</li>
                 </ul>
             </div>
 
             <h3>Visual Aids</h3>
+
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure: Completing the Square = Gaussian Elimination</h4>
+                <p>For $A = \begin{bmatrix} 2 & 6 \\ 6 & 20 \end{bmatrix}$, the quadratic form $Q(x) = 2x_1^2 + 12x_1x_2 + 20x_2^2$ becomes:
+                    $$Q(x) = 2(x_1 + 3x_2)^2 + 2x_2^2$$
+                The pivot 2 is outside the first square; the multiplier 3 is inside. The second pivot is 2. Both positive $\Rightarrow$ sum of positive squares $\Rightarrow$ positive definite.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Geometry of Positive Definite Quadratic Forms</h4>
+                <p>The level sets of $x^T A x$ for different $A$:</p>
+                <p>$A = I$: sphere $x_1^2 + x_2^2 + x_3^2 = 1$</p>
+                <p>$A = \text{diag}(1, 1, 4)$: ellipsoid with axes $1, 1, 1/2$</p>
+                <p>$A = \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$: ellipsoid with axes $1/\sqrt{0.586}, 1/\sqrt{2}, 1/\sqrt{3.414}$</p>
+                <p>Positive definite $\Rightarrow$ bowl shape, minimum at origin. Indefinite $\Rightarrow$ saddle shape.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: The Principal Axis Theorem</h4>
+                <p>Any positive definite matrix $A$ can be written as $A = Q \Lambda Q^T$. The eigenvectors $q_i$ give the principal axes; the eigenvalues $\lambda_i$ give the curvature along each axis:
+                    $$A = \lambda_1 q_1 q_1^T + \lambda_2 q_2 q_2^T + \lambda_3 q_3 q_3^T$$
+                The ellipsoid $x^T A x = 1$ has semi-axes $1/\sqrt{\lambda_i}$ in directions $q_i$. The matrix "sees" along its eigenvectors.</p>
             </div>
 
             <h3>Worked Examples</h3>
+
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
+                <h4>Example 1: Completing the Square and Elimination</h4>
+                <p><strong>Problem:</strong> For $A = \begin{bmatrix} 2 & 6 \\ 6 & 20 \end{bmatrix}$, complete the square for $Q(x) = x^T A x$ and relate the result to Gaussian elimination.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <ul>
+                    <li>$Q(x) = 2x_1^2 + 12x_1x_2 + 20x_2^2$</li>
+                    <li>Complete the square: $Q(x) = 2(x_1 + 3x_2)^2 + 2x_2^2$</li>
+                    <li>Pivot 1 = 2 (outside first square), multiplier = 3 (inside square)</li>
+                    <li>Pivot 2 = 2 (outside second square)</li>
+                    <li>Gaussian elimination: $L = \begin{bmatrix} 1 & 0 \\ 3 & 1 \end{bmatrix}$, $U = \begin{bmatrix} 2 & 6 \\ 0 & 2 \end{bmatrix}$</li>
+                    <li>$A = LU = \begin{bmatrix} 1 & 0 \\ 3 & 1 \end{bmatrix} \begin{bmatrix} 2 & 6 \\ 0 & 2 \end{bmatrix}$</li>
+                    <li>All pivots positive $\Rightarrow$ positive definite</li>
+                </ul>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
+                <h4>Example 2: Positive Definiteness of a Tridiagonal Matrix</h4>
+                <p><strong>Problem:</strong> Determine whether $A = \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$ is positive definite using pivots, determinants, and eigenvalues.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <ul>
+                    <li>Pivot test: pivot 1 = 2, pivot 2 = 3/2, pivot 3 = 4/3. All positive.</li>
+                    <li>Determinant test: $\det(A_1) = 2 > 0$, $\det(A_2) = 3 > 0$, $\det(A_3) = 4 > 0$. All positive.</li>
+                    <li>Eigenvalue test: eigenvalues are $2(1 - \cos(k\pi/4))$ for $k=1,2,3$, giving approximately $0.586, 2.0, 3.414$. All positive.</li>
+                    <li>Conclusion: $A$ is positive definite by all tests.</li>
+                    <li>Quadratic form: $Q(x) = 2x_1^2 + 2x_2^2 + 2x_3^2 - 2x_1x_2 - 2x_2x_3 > 0$ for all nonzero $x$.</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Geometry of the Ellipsoid</h4>
+                <p><strong>Problem:</strong> For $A = \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$, describe the geometry of the ellipsoid $x^T A x = 1$. Find the principal axes and their lengths.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Eigenvalues: $\lambda_1 = 2 - \sqrt{2} \approx 0.586$, $\lambda_2 = 2$, $\lambda_3 = 2 + \sqrt{2} \approx 3.414$</li>
+                    <li>Eigenvectors give principal axes directions</li>
+                    <li>Semi-axis lengths: $1/\sqrt{\lambda_1} \approx 1.306$, $1/\sqrt{\lambda_2} = 1/\sqrt{2} \approx 0.707$, $1/\sqrt{\lambda_3} \approx 0.541$</li>
+                    <li>The ellipsoid is a "lopsided football" with one long axis and two shorter axes</li>
+                    <li>Since all eigenvalues are distinct, the ellipsoid has three distinct principal axes</li>
+                    <li>The graph of $f(x) = x^T A x$ is a bowl (paraboloid) opening upward</li>
+                </ul>
             </div>
 
             <h3>Practice Problems</h3>
+
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <h4>Problem Set 28</h4>
+
+                <p><strong>Problem 1:</strong> For $A = \begin{bmatrix} 2 & 6 \\ 6 & 20 \end{bmatrix}$, complete the square for $Q(x) = x^T A x$. Identify the pivots and multipliers, and explain why $A$ is positive definite.</p>
+                <p><em>Hint: Factor out the first pivot from the first two terms, then complete the square. The multiplier is the ratio of the off-diagonal entry to the first pivot.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$Q(x) = 2x_1^2 + 12x_1x_2 + 20x_2^2 = 2(x_1 + 3x_2)^2 + 2x_2^2$. Pivot 1 = 2, multiplier = 3, pivot 2 = 2. All pivots positive, so $A$ is positive definite. The quadratic form is a sum of positive squares.</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> Let $A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$. Determine if $A$ is positive definite using the pivot test, determinant test, and eigenvalue test.</p>
+                <p><em>Hint: Compute the pivots from elimination. What is the second pivot? What does a negative second pivot tell you?</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Pivot 1 = 1. Eliminate: row 2 - 2*row 1 gives $[0, -3]$. Pivot 2 = -3. Since pivot 2 is negative, $A$ is not positive definite. Eigenvalues: $\lambda^2 - 2\lambda - 3 = 0$, giving $\lambda_1 = 3 > 0$, $\lambda_2 = -1 < 0$. One positive, one negative: indefinite. Determinant = -3 &lt; 0.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> For $f(x, y) = 2x^2 + 12xy + 20y^2$, find the critical point, verify it is a minimum using the Hessian, and describe the geometry of the level curves $f(x, y) = c$.</p>
+                <p><em>Hint: The critical point is at the origin. The Hessian is the matrix of second derivatives. Complete the square to identify the curve type.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Critical point: $\nabla f = [4x + 12y, 12x + 40y] = [0, 0] \Rightarrow x = 0, y = 0$. Hessian: $H = \begin{bmatrix} 4 & 12 \\ 12 & 40 \end{bmatrix}$. Pivots: 4 and $(40 - 36)/4 = 1$. Both positive, so $H$ is positive definite. The origin is a strict local minimum. Level curves: $2(x+3y)^2 + 2y^2 = c$, which are ellipses centered at the origin.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Prove that if $A$ is positive definite, then all its diagonal entries $a_{ii} > 0$. Then give an example of a matrix with positive diagonal entries that is NOT positive definite.</p>
+                <p><em>Hint: Consider $x = e_i$ (the $i$-th standard basis vector). What is $e_i^T A e_i$? For the example, try a $2 \times 2$ matrix with large off-diagonal entries.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>If $A$ is positive definite, then $x^T A x > 0$ for all nonzero $x$. Take $x = e_i$: $e_i^T A e_i = a_{ii} > 0$. So all diagonal entries must be positive. However, positive diagonals are not sufficient. For example, $A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$ has positive diagonals but $\det(A) = -3 &lt; 0$, so it is indefinite (eigenvalues $3$ and $-1$).</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-27.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-27.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-29.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-29.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>

@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 32: Change of Basis; Image Compression</h2>
-            <p class="lead">Change of basis theory and applications to image compression.</p>
+            <p class="lead">This chapter explores how changing the basis can dramatically simplify both theory and computation. A good basis makes the matrix of a linear transformation simple (often diagonal), makes inversion fast, and enables compression by concentrating the signal into a few coefficients. The wavelet basis, like the Fourier basis before it, achieves all three: it is orthogonal, it has a fast transform, and it packs image information into a small number of coefficients. The mathematical heart of the chapter is the similarity transformation: when the same linear transformation is expressed in two different bases, the two matrices are similar, related by $B = M^{-1}AM$ where $M$ is the change-of-basis matrix.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -57,13 +57,13 @@
                         <iframe src="https://www.youtube.com/embed/4C9GKyfUQkc"
                                     title="Prof Dave — Change of Basis; Image Compression"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
                         <h5>Prof. Dave Explains</h5>
-                        <p>Concise breakdown of change of basis; image compression</p>
+                        <p>Concise breakdown of change of basis and image compression</p>
                     </div>
                 </div>
                 <div class="video-card">
@@ -71,8 +71,8 @@
                         <iframe src="https://www.youtube.com/embed/6ynFy3CGUD4"
                                     title="Paul Dawkins — Textbook Context"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -85,8 +85,8 @@
                         <iframe src="https://www.youtube.com/embed/NWwHDv3u_Ks"
                                     title="Valerie Hower — Problem Solving"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -97,89 +97,176 @@
             </div>
 
             <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers change of basis theory and applications to image compression. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
 
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
+            <h4>What Makes a Basis "Good"</h4>
+            <p>A good basis has three properties: (1) it is fast to multiply by, (2) it is fast to invert, and (3) it provides good compression. The Fourier basis satisfies all three: the Fast Fourier Transform (FFT) multiplies by $F_n$ in $O(n \log n)$ operations, the inverse is $F_n^{-1} = \frac{1}{n}\bar{F}_n^T$ and is equally fast, and most real-world signals have most of their energy in a few low-frequency coefficients, enabling compression. The wavelet basis is a newer competitor: its matrix $W$ has entries only $\pm 1$ and $0$, making multiplication extremely fast, and it is orthogonal so inversion is just the transpose. Wavelets also concentrate signal energy better than Fourier for images with localized features like edges.</p>
+
+            <h4>Change of Basis: From Old Coordinates to New</h4>
+            <p>Let $W$ be the matrix whose columns are the new basis vectors $w_1, \ldots, w_n$. If a vector $x$ has coordinates $c$ in the new basis, then $x = Wc$. Conversely, if $x$ is given in the old (standard) basis, the new coordinates are $c = W^{-1}x$. The matrix $W$ is the change-of-basis matrix. For the wavelet basis, $W$ is orthogonal (after normalization), so $W^{-1} = W^T$, making the change of basis extremely fast. For the Fourier basis, $F_n^{-1} = \frac{1}{n}\bar{F}_n^T$.</p>
+
+            <h4>Similar Matrices: Same Transformation, Different Bases</h4>
+            <p>Let $T: \mathbb{R}^n \to \mathbb{R}^n$ be a linear transformation. If we express $T$ in basis $\mathcal{B} = \{v_1, \ldots, v_n\}$, we get matrix $A$. If we express $T$ in basis $\mathcal{C} = \{w_1, \ldots, w_n\}$, we get matrix $B$. The two matrices are related by similarity: $B = M^{-1} A M$, where $M$ is the change-of-basis matrix from $\mathcal{B}$ to $\mathcal{C}$. The columns of $M$ are the coordinates of the $\mathcal{C}$-basis vectors expressed in the $\mathcal{B}$-basis. Similarity preserves eigenvalues, trace, and determinant, but changes the eigenvectors.</p>
+
+            <h4>Constructing the Matrix of a Transformation</h4>
+            <p>Given a linear transformation $T$ and a basis $v_1, \ldots, v_n$, the matrix $A$ is constructed column by column: the $j$-th column is $T(v_j)$ expressed in the chosen basis. If the basis is the eigenvector basis and $T(v_j) = \lambda_j v_j$, then the $j$-th column is $\lambda_j e_j$, so $A$ is diagonal with the eigenvalues on the diagonal. This is the "perfect" case. If the basis is the standard basis, the matrix is usually full. The construction rule works for any basis: apply $T$ to each basis vector, write the result as a combination of basis vectors, and stack the coefficients as columns.</p>
+
+            <h4>Image Compression: Why Basis Matters</h4>
+            <p>An $n \times n$ image has $n^2$ pixel values in the standard basis. If we keep only the $k$ largest coefficients in a good basis, we can reconstruct an approximation that captures most of the image information. In the standard basis, throwing away 90% of the pixels makes the image unrecognizable. In the Fourier or wavelet basis, throwing away the high-frequency coefficients (which are often small) keeps the main features intact. JPEG 2000 uses wavelets because they handle edges better than Fourier. The wavelet basis for an 8×8 block consists of vectors of $\pm 1$ and $0$ with orthogonal structure; the corresponding matrix $W$ is fast to multiply and its inverse is just its transpose.</p>
 
             <h3>Computation Examples</h3>
+
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Derivation: Change of Basis Formula</h4>
+                <p>Let $x$ be a vector with coordinates $c$ in the new basis: $x = Wc$. If we want coordinates in the old basis, we already have $x$. So $c = W^{-1}x$. For an orthogonal basis, $W^T W = I$, so $W^{-1} = W^T$ and $c = W^T x$. The change of basis is just a rotation or reflection in the vector space. For the Fourier basis, $F_n^{-1} = \frac{1}{n}\bar{F}_n^T$, so $c = \frac{1}{n}\bar{F}_n^T x$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Similar Matrices from Change of Basis</h4>
+                <p>Let $T: \mathbb{R}^n \to \mathbb{R}^n$ be linear. Let $\mathcal{B} = \{v_1, \ldots, v_n\}$ be the old basis and $\mathcal{C} = \{w_1, \ldots, w_n\}$ be the new basis. Let $M$ be the change-of-basis matrix whose columns are $w_1, \ldots, w_n$ expressed in the $\mathcal{B}$-basis. If $A$ is the matrix of $T$ in basis $\mathcal{B}$ and $B$ is the matrix of $T$ in basis $\mathcal{C}$, then for any $x$:
+                    $$[T(x)]_{\mathcal{B}} = A [x]_{\mathcal{B}}$$
+                We want $[T(x)]_{\mathcal{C}} = B [x]_{\mathcal{C}}$. The relationship between coordinates is $[x]_{\mathcal{B}} = M [x]_{\mathcal{C}}$. Thus:
+                    $$[T(x)]_{\mathcal{B}} = A M [x]_{\mathcal{C}}$$
+                Converting back to $\mathcal{C}$-coordinates: $[T(x)]_{\mathcal{C}} = M^{-1} A M [x]_{\mathcal{C}}$. Therefore $B = M^{-1} A M$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Eigenvector Basis Gives Diagonal Matrix</h4>
+                <p>Let $T$ have eigenvectors $v_1, \ldots, v_n$ with eigenvalues $\lambda_1, \ldots, \lambda_n$. Let $S = [v_1 \; \cdots \; v_n]$ be the eigenvector matrix. If we use the eigenvector basis, the change-of-basis matrix is $M = S$. Then $B = S^{-1} A S = \Lambda$, where $\Lambda = \text{diag}(\lambda_1, \ldots, \lambda_n)$. The matrix $A$ in the standard basis is similar to the diagonal matrix $\Lambda$ in the eigenvector basis. The diagonal entries of $\Lambda$ are exactly the eigenvalues of $A$.</p>
             </div>
 
             <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Good Basis: Fast, Invertible, Compresses"</strong>
+                    <p>A good basis has three properties: fast multiplication (FFT for Fourier, fast wavelet transform), fast inversion (orthogonal $\Rightarrow$ inverse = transpose), and good compression (few coefficients capture most of the signal).</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Change of Basis: x = Wc, c = W⁻¹x"</strong>
+                    <p>To convert from old coordinates to new: multiply by $W^{-1}$. To convert from new coordinates to old: multiply by $W$. For orthogonal bases, $W^{-1} = W^T$.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Similar Matrices: B = M⁻¹AM"</strong>
+                    <p>Same transformation, different bases. The matrix $M$ changes coordinates from the new basis to the old basis. $A$ and $B$ have the same eigenvalues but different eigenvectors. The eigenvector basis makes $B = \Lambda$ diagonal.</p>
+                </div>
+            </div>
+
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>Always ask: what is the input basis and what is the output basis?</li>
+                    <li>The $j$-th column of $A$ is $T(v_j)$ expressed in the output basis</li>
+                    <li>If the basis consists of eigenvectors, the matrix is diagonal</li>
+                    <li>Similarity $B = M^{-1}AM$ preserves eigenvalues but not eigenvectors</li>
+                    <li>For orthogonal bases, $W^{-1} = W^T$—no expensive inversion needed</li>
+                    <li>Compression works because good bases concentrate energy into a few coefficients</li>
                 </ul>
             </div>
 
             <h3>Visual Aids</h3>
+
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure: Change of Basis Geometry</h4>
+                <p>The change-of-basis transformation rotates/reflects the vector space:
+                    $$x_{\text{old}} = W c_{\text{new}}$$
+                The matrix $W$ has the new basis vectors as columns. The coordinates $c$ are the coefficients in the new basis. For an orthogonal basis, $W^T W = I$, so $c = W^T x_{\text{old}}$.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Similarity as Change of Basis for Matrices</h4>
+                <p>The same linear transformation $T$ in two different bases:
+                    $$A \xrightarrow{M^{-1} A M} B$$
+                $A$ is the matrix in the old basis, $B$ is the matrix in the new basis, $M$ is the change-of-basis matrix. Both have the same eigenvalues. The eigenvector basis makes $B = \Lambda$ diagonal.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Image Compression in Standard vs Wavelet Basis</h4>
+                <p>An 8×8 image block has 64 pixel values in the standard basis. In the wavelet basis:
+                    $$\text{Standard: } [p_1, p_2, \ldots, p_{64}]$$
+                    $$\text{Wavelet: } [c_1, c_2, \ldots, c_{64}] \text{ where most } c_i \approx 0$$
+                Keeping only the 10 largest wavelet coefficients and setting the rest to zero preserves the image structure. Doing the same in the standard basis destroys the image. JPEG 2000 uses wavelets for this reason.</p>
             </div>
 
             <h3>Worked Examples</h3>
+
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
+                <h4>Example 1: Change of Basis for a 2D Vector</h4>
+                <p><strong>Problem:</strong> Let $x = [3, 2]^T$ in the standard basis of $\mathbb{R}^2$. Let the new basis be $w_1 = [1, 1]^T$ and $w_2 = [1, -1]^T$. Find the coordinates of $x$ in the new basis.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <ul>
+                    <li>$W = \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$, $W^{-1} = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$</li>
+                    <li>$c = W^{-1}x = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}\begin{bmatrix} 3 \\ 2 \end{bmatrix} = \frac{1}{2}\begin{bmatrix} 5 \\ 1 \end{bmatrix} = \begin{bmatrix} 2.5 \\ 0.5 \end{bmatrix}$</li>
+                    <li>Check: $2.5[1,1]^T + 0.5[1,-1]^T = [3, 2]^T$ ✓</li>
+                    <li>The coordinates changed from $[3, 2]$ to $[2.5, 0.5]$</li>
+                </ul>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
+                <h4>Example 2: Similarity Transformation for a Projection</h4>
+                <p><strong>Problem:</strong> Let $T$ be projection onto the line $y=x$ in $\mathbb{R}^2$. In the standard basis, $A = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$. Find the matrix $B$ of $T$ in the eigenvector basis $\{v_1, v_2\}$ where $v_1 = \frac{1}{\sqrt{2}}[1,1]^T$ and $v_2 = \frac{1}{\sqrt{2}}[1,-1]^T$, using the similarity transformation.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <ul>
+                    <li>$S = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$, $S^{-1} = S^T$</li>
+                    <li>$B = S^{-1} A S = S^T A S$</li>
+                    <li>$S^T A = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix} = \frac{1}{2\sqrt{2}}\begin{bmatrix} 2 & 2 \\ 0 & 0 \end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}$</li>
+                    <li>$B = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix} \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} = \frac{1}{2}\begin{bmatrix} 2 & 0 \\ 0 & 0 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$</li>
+                    <li>$B$ is diagonal with eigenvalues 1 and 0</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Wavelet Basis and Fast Transform</h4>
+                <p><strong>Problem:</strong> Explain why the Haar wavelet basis for $\mathbb{R}^8$ enables fast multiplication and fast inversion. What are the three properties that make it a "good" basis for image compression?</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>The Haar wavelet basis consists of 8 vectors with entries $\pm 1$ and $0$</li>
+                    <li>Fast multiplication: all entries are $\pm 1$ or $0$, so each multiplication is just addition/subtraction</li>
+                    <li>Fast inversion: the basis is orthogonal, so $W^{-1} = W^T$ (after normalization)</li>
+                    <li>Good compression: most images have energy concentrated in the first few wavelet coefficients (approximation coefficients); the rest (detail coefficients) are near zero</li>
+                    <li>JPEG 2000 uses wavelets because they preserve edges better than Fourier</li>
+                    <li>The FFT for Fourier and the fast wavelet transform for wavelets both achieve $O(n \log n)$ complexity</li>
+                </ul>
             </div>
 
             <h3>Practice Problems</h3>
+
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <h4>Problem Set 32</h4>
+
+                <p><strong>Problem 1:</strong> Let $W = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$ be a change-of-basis matrix. Find $W^T W$, $W^{-1}$, and verify that $W$ is orthogonal. Then find the coordinates of $x = [5, 1]^T$ in the basis whose columns are the columns of $W$.</p>
+                <p><em>Hint: For an orthogonal matrix, $W^T W = I$ and $W^{-1} = W^T$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$W^T W = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} = \frac{1}{2}\begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix} = I$. So $W$ is orthogonal and $W^{-1} = W^T = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$. The new coordinates are $c = W^T x = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}\begin{bmatrix} 5 \\ 1 \end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix} 6 \\ 4 \end{bmatrix} = \begin{bmatrix} 3\sqrt{2} \\ 2\sqrt{2} \end{bmatrix}$. Check: $3\sqrt{2} \cdot \frac{1}{\sqrt{2}}[1,1]^T + 2\sqrt{2} \cdot \frac{1}{\sqrt{2}}[1,-1]^T = 3[1,1]^T + 2[1,-1]^T = [5,1]^T$ ✓.</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> Let $T: \mathbb{R}^2 \to \mathbb{R}^2$ be the linear transformation $T(x, y) = (x+y, x-y)$. Find the matrix $A$ of $T$ in the standard basis, and the matrix $B$ of $T$ in the basis $\{v_1, v_2\}$ where $v_1 = [1, 1]^T$ and $v_2 = [1, -1]^T$. Verify that $B = S^{-1}AS$ where $S = [v_1 \; v_2]$.</p>
+                <p><em>Hint: Compute $T(v_1)$ and $T(v_2)$ and express them in the basis $\{v_1, v_2\}$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Standard basis: $T(e_1) = [1,1]^T$, $T(e_2) = [1,-1]^T$, so $A = \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$. In basis $\{v_1, v_2\}$: $T(v_1) = T([1,1]^T) = [2,0]^T = 1 \cdot v_1 + 1 \cdot v_2$, so column 1 is $[1,1]^T$. $T(v_2) = T([1,-1]^T) = [0,2]^T = 1 \cdot v_1 - 1 \cdot v_2$, so column 2 is $[1,-1]^T$. Thus $B = \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$. Wait, that's the same as $A$? Let me check: actually $T(v_1) = [2,0]^T = v_1 + v_2$? No, $v_1 + v_2 = [2,0]^T$, yes. And $T(v_2) = [0,2]^T = v_1 - v_2$? $v_1 - v_2 = [0,2]^T$, yes. So $B = \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} = A$. But $S = \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$, and $S^{-1} = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$. Then $S^{-1}AS = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} = \frac{1}{2}\begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} = \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} = B$. ✓ The matrices are similar and in this case happen to be the same because $A$ itself is the change-of-basis matrix.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Explain why the Fourier basis is a "good" basis for signal compression. What are the three criteria, and how does the FFT satisfy them?</p>
+                <p><em>Hint: Think about speed of multiplication, speed of inversion, and concentration of energy.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>The three criteria are: (1) Fast multiplication: the FFT computes $F_n x$ in $O(n \log n)$ operations instead of $O(n^2)$. (2) Fast inversion: $F_n^{-1} = \frac{1}{n}\bar{F}_n^T$, so the inverse is just as fast as the forward transform. (3) Good compression: for most real-world signals, the low-frequency Fourier coefficients capture most of the energy, and the high-frequency coefficients are small. Keeping only the largest coefficients reconstructs the signal well. JPEG originally used Fourier; JPEG 2000 uses wavelets for better edge preservation.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Let $T: \mathbb{R}^3 \to \mathbb{R}^3$ be the transformation $T(x, y, z) = (y, z, x)$ (cyclic shift). Find the matrix $A$ of $T$ in the standard basis. Then find the eigenvalues and eigenvectors of $A$, and write down the matrix $B$ of $T$ in the eigenvector basis.</p>
+                <p><em>Hint: The eigenvalues of a cyclic shift are the three cube roots of unity: $1, \omega, \omega^2$ where $\omega = e^{2\pi i/3}$.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Standard basis: $T(e_1) = e_3$, $T(e_2) = e_1$, $T(e_3) = e_2$. Matrix: $A = \begin{bmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{bmatrix}$. Eigenvalues: $\lambda^3 - 1 = 0$, so $\lambda_1 = 1, \lambda_2 = \omega = e^{2\pi i/3}, \lambda_3 = \omega^2 = e^{4\pi i/3}$. Eigenvector for $\lambda=1$: $[1,1,1]^T$. Eigenvectors for $\omega, \omega^2$: $[1, \omega, \omega^2]^T$ and $[1, \omega^2, \omega]^T$. In the complex eigenvector basis, $B = \text{diag}(1, \omega, \omega^2)$. Over the reals, the cyclic shift is not diagonalizable by a real similarity transformation; the real canonical form is $\begin{bmatrix} 1 & 0 & 0 \\ 0 & -1/2 & -\sqrt{3}/2 \\ 0 & \sqrt{3}/2 & -1/2 \end{bmatrix}$.</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-31.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-31.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-33.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-33.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>

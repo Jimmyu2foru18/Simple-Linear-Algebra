@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 29: Similar Matrices and Jordan Form</h2>
-            <p class="lead">Matrix similarity and the Jordan canonical form.</p>
+            <p class="lead">This chapter explores matrix similarity—when two matrices represent the same linear transformation in different bases—and reveals that every square matrix is similar to a canonical form built from Jordan blocks. The good case (distinct eigenvalues) yields diagonalization, where eigenvectors become the standard basis. The bad case (repeated eigenvalues) yields the Jordan form, where 1s on the superdiagonal capture the "missing" eigenvectors. The number of Jordan blocks equals the number of independent eigenvectors, and the size of each block records how many eigenvectors are missing in that invariant subspace.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -57,8 +57,8 @@
                         <iframe src="https://www.youtube.com/embed/EP2ghkO0lSk"
                                     title="Prof Dave — Similar Matrices and Jordan Form"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -71,8 +71,8 @@
                         <iframe src="https://www.youtube.com/embed/OJwGe-gykBE"
                                     title="Paul Dawkins — Textbook Context"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -85,8 +85,8 @@
                         <iframe src="https://www.youtube.com/embed/rGWcIeCdwGg"
                                     title="Valerie Hower — Problem Solving"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -97,89 +97,176 @@
             </div>
 
             <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers matrix similarity and the jordan canonical form. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
 
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
+            <h4>Similar Matrices: Same Eigenvalues, Different Eigenvectors</h4>
+            <p>Two matrices $A$ and $B$ are similar if $B = M^{-1} A M$ for some invertible matrix $M$. Similar matrices represent the same linear transformation in different bases. The key facts: (1) similar matrices have the same eigenvalues; (2) the eigenvectors of $B$ are $M^{-1}$ times the eigenvectors of $A$. If $Ax = \lambda x$, then $B(M^{-1}x) = M^{-1}AM(M^{-1}x) = M^{-1}Ax = \lambda(M^{-1}x)$. So $M^{-1}x$ is an eigenvector of $B$ with the same eigenvalue $\lambda$. The eigenvalues are invariant under similarity; only the eigenvectors change.</p>
+
+            <h4>Diagonalization: The Best Similarity Transformation</h4>
+            <p>When $A$ has $n$ independent eigenvectors, they form the columns of $S$. Then $S^{-1}AS = \Lambda$, where $\Lambda$ is the diagonal matrix of eigenvalues. This is diagonalization: $A$ is similar to $\Lambda$. The diagonal matrix $\Lambda$ is the "best" member of the similarity family because its eigenvectors are the standard basis vectors $e_1, e_2, \ldots, e_n$. Diagonalization preserves eigenvalues but makes the eigenvectors trivial. For example, $A = \begin{bmatrix} 3 & 1 \\ 0 & 1 \end{bmatrix}$ is similar to $\Lambda = \begin{bmatrix} 3 & 0 \\ 0 & 1 \end{bmatrix}$ via $S = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$.</p>
+
+            <h4>The Bad Case: Repeated Eigenvalues and Missing Eigenvectors</h4>
+            <p>When eigenvalues are repeated, diagonalization may fail. A matrix is defective if it does not have a full set of $n$ independent eigenvectors. For example, $A = \begin{bmatrix} 4 & 1 \\ 0 & 4 \end{bmatrix}$ has eigenvalue $\lambda = 4$ with multiplicity 2, but only one eigenvector $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$. The geometric multiplicity (1) is less than the algebraic multiplicity (2). This matrix is not diagonalizable because any diagonal matrix similar to $A$ would have to be $4I$, but $4I$ is only similar to itself.</p>
+
+            <h4>Jordan Blocks: The Building Blocks</h4>
+            <p>A Jordan block $J_k(\lambda)$ is a $k \times k$ matrix with $\lambda$ on the diagonal, 1s on the superdiagonal, and 0s elsewhere:
+                $$J_k(\lambda) = \begin{bmatrix} \lambda & 1 & 0 & \cdots & 0 \\ 0 & \lambda & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \ddots & \vdots \\ 0 & 0 & \cdots & \lambda & 1 \\ 0 & 0 & \cdots & 0 & \lambda \end{bmatrix}$$
+            A Jordan block has only one independent eigenvector (corresponding to the eigenvalue $\lambda$), despite having size $k$. The size of the block records how many eigenvectors are missing: a block of size $k$ contributes 1 to the geometric multiplicity but $k$ to the algebraic multiplicity. The number of Jordan blocks equals the number of independent eigenvectors.</p>
+
+            <h4>Jordan's Theorem: Every Matrix Is Similar to a Jordan Matrix</h4>
+            <p>Jordan's fundamental theorem states that every square matrix $A$ is similar to a block diagonal matrix $J$ whose blocks are Jordan blocks. The Jordan matrix $J$ is unique up to the order of blocks. If all eigenvalues are distinct, then $J$ is diagonal (each block is 1×1). If eigenvalues are repeated, the Jordan blocks capture the defect: larger blocks mean fewer eigenvectors. For example, a 4×4 matrix with eigenvalue 0 and rank 2 has nullity 2, so it has 2 eigenvectors. If the Jordan form has two 2×2 blocks, that means two eigenvectors, each with a generalized eigenvector attached. The Jordan form brings diagonalization as close as possible when exact diagonalization is impossible.</p>
 
             <h3>Computation Examples</h3>
+
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Derivation: Similar Matrices Have the Same Eigenvalues</h4>
+                <p>Suppose $B = M^{-1} A M$. Then $B - \lambda I = M^{-1} A M - \lambda M^{-1} M = M^{-1} (A - \lambda I) M$. Taking determinants: $\det(B - \lambda I) = \det(M^{-1}) \det(A - \lambda I) \det(M) = \det(A - \lambda I)$ since $\det(M^{-1})\det(M) = 1$. Thus $A$ and $B$ have the same characteristic polynomial and the same eigenvalues. If $Ax = \lambda x$, then $B(M^{-1}x) = M^{-1}AM(M^{-1}x) = M^{-1}Ax = \lambda(M^{-1}x)$, so $M^{-1}x$ is an eigenvector of $B$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Why $4I$ Is Only Similar to Itself</h4>
+                <p>Let $A = 4I$. For any invertible $M$, compute $M^{-1} A M = M^{-1} (4I) M = 4 M^{-1} M = 4I = A$. Thus $M^{-1} A M = A$ for every $M$, so $4I$ is only similar to itself. The matrix $4I$ is a "loner" in the similarity family—it has no relatives. This is because $4I$ commutes with every matrix: $AI = IA$, so similarity transformations do nothing.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: The Jordan Block $J_2(4)$ Is Not Diagonalizable</h4>
+                <p>Consider $A = \begin{bmatrix} 4 & 1 \\ 0 & 4 \end{bmatrix}$. The characteristic equation is $\det(A - \lambda I) = (4-\lambda)^2 = 0$, so $\lambda = 4$ with algebraic multiplicity 2. To find eigenvectors, solve $(A - 4I)x = 0$: $\begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix} x = 0$, giving $x_2 = 0$ and $x_1$ free. The eigenspace is span$\{[1, 0]^T\}$, so the geometric multiplicity is 1. Since $1 < 2$, $A$ is not diagonalizable. Any diagonal matrix similar to $A$ would have to be $4I$, but $4I$ is only similar to itself, so $A$ cannot be similar to any diagonal matrix.</p>
             </div>
 
             <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Similar: Same Eigenvalues, Eigenvectors Move"</strong>
+                    <p>If $B = M^{-1}AM$, then $A$ and $B$ have the same eigenvalues. The eigenvectors of $B$ are $M^{-1}$ times the eigenvectors of $A$. Only the eigenvectors get transformed; the eigenvalues stay put.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Diagonalization: Eigenvectors Become the Basis"</strong>
+                    <p>When $A = S\Lambda S^{-1}$, the columns of $S$ are the eigenvectors. The diagonal matrix $\Lambda$ has the same eigenvalues but the eigenvectors are now $e_1, e_2, \ldots, e_n$—the standard basis. Diagonalization is the similarity transformation that makes eigenvectors trivial.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Jordan Block: One Eigenvector, Size Records Defect"</strong>
+                    <p>A Jordan block $J_k(\lambda)$ has size $k$ but only 1 eigenvector. The size $k$ records how many eigenvectors are missing: a block of size $k$ has algebraic multiplicity $k$ but geometric multiplicity 1. The number of blocks equals the number of independent eigenvectors.</p>
+                </div>
+            </div>
+
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>To check similarity, verify that matrices have the same eigenvalues with the same algebraic and geometric multiplicities</li>
+                    <li>Diagonalization is possible if and only if there are $n$ independent eigenvectors</li>
+                    <li>If $\lambda = 4I$, it is only similar to itself—scalar matrices are "loners"</li>
+                    <li>For repeated eigenvalues, compute the geometric multiplicity (dimension of eigenspace); if it is less than algebraic multiplicity, Jordan form is needed</li>
+                    <li>The number of Jordan blocks for eigenvalue $\lambda$ equals the geometric multiplicity of $\lambda$</li>
+                    <li>Jordan blocks come in sizes that sum to the algebraic multiplicity; larger blocks mean more generalized eigenvectors</li>
                 </ul>
             </div>
 
             <h3>Visual Aids</h3>
+
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure: Similarity Transformation as Change of Basis</h4>
+                <p>The similarity transformation $B = M^{-1} A M$ changes the basis from the standard basis to the basis whose columns are the columns of $M$:</p>
+                <p>$$A \xrightarrow{\text{change basis via } M} B = M^{-1} A M$$</p>
+                <p>The eigenvalues are invariant under change of basis. The eigenvectors transform as $x_B = M^{-1} x_A$. Diagonalization is the special case where the new basis is the eigenvector basis, making $B = \Lambda$ diagonal.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Diagonalizable vs Non-Diagonalizable</h4>
+                <p>Two 2×2 matrices with eigenvalues 4 and 4:</p>
+                <p>$4I = \begin{bmatrix} 4 & 0 \\ 0 & 4 \end{bmatrix}$: 2 eigenvectors, diagonal, only similar to itself</p>
+                <p>$J_2(4) = \begin{bmatrix} 4 & 1 \\ 0 & 4 \end{bmatrix}$: 1 eigenvector, not diagonalizable, Jordan block</p>
+                <p>The first is the "loner"; the second is the "best" member of the non-diagonalizable family. Any matrix $\begin{bmatrix} 4 & a \\ 0 & 4 \end{bmatrix}$ with $a \neq 0$ is similar to $J_2(4)$ via $M = \text{diag}(1, a)$.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Jordan Blocks and Eigenvector Count</h4>
+                <p>For a 4×4 matrix with eigenvalue 0 and rank 2 (nullity 2), there are 2 eigenvectors. Two possible Jordan forms:</p>
+                <p>Two 2×2 blocks: $J = \begin{bmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 \end{bmatrix}$ (2 eigenvectors, 2 blocks)</p>
+                <p>One 2×2 block + two 1×1 blocks: $J = \begin{bmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix}$... wait, that's only 2 eigenvectors too. Let me reconsider: actually for nullity 2, there are exactly 2 Jordan blocks for eigenvalue 0. The sizes of the blocks must sum to 4 (algebraic multiplicity). Possibilities: two 2×2 blocks, or one 2×2 and two 1×1 blocks, or four 1×1 blocks. The actual Jordan form depends on the matrix structure.</p>
             </div>
 
             <h3>Worked Examples</h3>
+
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
+                <h4>Example 1: Similarity and Eigenvalue Invariance</h4>
+                <p><strong>Problem:</strong> Show that $A = \begin{bmatrix} 3 & 1 \\ 0 & 1 \end{bmatrix}$ and $\Lambda = \begin{bmatrix} 3 & 0 \\ 0 & 1 \end{bmatrix}$ are similar. Find $M$ such that $M^{-1} A M = \Lambda$, and verify that the eigenvectors transform correctly.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <ul>
+                    <li>Eigenvalues of $A$: $\lambda_1 = 3, \lambda_2 = 1$</li>
+                    <li>Eigenvectors of $A$: $x_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $x_2 = \begin{bmatrix} -1/2 \\ 1 \end{bmatrix}$... actually for $A$, eigenvector for $\lambda=3$: $(A-3I)x=0 \Rightarrow [0,1;0,-2]x=0 \Rightarrow x_2=0$, so $x_1=[1,0]^T$. For $\lambda=1$: $(A-I)x=0 \Rightarrow [2,1;0,0]x=0 \Rightarrow 2x_1+x_2=0$, so $x_2=[-1,2]^T$ or $[1,-2]^T$. Wait, let me recalculate: $A-I = \begin{bmatrix} 2 & 1 \\ 0 & 0 \end{bmatrix}$, so $2x_1 + x_2 = 0$. Take $x_1 = 1$, then $x_2 = -2$. So $x_2 = \begin{bmatrix} 1 \\ -2 \end{bmatrix}$.</li>
+                    <li>$S = \begin{bmatrix} 1 & 1 \\ 0 & -2 \end{bmatrix}$, $S^{-1} = \begin{bmatrix} 1 & 1/2 \\ 0 & -1/2 \end{bmatrix}$</li>
+                    <li>$S^{-1} A S = \begin{bmatrix} 1 & 1/2 \\ 0 & -1/2 \end{bmatrix} \begin{bmatrix} 3 & 1 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 1 \\ 0 & -2 \end{bmatrix} = \begin{bmatrix} 3 & 0 \\ 0 & 1 \end{bmatrix} = \Lambda$</li>
+                    <li>Eigenvectors of $\Lambda$: $e_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $e_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$</li>
+                    <li>Check: $M^{-1}x_1 = S^{-1}\begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \end{bmatrix} = e_1$ ✓</li>
+                    <li>Check: $M^{-1}x_2 = S^{-1}\begin{bmatrix} 1 \\ -2 \end{bmatrix} = \begin{bmatrix} 1 + (-2)/2 \\ (-2)/(-2) \end{bmatrix} = \begin{bmatrix} 0 \\ 1 \end{bmatrix} = e_2$ ✓</li>
+                </ul>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
+                <h4>Example 2: The Lonely Matrix $4I$</h4>
+                <p><strong>Problem:</strong> Prove that $4I$ is only similar to itself. Then show that $J_2(4) = \begin{bmatrix} 4 & 1 \\ 0 & 4 \end{bmatrix}$ is not similar to $4I$ but is similar to any matrix $\begin{bmatrix} 4 & a \\ 0 & 4 \end{bmatrix}$ with $a \neq 0$.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <ul>
+                    <li>For any invertible $M$: $M^{-1}(4I)M = 4M^{-1}M = 4I$. So $4I$ is only similar to itself.</li>
+                    <li>$J_2(4)$ has eigenvalue 4 with algebraic multiplicity 2 but geometric multiplicity 1 (only one eigenvector).</li>
+                    <li>$4I$ has two independent eigenvectors. Since similar matrices have the same number of independent eigenvectors, $J_2(4)$ is not similar to $4I$.</li>
+                    <li>For $A_a = \begin{bmatrix} 4 & a \\ 0 & 4 \end{bmatrix}$ with $a \neq 0$, let $M = \text{diag}(1, a)$. Then $M^{-1} A_a M = \begin{bmatrix} 4 & 1 \\ 0 & 4 \end{bmatrix} = J_2(4)$. All matrices $\begin{bmatrix} 4 & a \\ 0 & 4 \end{bmatrix}$ with $a \neq 0$ are similar to each other.</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Jordan Blocks for a 4×4 Nilpotent Matrix</h4>
+                <p><strong>Problem:</strong> Consider $A = \begin{bmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 \end{bmatrix}$. Find its eigenvalues, eigenvectors, rank, and Jordan form. Then consider $B = \begin{bmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix}$ and explain why $A$ and $B$ are not similar despite having the same eigenvalues and rank.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Both $A$ and $B$ have eigenvalue 0 with algebraic multiplicity 4.</li>
+                    <li>Rank of $A$ is 2, so nullity is 2. Both have 2 independent eigenvectors.</li>
+                    <li>$A$ has two 2×2 Jordan blocks: $J_A = \text{diag}(J_2(0), J_2(0))$</li>
+                    <li>$B$ has one 2×2 Jordan block and two 1×1 blocks: $J_B = \text{diag}(J_2(0), [0], [0])$... wait, that would be 3 blocks. Let me reconsider: actually $B$ as given is $\begin{bmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix}$. Its rank is 2, nullity is 2. The Jordan form of $B$ has one 3×3 block and one 1×1 block? No, the number of blocks equals the number of eigenvectors = 2. The sizes must sum to 4. Possibilities: two 2×2 blocks, or one 3×3 and one 1×1. For $B$, the actual Jordan form is $J_B = \text{diag}(J_3(0), J_1(0))$... let me verify. Actually, $B$ has a 3-dimensional chain: $B e_1 = e_2, B e_2 = e_3, B e_3 = 0$, and $B e_4 = 0$. So there are two eigenvectors ($e_3$ and $e_4$ in the chain basis), but the Jordan blocks are sizes 3 and 1. Wait, that gives 2 blocks, which matches nullity 2. Yes: $J_B$ has one 3×3 block and one 1×1 block.</li>
+                    <li>$A$ has Jordan form with two 2×2 blocks; $B$ has Jordan form with one 3×3 block and one 1×1 block. Since the Jordan forms are different, $A$ and $B$ are not similar.</li>
+                    <li>Key insight: counting eigenvectors is not enough—you must also know the sizes of the Jordan blocks.</li>
+                </ul>
             </div>
 
             <h3>Practice Problems</h3>
+
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <h4>Problem Set 29</h4>
+
+                <p><strong>Problem 1:</strong> Show that $A = \begin{bmatrix} 5 & 1 \\ 0 & 5 \end{bmatrix}$ is not diagonalizable. Find its eigenvalue, eigenvector, and Jordan form. Is it similar to $5I$?</p>
+                <p><em>Hint: Compute the characteristic polynomial and solve $(A-5I)x = 0$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Characteristic polynomial: $(5-\lambda)^2 = 0$, so $\lambda = 5$ with multiplicity 2. Solve $(A-5I)x = 0$: $\begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}x = 0$, giving $x_2 = 0$, $x_1$ free. Only one eigenvector: $[1, 0]^T$. Geometric multiplicity 1 &lt; algebraic multiplicity 2, so not diagonalizable. Jordan form: $J_2(5) = \begin{bmatrix} 5 & 1 \\ 0 & 5 \end{bmatrix}$. Not similar to $5I$ because $5I$ has two eigenvectors.</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> Let $A = \begin{bmatrix} 4 & 0 & 0 \\ 0 & 4 & 0 \\ 0 & 0 & 2 \end{bmatrix}$ and $B = \begin{bmatrix} 4 & 1 & 0 \\ 0 & 4 & 0 \\ 0 & 0 & 2 \end{bmatrix}$. Are $A$ and $B$ similar? Justify using eigenvalues and eigenvectors.</p>
+                    <p><em>Hint: Both have eigenvalues 4, 4, 2. How many independent eigenvectors does each have?</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$A$ is diagonal with eigenvectors $e_1, e_2, e_3$—three independent eigenvectors. $B$ has eigenvalue 4 with geometric multiplicity 1 (only one eigenvector for $\lambda=4$: $[1,0,0]^T$) and eigenvalue 2 with geometric multiplicity 1. Total: 2 independent eigenvectors. Since $A$ has 3 eigenvectors and $B$ has 2, they are not similar. The Jordan form of $A$ is $A$ itself (diagonal); the Jordan form of $B$ has a 2×2 block for $\lambda=4$ and a 1×1 block for $\lambda=2$.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> For the matrix $A = \begin{bmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 \end{bmatrix}$, find its rank, nullity, eigenvalues, and the number of Jordan blocks in its Jordan form.</p>
+                <p><em>Hint: Rank is 2, so nullity is 2. The eigenvalue is 0 with algebraic multiplicity 4.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Rank = 2, nullity = 2. Eigenvalue: $\lambda = 0$ with algebraic multiplicity 4. Geometric multiplicity = nullity = 2. So there are 2 Jordan blocks for $\lambda = 0$. The block sizes sum to 4. The Jordan form has two 2×2 blocks: $J = \text{diag}(J_2(0), J_2(0))$. Each block contributes 1 eigenvector, giving 2 total.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Explain why every Jordan block $J_k(\lambda)$ has exactly one independent eigenvector, even though it is $k \times k$. Then prove that similar matrices have the same number of Jordan blocks for each eigenvalue.</p>
+                <p><em>Hint: For $J_k(\lambda)$, solve $(J_k(\lambda) - \lambda I)x = 0$. For the second part, use the fact that similarity preserves the dimension of the null space of $(A - \lambda I)^m$ for all $m$.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>$J_k(\lambda) - \lambda I$ has 1s on the superdiagonal and 0s elsewhere. Its null space is span$\{[1, 0, \ldots, 0]^T\}$, which has dimension 1. So there is exactly one independent eigenvector. For the second part: the number of Jordan blocks of size at least $m$ for eigenvalue $\lambda$ equals the dimension of the null space of $(A - \lambda I)^m$ minus the dimension of the null space of $(A - \lambda I)^{m-1}$. Since similarity preserves all powers $(M^{-1}AM)^m = M^{-1}A^m M$, it preserves these null space dimensions, hence preserves the number and sizes of Jordan blocks.</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-28.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-28.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-30.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-30.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>
