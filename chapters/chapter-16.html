@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 16: Projection Matrices and Least Squares</h2>
-            <p class="lead">Least squares solutions and projection matrix properties.</p>
+            <p class="lead">Solving least squares problems through the normal equations. This chapter completes the numerical solution of the projection problem, verifies the projection and error vectors, proves that $A^T A$ is invertible when A has independent columns, and introduces orthonormal vectors as the ideal basis for computation.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -57,13 +57,13 @@
                         <iframe src="https://www.youtube.com/embed/EP2ghkO0lSk"
                                     title="Prof Dave — Projection Matrices and Least Squares"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
                         <h5>Prof. Dave Explains</h5>
-                        <p>Concise breakdown of projection matrices and least squares</p>
+                        <p>Concise breakdown of least squares and normal equations</p>
                     </div>
                 </div>
                 <div class="video-card">
@@ -71,8 +71,8 @@
                         <iframe src="https://www.youtube.com/embed/e3fTxQQfy7I"
                                     title="Paul Dawkins — Textbook Context"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -85,8 +85,8 @@
                         <iframe src="https://www.youtube.com/embed/rGWcIeCdwGg"
                                     title="Valerie Hower — Problem Solving"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -97,89 +97,214 @@
             </div>
 
             <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers least squares solutions and projection matrix properties. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
 
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
+            <h4>The Normal Equations: Numerical Solution</h4>
+            <p>For the line-fitting problem with points $(1,1), (2,2), (3,2)$, the matrix is $A = \begin{bmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{bmatrix}$. Computing $A^T A$ gives $\begin{bmatrix} 3 & 6 \\ 6 & 14 \end{bmatrix}$, and $A^T b = \begin{bmatrix} 5 \\ 11 \end{bmatrix}$. The normal equations are $3C + 6D = 5$ and $6C + 14D = 11$. Solving by elimination: subtract $2 \times$ (first equation) from the second to get $2D = 1$, so $D = 1/2$. Back-substituting gives $3C + 3 = 5$, so $C = 2/3$. The best-fit line is $b = \frac{2}{3} + \frac{1}{2}t$.</p>
+
+            <h4>Verification via Calculus</h4>
+            <p>The same result comes from minimizing the total squared error directly. The error function is $E(C,D) = (C+D-1)^2 + (C+2D-2)^2 + (C+3D-2)^2$. Taking partial derivatives with respect to C and D and setting them to zero yields exactly the normal equations. The beauty of least squares is that minimizing a sum of squares always produces linear equations, regardless of the data.</p>
+
+            <h4>The Projection and Error Vectors</h4>
+            <p>With $\hat{x} = [2/3, 1/2]^T$, the projection vector is $p = A\hat{x} = [7/6, 5/3, 13/6]^T \approx [1.167, 1.667, 2.167]^T$. The error vector is $e = b - p = [-1/6, 1/3, -1/6]^T \approx [-0.167, 0.333, -0.167]^T$. The key facts: $p + e = b$, $p$ lies in the column space of A, $e$ lies in the null space of $A^T$, and $p \perp e$. The dot product $p^T e = (7/6)(-1/6) + (5/3)(1/3) + (13/6)(-1/6) = -7/36 + 10/36 - 13/36 = 0$ confirms orthogonality.</p>
+
+            <h4>Properties of $A^T A$</h4>
+            <p>The matrix $A^T A$ has three crucial properties: it is always symmetric, it is always invertible when A has independent columns, and it is positive definite. Symmetry holds because $(A^T A)^T = A^T A$. Invertibility is proved by showing that if $A^T A x = 0$, then $x^T A^T A x = (Ax)^T(Ax) = |Ax|^2 = 0$, so $Ax = 0$, and since columns of A are independent, $x = 0$. Thus $A^T A$ has trivial null space and is invertible.</p>
+
+            <h4>Orthonormal Vectors: The Best Columns</h4>
+            <p>When columns of A are perpendicular unit vectors (orthonormal), then $A^T A = I$. This is the ideal case: the normal equations become $I\hat{x} = A^T b$, so $\hat{x} = A^T b$. No matrix inversion is needed. Examples of orthonormal vectors in $\mathbb{R}^2$: $[1, 0]^T$ and $[0, 1]^T$, or $[\cos\theta, \sin\theta]^T$ and $[-\sin\theta, \cos\theta]^T$ for any angle $\theta$. These are perpendicular unit vectors, and their Gram matrix $A^T A$ is the identity.</p>
 
             <h3>Mathematical Rigor</h3>
+
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Derivation: Numerical Solution of the Normal Equations</h4>
+                <p>For $A = \begin{bmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{bmatrix}$ and $b = \begin{bmatrix} 1 \\ 2 \\ 2 \end{bmatrix}$:</p>
+                $$A^T A = \begin{bmatrix} 1 & 1 & 1 \\ 1 & 2 & 3 \end{bmatrix}\begin{bmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{bmatrix} = \begin{bmatrix} 3 & 6 \\ 6 & 14 \end{bmatrix}$$
+                $$A^T b = \begin{bmatrix} 1 & 1 & 1 \\ 1 & 2 & 3 \end{bmatrix}\begin{bmatrix} 1 \\ 2 \\ 2 \end{bmatrix} = \begin{bmatrix} 5 \\ 11 \end{bmatrix}$$
+                <p>Solving $A^T A \hat{x} = A^T b$:</p>
+                $$\begin{bmatrix} 3 & 6 \\ 6 & 14 \end{bmatrix}\begin{bmatrix} C \\ D \end{bmatrix} = \begin{bmatrix} 5 \\ 11 \end{bmatrix}$$
+                <p>Elimination: row 2 $- 2 \times$ row 1 gives $2D = 1$, so $D = 1/2$. Then $3C + 6(1/2) = 5$ gives $3C = 2$, so $C = 2/3$. Best-fit line: $b = \frac{2}{3} + \frac{1}{2}t$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Calculus Verification via Partial Derivatives</h4>
+                <p>Minimize $E(C,D) = (C+D-1)^2 + (C+2D-2)^2 + (C+3D-2)^2$.</p>
+                $$\frac{\partial E}{\partial C} = 2(C+D-1) + 2(C+2D-2) + 2(C+3D-2) = 6C + 12D - 10 = 0$$
+                <p>Dividing by 2: $3C + 6D = 5$.</p>
+                $$\frac{\partial E}{\partial D} = 2(C+D-1) + 4(C+2D-2) + 6(C+3D-2) = 12C + 28D - 22 = 0$$
+                <p>Dividing by 2: $6C + 14D = 11$. These are exactly the normal equations.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Proof that $A^T A$ is Invertible</h4>
+                <p>Suppose A has independent columns. We prove $A^T A$ is invertible by showing its null space is $\{0\}$.</p>
+                <p>Assume $A^T A x = 0$. Multiply by $x^T$ on the left:</p>
+                $$x^T A^T A x = (Ax)^T(Ax) = |Ax|^2 = 0$$
+                <p>Since $|Ax|^2 = 0$, we have $Ax = 0$. Because A has independent columns, $Ax = 0$ implies $x = 0$. Therefore the only solution to $A^T A x = 0$ is $x = 0$, so $A^T A$ is invertible.</p>
             </div>
 
             <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Normal Equations: $A^T A \hat{x} = A^T b$"</strong>
+                    <p>The normal equations always have this form. $A^T A$ is square and symmetric. The right-hand side is $A^T b$. Solve for $\hat{x}$ to get the least squares solution.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Error in $N(A^T)$, Projection in $C(A)$"</strong>
+                    <p>The error vector $e = b - A\hat{x}$ satisfies $A^T e = 0$, so $e \in N(A^T)$. The projection $p = A\hat{x}$ is in $C(A)$. They are orthogonal complements: $b = p + e$ with $p \perp e$.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Orthonormal: Perpendicular Unit Vectors"</strong>
+                    <p>Orthonormal vectors are perpendicular and have length 1. For orthonormal columns, $A^T A = I$. This is the best possible case: no matrix inversion needed, just $\hat{x} = A^T b$.</p>
+                </div>
+            </div>
+
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>Always check that $A^T A$ is symmetric before solving - it should be</li>
+                    <li>Compute $A^T A$ and $A^T b$ carefully; a mistake here propagates everywhere</li>
+                    <li>Verify your solution by checking $A^T A \hat{x} = A^T b$</li>
+                    <li>The error vector should be perpendicular to every column of A - test with dot products</li>
+                    <li>For the proof of invertibility, the key step is $x^T A^T A x = |Ax|^2$</li>
+                    <li>Orthonormal columns make everything simple: $A^T A = I$ and $\hat{x} = A^T b$</li>
                 </ul>
             </div>
 
             <h3>Visual Aids</h3>
+
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure: The Complete Least Squares Solution</h4>
+                <p>For points $(1,1), (2,2), (3,2)$ fitted to $b = C + Dt$:</p>
+                $$A = \begin{bmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{bmatrix}, \quad \hat{x} = \begin{bmatrix} 2/3 \\ 1/2 \end{bmatrix}, \quad b = \begin{bmatrix} 1 \\ 2 \\ 2 \end{bmatrix}$$
+                $$p = A\hat{x} = \begin{bmatrix} 7/6 \\ 5/3 \\ 13/6 \end{bmatrix}, \quad e = b - p = \begin{bmatrix} -1/6 \\ 1/3 \\ -1/6 \end{bmatrix}$$
+                <p>Check: $p + e = [7/6 - 1/6, 5/3 + 1/3, 13/6 - 1/6]^T = [1, 2, 2]^T = b$. And $p^T e = -7/36 + 10/36 - 13/36 = 0$.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Error Decomposition and Orthogonality</h4>
+                <p>The error vector $e$ is perpendicular not just to the projection $p$, but to every vector in the column space:</p>
+                $$e \perp [1, 1, 1]^T: \quad e^T\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} = -\frac{1}{6} + \frac{2}{6} - \frac{1}{6} = 0$$
+                $$e \perp [1, 2, 3]^T: \quad e^T\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} = -\frac{1}{6} + \frac{4}{6} - \frac{3}{6} = 0$$
+                <p>Since $e \in N(A^T)$, it is orthogonal to every linear combination of the columns of A.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Orthonormal Vectors in $\mathbb{R}^2$</h4>
+                <p>The absolute favorite pair of orthonormal vectors in $\mathbb{R}^2$:</p>
+                $$q_1 = \begin{bmatrix} \cos\theta \\ \sin\theta \end{bmatrix}, \quad q_2 = \begin{bmatrix} -\sin\theta \\ \cos\theta \end{bmatrix}$$
+                <p>For $\theta = 0$: $q_1 = [1, 0]^T$, $q_2 = [0, 1]^T$ (the standard basis). For any $\theta$, $q_1^T q_2 = -\cos\theta\sin\theta + \sin\theta\cos\theta = 0$ and $|q_1| = |q_2| = 1$. The Gram matrix $A^T A = I$.</p>
             </div>
 
             <h3>Worked Examples</h3>
+
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
+                <h4>Example 1: Complete Numerical Solution</h4>
+                <p><strong>Problem:</strong> Solve the normal equations for $A = \begin{bmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{bmatrix}$, $b = \begin{bmatrix} 1 \\ 2 \\ 2 \end{bmatrix}$ by both elimination and calculus. Verify orthogonality of $p$ and $e$.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <ul>
+                    <li>$A^T A = \begin{bmatrix} 3 & 6 \\ 6 & 14 \end{bmatrix}$, $A^T b = \begin{bmatrix} 5 \\ 11 \end{bmatrix}$</li>
+                    <li>Elimination: $2D = 1 \Rightarrow D = 1/2$, then $3C + 3 = 5 \Rightarrow C = 2/3$</li>
+                    <li>Best-fit line: $b = \frac{2}{3} + \frac{1}{2}t$</li>
+                    <li>Calculus: $\partial E/\partial C = 6C + 12D - 10 = 0$, $\partial E/\partial D = 12C + 28D - 22 = 0$ - same equations</li>
+                    <li>$p = [7/6, 5/3, 13/6]^T$, $e = [-1/6, 1/3, -1/6]^T$</li>
+                    <li>$p^T e = -7/36 + 10/36 - 13/36 = 0$</li>
+                    <li>$e^T[1,1,1]^T = 0$ and $e^T[1,2,3]^T = 0$</li>
+                </ul>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
+                <h4>Example 2: Error Vector in $N(A^T)$</h4>
+                <p><strong>Problem:</strong> Verify that the error vector $e = [-1/6, 1/3, -1/6]^T$ lies in the null space of $A^T$ for the matrix above.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <ul>
+                    <li>$A^T = \begin{bmatrix} 1 & 1 & 1 \\ 1 & 2 & 3 \end{bmatrix}$</li>
+                    <li>$A^T e = \begin{bmatrix} 1 & 1 & 1 \\ 1 & 2 & 3 \end{bmatrix}\begin{bmatrix} -1/6 \\ 1/3 \\ -1/6 \end{bmatrix} = \begin{bmatrix} -1/6 + 2/6 - 1/6 \\ -1/6 + 4/6 - 3/6 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$</li>
+                    <li>Therefore $e \in N(A^T)$</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Proof that $A^T A$ is Invertible</h4>
+                <p><strong>Problem:</strong> Prove that if A has independent columns, then $A^T A$ is invertible.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>To show $A^T A$ is invertible, show its null space is $\{0\}$</li>
+                    <li>Assume $A^T A x = 0$</li>
+                    <li>Multiply by $x^T$: $x^T A^T A x = (Ax)^T(Ax) = |Ax|^2 = 0$</li>
+                    <li>Thus $Ax = 0$</li>
+                    <li>Since A has independent columns, $Ax = 0$ implies $x = 0$</li>
+                    <li>Therefore $N(A^T A) = \{0\}$ and $A^T A$ is invertible</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 4: Orthonormal Vectors Make $A^T A = I$</h4>
+                <p><strong>Problem:</strong> Let $A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{bmatrix}$. Verify that the columns are orthonormal and compute $A^T A$. Then let $A = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}$ and verify $A^T A = I$.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>First A: columns are $[1,0,0]^T$ and $[0,1,0]^T$. They are perpendicular and unit length.</li>
+                    <li>$A^T A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} = I$</li>
+                    <li>Second A (rotation matrix): $A^T = \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix}$</li>
+                    <li>$A^T A = \begin{bmatrix} \cos^2\theta + \sin^2\theta & -\cos\theta\sin\theta + \sin\theta\cos\theta \\ -\sin\theta\cos\theta + \cos\theta\sin\theta & \sin^2\theta + \cos^2\theta \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} = I$</li>
+                </ul>
             </div>
 
             <h3>Practice Problems</h3>
+
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <h4>Problem Set 16</h4>
+
+                <p><strong>Problem 1:</strong> For $A = \begin{bmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{bmatrix}$ and $b = \begin{bmatrix} 1 \\ 2 \\ 2 \end{bmatrix}$, compute $A^T A$, $A^T b$, and solve the normal equations. Give the best-fit line.</p>
+                <p><em>Hint: Use elimination. Subtract twice the first equation from the second.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$A^T A = \begin{bmatrix} 3 & 6 \\ 6 & 14 \end{bmatrix}$, $A^T b = \begin{bmatrix} 5 \\ 11 \end{bmatrix}$.</p>
+                    <p>Elimination: $2D = 1 \Rightarrow D = 1/2$, then $3C = 2 \Rightarrow C = 2/3$.</p>
+                    <p>Best-fit line: $b = \frac{2}{3} + \frac{1}{2}t$.</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> Minimize $E(C,D) = (C+D-1)^2 + (C+2D-2)^2 + (C+3D-2)^2$ using calculus. Show that the critical point gives the normal equations.</p>
+                <p><em>Hint: Compute $\partial E/\partial C$ and $\partial E/\partial D$, set both to zero, and compare with Problem 1.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$\frac{\partial E}{\partial C} = 2(C+D-1) + 2(C+2D-2) + 2(C+3D-2) = 6C + 12D - 10 = 0$</p>
+                    <p>$\frac{\partial E}{\partial D} = 2(C+D-1) + 4(C+2D-2) + 6(C+3D-2) = 12C + 28D - 22 = 0$</p>
+                    <p>Dividing by 2: $3C + 6D = 5$ and $6C + 14D = 11$ - exactly the normal equations.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Compute the projection vector $p$ and error vector $e$ for the line-fitting problem. Verify that $p \perp e$, $p + e = b$, and $e \perp [1,1,1]^T$.</p>
+                <p><em>Hint: $p = A\hat{x}$ and $e = b - p$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$p = [7/6, 5/3, 13/6]^T$, $e = [-1/6, 1/3, -1/6]^T$.</p>
+                    <p>$p + e = [1, 2, 2]^T = b$.</p>
+                    <p>$p^T e = -7/36 + 10/36 - 13/36 = 0$.</p>
+                    <p>$e^T[1,1,1]^T = -1/6 + 2/6 - 1/6 = 0$.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Prove that $A^T A$ is invertible if A has independent columns. Use the key step $x^T A^T A x = |Ax|^2$.</p>
+                <p><em>Hint: Suppose $A^T A x = 0$. What does $x^T A^T A x$ equal? Why must this imply $Ax = 0$?</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>If $A^T A x = 0$, then $x^T A^T A x = 0$, so $(Ax)^T(Ax) = |Ax|^2 = 0$. Thus $Ax = 0$. Since A has independent columns, $Ax = 0$ implies $x = 0$. So $N(A^T A) = \{0\}$ and $A^T A$ is invertible.</p>
+                </details>
+
+                <p><strong>Problem 5:</strong> Let $A = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}$. Show that the columns of A are orthonormal and that $A^T A = I$. What does this mean for solving $A\hat{x} \approx b$?</p>
+                <p><em>Hint: Compute the dot product of the two columns and their lengths. Compute $A^T A$ directly.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Column 1: $[\cos\theta, \sin\theta]^T$, length $\cos^2\theta + \sin^2\theta = 1$. Column 2: $[-\sin\theta, \cos\theta]^T$, length $\sin^2\theta + \cos^2\theta = 1$. Dot product: $-\cos\theta\sin\theta + \sin\theta\cos\theta = 0$. Columns are orthonormal.</p>
+                    <p>$A^T = \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix}$, so $A^T A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} = I$.</p>
+                    <p>For $A\hat{x} \approx b$, the normal equations give $I\hat{x} = A^T b$, so $\hat{x} = A^T b$. No matrix inversion needed.</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-15.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-15.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-17.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-17.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>

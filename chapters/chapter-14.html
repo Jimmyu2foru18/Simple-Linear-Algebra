@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 14: Orthogonal Vectors and Subspaces</h2>
-            <p class="lead">Orthogonality, projections, and least squares approximation.</p>
+            <p class="lead">The geometry of ninety-degree angles in linear algebra. This chapter defines orthogonality for vectors, subspaces, and bases, and reveals the beautiful perpendicular structure of the four fundamental subspaces through the Fundamental Theorem of Linear Algebra.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -57,8 +57,8 @@
                         <iframe src="https://www.youtube.com/embed/EP2ghkO0lSk"
                                     title="Prof Dave — Orthogonal Vectors and Subspaces"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -71,8 +71,8 @@
                         <iframe src="https://www.youtube.com/embed/afI9cN_7XBY"
                                     title="Paul Dawkins — Textbook Context"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -85,8 +85,8 @@
                         <iframe src="https://www.youtube.com/embed/rGWcIeCdwGg"
                                     title="Valerie Hower — Problem Solving"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -97,89 +97,213 @@
             </div>
 
             <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers orthogonality, projections, and least squares approximation. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
 
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
+            <h4>The Orthogonality Framework</h4>
+            <p>This is a ninety-degree chapter. Orthogonality means perpendicularity in n-dimensional space. The chapter covers what it means for vectors to be orthogonal, what it means for subspaces to be orthogonal, and what it means for bases to be orthogonal. The beauty of the four-subspace picture is that the row space and null space are orthogonal, and the column space and left nullspace are orthogonal. The dimensions are already known: r and n-r, r and m-r. Now we learn that the angle between these subspaces is ninety degrees.</p>
+
+            <h4>Orthogonal Vectors</h4>
+            <p>Two vectors x and y are orthogonal if their dot product is zero: $x^T y = 0$. The dot product is also written as $x \cdot y$ and equals $x_1 y_1 + x_2 y_2 + \cdots + x_n y_n$. The zero vector is orthogonal to every vector. The length squared of a vector x is $x^T x = x_1^2 + x_2^2 + \cdots + x_n^2$, which is always positive unless x is the zero vector.</p>
+
+            <h4>Pythagorean Theorem Connection</h4>
+            <p>For a right triangle with orthogonal vectors x and y, the Pythagorean theorem states $|x|^2 + |y|^2 = |x+y|^2$. Expanding the right side: $(x+y)^T(x+y) = x^T x + x^T y + y^T x + y^T y$. When $x^T y = 0$, the cross terms vanish and we get $|x|^2 + |y|^2 = |x+y|^2$. This confirms that $x^T y = 0$ is exactly the condition for orthogonality.</p>
+
+            <h4>Orthogonal Subspaces</h4>
+            <p>Two subspaces S and T are orthogonal if every vector in S is orthogonal to every vector in T. Formally: $S \perp T$ means for all $s \in S$ and $t \in T$, we have $s^T t = 0$. Merely not intersecting is not enough - every pair of vectors, one from each subspace, must be orthogonal. If subspaces share a nonzero vector, they cannot be orthogonal because that vector would not be orthogonal to itself.</p>
+
+            <h4>Examples of Orthogonal Subspaces</h4>
+            <p>In $\mathbb{R}^3$, the x-axis and the y-z plane are orthogonal. The x-axis and the z-axis are orthogonal. The x-axis and the line $y=x$ in the x-y plane are NOT orthogonal (they meet at 45 degrees). The blackboard plane and the floor plane are NOT orthogonal because they intersect along a line. In $\mathbb{R}^2$, a line through the origin is orthogonal to another line through the origin if and only if they meet at 90 degrees.</p>
+
+            <h4>The Four Subspaces Are Orthogonal</h4>
+            <p>The Fundamental Theorem of Linear Algebra has an orthogonal complement version: In $\mathbb{R}^n$, the row space $C(A^T)$ and the null space $N(A)$ are orthogonal complements. This means $C(A^T) \perp N(A)$ and $C(A^T) \cup N(A) = \mathbb{R}^n$. Similarly, in $\mathbb{R}^m$, the column space $C(A)$ and the left nullspace $N(A^T)$ are orthogonal complements. The dimensions match perfectly: $dim(C(A^T)) = r$, $dim(N(A)) = n-r$, and $r + (n-r) = n$.</p>
+
+            <h4>Why the Row Space Is Orthogonal to the Null Space</h4>
+            <p>If $x \in N(A)$, then $Ax = 0$. Writing this out row by row, if the rows of A are $r_1, r_2, \ldots, r_m$, then $Ax = 0$ means $r_1 x = 0, r_2 x = 0, \ldots, r_m x = 0$. Every row of A dotted with x equals zero. Since the row space is the span of the rows, x is orthogonal to every vector in the row space. Thus $N(A) \perp C(A^T)$.</p>
 
             <h3>Mathematical Rigor</h3>
+
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Derivation: Dot Product Test for Orthogonality</h4>
+                <p>For vectors $x, y \in \mathbb{R}^n$, expand $|x+y|^2$:</p>
+                $$|x+y|^2 = (x+y)^T(x+y) = x^T x + x^T y + y^T x + y^T y$$
+                <p>Since $x^T y = y^T x$ for real vectors:</p>
+                $$|x+y|^2 = |x|^2 + |y|^2 + 2x^T y$$
+                <p>By the Pythagorean theorem, $|x+y|^2 = |x|^2 + |y|^2$ if and only if $x^T y = 0$. Therefore x and y are orthogonal if and only if $x^T y = 0$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Row Space Orthogonal to Null Space</h4>
+                <p>Let $A$ be an $m \times n$ matrix with rows $r_1, r_2, \ldots, r_m \in \mathbb{R}^n$. If $x \in N(A)$, then:</p>
+                $$Ax = \begin{bmatrix} r_1 \\ r_2 \\ \vdots \\ r_m \end{bmatrix} x = \begin{bmatrix} r_1 x \\ r_2 x \\ \vdots \\ r_m x \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ \vdots \\ 0 \end{bmatrix}$$
+                <p>Each row dotted with x is zero: $r_i x = 0$ for all $i = 1, \ldots, m$. Since the row space $C(A^T) = span\{r_1, \ldots, r_m\}$, every vector $v \in C(A^T)$ is a linear combination $v = \sum c_i r_i$. Then:</p>
+                $$v^T x = \sum c_i (r_i x) = \sum c_i \cdot 0 = 0$$
+                <p>Thus $x \perp v$ for all $v \in C(A^T)$, so $N(A) \perp C(A^T)$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Dimensions of Orthogonal Complement Subspaces</h4>
+                <p>In $\mathbb{R}^n$, if subspace $S$ has dimension $d$, then its orthogonal complement $S^{\perp}$ has dimension $n-d$. For the four subspaces of an $m \times n$ matrix A with rank r:</p>
+                $$dim(C(A^T)) = r, \quad dim(N(A)) = n - r, \quad dim(C(A^T)) + dim(N(A)) = n$$
+                $$dim(C(A)) = r, \quad dim(N(A^T)) = m - r, \quad dim(C(A)) + dim(N(A^T)) = m$$
+                <p>The dimensions add to the ambient space dimension, confirming they are complementary.</p>
             </div>
 
             <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Dot Product Zero Means Perpendicular"</strong>
+                    <p>Two vectors are orthogonal if and only if their dot product is zero. Compute $x^T y$ entrywise: $x_1 y_1 + x_2 y_2 + \cdots$. If the sum is zero, they are perpendicular.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Every Vector in S Orthogonal to Every Vector in T"</strong>
+                    <p>Subspaces S and T are orthogonal if every pair of vectors, one from each subspace, has dot product zero. It is not enough that they merely do not intersect - every vector in S must be perpendicular to every vector in T.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Row Space Perpendicular to Null Space"</strong>
+                    <p>The equation $Ax = 0$ says every row of A dotted with x equals zero. So the null space is orthogonal to every row, and therefore orthogonal to the entire row space.</p>
+                </div>
+            </div>
+
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>Always verify orthogonality by computing the dot product $x^T y$ and checking if it equals zero</li>
+                    <li>For subspaces, test the definition: pick a basis for each subspace and verify every cross-pair is orthogonal</li>
+                    <li>Remember that the zero vector is orthogonal to everything</li>
+                    <li>If two subspaces share a nonzero vector, they cannot be orthogonal</li>
+                    <li>Use the dimension check: if $S \perp T$ and $S \cap T = \{0\}$, then $dim(S) + dim(T) \leq n$</li>
+                    <li>The four subspaces form two orthogonal complement pairs in their respective spaces $\mathbb{R}^n$ and $\mathbb{R}^m$</li>
                 </ul>
             </div>
 
             <h3>Visual Aids</h3>
+
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure: The Four Subspaces with Orthogonality</h4>
+                <p>The big picture from 18.06 showing orthogonal complements:</p>
+                $$\mathbb{R}^n: \quad C(A^T) \perp N(A), \quad dim(C(A^T)) = r, \quad dim(N(A)) = n-r$$
+                $$\mathbb{R}^m: \quad C(A) \perp N(A^T), \quad dim(C(A)) = r, \quad dim(N(A^T)) = m-r$$
+                <p>The row space and null space are perpendicular subspaces in $\mathbb{R}^n$ that together span the whole space. The column space and left nullspace are perpendicular subspaces in $\mathbb{R}^m$ that together span the whole space.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Pythagorean Theorem in $\mathbb{R}^n$</h4>
+                <p>For orthogonal vectors x and y, the right triangle relationship holds:</p>
+                $$|x|^2 + |y|^2 = |x+y|^2 \quad \text{if and only if} \quad x^T y = 0$$
+                <p>Example in $\mathbb{R}^3$: Let $x = [1, 2, 3]^T$ with $|x|^2 = 1+4+9 = 14$. Let $y = [1, -1, 0]^T$ with $|y|^2 = 1+1+0 = 2$. Since $x^T y = 1 - 2 + 0 = -1 \neq 0$, they are NOT orthogonal. But if we take $y = [1, -2, 1]^T$, then $x^T y = 1 - 4 + 3 = 0$, and $|x+y|^2 = |[2, 0, 4]^T|^2 = 4 + 0 + 16 = 20 = 14 + 2$.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Orthogonal Subspaces in $\mathbb{R}^3$</h4>
+                <p>In $\mathbb{R}^3$, the x-axis ($span\{e_1\}$) and the y-z plane ($span\{e_2, e_3\}$) are orthogonal subspaces. Every vector on the x-axis is perpendicular to every vector in the y-z plane. They intersect only at the origin.</p>
+                $$S = span\left\{\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}\right\}, \quad T = span\left\{\begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}\right\}$$
+                <p>$S \perp T$, $dim(S) = 1$, $dim(T) = 2$, $dim(S) + dim(T) = 3 = dim(\mathbb{R}^3)$.</p>
             </div>
 
             <h3>Worked Examples</h3>
+
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
+                <h4>Example 1: Testing Vector Orthogonality</h4>
+                <p><strong>Problem:</strong> Determine whether the vectors $x = [1, 2, 3]^T$ and $y = [2, -1, 0]^T$ are orthogonal.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <ul>
+                    <li>Compute the dot product: $x^T y = 1(2) + 2(-1) + 3(0) = 2 - 2 + 0 = 0$</li>
+                    <li>Since $x^T y = 0$, the vectors are orthogonal</li>
+                    <li>Verify with Pythagoras: $|x|^2 = 1 + 4 + 9 = 14$, $|y|^2 = 4 + 1 + 0 = 5$, $|x+y|^2 = |[3, 1, 3]^T|^2 = 9 + 1 + 9 = 19 = 14 + 5$</li>
+                </ul>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
+                <h4>Example 2: Orthogonal Subspaces in $\mathbb{R}^2$</h4>
+                <p><strong>Problem:</strong> In $\mathbb{R}^2$, let $S = span\{[1, 2]^T\}$ and $T = span\{[2, -1]^T\}$. Are S and T orthogonal subspaces?</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <ul>
+                    <li>Take $s = [1, 2]^T \in S$ and $t = [2, -1]^T \in T$</li>
+                    <li>Compute $s^T t = 1(2) + 2(-1) = 2 - 2 = 0$</li>
+                    <li>Since the basis vectors are orthogonal, every vector in S is orthogonal to every vector in T</li>
+                    <li>Yes, $S \perp T$</li>
+                    <li>$dim(S) = 1$, $dim(T) = 1$, $dim(S) + dim(T) = 2 = dim(\mathbb{R}^2)$</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Row Space Orthogonal to Null Space</h4>
+                <p><strong>Problem:</strong> Let $A = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{bmatrix}$. Show that the row space of A is orthogonal to the null space of A.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Row space: $C(A^T) = span\{[1, 2, 3], [2, 4, 6]\} = span\{[1, 2, 3]\}$ (rank 1)</li>
+                    <li>Null space: Solve $Ax = 0$: $x_1 + 2x_2 + 3x_3 = 0$</li>
+                    <li>Basis for $N(A)$: $[-2, 1, 0]^T$, $[-3, 0, 1]^T$</li>
+                    <li>Check: $[1, 2, 3] \cdot [-2, 1, 0] = -2 + 2 + 0 = 0$</li>
+                    <li>Check: $[1, 2, 3] \cdot [-3, 0, 1] = -3 + 0 + 3 = 0$</li>
+                    <li>The row space vector is orthogonal to both null space basis vectors, confirming $C(A^T) \perp N(A)$</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 4: Non-Orthogonal Subspaces</h4>
+                <p><strong>Problem:</strong> In $\mathbb{R}^3$, let $S$ be the x-y plane and $T$ be the plane $x = y$. Are S and T orthogonal subspaces?</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>S contains $[1, 0, 0]^T$ and $[0, 1, 0]^T$</li>
+                    <li>T contains $[1, 1, 0]^T$ (since $x=y$)</li>
+                    <li>The vector $[1, 1, 0]^T$ is in both S and T</li>
+                    <li>Since they share a nonzero vector, they cannot be orthogonal</li>
+                    <li>Also, $[1, 0, 0]^T \in S$ and $[1, 1, 0]^T \in T$, but $[1, 0, 0]^T \cdot [1, 1, 0]^T = 1 \neq 0$</li>
+                    <li>S and T are NOT orthogonal</li>
+                </ul>
             </div>
 
             <h3>Practice Problems</h3>
+
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <h4>Problem Set 14</h4>
+
+                <p><strong>Problem 1:</strong> Determine whether each pair of vectors is orthogonal: (a) $x = [1, 3]^T$, $y = [3, -1]^T$; (b) $x = [1, 2, 3]^T$, $y = [-2, 1, 0]^T$; (c) $x = [1, 1, 1]^T$, $y = [1, -2, 1]^T$.</p>
+                <p><em>Hint: Compute $x^T y$ for each pair. If the result is zero, they are orthogonal.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <ul>
+                        <li>(a) $x^T y = 1(3) + 3(-1) = 3 - 3 = 0$. Orthogonal.</li>
+                        <li>(b) $x^T y = 1(-2) + 2(1) + 3(0) = -2 + 2 + 0 = 0$. Orthogonal.</li>
+                        <li>(c) $x^T y = 1(1) + 1(-2) + 1(1) = 1 - 2 + 1 = 0$. Orthogonal.</li>
+                    </ul>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> In $\mathbb{R}^4$, let $S = span\{[1, 0, 0, 0]^T, [0, 1, 0, 0]^T\}$ and $T = span\{[0, 0, 1, 0]^T, [0, 0, 0, 1]^T\}$. Show that $S \perp T$.</p>
+                <p><em>Hint: Take arbitrary vectors from each subspace and compute their dot product.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Any vector in S has the form $[a, b, 0, 0]^T$. Any vector in T has the form $[0, 0, c, d]^T$. Their dot product is $a(0) + b(0) + 0(c) + 0(d) = 0$. Thus $S \perp T$.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Let $A = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 1 & 2 \end{bmatrix}$. Find a basis for the null space of A and verify that it is orthogonal to the row space.</p>
+                <p><em>Hint: Solve $Ax = 0$. The row space is spanned by the nonzero rows of A.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Row reduce A: $RREF = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \end{bmatrix}$. Rank = 2. Free variable: $x_3$. Special solution: $[-1, -1, 1]^T$. Basis for $N(A) = \{[-1, -1, 1]^T\}$. Row space basis: $\{[1, 0, 1], [0, 1, 1]\}$. Check: $[1, 0, 1] \cdot [-1, -1, 1] = -1 + 0 + 1 = 0$. $[0, 1, 1] \cdot [-1, -1, 1] = 0 - 1 + 1 = 0$. Verified.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> True or False: If subspaces S and T are orthogonal and $S \cap T = \{0\}$, then $dim(S) + dim(T) \leq dim(V)$ where V is the ambient space. Explain.</p>
+                <p><em>Hint: Think about the orthogonal complement theorem.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><strong>True.</strong> If $S \perp T$ and $S \cap T = \{0\}$, then $S + T$ is a direct sum. In fact, if $S \perp T$, then $S \cap T = \{0\}$ automatically. The dimension formula gives $dim(S+T) = dim(S) + dim(T) - dim(S \cap T) = dim(S) + dim(T)$. Since $S+T \subseteq V$, we have $dim(S) + dim(T) \leq dim(V)$. If $S+T = V$, they are orthogonal complements.</p>
+                </details>
+
+                <p><strong>Problem 5:</strong> Prove that the null space of $A^T$ is orthogonal to the column space of A.</p>
+                <p><em>Hint: If $y \in N(A^T)$, then $A^T y = 0$. For any $b \in C(A)$, there exists x with $Ax = b$.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>If $y \in N(A^T)$, then $A^T y = 0$. For any $b \in C(A)$, $b = Ax$ for some x. Then $y^T b = y^T Ax = (A^T y)^T x = 0^T x = 0$. Thus y is orthogonal to every vector in $C(A)$, so $N(A^T) \perp C(A)$.</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-13.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-13.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-15.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-15.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>

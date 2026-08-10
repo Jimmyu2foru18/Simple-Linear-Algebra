@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 17: Orthogonal Matrices and Gram-Schmidt</h2>
-            <p class="lead">Orthogonal bases and the Gram-Schmidt orthogonalization process.</p>
+            <p class="lead">Orthogonal bases and the Gram-Schmidt orthogonalization process. This chapter transforms arbitrary bases into orthonormal ones, connects orthogonal matrices to rotations and reflections, and introduces the QR factorization that underlies many numerical algorithms. The Gram-Schmidt process reveals how any independent set of vectors can be systematically orthogonalized and normalized.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -158,6 +158,22 @@
 
             <h3>Learning Strategies</h3>
             <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Orthogonal: Perpendicular, Orthonormal: Perpendicular Unit Length"</strong>
+                    <p>Orthogonal vectors have dot product zero. Orthonormal vectors have dot product zero AND length one. The extra "n" in orthonormal stands for "normalized" (unit length).</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Gram-Schmidt: Subtract Projections One by One"</strong>
+                    <p>Start with the first vector unchanged. For each subsequent vector, subtract its projection onto all previous orthogonal vectors. The result is orthogonal to everything before it. Then normalize.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "QR: Q is Orthonormal, R is Upper Triangular"</strong>
+                    <p>In A = QR, Q has orthonormal columns (Q^T Q = I) and R is upper triangular. The entries of R are inner products: R_ij = q_i^T a_j. Because q_i is perpendicular to q_j for j < i, the lower triangle of R is zero.</p>
+                </div>
+            </div>
+
+            <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
                     <li>Watch the core lecture first for the main concepts</li>
@@ -170,14 +186,27 @@
             </div>
 
             <h3>Visual Aids</h3>
+
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts. Key geometric interpretations include:</p>
-                <ul>
-                    <li>The error vector as the perpendicular component</li>
-                    <li>Gram-Schmidt as successively removing projections</li>
-                    <li>QR factorization preserving column space</li>
-                </ul>
+                <h4>Figure: Gram-Schmidt as Successive Projection Removal</h4>
+                <p>Starting with independent vectors $\mathbf{a}, \mathbf{b}, \mathbf{c}$, Gram-Schmidt subtracts projections step by step:</p>
+                <p>$$\mathbf{A} = \mathbf{a}$$</p>
+                <p>$$\mathbf{B} = \mathbf{b} - \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}\mathbf{a} \quad (\text{remove projection of } \mathbf{b} \text{ onto } \mathbf{A})$$</p>
+                <p>$$\mathbf{C} = \mathbf{c} - \frac{\mathbf{a}^T\mathbf{c}}{\mathbf{a}^T\mathbf{a}}\mathbf{a} - \frac{\mathbf{b}^T\mathbf{c}}{\mathbf{b}^T\mathbf{b}}\mathbf{b} \quad (\text{remove projections of } \mathbf{c} \text{ onto } \mathbf{A} \text{ and } \mathbf{B})$$</p>
+                <p>Each new vector is orthogonal to all previous ones.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: The QR Factorization Geometry</h4>
+                <p>The matrix $A$ has columns $\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n$. The matrix $Q$ has orthonormal columns $\mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_n$ spanning the same column space. The upper triangular matrix $R$ encodes the coefficients:</p>
+                <p>$$A = QR \implies \mathbf{a}_j = \sum_{i=1}^{j} r_{ij} \mathbf{q}_i$$</p>
+                <p>Because each $\mathbf{q}_j$ is orthogonal to all $\mathbf{q}_i$ with $i < j$, the coefficients $r_{ij}$ for $i > j$ are zero.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Orthogonal Matrix as Rotation/Reflection</h4>
+                <p>An orthogonal matrix $Q$ with $\det(Q) = +1$ is a rotation. An orthogonal matrix with $\det(Q) = -1$ is a reflection. Both preserve lengths and angles: $|Q\mathbf{x}| = |\mathbf{x}|$ for all $\mathbf{x}$.</p>
+                <p>$$Q^T Q = I \implies |Q\mathbf{x}|^2 = \mathbf{x}^T Q^T Q \mathbf{x} = \mathbf{x}^T \mathbf{x} = |\mathbf{x}|^2$$</p>
             </div>
 
             <h3>Worked Examples</h3>
@@ -201,7 +230,7 @@
 
             <h3>Practice Problems</h3>
             <div class="questions">
-                <h4>Problem Set</h4>
+                <h4>Problem Set 17</h4>
                 <p><strong>Problem 1:</strong> Apply Gram-Schmidt to $\mathbf{a} = [1, 2]^T$ and $\mathbf{b} = [2, 1]^T$ to find orthonormal $\mathbf{q}_1, \mathbf{q}_2$.</p>
                 <p><em>Hint: Compute projections and normalize.</em></p>
                 <details>
@@ -225,9 +254,9 @@
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-16.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-16.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-18.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-18.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>

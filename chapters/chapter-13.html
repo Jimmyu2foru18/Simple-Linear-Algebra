@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 13: Quiz 1 Review</h2>
-            <p class="lead">Comprehensive review of chapters 1-12 with practice problems.</p>
+            <p class="lead">Review of the first half of the course covering Ax = b, vector spaces, subspaces, and the four fundamental subspaces. This chapter emphasizes the exam-critical topics from Chapter 3: rectangular matrices, null spaces, rank, and the deep structure of linear systems.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="video-card-caption">
                         <h5>Prof. Dave Explains</h5>
-                        <p>Concise breakdown of quiz 1 review</p>
+                        <p>Concise breakdown of null spaces and rank</p>
                     </div>
                 </div>
                 <div class="video-card">
@@ -71,13 +71,13 @@
                         <iframe src="https://www.youtube.com/embed/T1IakOO2UXo"
                                     title="Paul Dawkins — Textbook Context"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
                         <h5>Paul Dawkins — Textbook Context</h5>
-                        <p>Textbook-aligned explanation with examples</p>
+                        <p>Textbook-aligned review of subspaces</p>
                     </div>
                 </div>
                 <div class="video-card">
@@ -85,8 +85,8 @@
                         <iframe src="https://www.youtube.com/embed/rGWcIeCdwGg"
                                     title="Valerie Hower — Problem Solving"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -97,89 +97,226 @@
             </div>
 
             <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers comprehensive review of chapters 1-12 with practice problems. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
 
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
+            <h4>Exam Emphasis: Chapter 3</h4>
+            <p>The exam will emphasize Chapter 3, where rectangular matrices make the theory interesting. When matrices are square and invertible, null spaces and ranks are straightforward. For rectangular matrices, these same concepts become the central objects of study. Focus on null spaces of A and A<sup>T</sup>, rank, and above all, the four subspaces.</p>
+
+            <h4>Vector Spaces and Subspaces</h4>
+            <p>A subspace is a vector space contained within another vector space. The key test: a set S is a subspace if it contains the zero vector, and is closed under addition and scalar multiplication. Every spanning set generates a subspace, and the dimension of that subspace is the number of vectors in a basis for it.</p>
+
+            <h4>Dimensions of Spanned Subspaces</h4>
+            <p>If nonzero vectors u, v, w in $\mathbb{R}^7$ span a subspace, the possible dimensions are 1, 2, or 3. It cannot be 0 because the vectors are nonzero. It cannot exceed 3 because only three vectors are available. The actual dimension equals the number of linearly independent vectors among them.</p>
+
+            <h4>The Four Subspaces</h4>
+            <p>For any matrix A, the four fundamental subspaces are:</p>
+            <ul>
+                <li><strong>Column Space C(A):</strong> In $\mathbb{R}^m$, dimension r. All combinations of columns.</li>
+                <li><strong>Null Space N(A):</strong> In $\mathbb{R}^n$, dimension $n-r$. All solutions to $Ax = 0$.</li>
+                <li><strong>Row Space C(A<sup>T</sup>):</strong> In $\mathbb{R}^n$, dimension r. All combinations of rows.</li>
+                <li><strong>Left Null Space N(A<sup>T</sup>):</strong> In $\mathbb{R}^m$, dimension $m-r$. All solutions to $A^T y = 0$.</li>
+            </ul>
+            <p>The row space and column space share the same dimension (the rank). Each pair of orthogonal complements sums to the full space dimension.</p>
+
+            <h4>Null Spaces and Echelon Form</h4>
+            <p>For a matrix in echelon form with r pivots, the rank is r. The null space has dimension $n - r$. If rank equals the number of columns, the null space contains only the zero vector. If rank is less than full, the free variables produce special solutions that form a basis for the null space.</p>
+
+            <h4>Full Rank Cases</h4>
+            <p>Two critical full-rank cases are $r = m$ (full row rank) and $r = n$ (full column rank). When $r = n$, the columns are independent and $N(A) = \{0\}$. When $r = m$, the rows are independent and $N(A^T) = \{0\}$. For a square invertible matrix, both hold simultaneously.</p>
 
             <h3>Mathematical Rigor</h3>
+
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Derivation: Dimensions of a Spanned Subspace</h4>
+                <p>For three nonzero vectors in $\mathbb{R}^7$, the subspace they span has dimension equal to the number of linearly independent vectors:</p>
+                $$dim(span\{u, v, w\}) = \text{number of independent vectors among } u, v, w$$
+                <p>Since we have three vectors and they are nonzero, the dimension $d$ satisfies $1 \leq d \leq 3$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Null Space of an Echelon Form Matrix</h4>
+                <p>For a $5 \times 3$ matrix U in echelon form with three pivots ($r = 3$):</p>
+                $$U = \begin{bmatrix} \times & \times & \times \\ 0 & \times & \times \\ 0 & 0 & \times \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}$$
+                <p>Since rank $r = 3$ equals the number of columns $n = 3$, the columns are independent. The equation $Ux = 0$ has only the trivial solution $x = [0, 0, 0]^T$.</p>
+                $$N(U) = \{0\} \quad \text{and} \quad dim(N(U)) = n - r = 3 - 3 = 0$$
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Rank of Block Matrices</h4>
+                <p>Consider the block matrix $C = \begin{bmatrix} U & U & U & 0 \end{bmatrix}$ where U is $10 \times 3$ and in reduced row echelon form. The matrix C is $10 \times 6$. Row reduction on block matrices operates row by row:</p>
+                $$C \xrightarrow{\text{row reduction}} \begin{bmatrix} R & R & R & 0 \end{bmatrix}$$
+                <p>where R is the reduced echelon form of U. Since the three R blocks each contribute 3 independent rows, the total rank is $3 + 3 = 6$.</p>
+                $$rank(C) = 6$$
+                <p>For $C^T$, which is $6 \times 10$, the dimension of the null space is:</p>
+                $$dim(N(C^T)) = m - rank(C) = 10 - 6 = 4$$
             </div>
 
             <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Rank = Pivots = Independent Columns"</strong>
+                    <p>The rank of a matrix equals its number of pivots, which equals the number of independent columns and independent rows. This single number determines the dimensions of all four subspaces.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Four Subspaces: Row and Column, Left and Right"</strong>
+                    <p>Pair them by dimension: $C(A)$ pairs with $N(A^T)$ in $\mathbb{R}^m$; $C(A^T)$ pairs with $N(A)$ in $\mathbb{R}^n$. Each pair are orthogonal complements.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Null Space: Free Variables = Special Solutions"</strong>
+                    <p>The dimension of the null space equals the number of free variables. Each free variable produces one special solution. Set one free variable to 1, others to 0, and solve for pivot variables.</p>
+                </div>
+            </div>
+
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>Always identify the matrix dimensions m, n, and rank r first</li>
+                    <li>Use the dimension formulas: $dim(C(A)) = r$, $dim(N(A)) = n-r$, $dim(C(A^T)) = r$, $dim(N(A^T)) = m-r$</li>
+                    <li>For block matrices, think about how row operations affect each block separately</li>
+                    <li>When given a complete solution, the particular solution reveals a column of A and the null space basis reveals other columns</li>
+                    <li>True/false questions about subspaces: test the three subspace conditions (zero vector, closed under add, closed under scalar mult)</li>
                 </ul>
             </div>
 
             <h3>Visual Aids</h3>
+
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure: Spanning Dimensions in $\mathbb{R}^7$</h4>
+                <p>Three nonzero vectors in $\mathbb{R}^7$ span a subspace of dimension 1, 2, or 3 depending on linear independence:</p>
+                $$Possible dimensions: \quad 1 \leq dim(span\{u, v, w\}) \leq 3$$
+                <ul>
+                    <li>Dimension 1: All three vectors are multiples of each other</li>
+                    <li>Dimension 2: Two are independent, third is a combination</li>
+                    <li>Dimension 3: All three are independent</li>
+                </ul>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Echelon Form and Null Space</h4>
+                <p>A $5 \times 3$ matrix U with three pivots has no free variables:</p>
+                $$U = \begin{bmatrix} \boxed{1} & * & * \\ 0 & \boxed{1} & * \\ 0 & 0 & \boxed{1} \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}$$
+                <p>Since $n = r = 3$, the only solution to $Ux = 0$ is $x = 0$. The null space is trivial.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: The Four Subspaces Orthogonality</h4>
+                <p>The Fundamental Theorem of Linear Algebra visualized:</p>
+                $$\mathbb{R}^m: \quad C(A) \perp N(A^T), \quad dim(C(A)) = r, \quad dim(N(A^T)) = m-r$$
+                $$\mathbb{R}^n: \quad C(A^T) \perp N(A), \quad dim(C(A^T)) = r, \quad dim(N(A)) = n-r$$
+                <p>The row space and column space share dimension r. Each pair forms orthogonal complements in their respective spaces.</p>
             </div>
 
             <h3>Worked Examples</h3>
+
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
+                <h4>Example 1: Dimensions of a Spanned Subspace</h4>
+                <p><strong>Problem:</strong> Suppose $u, v, w$ are nonzero vectors in $\mathbb{R}^7$. What are the possible dimensions of the subspace they span?</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <ul>
+                    <li>The dimension cannot be 0 because the vectors are nonzero</li>
+                    <li>The dimension cannot exceed 3 because only 3 vectors are available</li>
+                    <li>Possible dimensions: <strong>1, 2, or 3</strong></li>
+                    <li>Dim = 1 if all are multiples of one vector</li>
+                    <li>Dim = 2 if exactly two are independent</li>
+                    <li>Dim = 3 if all three are independent</li>
+                </ul>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
+                <h4>Example 2: Null Space of an Echelon Form Matrix</h4>
+                <p><strong>Problem:</strong> Let U be a $5 \times 3$ matrix in echelon form with $r = 3$ pivots. What is $N(U)$?</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <ul>
+                    <li>Rank $r = 3$ equals the number of columns $n = 3$</li>
+                    <li>All three columns are linearly independent</li>
+                    <li>The equation $Ux = 0$ has only the trivial solution</li>
+                    <li>$N(U) = \{[0, 0, 0]^T\}$</li>
+                    <li>$dim(N(U)) = n - r = 3 - 3 = 0$</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Rank of a Block Matrix</h4>
+                <p><strong>Problem:</strong> Let $B = \begin{bmatrix} U \\ U \end{bmatrix}$ where U is $5 \times 3$ in reduced echelon form with $r = 3$. What is the rank of B?</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>B is a $10 \times 3$ matrix formed by stacking two copies of U</li>
+                    <li>Row reduction on the top half produces R, and the bottom half is identical</li>
+                    <li>The bottom half adds no new independent rows</li>
+                    <li>$rank(B) = 3$ (same as U)</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 4: Complete Solution Recovery</h4>
+                <p><strong>Problem:</strong> The complete solution to $Ax = \begin{bmatrix} 2 \\ 4 \\ 2 \end{bmatrix}$ is given by $x = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} + c_1 \begin{bmatrix} -1 \\ -2 \\ -1 \end{bmatrix} + c_2 \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$. Find the rank, null space, and column space of A.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li><strong>Null space dimension:</strong> Two independent null space vectors $\Rightarrow dim(N(A)) = 2$</li>
+                    <li><strong>Rank:</strong> If A is $3 \times 3$, then $rank(A) = n - dim(N(A)) = 3 - 2 = 1$</li>
+                    <li><strong>First column of A:</strong> $A \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} = \begin{bmatrix} 2 \\ 4 \\ 2 \end{bmatrix}$ means the first column is $\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}$</li>
+                    <li><strong>Second column:</strong> Since $\begin{bmatrix} -1 \\ -2 \\ -1 \end{bmatrix} \in N(A)$, the second column is $-\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix} = \begin{bmatrix} -1 \\ -2 \\ -1 \end{bmatrix}$</li>
+                    <li><strong>Third column:</strong> Since $\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} \in N(A)$, the third column is $\begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}$</li>
+                    <li><strong>Matrix:</strong> $A = \begin{bmatrix} 1 & -1 & 0 \\ 2 & -2 & 0 \\ 1 & -1 & 0 \end{bmatrix}$</li>
+                    <li><strong>Column space:</strong> $C(A) = span\left\{\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}\right\}$, all multiples of $\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}$</li>
+                    <li><strong>Solvability:</strong> $Ax = b$ can be solved if and only if $b$ is a multiple of $\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}$</li>
+                </ul>
             </div>
 
             <h3>Practice Problems</h3>
+
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <h4>Problem Set 13</h4>
+
+                <p><strong>Problem 1:</strong> Let $u, v, w$ be nonzero vectors in $\mathbb{R}^7$. What are the possible dimensions of the subspace they span? Justify each possibility.</p>
+                <p><em>Hint: Dimension cannot exceed the number of vectors, and cannot be zero because the vectors are nonzero.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>The possible dimensions are <strong>1, 2, or 3</strong>.</p>
+                    <ul>
+                        <li>Dim = 1: All three vectors lie on the same line (all are scalar multiples of one vector)</li>
+                        <li>Dim = 2: Two vectors are independent, the third is a linear combination</li>
+                        <li>Dim = 3: All three vectors are linearly independent</li>
+                    </ul>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> Let U be a $5 \times 3$ matrix in echelon form with three pivots. What is the null space of U? What is its dimension?</p>
+                <p><em>Hint: Compare the rank to the number of columns.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Since $rank(U) = 3$ and $n = 3$, there are no free variables.</p>
+                    <p>$N(U) = \{[0, 0, 0]^T\}$</p>
+                    <p>$dim(N(U)) = n - r = 3 - 3 = 0$</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Let $B = \begin{bmatrix} U \\ U \end{bmatrix}$ and $C = \begin{bmatrix} U & U & U & 0 \end{bmatrix}$, where U is $10 \times 3$ in reduced row echelon form with $rank(U) = 3$. Find the rank of B and the rank of C.</p>
+                <p><em>Hint: For block matrices, row reduction acts on each block. Stacking duplicates rows; horizontal concatenation adds columns.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p><strong>Rank of B:</strong> B is $20 \times 3$. The top block U already has rank 3 (full column rank). The bottom block U adds no new independent rows. $rank(B) = 3$.</p>
+                    <p><strong>Rank of C:</strong> C is $10 \times 6$. The three U blocks each contribute 3 independent columns, while the zero block contributes nothing. Since the three U blocks provide 6 independent columns total, $rank(C) = 6$.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> True or False: The set of invertible $5 \times 5$ matrices forms a subspace of the vector space of all $5 \times 5$ matrices. Explain.</p>
+                <p><em>Hint: Check whether the zero matrix is invertible, and whether the sum of two invertible matrices is always invertible.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><strong>False.</strong> The zero matrix is not invertible, so the set fails the "contains zero vector" subspace test. Also, the sum of two invertible matrices can be singular. For example, $I + (-I) = 0$, which is not invertible.</p>
+                </details>
+
+                <p><strong>Problem 5:</strong> Let A be an $m \times n$ matrix. Prove that the null space of A is perpendicular to the row space of A.</p>
+                <p><em>Hint: If $x \in N(A)$, then $Ax = 0$. Every row of A dotted with $x$ equals 0.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>If $x \in N(A)$, then $Ax = 0$. This means every row $r_i$ of A satisfies $r_i \cdot x = 0$. Therefore $x$ is orthogonal to every row of A, so $x$ is orthogonal to every vector in the row space $C(A^T)$. Thus $N(A) \perp C(A^T)$.</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-12.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-12.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-14.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-14.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>

@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 19: Determinant Formulas and Cofactors</h2>
-            <p class="lead">Cofactor expansion and determinant computation methods.</p>
+            <p class="lead">Cofactor expansion and determinant computation methods. This chapter develops the cofactor formula for computing determinants of any $n \times n$ matrix by expanding along a row or column. Rather than using the $n!$ term big formula or Gaussian elimination alone, cofactor expansion breaks the determinant down into smaller determinants of size $(n-1) \times (n-1)$, building up from $1 \times 1$ cases. The checkerboard sign pattern and the method of minors provide the foundation for understanding how determinants encode geometric volume.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -143,6 +143,22 @@
             <!-- LEARNING STRATEGIES -->
             <!-- ========================================== -->
             <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Cofactor = Minor with a Sign"</strong>
+                    <p>The cofactor $C_{ij}$ equals the minor $M_{ij}$ times $(-1)^{i+j}$. The sign depends only on position: even $i+j$ gives $+$, odd $i+j$ gives $-$. This creates the checkerboard pattern.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Expand Along the Row with Most Zeros"</strong>
+                    <p>Cofactor expansion is fastest when you pick a row or column with the most zeros. Each zero entry contributes $0 \times C_{ij} = 0$, eliminating entire terms from the sum.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Determinant of Transpose = Determinant of Original"</strong>
+                    <p>Expanding along a column gives the same result as expanding along a row because $\det(A) = \det(A^T)$. The cofactor formula works identically for rows and columns.</p>
+                </div>
+            </div>
 
             <div class="strategies">
                 <h4>Study Tips</h4>
@@ -274,9 +290,9 @@
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-18.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-18.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-20.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-20.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>
