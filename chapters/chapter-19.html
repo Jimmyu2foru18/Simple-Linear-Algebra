@@ -97,82 +97,179 @@
             </div>
 
             <h3>Detailed Topic Breakdowns</h3>
+
             <h4>Overview</h4>
-            <p>This chapter covers cofactor expansion and determinant computation methods. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
+            <p>This chapter introduces the <strong>cofactor formula</strong>, a recursive method for computing determinants of any $n \times n$ matrix by expanding along a row or column. Rather than using the $n!$ term big formula or Gaussian elimination to pivots, cofactor expansion breaks the determinant down into smaller determinants of size $(n-1) \times (n-1)$, building up from $1 \times 1$ cases.</p>
 
             <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
+            <ul>
+                <li><strong>Expanding along a row:</strong> Each element $a_{ij}$ in a row contributes $a_{ij}$ times its cofactor $C_{ij}$ to the determinant.</li>
+                <li><strong>Checkerboard sign pattern:</strong> The cofactor of $a_{ij}$ carries a sign $(-1)^{i+j}$, producing a $+$ / $-$ / $+$ / $-$ alternating pattern across both rows and columns.</li>
+                <li><strong>Minor vs. cofactor:</strong> The <em>minor</em> $M_{ij}$ is the determinant of the submatrix with row $i$ and column $j$ removed; the <em>cofactor</em> $C_{ij} = (-1)^{i+j} M_{ij}$ includes the sign.</li>
+                <li><strong>Tri-diagonal example:</strong> A recurrence $\det(A_n) = \det(A_{n-1}) - \det(A_{n-2})$ yields a periodic sequence of period six.</li>
+            </ul>
 
+            <!-- ========================================== -->
+            <!-- MATHEMATICAL RIGOR -->
+            <!-- ========================================== -->
             <h3>Mathematical Rigor</h3>
+
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Formal Definition: Minors and Cofactors</h4>
+                <p>For an $n \times n$ matrix $A$, the <strong>minor</strong> $M_{ij}$ of entry $a_{ij}$ is the determinant of the $(n-1) \times (n-1)$ matrix that remains after deleting row $i$ and column $j$. The <strong>cofactor</strong> is:</p>
+                <p>$$C_{ij} = (-1)^{i+j}\, M_{ij} = (-1)^{i+j} \det(A \text{ with row } i \text{ and column } j \text{ removed})$$</p>
+                <p>The sign $(-1)^{i+j}$ depends only on position:</p>
+                <ul>
+                    <li>If $i+j$ is <strong>even</strong>, the cofactor is $+M_{ij}$.</li>
+                    <li>If $i+j$ is <strong>odd</strong>, the cofactor is $-M_{ij}$.</li>
+                </ul>
+                <p>Written as a checkerboard for a $4 \times 4$ matrix:</p>
+                <p>$$\begin{bmatrix} + &amp; - &amp; + &amp; - \\ - &amp; + &amp; - &amp; + \\ + &amp; - &amp; + &amp; - \\ - &amp; + &amp; - &amp; + \end{bmatrix}$$</p>
+                <p>Row $1$ starts with $+$, row $2$ starts with $-$, row $3$ starts with $+$, and so on.</p>
             </div>
 
+            <div class="derivation">
+                <h4>The Cofactor Formula</h4>
+                <p>Expanding along <strong>row $i$</strong>:</p>
+                <p>$$\det(A) = \sum_{j=1}^{n} a_{ij}\, C_{ij} = a_{i1}C_{i1} + a_{i2}C_{i2} + \cdots + a_{in}C_{in}$$</p>
+                <p>Expanding along the <strong>first row</strong> specifically:</p>
+                <p>$$\det(A) = a_{11}C_{11} + a_{12}C_{12} + a_{13}C_{13} + \cdots + a_{1n}C_{1n}$$</p>
+                <p>Each cofactor $C_{1j}$ is the determinant of an $(n-1) \times (n-1)$ matrix times $(-1)^{1+j}$, so this reduces an $n \times n$ determinant to $n$ determinants of size $(n-1)$.</p>
+                <p><strong>Boxed result (cofactor expansion along row $i$):</strong></p>
+                <p>$$\boxed{\det(A) = \sum_{j=1}^{n} a_{ij}\, C_{ij}}$$</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- LEARNING STRATEGIES -->
+            <!-- ========================================== -->
             <h3>Learning Strategies</h3>
+
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>Choose the row or column with the <em>most zeros</em> for cofactor expansion &mdash; zero entries eliminate entire terms.</li>
+                    <li>Memorize the checkerboard pattern: $(+,-,+,-,\ldots)$ for row 1, $(-,+,-,+,\ldots)$ for row 2.</li>
+                    <li>After expanding, you get a recursion. Practice the base case until it is automatic.</li>
+                    <li>Always verify a $2 \times 2$ result against $ad - bc$ as a sanity check.</li>
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- VISUAL AIDS -->
+            <!-- ========================================== -->
             <h3>Visual Aids</h3>
+
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure: Checkerboard Sign Pattern</h4>
+                <p>The cofactor of $a_{ij}$ is multiplied by $(-1)^{i+j}$, which creates a checkerboard of $+$ and $-$ signs. Expanding along any row or column uses this same pattern scaled to the matrix size.</p>
+                <p>$$+ \;\;\;- \;\;\;+ \;\;\;- \;\;\;\cdots$$</p>
+                <p>$$- \;\;\;+ \;\;\;- \;\;\;+ \;\;\;\cdots$$</p>
+                <p>Row $i$ begins with $+$ when $i$ is odd (since $i + 1$ is even) and with $-$ when $i$ is even.</p>
             </div>
 
+            <div class="visual-aid">
+                <h4>Figure: Tri-Diagonal Matrix $A_n$</h4>
+                <p>The $n \times n$ tri-diagonal matrix of ones has $1$'s on the main diagonal, the first super-diagonal, and the first sub-diagonal, and $0$'s elsewhere:</p>
+                <p>$$A_4 = \begin{bmatrix} 1 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 1 \end{bmatrix}$$</p>
+                <p>Expanding along the first row gives $\det(A_n) = \det(A_{n-1}) - \det(A_{n-2})$, a simple two-term recurrence.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- WORKED EXAMPLES -->
+            <!-- ========================================== -->
             <h3>Worked Examples</h3>
+
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
+                <h4>Example 1: Two by Two Formula</h4>
+                <p><strong>Problem:</strong> Use the cofactor formula to compute $\det(A)$ for $A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}$ and confirm it equals $ad - bc$.</p>
                 <p><strong>Solution:</strong></p>
                 <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
+                    <li>Expand along row 1: $\det(A) = a \cdot C_{11} + b \cdot C_{12}$.</li>
+                    <li>Compute $C_{11}$: delete row 1, column 1, leaving $[d]$, so $M_{11} = d$ and $(-1)^{1+1} = +1$. Thus $C_{11} = d$.</li>
+                    <li>Compute $C_{12}$: delete row 1, column 2, leaving $[c]$, so $M_{12} = c$ and $(-1)^{1+2} = -1$. Thus $C_{12} = -c$.</li>
+                    <li>Combine: $\det(A) = a \cdot d + b \cdot (-c) = ad - bc$. $\checkmark$</li>
                 </ol>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <h4>Example 2: Three by Three Determinant</h4>
+                <p><strong>Problem:</strong> Compute $\det(A_3)$ for the tri-diagonal matrix $A_3 = \begin{bmatrix} 1 &amp; 1 &amp; 0 \\ 1 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 1 \end{bmatrix}$.</p>
+                <p><strong>Solution &mdash; Method 1 (cofactor expansion):</strong></p>
+                <p>Expand along row 1:</p>
+                <p>$$\det(A_3) = 1 \cdot \underbrace{\det\begin{bmatrix}1&amp;1\\1&amp;1\end{bmatrix}}_{= 0} - 1 \cdot \underbrace{\det\begin{bmatrix}1&amp;1\\0&amp;1\end{bmatrix}}_{= 1} + 0 \cdot (\cdots) = -1$$</p>
+                <p><strong>Solution &mdash; Method 2 (row operations):</strong></p>
+                <p>Subtract row 3 from row 2 (determinant unchanged):</p>
+                <p>$$\begin{bmatrix} 1 &amp; 1 &amp; 0 \\ 1 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 1 \end{bmatrix} \xrightarrow{R_2 \to R_2 - R_3} \begin{bmatrix} 1 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 1 \end{bmatrix}$$</p>
+                <p>Now expand along row 2 (which has two zeros): only the $(2,1)$ entry survives. Its minor is obtained by deleting row 2 and column 1, giving $\det\begin{bmatrix}1 &amp; 0 \\ 1 &amp; 1\end{bmatrix} = 1$. Thus $\det(A_3) = 1 \cdot (-1)^{2+1} \cdot 1 = -1$. Both methods agree: $\det(A_3) = -1$.</p>
             </div>
 
+            <div class="example">
+                <h4>Example 3: Four by Four &mdash; The Recurrence</h4>
+                <p><strong>Problem:</strong> Find the recurrence for $\det(A_n)$ and compute $\det(A_n)$ for $n = 4, 5, 6, 7$.</p>
+                <p><strong>Solution:</strong></p>
+                <p>Expand $\det(A_n)$ along the first row. The first entry is $a_{11} = 1$ (a $+1$ cofactor), and the second entry is $a_{12} = 1$ (a $-1$ cofactor). All other entries in row 1 are $0$, so only two terms survive:</p>
+                <p>$$\det(A_n) = 1 \cdot \det(A_{n-1}) - 1 \cdot \det(A_{n-2})$$
+                $$\boxed{\det(A_n) = \det(A_{n-1}) - \det(A_{n-2})}$$</p>
+                <p>This holds for all $n \geq 3$. The base cases are $\det(A_1) = 1$ and $\det(A_2) = 0$.</p>
+                <p>Now iterate:</p>
+                <table>
+                    <thead>
+                        <tr><th>$n$</th><th>Recurrence</th><th>$\det(A_n)$</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>(base case)</td><td>$1$</td></tr>
+                        <tr><td>2</td><td>(base case)</td><td>$0$</td></tr>
+                        <tr><td>3</td><td>$0 - 1$</td><td>$-1$</td></tr>
+                        <tr><td>4</td><td>$-1 - 0$</td><td>$-1$</td></tr>
+                        <tr><td>5</td><td>$-1 - (-1)$</td><td>$0$</td></tr>
+                        <tr><td>6</td><td>$0 - (-1)$</td><td>$1$</td></tr>
+                        <tr><td>7</td><td>$1 - 0$</td><td>$1$</td></tr>
+                    </tbody>
+                </table>
+                <p>The sequence is $\;1,\; 0,\; -1,\; -1,\; 0,\; 1,\; 1,\; 0,\; -1,\; -1,\; \ldots\;$ and it <strong>repeats with period 6</strong>. For example, $\det(A_{61}) = \det(A_1) = 1$ since $61 \equiv 1 \pmod{6}$.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- PRACTICE PROBLEMS -->
+            <!-- ========================================== -->
             <h3>Practice Problems</h3>
+
             <div class="questions">
                 <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+
+                <p><strong>Problem 1:</strong> Compute the determinant of $\begin{bmatrix} 3 &amp; -2 \\ 5 &amp; 4 \end{bmatrix}$ using the cofactor formula along the first row.</p>
+                <p><em>Hint: The cofactor of the $(1,1)$ entry is $+4$; the cofactor of the $(1,2)$ entry is $-5$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$\det = 3 \cdot 4 + (-2) \cdot (-5) = 12 + 10 = 22.$</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> For $A = \begin{bmatrix} 2 &amp; 0 &amp; 1 \\ 1 &amp; 1 &amp; 3 \\ 0 &amp; -1 &amp; 2 \end{bmatrix}$, expand along the first row to find $\det(A)$.</p>
+                <p><em>Hint: Since $a_{12} = 0$, only two cofactors are needed: $C_{11}$ and $C_{13}$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$\det(A) = 2 \cdot \det\begin{bmatrix}1&amp;3\\-1&amp;2\end{bmatrix} - 0 \cdot (\cdots) + 1 \cdot \det\begin{bmatrix}1&amp;1\\0&amp;-1\end{bmatrix} = 2(2-(-3)) + 1(-1-0) = 2 \cdot 5 - 1 = 9.$</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Compute $\det(A_6)$ for the $6 \times 6$ tri-diagonal matrix of ones defined in Example 3.</p>
+                <p><em>Hint: Use the recurrence $\det(A_n) = \det(A_{n-1}) - \det(A_{n-2})$ and the values from the table.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>From the table: $\det(A_5) = 0$ and $\det(A_4) = -1$, so $\det(A_6) = 0 - (-1) = 1.$</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> In the cofactor expansion $\det(A) = \sum_{j} a_{ij} C_{ij}$ along row $i$, explain why you can also expand along a column: $\det(A) = \sum_{i} a_{ij} C_{ij}$.</p>
+                <p><em>Hint: Recall that $\det(A) = \det(A^T)$ &mdash; the transpose swaps rows and columns.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Since $\det(A) = \det(A^T)$, expanding $A^T$ along its row $j$ gives $\det(A) = \sum_i a_{ji}^{(T)} C_{ji}^{(T)}$. But entry $(j,i)$ of $A^T$ is $a_{ij}$ of $A$, and its cofactor equals the cofactor of $a_{ij}$ in $A$ (the submatrix is the same). Hence $\det(A) = \sum_i a_{ij} C_{ij}$, expanding along column $j$.</p>
+                </details>
+
+                <p><strong>Problem 5:</strong> True or false: If you expand a $3 \times 3$ determinant along a row that contains two zeros, you only need to compute one $2 \times 2$ determinant.</p>
+                <p><em>Hint: Each zero entry contributes $0 \times C_{ij} = 0$ to the sum.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>True. If a row has two zeros, two of the three terms $a_{ij}C_{ij}$ vanish, leaving only the one term from the non-zero entry.</p>
                 </details>
             </div>
 

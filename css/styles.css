@@ -258,7 +258,8 @@ main {
 .example,
 .questions,
 .notes,
-.visual-aid {
+.visual-aid,
+.transcript {
     border: 1px solid var(--border-light);
     padding: var(--space-lg) var(--space-xl);
     margin: var(--space-2xl) 0;
@@ -269,7 +270,8 @@ main {
 .example h4,
 .questions h4,
 .notes h4,
-.visual-aid h4 {
+.visual-aid h4,
+.transcript h4 {
     font-family: var(--font-sans);
     font-size: 0.8rem;
     text-transform: uppercase;
@@ -1074,6 +1076,7 @@ body.review-page {
     .strategies,
     .notes,
     .visual-aid,
+    .transcript,
     .review-card,
     .review-hero,
     .review-hub-hero {

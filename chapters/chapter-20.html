@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 20: Cramer's Rule, Inverse Matrix, and Volume</h2>
-            <p class="lead">Cramer's Rule and geometric interpretations of determinants.</p>
+            <p class="lead">This chapter completes the determinant trilogy: formulas, cofactors, and now geometric meaning. You will see why the determinant equals the volume of a box, how Cramer's Rule solves linear systems, and when the inverse matrix exists. The geometric interpretation connects the abstract determinant formula to area, volume, and orientation in space.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -50,136 +50,198 @@
                 </div>
             </div>
 
-            <h3>Concept Breakdowns</h3>
-            <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/P5GJJ02OG08"
-                                    title="Prof Dave — Cramer's Rule, Inverse Matrix, and Volume"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-card-caption">
-                        <h5>Prof. Dave Explains</h5>
-                        <p>Concise breakdown of cramer's rule, inverse matrix, and volume</p>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/0rHqycGWOck"
-                                    title="Paul Dawkins — Textbook Context"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-card-caption">
-                        <h5>Paul Dawkins — Textbook Context</h5>
-                        <p>Textbook-aligned explanation with examples</p>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/CjPKR-oI4Ew"
-                                    title="Valerie Hower — Problem Solving"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-card-caption">
-                        <h5>Valerie Hower</h5>
-                        <p>Step-by-step problem-solving demonstration</p>
-                    </div>
-                </div>
-            </div>
-
             <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers cramer's rule and geometric interpretations of determinants. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
 
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
+            <h4>The Determinant Gives Volume</h4>
+            <p>For an $n \times n$ matrix $A$, the absolute value of the determinant $|\det(A)|$ equals the volume of the box (parallelepiped) spanned by its row vectors. The rows of $A$ become the edges of the box emanating from the origin. For a $3 \times 3$ matrix, the rows are vectors $\mathbf{r}_1 = (a_{11}, a_{12}, a_{13})$, $\mathbf{r}_2 = (a_{21}, a_{22}, a_{23})$, and $\mathbf{r}_3 = (a_{31}, a_{32}, a_{33})$. These three vectors define three edges of a box in $\mathbb{R}^3$, and $\det(A)$ is its signed volume.</p>
+
+            <h4>The Unit Cube and the Identity Matrix</h4>
+            <p>When $A = I$, the rows are the standard basis vectors $\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3$. The box is the unit cube with volume $1$, and indeed $\det(I) = 1$. This verifies the first determinant property: the volume of the unit box is one.</p>
+
+            <h4>Orthogonal Matrices and Rotated Cubes</h4>
+            <p>If $A = Q$ where $Q$ is an orthogonal matrix ($Q^T Q = I$), the row vectors are orthonormal. The box is again a unit cube, only rotated in space. Its volume is still $1$. Taking determinants of $Q^T Q = I$ gives $\det(Q)^2 = 1$, so $\det(Q) = \pm 1$. The sign records orientation: right-handed ($+1$) or left-handed ($-1$).</p>
+
+            <h4>Scaling an Edge: Property 3a</h4>
+            <p>If you double one edge of the box, the volume doubles. In determinant language, multiplying row $i$ by a scalar $T$ multiplies the determinant by $T$. This is Property 3a: $\det(T \cdot \text{row}_i) = T \cdot \det(A)$. Volume satisfies the same linearity.</p>
+
+            <h4>Linearity in a Row: Property 3b</h4>
+            <p>To complete the proof that determinant equals volume, we must check Property 3b: linearity of the determinant in one row when the other rows are fixed. In $2 \times 2$ terms, if row $1$ is $(a+a', b+b')$ while row $2$ is $(c,d)$, then the area splits into the sum of two parallelogram areas. This corresponds to splitting the determinant: $\det\begin{pmatrix} a+a' & b+b' \\ c & d \end{pmatrix} = \det\begin{pmatrix} a & b \\ c & d \end{pmatrix} + \det\begin{pmatrix} a' & b' \\ c & d \end{pmatrix}$.</p>
+
+            <h4>Area of a Parallelogram and Triangle</h4>
+            <p>The determinant gives the area of a parallelogram spanned by vectors $(a,b)$ and $(c,d)$ as $|ad - bc|$ — no square roots, no trigonometry. For the triangle with vertices at $(0,0)$, $(a,b)$, and $(c,d)$, the area is $\frac{1}{2}|ad - bc|$. If the triangle does not start at the origin, with vertices $(x_1,y_1)$, $(x_2,y_2)$, $(x_3,y_3)$, the area is $\frac{1}{2} \left| \det\begin{pmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{pmatrix} \right|$. Subtracting one row from the others translates the triangle to the origin, revealing the same determinant formula.</p>
 
             <h3>Mathematical Rigor</h3>
+
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <h4>Derivation: Determinant of an Orthogonal Matrix</h4>
+                <p>Given $Q^T Q = I$, take determinants of both sides:</p>
+                <p>$$ \det(Q^T Q) = \det(I) $$</p>
+                <p>$$ \det(Q^T) \det(Q) = 1 $$</p>
+                <p>Since $\det(Q^T) = \det(Q)$,</p>
+                <p>$$ (\det(Q))^2 = 1 \implies \det(Q) = \pm 1 $$</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Volume of a Parallelepiped</h4>
+                <p>Let $A$ have rows $\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3$. The volume $V$ of the box satisfies:</p>
+                <p>1. If $\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3$ are the standard basis, $V = 1$.</p>
+                <p>2. If two rows are swapped, $V$ stays the same (box unchanged), but $\det$ changes sign.</p>
+                <p>3. If a row is multiplied by $T$, $V$ multiplies by $T$.</p>
+                <p>4. If row 1 is $(a+a', b+b', c+c')$ while rows 2 and 3 are fixed, $V$ splits into two volumes.</p>
+                <p>These four properties characterize the determinant uniquely, so $V = |\det(A)|$.</p>
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Area of a General Triangle</h4>
+                <p>For vertices $(x_1,y_1)$, $(x_2,y_2)$, $(x_3,y_3)$, form the matrix:</p>
+                <p>$$ M = \begin{pmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{pmatrix} $$</p>
+                <p>Subtract row 3 from rows 1 and 2:</p>
+                <p>$$ \det(M) = \det\begin{pmatrix} x_1-x_3 & y_1-y_3 & 0 \\ x_2-x_3 & y_2-y_3 & 0 \\ x_3 & y_3 & 1 \end{pmatrix} = \det\begin{pmatrix} x_1-x_3 & y_1-y_3 \\ x_2-x_3 & y_2-y_3 \end{pmatrix} $$</p>
+                <p>This is $2 \times$ the signed area of the triangle. Therefore:</p>
+                <p>$$ \text{Area} = \frac{1}{2} \left| \det\begin{pmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{pmatrix} \right| $$</p>
             </div>
 
             <h3>Learning Strategies</h3>
+
+            <div class="strategies">
+                <h4>Mnemonic Devices</h4>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Rows Are Edges, Determinant Is Volume"</strong>
+                    <p>The rows of $A$ are the edges of the box. The determinant is the signed volume. The absolute value is the actual volume.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Right-Hand Rule: det > 0, Left-Hand Rule: det < 0"</strong>
+                    <p>If the row vectors follow the right-hand rule (counterclockwise orientation in 2D, right-handed coordinate system in 3D), the determinant is positive. Swapping two rows flips the sign and the handedness.</p>
+                </div>
+                <div class="mnemonic">
+                    <strong>Mnemonic: "Triangle Area = Half the Parallelogram"</strong>
+                    <p>A triangle is exactly half the parallelogram spanned by the same two vectors. So divide the determinant by 2.</p>
+                </div>
+            </div>
+
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>Always visualize the box: rows as edges, determinant as signed volume</li>
+                    <li>For the identity matrix, the box is the unit cube; verify $\det(I) = 1$</li>
+                    <li>For orthogonal $Q$, remember $Q^T Q = I$ implies $|\det(Q)| = 1$</li>
+                    <li>Doubling a row doubles the determinant — this matches doubling the edge and the volume</li>
+                    <li>The area of a parallelogram with vectors $(a,b)$ and $(c,d)$ is $|ad-bc|$</li>
+                    <li>For a triangle not at the origin, use the $3 \times 3$ determinant with a column of ones</li>
+                    <li>Property 3b (linearity) is the hardest to visualize; draw the parallelogram decomposition</li>
                 </ul>
             </div>
 
             <h3>Visual Aids</h3>
+
             <div class="visual-aid">
-                <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <h4>Figure: The Box Spanned by Three Row Vectors</h4>
+                <p>A $3 \times 3$ matrix $A$ with rows $\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3$ defines a parallelepiped:</p>
+                <p>$$ A = \begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{pmatrix} $$</p>
+                <p>The edges from the origin are the vectors $\mathbf{r}_1$, $\mathbf{r}_2$, $\mathbf{r}_3$. The volume is $|\det(A)|$.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Parallelogram Area from Determinant</h4>
+                <p>Two vectors $(a,b)$ and $(c,d)$ span a parallelogram:</p>
+                <p>$$ \text{Area} = \left| \det\begin{pmatrix} a & b \\ c & d \end{pmatrix} \right| = |ad - bc| $$</p>
+                <p>No square roots, no heights, no angles — just the coordinates.</p>
+            </div>
+
+            <div class="visual-aid">
+                <h4>Figure: Triangle Area with Arbitrary Vertices</h4>
+                <p>For vertices $(x_1,y_1)$, $(x_2,y_2)$, $(x_3,y_3)$:</p>
+                <p>$$ \text{Area} = \frac{1}{2} \left| \det\begin{pmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{pmatrix} \right| $$</p>
+                <p>Subtracting the third row from the first two translates the triangle to the origin, reducing it to a $2 \times 2$ determinant.</p>
             </div>
 
             <h3>Worked Examples</h3>
+
             <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
+                <h4>Example 1: Volume of a Box from a Matrix</h4>
+                <p><strong>Problem:</strong> Find the volume of the box spanned by the rows of $A = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{pmatrix}$.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <ul>
+                    <li>The rows are $(1,0,0)$, $(0,2,0)$, $(0,0,3)$</li>
+                    <li>The box is a rectangular box with side lengths $1, 2, 3$</li>
+                    <li>Volume $= 1 \times 2 \times 3 = 6$</li>
+                    <li>By determinant: $\det(A) = 1 \cdot 2 \cdot 3 = 6$</li>
+                </ul>
             </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
+                <h4>Example 2: Area of a Triangle Not at the Origin</h4>
+                <p><strong>Problem:</strong> Find the area of the triangle with vertices $(1,2)$, $(4,6)$, $(5,3)$.</p>
                 <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
-                </ol>
+                <ul>
+                    <li>Form the matrix with a column of ones:</li>
+                </ul>
+                <p>$$ M = \begin{pmatrix} 1 & 2 & 1 \\ 4 & 6 & 1 \\ 5 & 3 & 1 \end{pmatrix} $$</p>
+                <ul>
+                    <li>Compute the determinant:</li>
+                </ul>
+                <p>$$ \det(M) = 1(6-3) - 2(4-5) + 1(12-30) = 3 + 2 - 18 = -13 $$</p>
+                <ul>
+                    <li>Area $= \frac{1}{2}|-13| = 6.5$</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Determinant of an Orthogonal Matrix</h4>
+                <p><strong>Problem:</strong> Show that for any orthogonal matrix $Q$, $|\det(Q)| = 1$.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Orthogonal means $Q^T Q = I$</li>
+                    <li>Take determinants: $\det(Q^T Q) = \det(I) = 1$</li>
+                    <li>Use $\det(AB) = \det(A)\det(B)$ and $\det(Q^T) = \det(Q)$</li>
+                    <li>$(\det(Q))^2 = 1 \implies |\det(Q)| = 1$</li>
+                </ul>
             </div>
 
             <h3>Practice Problems</h3>
+
             <div class="questions">
-                <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <h4>Problem Set 20</h4>
+                <p><strong>Problem 1:</strong> Let $A = \begin{pmatrix} 2 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 4 \end{pmatrix}$. What is the volume of the box spanned by its rows? Verify using the determinant.</p>
+                <p><em>Hint: The box is rectangular with side lengths equal to the diagonal entries.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Volume $= 2 \times 3 \times 4 = 24$. Determinant $\det(A) = 2 \cdot 3 \cdot 4 = 24$. They match.</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> Find the area of the parallelogram spanned by vectors $(3,1)$ and $(2,4)$.</p>
+                <p><em>Hint: Use the $2 \times 2$ determinant formula $ad - bc$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Area $= \left| \det\begin{pmatrix} 3 & 1 \\ 2 & 4 \end{pmatrix} \right| = |12 - 2| = 10$.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Find the area of the triangle with vertices $(0,0)$, $(3,1)$, and $(2,4)$.</p>
+                <p><em>Hint: The area of the triangle is half the area of the parallelogram.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Parallelogram area from Problem 2 is $10$. Triangle area $= \frac{1}{2} \times 10 = 5$.</p>
+                </details>
+
+                <p><strong>Problem 4:</strong> Explain why $\det(A) = 0$ means the box is flat (zero volume).</p>
+                <p><em>Hint: Think about what happens to the row vectors when the determinant is zero.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>If $\det(A) = 0$, the row vectors are linearly dependent. They lie in a lower-dimensional subspace, so the "box" collapses and has zero volume.</p>
+                </details>
+
+                <p><strong>Problem 5:</strong> Let $A = \begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 2 \end{pmatrix}$. Compute $\det(A)$ and interpret the volume geometrically.</p>
+                <p><em>Hint: This is a triangular matrix. The determinant is the product of diagonal entries.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>$\det(A) = 1 \cdot 1 \cdot 2 = 2$. The box is a skewed rectangular box with volume $2$.</p>
                 </details>
             </div>
 
             <nav class="chapter-nav">
-                <a href="chapter-19.html" class="nav-btn prev " id="prev-chapter">Previous</a>
+                <a href="chapter-19.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
-                <a href="chapter-21.html" class="nav-btn next " id="next-chapter">Next</a>
+                <a href="chapter-21.html" class="nav-btn next" id="next-chapter">Next</a>
             </nav>
         </main>
     </div>

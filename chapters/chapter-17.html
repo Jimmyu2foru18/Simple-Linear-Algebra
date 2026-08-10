@@ -97,16 +97,63 @@
             </div>
 
             <h3>Detailed Topic Breakdowns</h3>
-            <h4>Overview</h4>
-            <p>This chapter covers orthogonal bases and the gram-schmidt orthogonalization process. The concepts build upon previous chapters and introduce new fundamental ideas in linear algebra.</p>
 
-            <h4>Key Concepts</h4>
-            <p>The main topics include theoretical foundations, computational methods, and practical applications of the concepts introduced in this chapter.</p>
+            <h4>The Error Vector</h4>
+            <p>The error vector is the component of a vector $\mathbf{b}$ that is perpendicular to a given vector $\mathbf{a}$. Starting with the original vector $\mathbf{b}$, we remove its projection onto $\mathbf{a}$ to obtain the perpendicular part.</p>
+
+            <div class="derivation">
+                <h4>Formula for the Error Vector</h4>
+                <p>If $\mathbf{b}$ is the original vector and $\mathbf{a}$ is the vector we project onto, the error vector $\mathbf{e}$ (or $\mathbf{B}$ in the lecture notation) is:</p>
+                $$ \mathbf{B} = \mathbf{b} - \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}\mathbf{a} $$
+                <p>To verify orthogonality, we check that $\mathbf{a}^T\mathbf{B} = 0$. Expanding:</p>
+                $$ \mathbf{a}^T\mathbf{B} = \mathbf{a}^T\mathbf{b} - \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}\mathbf{a}^T\mathbf{a} = \mathbf{a}^T\mathbf{b} - \mathbf{a}^T\mathbf{b} = 0 $$
+            </div>
+
+            <h4>Gram-Schmidt Orthogonalization</h4>
+            <p>Given independent vectors $\mathbf{a}$, $\mathbf{b}$, and $\mathbf{c}$, Gram-Schmidt produces orthogonal vectors $\mathbf{A}$, $\mathbf{B}$, and $\mathbf{C}$:</p>
+            <ul>
+                <li>$\mathbf{A} = \mathbf{a}$ (unchanged)</li>
+                <li>$\mathbf{B} = \mathbf{b} - \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}\mathbf{a}$</li>
+                <li>$\mathbf{C} = \mathbf{c} - \frac{\mathbf{a}^T\mathbf{c}}{\mathbf{a}^T\mathbf{a}}\mathbf{a} - \frac{\mathbf{b}^T\mathbf{c}}{\mathbf{b}^T\mathbf{b}}\mathbf{b}$</li>
+            </ul>
+            <p>To obtain orthonormal vectors, divide each by its length: $\mathbf{q}_1 = \frac{\mathbf{A}}{\|\mathbf{A}\|}$, $\mathbf{q}_2 = \frac{\mathbf{B}}{\|\mathbf{B}\|}$, etc.</p>
+
+            <h4>Worked Numerical Example</h4>
+            <div class="example">
+                <h5>Example: Gram-Schmidt with Two Vectors</h5>
+                <p><strong>Given:</strong></p>
+                <ul>
+                    <li>$\mathbf{a} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$</li>
+                    <li>$\mathbf{b} = \begin{bmatrix} 1 \\ 0 \\ 2 \end{bmatrix}$</li>
+                </ul>
+
+                <p><strong>Step 1:</strong> Compute $\mathbf{B}$:</p>
+                <p>$\mathbf{a}^T\mathbf{b} = 1(1) + 1(0) + 1(2) = 3$</p>
+                <p>$\mathbf{a}^T\mathbf{a} = 1^2 + 1^2 + 1^2 = 3$</p>
+                <p>$$ \mathbf{B} = \begin{bmatrix} 1 \\ 0 \\ 2 \end{bmatrix} - \frac{3}{3}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 1-1 \\ 0-1 \\ 2-1 \end{bmatrix} = \begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix} $$</p>
+
+                <p><strong>Step 2:</strong> Verify orthogonality:</p>
+                <p>$\mathbf{a}^T\mathbf{B} = 1(0) + 1(-1) + 1(1) = 0$ ✓</p>
+
+                <p><strong>Step 3:</strong> Normalize to get orthonormal basis:</p>
+                <p>$\mathbf{q}_1 = \frac{1}{\sqrt{3}}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$, $\mathbf{q}_2 = \frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}$</p>
+
+                <p><strong>Step 4:</strong> Form the matrix $Q$:</p>
+                <p>$$ Q = \begin{bmatrix} \frac{1}{\sqrt{3}} & 0 \\ \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{2}} \end{bmatrix} $$</p>
+            </div>
+
+            <h4>The A = QR Factorization</h4>
+            <p>The connection between the original matrix $A$ and the orthonormal matrix $Q$ is expressed through an upper triangular matrix $R$:</p>
+            <p>$$ A = QR $$</p>
+            <p>Since $Q$ has orthonormal columns and $A$ has the same column space, $R$ must be upper triangular. The entries of $R$ are inner products of the original columns of $A$ with the orthonormal columns of $Q$. The zero entries in $R$ arise because each $\mathbf{q}_i$ is constructed to be perpendicular to all previous $\mathbf{q}_j$ ($j < i$).</p>
 
             <h3>Mathematical Rigor</h3>
             <div class="derivation">
                 <h4>Formal Definitions</h4>
-                <p>The mathematical framework for this chapter is based on the definitions and theorems presented in the lecture. Key formulas and their derivations will be explored in detail.</p>
+                <p><strong>Orthogonal vectors:</strong> Vectors $\mathbf{u}$ and $\mathbf{v}$ are orthogonal if $\mathbf{u}^T\mathbf{v} = 0$.</p>
+                <p><strong>Orthonormal vectors:</strong> Vectors are orthonormal if they are orthogonal and each has unit length ($\|\mathbf{v}\| = 1$).</p>
+                <p><strong>Gram-Schmidt process:</strong> A method for converting a set of linearly independent vectors into an orthonormal set spanning the same subspace.</p>
+                <p><strong>QR factorization:</strong> Any matrix $A$ with linearly independent columns can be factored as $A = QR$ where $Q$ has orthonormal columns and $R$ is upper triangular.</p>
             </div>
 
             <h3>Learning Strategies</h3>
@@ -115,8 +162,9 @@
                 <ul>
                     <li>Watch the core lecture first for the main concepts</li>
                     <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the examples step by step</li>
-                    <li>Practice the problems before checking solutions</li>
+                    <li>Work through the numerical example step by step</li>
+                    <li>Verify orthogonality by computing dot products</li>
+                    <li>Practice the Gram-Schmidt process with 2 and 3 vectors</li>
                     <li>Use the note-taking feature to capture key insights</li>
                 </ul>
             </div>
@@ -124,55 +172,55 @@
             <h3>Visual Aids</h3>
             <div class="visual-aid">
                 <h4>Concept Visualization</h4>
-                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts.</p>
+                <p>Visual representations and diagrams for this chapter will help solidify your understanding of the abstract concepts. Key geometric interpretations include:</p>
+                <ul>
+                    <li>The error vector as the perpendicular component</li>
+                    <li>Gram-Schmidt as successively removing projections</li>
+                    <li>QR factorization preserving column space</li>
+                </ul>
             </div>
 
             <h3>Worked Examples</h3>
             <div class="example">
                 <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply the concepts from this chapter to a standard problem.</p>
-                <p><strong>Solution:</strong></p>
-                <ol>
-                    <li>Identify the given information and what needs to be found</li>
-                    <li>Apply the relevant formulas and theorems</li>
-                    <li>Compute the solution step by step</li>
-                    <li>Verify the result</li>
-                </ol>
+                <p><strong>Problem:</strong> Apply Gram-Schmidt to vectors $\mathbf{a} = [1, 1, 1]^T$ and $\mathbf{b} = [1, 0, 2]^T$.</p>
+                <p><strong>Solution:</strong> See the worked numerical example above. The resulting orthonormal basis is $\mathbf{q}_1 = \frac{1}{\sqrt{3}}[1,1,1]^T$ and $\mathbf{q}_2 = \frac{1}{\sqrt{2}}[0,-1,1]^T$.</p>
             </div>
 
             <div class="example">
                 <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Solve a more complex problem using techniques from this chapter.</p>
+                <p><strong>Problem:</strong> Show that $A = QR$ for the example above, and identify $R$.</p>
                 <p><strong>Solution:</strong></p>
                 <ol>
-                    <li>Set up the problem using matrix notation</li>
-                    <li>Apply the appropriate algorithm</li>
-                    <li>Interpret the results</li>
+                    <li>$R = Q^T A$ (since $Q$ has orthonormal columns)</li>
+                    <li>$R_{11} = \mathbf{q}_1^T \mathbf{a} = \sqrt{3}$, $R_{12} = \mathbf{q}_1^T \mathbf{b} = \sqrt{3}$</li>
+                    <li>$R_{22} = \mathbf{q}_2^T \mathbf{b} = \sqrt{2}$</li>
+                    <li>$$ R = \begin{bmatrix} \sqrt{3} & \sqrt{3} \\ 0 & \sqrt{2} \end{bmatrix} $$</li>
                 </ol>
             </div>
 
             <h3>Practice Problems</h3>
             <div class="questions">
                 <h4>Problem Set</h4>
-                <p><strong>Problem 1:</strong> Apply the main concept from this chapter to solve the given problem.</p>
-                <p><em>Hint: Review the definitions and examples in the lecture.</em></p>
+                <p><strong>Problem 1:</strong> Apply Gram-Schmidt to $\mathbf{a} = [1, 2]^T$ and $\mathbf{b} = [2, 1]^T$ to find orthonormal $\mathbf{q}_1, \mathbf{q}_2$.</p>
+                <p><em>Hint: Compute projections and normalize.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$\mathbf{q}_1 = \frac{1}{\sqrt{5}}[1,2]^T$, $\mathbf{q}_2 = \frac{1}{\sqrt{5}}[2,-1]^T$</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Solve the following problem using the methods discussed in this chapter.</p>
-                <p><em>Hint: Break the problem into smaller steps.</em></p>
+                <p><strong>Problem 2:</strong> Given three independent vectors in $\mathbb{R}^3$, write the full Gram-Schmidt formula for the third orthogonal vector $\mathbf{C}$.</p>
+                <p><em>Hint: Subtract projections onto both $\mathbf{A}$ and $\mathbf{B}$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>$\mathbf{C} = \mathbf{c} - \frac{\mathbf{a}^T\mathbf{c}}{\mathbf{a}^T\mathbf{a}}\mathbf{a} - \frac{\mathbf{b}^T\mathbf{c}}{\mathbf{b}^T\mathbf{b}}\mathbf{B}$</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Prove or disprove the following statement related to this chapter's content.</p>
-                <p><em>Hint: Use the theorems and properties discussed in the lecture.</em></p>
+                <p><strong>Problem 3:</strong> Prove that if $A$ has independent columns, then $R$ in the QR factorization $A = QR$ is invertible.</p>
+                <p><em>Hint: Use the fact that $Q$ has orthonormal columns and $Q^T Q = I$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Solution approach and detailed steps will be provided.</p>
+                    <p>Since $A = QR$ and $A$ has independent columns, $A$ is invertible. Also $Q^T Q = I$, so $R = Q^T A$ is a product of invertible matrices, hence invertible.</p>
                 </details>
             </div>
 
