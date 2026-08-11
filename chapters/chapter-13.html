@@ -142,12 +142,12 @@
 
             <div class="derivation">
                 <h4>Derivation: Rank of Block Matrices</h4>
-                <p>Consider the block matrix $C = \begin{bmatrix} U & U & U & 0 \end{bmatrix}$ where U is $10 \times 3$ and in reduced row echelon form. The matrix C is $10 \times 6$. Row reduction on block matrices operates row by row:</p>
-                $$C \xrightarrow{\text{row reduction}} \begin{bmatrix} R & R & R & 0 \end{bmatrix}$$
-                <p>where R is the reduced echelon form of U. Since the three R blocks each contribute 3 independent rows, the total rank is $3 + 3 = 6$.</p>
-                $$rank(C) = 6$$
+                <p>Consider the block matrix $C = \begin{bmatrix} U_1 & U_2 & U_3 \end{bmatrix}$ where $U_1, U_2, U_3$ are independent $10 \times 2$ matrices, each in reduced row echelon form with $r = 2$ pivots. The row spaces of $U_1, U_2, U_3$ are independent (they occupy different column positions after RREF). The matrix $C$ is $10 \times 6$. Row reduction on block matrices operates row by row:</p>
+                $$C \xrightarrow{\text{row reduction}} \begin{bmatrix} R_1 & R_2 & R_3 \end{bmatrix}$$
+                <p>where $R_i$ is the reduced echelon form of $U_i$. Since the row spaces of $R_1, R_2, R_3$ are independent, each contributes 2 pivot rows without overlap. The total rank is $2 + 2 + 2 = 6$.</p>
+                $$\operatorname{rank}(C) = 6$$
                 <p>For $C^T$, which is $6 \times 10$, the dimension of the null space is:</p>
-                $$dim(N(C^T)) = m - rank(C) = 10 - 6 = 4$$
+                $$\dim(N(C^T)) = 10 - \operatorname{rank}(C) = 10 - 6 = 4$$
             </div>
 
             <h3>Learning Strategies</h3>

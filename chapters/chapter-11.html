@@ -115,20 +115,17 @@
             <div class="derivation">
                 <h4>Derivation: Rank-1 Factorization</h4>
                 <p>Any rank-1 matrix <code>A</code> has columns that are multiples of each other:</p>
-                $$A = [c1*u  c2*u  ...  cn*u]   where u is a column vector
-
-$$This can be written as:   A = u * [c1, c2, ..., cn]$$
-                        = u * v^T  (outer product)$$
-                <p>The dimension of the space of rank-1 matrices in <code>M_{m—n}</code> is <code>m + n - 1</code> (m for u, n for v, minus 1 for scaling ambiguity).</p>
+                $$A = [\mathbf{u} \ c_2\mathbf{u} \ \cdots \ c_n\mathbf{u}] \quad \text{where } \mathbf{u} \text{ is a column vector}$$
+                <p>This can be written as: $$A = \mathbf{u} \begin{bmatrix} c_1 & c_2 & \cdots & c_n \end{bmatrix} = \mathbf{u}\mathbf{v}^T \quad \text{(outer product)}$$</p>
+                <p>The dimension of the space of rank-1 matrices in <code>M_{m \times n}</code> is <code>m + n - 1</code> (m for u, n for v, minus 1 for scaling ambiguity).</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Counting Walks via Matrix Powers</h4>
                 <p>The <code>(i, j)</code> entry of <code>A^k</code> counts walks of length k from node i to node j:</p>
-                $$(A^2)_ij = sum over l of A_il * A_lj
-         = number of 2-step paths i → l → j
-
-(A^k)_ij = sum over all paths i = v0 → v1 → ... → vk = j of 1$$
+                <p>The <code>(i, j)</code> entry of <code>A^k</code> counts walks of length k from node i to node j:</p>
+                $$(A^2)_{ij} = \sum_{\ell} A_{i\ell} A_{\ell j} = \text{number of 2-step paths } i \to \ell \to j$$
+                $$(A^k)_{ij} = \sum_{\substack{\text{paths} \\ i = v_0 \to v_1 \to \cdots \to v_k = j}} 1$$
                 <p>This connects linear algebra to network analysis.</p>
             </div>
 

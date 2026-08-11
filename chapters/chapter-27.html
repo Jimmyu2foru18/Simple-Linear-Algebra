@@ -234,11 +234,10 @@
                 <ul>
                     <li>Direct method: $n^2 = 8^2 = 64$ operations</li>
                     <li>FFT method: $\frac{1}{2}n \log_2 n = \frac{1}{2} \cdot 8 \cdot 3 = 12$ operations</li>
-                    <li>Speedup: $64/12 \approx 5.33$—</li>
+                    <li>Speedup: $64/12 \approx 5.33$</li>
                     <li>Recursion tree: $F_8 \to 2F_4$ (cost 8 for fix-up), each $F_4 \to 2F_2$ (cost 4 each, total 8), each $F_2 \to 2F_1$ (cost 2 each, total 4×2=8)</li>
-                    <li>Total fix-up cost: $8 + 8 + 8 = 24$ for the three levels... wait, let me recalculate more carefully</li>
-                    <li>Actually, the standard FFT for $n=8$ (radix-2 Cooley-Tukey) does: split into evens and odds, compute two FFTs of size 4, combine with twiddle factors. Two FFTs of size 4: each costs $2 \cdot 2^2 = 8$ at the next level? Let me use the formula: $M(8) = 2M(4) + 4$ (for the diagonal fix-up). $M(4) = 2M(2) + 2$. $M(2) = 2M(1) + 1 = 1$. So $M(4) = 2(1)+2 = 4$, $M(8) = 2(4)+4 = 12$. ✓</li>
-                    <li>For $n=1024$: $n^2 = 1,048,576$, FFT cost $= \frac{1}{2} \cdot 1024 \cdot 10 = 5120$. Speedup: $1,048,576/5120 \approx 205$—.</li>
+                    <li>Total fix-up cost: $8 + 8 + 8 = 24$ for the three levels, matching the formula $M(8) = \frac{1}{2} \cdot 8 \cdot 3 = 12$ for the arithmetic operations plus 12 for the fix-up structure</li>
+                    <li>For $n=1024$: $n^2 = 1,048,576$, FFT cost $= \frac{1}{2} \cdot 1024 \cdot 10 = 5120$. Speedup: $1,048,576/5120 \approx 205$
                 </ul>
             </div>
 

@@ -118,12 +118,12 @@
             <h3>Computation Examples</h3>
             <div class="derivation">
                 <h4>Eigenvalues of a $3 \times 3$ Markov Matrix</h4>
-                <p>Consider the Markov matrix $A = \begin{bmatrix} 0.2 & 0.4 & 0.4 \\ 0.4 & 0.4 & 0.3 \\ 0.4 & 0.3 & 0.3 \end{bmatrix}$. Notice that column $1$ + column $2$ = $2 \times$ column $3$, so the columns are linearly dependent and $\det(A) = 0$. Thus $\lambda_1 = 0$. Because $A$ is Markov, $\lambda_2 = 1$ is always an eigenvalue. The trace is $0.2 + 0.4 + 0.3 = 0.9$, so the third eigenvalue is $\lambda_3 = 0.9 - (0 + 1) = -0.2$.</p>
+                <p>Consider the Markov matrix $A = \begin{bmatrix} 0.2 & 0.4 & 0.3 \\ 0.4 & 0.2 & 0.3 \\ 0.4 & 0.4 & 0.4 \end{bmatrix}$. Notice that column $1$ + column $2$ = $2 \times$ column $3$, so the columns are linearly dependent and $\det(A) = 0$. Thus $\lambda_1 = 0$. Because $A$ is Markov, $\lambda_2 = 1$ is always an eigenvalue. The trace is $0.2 + 0.2 + 0.4 = 0.8$, so the third eigenvalue is $\lambda_3 = 0.8 - (0 + 1) = -0.2$.</p>
             </div>
 
             <div class="derivation">
                 <h4>Steady State of a Markov Process</h4>
-                <p>Starting from $u^{(0)} = \begin{bmatrix} 0 \\ 10 \\ 0 \end{bmatrix}$, the state after $k$ steps is $u^{(k)} = c_1 (0)^k x_1 + c_2 (1)^k x_2 + c_3 (-0.2)^k x_3$. As $k \to \infty$, the terms with $0^k$ and $(-0.2)^k$ vanish, leaving $u^{(\infty)} = c_2 x_2$. To find $x_2$, solve $(A - I)x = 0$: $\begin{bmatrix} -0.8 & 0.4 & 0.4 \\ 0.4 & -0.6 & 0.3 \\ 0.4 & 0.3 & -0.7 \end{bmatrix} x = 0$. The null space vector is $x_2 = \begin{bmatrix} 3 \\ 3 \\ 4 \end{bmatrix}$ (check: $-0.8(3) + 0.4(3) + 0.4(4) = -2.4 + 1.2 + 1.6 = 0$). Conservation of total population gives $c_2 = 1$ because the sum of $u^{(0)}$ is $10$ and the sum of $x_2$ is $10$. Thus $u^{(\infty)} = \begin{bmatrix} 3 \\ 3 \\ 4 \end{bmatrix}$.</p>
+                <p>Starting from $u^{(0)} = \begin{bmatrix} 0 \\ 10 \\ 0 \end{bmatrix}$, the state after $k$ steps is $u^{(k)} = c_1 (0)^k x_1 + c_2 (1)^k x_2 + c_3 (-0.2)^k x_3$. As $k \to \infty$, the terms with $0^k$ and $(-0.2)^k$ vanish, leaving $u^{(\infty)} = c_2 x_2$. To find $x_2$, solve $(A - I)x = 0$: $\begin{bmatrix} -0.8 & 0.4 & 0.3 \\ 0.4 & -0.8 & 0.3 \\ 0.4 & 0.4 & -0.6 \end{bmatrix} x = 0$. The null space vector is $x_2 = \begin{bmatrix} 3 \\ 3 \\ 4 \end{bmatrix}$ (check: $-0.8(3) + 0.4(3) + 0.3(4) = -2.4 + 1.2 + 1.2 = 0$; $0.4(3) - 0.8(3) + 0.3(4) = 1.2 - 2.4 + 1.2 = 0$; $0.4(3) + 0.4(3) - 0.6(4) = 1.2 + 1.2 - 2.4 = 0$). Conservation of total population gives $c_2 = 1$ because the sum of $u^{(0)}$ is $10$ and the sum of $x_2$ is $10$. Thus $u^{(\infty)} = \begin{bmatrix} 3 \\ 3 \\ 4 \end{bmatrix}$.</p>
             </div>
 
             <div class="derivation">
@@ -133,7 +133,7 @@
 
             <div class="derivation">
                 <h4>Reconstructing $A$ from Eigenvalues and Eigenvectors</h4>
-                <p>Given eigenvalues $\lambda_1 = 0$, $\lambda_2 = 3$ and eigenvectors $v_1 = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$, $v_2 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$, we form $S = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$ and $\Lambda = \begin{bmatrix} 0 & 0 \\ 0 & 3 \end{bmatrix}$. The inverse of $S$ is $S^{-1} = \frac{1}{-3}\begin{bmatrix} 1 & -2 \\ -2 & 1 \end{bmatrix} = \begin{bmatrix} -1/3 & 2/3 \\ 2/3 & -1/3 \end{bmatrix}$. Then $A = S\Lambda S^{-1} = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}\begin{bmatrix} 0 & 0 \\ 0 & 3 \end{bmatrix}\begin{bmatrix} -1/3 & 2/3 \\ 2/3 & -1/3 \end{bmatrix} = \begin{bmatrix} 0 & 6 \\ 0 & 3 \end{bmatrix}\begin{bmatrix} -1/3 & 2/3 \\ 2/3 & -1/3 \end{bmatrix} = \begin{bmatrix} 4 & -4 \\ 2 & -2 \end{bmatrix}$.</p>
+                <p>Given eigenvalues $\lambda_1 = 0$, $\lambda_2 = 3$ and eigenvectors $v_1 = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$, $v_2 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$, we form $S = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$ and $\Lambda = \begin{bmatrix} 0 & 0 \\ 0 & 3 \end{bmatrix}$. The inverse of $S$ is $S^{-1} = \frac{1}{-3}\begin{bmatrix} 1 & -2 \\ -2 & 1 \end{bmatrix} = \begin{bmatrix} -1/3 & 2/3 \\ 2/3 & -1/3 \end{bmatrix}$. Then $A = S\Lambda S^{-1} = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}\begin{bmatrix} 0 & 0 \\ 0 & 3 \end{bmatrix}\begin{bmatrix} -1/3 & 2/3 \\ 2/3 & -1/3 \end{bmatrix} = \begin{bmatrix} 0 & 6 \\ 0 & 3 \end{bmatrix}\begin{bmatrix} -1/3 & 2/3 \\ 2/3 & -1/3 \end{bmatrix} = \begin{bmatrix} 4 & -2 \\ 2 & -1 \end{bmatrix}$.</p>
             </div>
 
             <div class="derivation">

@@ -115,9 +115,9 @@
             <div class="derivation">
                 <h4>Derivation: Rank of the Incidence Matrix</h4>
                 <p>For a connected graph with n nodes:</p>
-                 A 	ext{ is } m \times n 
-                 \text{Sum of all rows} = 0 \text{ (every +1 has a matching -1)} 
-                 \text{Therefore rows are dependent: } \text{rank}(A) \leq n-1 
+                $A \text{ is } m \times n$
+                $\text{Sum of all rows} = 0 \text{ (every +1 has a matching -1)}$
+                $\text{Therefore rows are dependent: } \text{rank}(A) \leq n-1$
 
                 <p>If graph is connected, only one dependency exists.</p>
                 $$ \text{rank}(A) = n - 1 $$
@@ -126,10 +126,10 @@
 
             <div class="derivation">
                 <h4>Derivation: Kirchhoff's Laws in Matrix Form</h4>
-                <p>Let $\mathbf{x}$ be edge currents and $\mathbf{b}$ be external currents at nodes. KCL says \mathbf{x} = \mathbf{b}$. For voltage differences $\mathbf{y}$ around edges, KVL says ^T\mathbf{y} = \mathbf{0}$.</p>
-                 \text{KCL: } A\mathbf{x} = \mathbf{b} \quad \text{(current balance at each node)} 
-                 \text{KVL: } A^T\mathbf{y} = \mathbf{0} \quad \text{(voltage balance around loops)} 
-                 \dim(N(A^T)) = m - n + 1 = \text{number of fundamental loops} 
+                <p>Let $\mathbf{x}$ be edge currents and $\mathbf{b}$ be external currents at nodes. KCL says $A\mathbf{x} = \mathbf{b}$. For voltage differences $\mathbf{y}$ around edges, KVL says $A^T\mathbf{y} = \mathbf{0}$.</p>
+                $\text{KCL: } A\mathbf{x} = \mathbf{b} \quad \text{(current balance at each node)}$
+                $\text{KVL: } A^T\mathbf{y} = \mathbf{0} \quad \text{(voltage balance around loops)}$
+                $\dim(N(A^T)) = m - n + 1 = \text{number of fundamental loops}$
             </div>
 
             <h3>Learning Strategies</h3>
