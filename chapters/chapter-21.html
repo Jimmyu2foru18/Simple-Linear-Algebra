@@ -39,7 +39,7 @@
             <p class="lead">Introduction to eigenvalues and eigenvectors, the fundamental building blocks of linear algebra. This chapter explores how adding scalar multiples of the identity shifts eigenvalues, why eigenvalues of A plus B are not simply the sum of eigenvalues, how rotation matrices produce complex eigenvalues, and how repeated eigenvalues can lead to defective matrices with insufficient eigenvectors.</p>
 
             <div class="video-section">
-                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/lXNXrLcoerU"
                             title="21. Eigenvalues and Eigenvectors — Gilbert Strang"
@@ -76,7 +76,7 @@
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <h5>Paul Cartier — Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
@@ -99,32 +99,32 @@
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>Shifting Eigenvalues by Adding cI</h4>
-            <p>If A has eigenvalue lambda with eigenvector x, then A + cI has eigenvalue lambda + c with the same eigenvector x. This is because (A + cI)x = Ax + cIx = lambda x + c x = (lambda + c)x. The eigenvectors are unchanged; only the eigenvalues shift. For example, if A has eigenvalues 1 and -1, then A + 3I has eigenvalues 4 and 2. This property is special to adding a multiple of the identity matrix.</p>
+            <p>If A has eigenvalue $\lambda$ with eigenvector x, then A + cI has eigenvalue $\lambda$ + c with the same eigenvector x. This is because (A + cI)x = Ax + cIx = $\lambda$ x + c x = ($\lambda$ + c)x. The eigenvectors are unchanged; only the eigenvalues shift. For example, if A has eigenvalues 1 and -1, then A + 3I has eigenvalues 4 and 2. This property is special to adding a multiple of the identity matrix.</p>
 
             <h4>Why A + B Does Not Simply Add Eigenvalues</h4>
-            <p>If Ax = lambda x and Bx = alpha x for the same vector x, then (A+B)x = (lambda + alpha)x. But in general, A and B have different eigenvectors. The equation Bx = alpha x holds only for specific eigenvectors of B, not for eigenvectors of A. Without a common eigenvector basis, there is no way to determine the eigenvalues of A + B from the eigenvalues of A and B alone. Eigenvalues are not linear: knowing det(A) and det(B) does not tell you det(A+B).</p>
+            <p>If Ax = $\lambda$ x and Bx = $\alpha$ x for the same vector x, then (A+B)x = ($\lambda$ + $\alpha$)x. But in general, A and B have different eigenvectors. The equation Bx = $\alpha$ x holds only for specific eigenvectors of B, not for eigenvectors of A. Without a common eigenvector basis, there is no way to determine the eigenvalues of A + B from the eigenvalues of A and B alone. Eigenvalues are not linear: knowing det(A) and det(B) does not tell you det(A+B).</p>
 
             <h4>Rotation Matrices and Complex Eigenvalues</h4>
-            <p>The 90-degree rotation matrix Q = [[0, -1], [1, 0]] is orthogonal but not symmetric. Its characteristic equation is det(Q - lambda I) = lambda^2 + 1 = 0, giving eigenvalues lambda = i and lambda = -i. These are purely imaginary and form a complex conjugate pair. A real matrix can have complex eigenvalues when it is not symmetric. Symmetric matrices always have real eigenvalues; antisymmetric matrices like Q have purely imaginary eigenvalues.</p>
+            <p>The 90-degree rotation matrix Q = [[0, -1], [1, 0]] is orthogonal but not symmetric. Its characteristic equation is det(Q - $\lambda$ I) = $\lambda$^2 + 1 = 0, giving eigenvalues $\lambda$ = i and $\lambda$ = -i. These are purely imaginary and form a complex conjugate pair. A real matrix can have complex eigenvalues when it is not symmetric. Symmetric matrices always have real eigenvalues; antisymmetric matrices like Q have purely imaginary eigenvalues.</p>
 
             <h4>Defective Matrices and Repeated Eigenvalues</h4>
-            <p>For a triangular matrix, the eigenvalues are exactly the diagonal entries. Consider A = [[3, 3], [0, 3]]. Its eigenvalues are both 3 (repeated). However, solving (A - 3I)x = 0 gives [[0, 3], [0, 0]]x = 0, which has only one independent eigenvector [1, 0]^T. A repeated eigenvalue does not guarantee multiple independent eigenvectors. Such a matrix is called defective. The number of independent eigenvectors can be less than the algebraic multiplicity of the eigenvalue.</p>
+            <p>For a triangular matrix, the eigenvalues are exactly the diagonal entries. Consider A = [[3, 3], [0, 3]]. Its eigenvalues are both 3 (repeated). However, solving (A - 3I)x = 0 gives [[0, 3], [0, 0]]x = 0, which has only one independent eigenvector \begin{bmatrix} 1 \\  0 \end{bmatrix}^T. A repeated eigenvalue does not guarantee multiple independent eigenvectors. Such a matrix is called defective. The number of independent eigenvectors can be less than the algebraic multiplicity of the eigenvalue.</p>
 
             <h4>Trace and Determinant as Eigenvalue Summaries</h4>
-            <p>The trace of A equals the sum of its eigenvalues: tr(A) = lambda_1 + lambda_2 + ... + lambda_n. The determinant of A equals the product of its eigenvalues: det(A) = lambda_1 * lambda_2 * ... * lambda_n. These relationships hold for any square matrix and provide quick checks. For the rotation matrix Q, trace = 0 (consistent with eigenvalues i and -i summing to 0), and det(Q) = 1 (consistent with i * (-i) = 1).</p>
+            <p>The trace of A equals the sum of its eigenvalues: tr(A) = $\lambda_{1}$ + $\lambda_{2}$ + ... + $\lambda_{n}$. The determinant of A equals the product of its eigenvalues: det(A) = $\lambda_{1}$ * $\lambda_{2}$ * ... * $\lambda_{n}$. These relationships hold for any square matrix and provide quick checks. For the rotation matrix Q, trace = 0 (consistent with eigenvalues i and -i summing to 0), and det(Q) = 1 (consistent with i * (-i) = 1).</p>
 
             <h3>Computation Examples</h3>
 
             <div class="derivation">
                 <h4>Derivation: Shift Property for Eigenvalues</h4>
-                <p>Suppose Ax = lambda x with x != 0. Consider the matrix A + cI:</p>
+                <p>Suppose Ax = $\lambda$ x with x != 0. Consider the matrix A + cI:</p>
                 <p>$$ (A + cI)x = Ax + cIx = \lambda x + c x = (\lambda + c)x $$</p>
-                <p>Since x != 0, lambda + c is an eigenvalue of A + cI with the same eigenvector x. Thus adding cI shifts every eigenvalue by c without changing the eigenvectors.</p>
+                <p>Since x != 0, $\lambda$ + c is an eigenvalue of A + cI with the same eigenvector x. Thus adding cI shifts every eigenvalue by c without changing the eigenvectors.</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Why Eigenvalues Are Not Linear</h4>
-                <p>Suppose A has eigenvalues lambda_i with eigenvectors x_i, and B has eigenvalues alpha_j with eigenvectors y_j. If eigenvalues were linear, we would have det((A+B) - (lambda+alpha)I) = 0 whenever det(A - lambda I) = 0 and det(B - alpha I) = 0. But this fails because:</p>
+                <p>Suppose A has eigenvalues $\lambda_{i}$ with eigenvectors x_i, and B has eigenvalues alpha_j with eigenvectors y_j. If eigenvalues were linear, we would have det((A+B) - ($\lambda$+$\alpha$)I) = 0 whenever det(A - $\lambda$ I) = 0 and det(B - $\alpha$ I) = 0. But this fails because:</p>
                 <p>$$ \det(A + B - (\lambda + \alpha)I) \neq \det(A - \lambda I) + \det(B - \alpha I) $$</p>
                 <p>The determinant is not an additive function. Moreover, the eigenvectors x_i and y_j are generally different, so there is no common basis in which A and B are simultaneously diagonal. Only when A and B share a full set of eigenvectors (i.e., they commute and are simultaneously diagonalizable) can eigenvalues be combined.</p>
             </div>
@@ -133,7 +133,7 @@
                 <h4>Derivation: Complex Eigenvalues of a Rotation Matrix</h4>
                 <p>For the 90-degree rotation matrix Q = [[0, -1], [1, 0]], the characteristic equation is:</p>
                 <p>$$ \det(Q - \lambda I) = \det\begin{pmatrix} -\lambda & -1 \\ 1 & -\lambda \end{pmatrix} = \lambda^2 + 1 = 0 $$</p>
-                <p>The solutions are lambda = i and lambda = -i. These are complex conjugates. Since Q is real and orthogonal (Q^T Q = I), its eigenvalues must satisfy |lambda| = 1, which they do: |i| = 1. The eigenvectors are also complex: for lambda = i, solve [[-i, -1], [1, -i]]x = 0, giving x = [1, -i]^T up to scaling.</p>
+                <p>The solutions are $\lambda$ = i and $\lambda$ = -i. These are complex conjugates. Since Q is real and orthogonal (Q^T Q = I), its eigenvalues must satisfy |$\lambda$| = 1, which they do: |i| = 1. The eigenvectors are also complex: for $\lambda$ = i, solve [[-i, -1], [1, -i]]x = 0, giving x = \begin{bmatrix} 1 \\  -i \end{bmatrix}^T up to scaling.</p>
             </div>
 
             <h3>Learning Strategies</h3>
@@ -142,7 +142,7 @@
                 <h4>Mnemonic Devices</h4>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Add cI, Shift Eigenvalues, Keep Eigenvectors"</strong>
-                    <p>The matrix A + cI has eigenvalues lambda + c and the same eigenvectors as A. Only the identity matrix has this special property.</p>
+                    <p>The matrix A + cI has eigenvalues $\lambda$ + c and the same eigenvectors as A. Only the identity matrix has this special property.</p>
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Eigenvalues Are Not Linear"</strong>
@@ -161,7 +161,7 @@
                     <li>A repeated eigenvalue may have fewer independent eigenvectors than its multiplicity - always check</li>
                     <li>The trace is the sum of eigenvalues; the determinant is the product - use these as quick sanity checks</li>
                     <li>Rotation matrices are antisymmetric and orthogonal; expect complex eigenvalues on the unit circle</li>
-                    <li>To find eigenvectors, solve (A - lambda I)x = 0 for each eigenvalue lambda</li>
+                    <li>To find eigenvectors, solve (A - $\lambda$ I)x = 0 for each eigenvalue $\lambda$</li>
                     <li>If A is symmetric, eigenvectors are orthogonal and eigenvalues are real</li>
                 </ul>
             </div>
@@ -170,37 +170,37 @@
 
             <div class="visual-aid">
                 <h4>Figure: Effect of Adding cI on the Eigenvalue Spectrum</h4>
-                <p>If A has eigenvalues at positions lambda_1, lambda_2 on the complex plane, then A + cI shifts every eigenvalue by c in the real direction. The eigenvectors are unchanged:</p>
+                <p>If A has eigenvalues at positions $\lambda_{1}$, $\lambda_{2}$ on the complex plane, then A + cI shifts every eigenvalue by c in the real direction. The eigenvectors are unchanged:</p>
                 <p>$$ A: \quad \lambda_1 = 1, \quad \lambda_2 = -1 $$</p>
                 <p>$$ A + 3I: \quad \lambda_1 = 4, \quad \lambda_2 = 2 $$</p>
-                <p>The eigenvectors [1, 1]^T and [1, -1]^T remain the same for both matrices.</p>
+                <p>The eigenvectors \begin{bmatrix} 1 \\  1 \end{bmatrix}^T and \begin{bmatrix} 1 \\  -1 \end{bmatrix}^T remain the same for both matrices.</p>
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Rotation Matrix Eigenvalues on the Unit Circle</h4>
                 <p>The 90-degree rotation matrix Q = [[0, -1], [1, 0]] rotates every vector by 90 degrees. No real vector can come out parallel to itself after a 90-degree rotation. The eigenvalues are complex:</p>
                 <p>$$ Q = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}, \quad \lambda_1 = i, \quad \lambda_2 = -i $$</p>
-                <p>Both lie on the unit circle in the complex plane. The eigenvectors are also complex: for lambda = i, the eigenvector is [1, -i]^T.</p>
+                <p>Both lie on the unit circle in the complex plane. The eigenvectors are also complex: for $\lambda$ = i, the eigenvector is \begin{bmatrix} 1 \\  -i \end{bmatrix}^T.</p>
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Defective Matrix with Repeated Eigenvalue</h4>
-                <p>The triangular matrix A = [[3, 3], [0, 3]] has eigenvalue lambda = 3 with algebraic multiplicity 2. However, the geometric multiplicity is only 1:</p>
+                <p>The triangular matrix A = [[3, 3], [0, 3]] has eigenvalue $\lambda$ = 3 with algebraic multiplicity 2. However, the geometric multiplicity is only 1:</p>
                 <p>$$ A - 3I = \begin{pmatrix} 0 & 3 \\ 0 & 0 \end{pmatrix} \implies \text{nullspace dimension} = 1 $$</p>
-                <p>Only one independent eigenvector exists: [1, 0]^T. The matrix is defective.</p>
+                <p>Only one independent eigenvector exists: \begin{bmatrix} 1 \\  0 \end{bmatrix}^T. The matrix is defective.</p>
             </div>
 
             <h3>Worked Examples</h3>
 
             <div class="example">
                 <h4>Example 1: Shifting Eigenvalues</h4>
-                <p><strong>Problem:</strong> If A = [[1, 0], [0, -1]] has eigenvalues 1 and -1 with eigenvectors [1, 0]^T and [0, 1]^T, find the eigenvalues and eigenvectors of A + 3I.</p>
+                <p><strong>Problem:</strong> If A = [[1, 0], [0, -1]] has eigenvalues 1 and -1 with eigenvectors \begin{bmatrix} 1 \\  0 \end{bmatrix}^T and \begin{bmatrix} 0 \\  1 \end{bmatrix}^T, find the eigenvalues and eigenvectors of A + 3I.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
                     <li>A + 3I = [[4, 0], [0, 2]]</li>
                     <li>Eigenvalues: 1 + 3 = 4, -1 + 3 = 2</li>
-                    <li>Eigenvectors: unchanged: [1, 0]^T and [0, 1]^T</li>
-                    <li>Verification: (A+3I)[1,0]^T = [4,0]^T = 4[1,0]^T, (A+3I)[0,1]^T = [0,2]^T = 2[0,1]^T</li>
+                    <li>Eigenvectors: unchanged: \begin{bmatrix} 1 \\  0 \end{bmatrix}^T and \begin{bmatrix} 0 \\  1 \end{bmatrix}^T</li>
+                    <li>Verification: (A+3I)\begin{bmatrix} 1 \\ 0 \end{bmatrix}^T = \begin{bmatrix} 4 \\ 0 \end{bmatrix}^T = 4\begin{bmatrix} 1 \\ 0 \end{bmatrix}^T, (A+3I)\begin{bmatrix} 0 \\ 1 \end{bmatrix}^T = \begin{bmatrix} 0 \\ 2 \end{bmatrix}^T = 2\begin{bmatrix} 0 \\ 1 \end{bmatrix}^T</li>
                 </ul>
             </div>
 
@@ -209,11 +209,11 @@
                 <p><strong>Problem:</strong> Find the eigenvalues and eigenvectors of the 90-degree rotation matrix Q = [[0, -1], [1, 0]].</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>Characteristic equation: det(Q - lambda I) = det([[-lambda, -1], [1, -lambda]]) = lambda^2 + 1 = 0</li>
-                    <li>Eigenvalues: lambda_1 = i, lambda_2 = -i</li>
-                    <li>These are complex conjugates with |lambda| = 1</li>
-                    <li>For lambda = i: solve [[-i, -1], [1, -i]]x = 0. From row 2: x_1 - i x_2 = 0, so x_1 = i x_2. Take x_2 = 1, then x = [i, 1]^T, or equivalently [1, -i]^T</li>
-                    <li>For lambda = -i: eigenvector is [1, i]^T (complex conjugate of the first)</li>
+                    <li>Characteristic equation: det(Q - $\lambda$ I) = det([[-$\lambda$, -1], [1, -$\lambda$]]) = $\lambda$^2 + 1 = 0</li>
+                    <li>Eigenvalues: $\lambda_{1}$ = i, $\lambda_{2}$ = -i</li>
+                    <li>These are complex conjugates with |$\lambda$| = 1</li>
+                    <li>For $\lambda$ = i: solve [[-i, -1], [1, -i]]x = 0. From row 2: x_1 - i x_2 = 0, so x_1 = i x_2. Take x_2 = 1, then x = \begin{bmatrix} i \\  1 \end{bmatrix}^T, or equivalently \begin{bmatrix} 1 \\  -i \end{bmatrix}^T</li>
+                    <li>For $\lambda$ = -i: eigenvector is \begin{bmatrix} 1 \\  i \end{bmatrix}^T (complex conjugate of the first)</li>
                 </ul>
             </div>
 
@@ -222,10 +222,10 @@
                 <p><strong>Problem:</strong> Find the eigenvalues and eigenvectors of A = [[3, 3], [0, 3]]. Determine if A is diagonalizable.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>A is triangular, so eigenvalues are the diagonal entries: lambda_1 = 3, lambda_2 = 3</li>
+                    <li>A is triangular, so eigenvalues are the diagonal entries: $\lambda_{1}$ = 3, $\lambda_{2}$ = 3</li>
                     <li>Solve (A - 3I)x = 0: [[0, 3], [0, 0]]x = 0</li>
                     <li>This gives 3x_2 = 0, so x_2 = 0, and x_1 is free</li>
-                    <li>Eigenvector basis: {[1, 0]^T} - only one independent eigenvector</li>
+                    <li>Eigenvector basis: {\begin{bmatrix} 1 \\  0 \end{bmatrix}^T} - only one independent eigenvector</li>
                     <li>Algebraic multiplicity = 2, geometric multiplicity = 1</li>
                     <li>A is defective and NOT diagonalizable</li>
                 </ul>
@@ -244,17 +244,17 @@
                 </details>
 
                 <p><strong>Problem 2:</strong> Explain why knowing the eigenvalues of A and B separately does not allow you to determine the eigenvalues of A + B in general. Use the fact that eigenvectors of A and B are typically different.</p>
-                <p><em>Hint: The equation Ax = lambda x holds only for eigenvectors of A. B has its own eigenvectors.</em></p>
+                <p><em>Hint: The equation Ax = $\lambda$ x holds only for eigenvectors of A. B has its own eigenvectors.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>If x is an eigenvector of A, then Ax = lambda x. But Bx is not generally equal to alpha x for some eigenvalue alpha of B, because x is not an eigenvector of B. The eigenvectors of A and B are typically different vectors. Therefore (A+B)x = lambda x + Bx is not simply (lambda + alpha)x. Eigenvalues are not additive.</p>
+                    <p>If x is an eigenvector of A, then Ax = $\lambda$ x. But Bx is not generally equal to $\alpha$ x for some eigenvalue $\alpha$ of B, because x is not an eigenvector of B. The eigenvectors of A and B are typically different vectors. Therefore (A+B)x = $\lambda$ x + Bx is not simply ($\lambda$ + $\alpha$)x. Eigenvalues are not additive.</p>
                 </details>
 
                 <p><strong>Problem 3:</strong> Prove that for any triangular matrix, the eigenvalues are exactly the diagonal entries. Then find the eigenvalues and eigenvectors of A = [[2, 5, 0], [0, 2, 3], [0, 0, 2]]. Is A diagonalizable?</p>
-                <p><em>Hint: The determinant of a triangular matrix is the product of diagonal entries. Set up det(A - lambda I) = 0.</em></p>
+                <p><em>Hint: The determinant of a triangular matrix is the product of diagonal entries. Set up det(A - $\lambda$ I) = 0.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>For triangular A, det(A - lambda I) = (a_11 - lambda)(a_22 - lambda)...(a_nn - lambda). Setting to zero gives eigenvalues equal to diagonal entries: 2, 2, 2. Solve (A - 2I)x = 0: [[0, 5, 0], [0, 0, 3], [0, 0, 0]]x = 0. This gives x_2 = 0, x_3 = 0, x_1 free. Only one independent eigenvector: [1, 0, 0]^T. Algebraic multiplicity 3, geometric multiplicity 1. A is defective and NOT diagonalizable.</p>
+                    <p>For triangular A, det(A - $\lambda$ I) = (a_11 - $\lambda$)(a_22 - $\lambda$)...(a_nn - $\lambda$). Setting to zero gives eigenvalues equal to diagonal entries: 2, 2, 2. Solve (A - 2I)x = 0: [[0, 5, 0], [0, 0, 3], [0, 0, 0]]x = 0. This gives x_2 = 0, x_3 = 0, x_1 free. Only one independent eigenvector: \begin{bmatrix} 1 \\  0 \\  0 \end{bmatrix}^T. Algebraic multiplicity 3, geometric multiplicity 1. A is defective and NOT diagonalizable.</p>
                 </details>
 
                 <p><strong>Problem 4:</strong> Let Q = [[0, -1], [1, 0]] be the 90-degree rotation matrix. Compute its trace and determinant, and verify that they match the sum and product of its eigenvalues.</p>

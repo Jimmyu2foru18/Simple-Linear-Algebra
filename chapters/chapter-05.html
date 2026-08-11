@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,10 +36,10 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 5: Transposes, Permutations, Spaces R^n</h2>
-            <p class="lead">Matrix transposes, pertation matrices, and vector spaces. This chapter introduces the algebraic structure underlying linear algebra, including the vector space $\mathbb{R}^n$ and its subspaces.</p>
+            <p class="lead">Matrix transposes, permutation matrices, and vector spaces. This chapter introduces the algebraic structure underlying linear algebra, including the vector space $\mathbb{R}^n$ and its subspaces.</p>
 
             <div class="video-section">
-                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/JibVXBElKL0"
                             title="5. Transposes, Permutations, Spaces R^n — Gilbert Strang"
@@ -76,7 +76,7 @@
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <h5>Paul Cartier — Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
@@ -107,8 +107,8 @@
             <h4>Symmetric Matrices</h4>
             <p>A matrix is symmetric if <code>A^T = A</code>. Symmetric matrices have real eigenvalues and orthogonal eigenvectors. They appear frequently in applications because they represent quadratic forms and covariance matrices.</p>
 
-            <h4>Pertation Matrices</h4>
-            <p>Pertation matrices are obtained by perting the rows (or columns) of the identity matrix. They have exactly one '1' in each row and column, with zeros elsewhere. <code>P^T = P^-1</code>, so pertation matrices are orthogonal.</p>
+            <h4>Permutation Matrices</h4>
+            <p>Permutation matrices are obtained by perting the rows (or columns) of the identity matrix. They have exactly one '1' in each row and column, with zeros elsewhere. <code>P^T = P^-1</code>, so permutation matrices are orthogonal.</p>
 
             <h4>Vector Spaces and Subspaces</h4>
             <p>A vector space is a collection of vectors closed under addition and scalar multiplication. <code>$\mathbb{R}^n$</code> is the n-dimensional real vector space. A subspace is a subset that is itself a vector space, requiring closure under linear combinations.</p>
@@ -118,20 +118,20 @@
             <div class="derivation">
                 <h4>Derivation: The Four Requirements of a Vector Space</h4>
                 <p>A set V with addition and scalar multiplication is a vector space if it satisfies:</p>
-                $$1. Closure under addition:    u + v âˆˆ V
-2. Closure under scalar multiplication: cu âˆˆ V
-$$3. Comtativity:             u + v = v + u$$
-4. Existence of zero vector:  0 âˆˆ V
-(plus associativity, distributivity, identity)$$
+                $$1. \text{Closure under addition: } \mathbf{u} + \mathbf{v} \in V \\
+2. \text{Closure under scalar multiplication: } c\mathbf{u} \in V \\
+3. \text{Commutativity: } \mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u} \\
+4. \text{Existence of zero vector: } \mathbf{0} \in V \\
+\text{(plus associativity, distributivity, identity)}$$
                 <p>For subspaces, only closure properties (1 and 2) plus existence of zero vector need verification.</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Transpose of a Product</h4>
                 <p>Let <code>C = AB</code>. The <code>(i, j)</code> entry of <code>C^T</code> is <code>c_ji</code>:</p>
-                $$c_ji = sum over k of (a_jk * b_ki)  (entry of AB)
-     = sum over k of (b_ki * a_jk)   (comte scalars)
-     = entry (j, i) of B^T A^T$$
+                $$c_{ji} = \sum_k a_{jk} b_{ki} \quad \text{(entry of } AB\text{)}$$
+                $$= \sum_k b_{ki} a_{jk} \quad \text{(commute scalars)}$$
+                $$= \text{entry } (j, i) \text{ of } B^T A^T$$
                 <p>Therefore <code>C^T = B^T A^T</code>.</p>
             </div>
 
@@ -154,7 +154,7 @@ $$3. Comtativity:             u + v = v + u$$
                 <ul>
                     <li>Practice transposing matrices of different shapes to internalize the pattern</li>
                     <li>Memorize the key transpose properties, especially <code>(AB)^T = B^T A^T</code></li>
-                    <li>Draw pertation matrices for small n to see the pattern</li>
+                    <li>Draw permutation matrices for small n to see the pattern</li>
                     <li>Verify subspaces by checking: zero vector, closure under addition, closure under scalar multiplication</li>
                     <li>Common subspaces: lines through origin, planes through origin, whole space, zero subspace</li>
                 </ul>
@@ -172,8 +172,8 @@ $$A = [a  d]        A^T = [a  b  c]$$
             </div>
 
             <div class="visual-aid">
-                <h4>Figure: Pertation Matrices</h4>
-                <p>3x3 pertation matrices corresponding to different orderings:</p>
+                <h4>Figure: Permutation Matrices</h4>
+                <p>3x3 permutation matrices corresponding to different orderings:</p>
                 $$Identity (no swap):      Swap R1,R3:       Cycle R1->R2->R3:
 [1 0 0]                 [0 0 1]            [0 1 0]
 [0 1 0]                 [0 1 0]            [0 0 1]
@@ -192,7 +192,7 @@ $$A^T = [1  4]$$
      [2  5]
      [3  6]
 
-(A^T)^T = [1  2  3] = A  Ã¢Å“â€œ
+(A^T)^T = [1  2  3] = A  ✓
          [4  5  6]
             </div>
 
@@ -200,7 +200,7 @@ $$A^T = [1  4]$$
                 <h4>Example 2: Symmetric Matrix</h4>
                 <p><strong>Problem:</strong> Show that <code>A = [[2, 3, 1], [3, 5, 4], [1, 4, 6]]</code> is symmetric.</p>
                 <p><strong>Solution:</strong></p>
-$$A^T = [2  3  1] = A  Ã¢Å“â€œ$$
+$$A^T = [2  3  1] = A  ✓$$
      [3  5  4]
      [1  4  6]
                 <p>Since <code>A^T = A</code>, A is symmetric.</p>
@@ -208,12 +208,12 @@ $$A^T = [2  3  1] = A  Ã¢Å“â€œ$$
 
             <div class="example">
                 <h4>Example 3: Verifying a Subspace</h4>
-                <p><strong>Problem:</strong> Is the set <code>S = {(x, y) âˆˆ R^2 : x + y = 0}</code> a subspace of <code>R^2</code>?</p>
+                <p><strong>Problem:</strong> Is the set <code>S = {(x, y) ∈ R^2 : x + y = 0}</code> a subspace of <code>R^2</code>?</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>Zero vector: <code>(0, 0)</code> satisfies <code>0 + 0 = 0</code> Ã¢Å“â€œ</li>
-                    <li>Closure: If <code>(x1, y1)</code> and <code>(x2, y2)</code> satisfy <code>x + y = 0</code>, then <code>(x1+x2) + (y1+y2) = (x1+y1) + (x2+y2) = 0 + 0 = 0</code> Ã¢Å“â€œ</li>
-                    <li>Scalar multiplication: If <code>x + y = 0</code>, then <code>cx + cy = c(x+y) = c*0 = 0</code> Ã¢Å“â€œ</li>
+                    <li>Zero vector: <code>(0, 0)</code> satisfies <code>0 + 0 = 0</code> ✓</li>
+                    <li>Closure: If <code>(x1, y1)</code> and <code>(x2, y2)</code> satisfy <code>x + y = 0</code>, then <code>(x1+x2) + (y1+y2) = (x1+y1) + (x2+y2) = 0 + 0 = 0</code> ✓</li>
+                    <li>Scalar multiplication: If <code>x + y = 0</code>, then <code>cx + cy = c(x+y) = c*0 = 0</code> ✓</li>
                     <li><strong>S is a subspace</strong> (specifically, a line through the origin)</li>
                 </ul>
             </div>
@@ -235,14 +235,14 @@ $$B^T = [3 0]    A^T = [1 0]$$
      [1 4]           [2 1]
 
 $$B^T A^T = [3*1+0*2  3*0+0*1] = [3  0]$$
-          [1*1+4*2  1*0+4*1]   [9  4] Ã¢Å“â€œ
+          [1*1+4*2  1*0+4*1]   [9  4] ✓
                 </details>
 
-                <p><strong>Problem 2:</strong> Find all 3x3 pertation matrices and determine their inverses.</p>
-                <p><em>Hint: There are 3! = 6 pertation matrices. Each is its own inverse or transpose.</em></p>
+                <p><strong>Problem 2:</strong> Find all 3x3 permutation matrices and determine their inverses.</p>
+                <p><em>Hint: There are 3! = 6 permutation matrices. Each is its own inverse or transpose.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>The 6 pertation matrices correspond to the 6 orderings of (1,2,3). Each satisfies <code>P^T = P^-1</code>. For transpositions (swaps), <code>P^2 = I</code> so <code>P^-1 = P</code>. For 3-cycles, <code>P^3 = I</code>.</p>
+                    <p>The 6 permutation matrices correspond to the 6 orderings of (1,2,3). Each satisfies <code>P^T = P^-1</code>. For transpositions (swaps), <code>P^2 = I</code> so <code>P^-1 = P</code>. For 3-cycles, <code>P^3 = I</code>.</p>
                 </details>
 
                 <p><strong>Problem 3:</strong> Is <code>S = {(x, y, z) : x + y + z = 1}</code> a subspace of <code>R^3</code>?</p>

@@ -36,10 +36,10 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 26: Symmetric Matrices and Positive Definiteness</h2>
-            <p class="lead">This chapter establishes why symmetric matrices are the "good" matrices: they have real eigenvalues and orthogonal eigenvectors. The spectral theorem reveals that every symmetric matrix can be decomposed into a sum of mutually perpendicular projection matrices. The second half introduces positive definite matricesâ€”the subclass of symmetric matrices with all positive eigenvalues and pivotsâ€”and shows how to test for positive definiteness using pivots, eigenvalues, or the determinant of every leading principal submatrix.</p>
+            <p class="lead">This chapter establishes why symmetric matrices are the "good" matrices: they have real eigenvalues and orthogonal eigenvectors. The spectral theorem reveals that every symmetric matrix can be decomposed into a sum of mutually perpendicular projection matrices. The second half introduces positive definite matrices—the subclass of symmetric matrices with all positive eigenvalues and pivots—and shows how to test for positive definiteness using pivots, eigenvalues, or the determinant of every leading principal submatrix.</p>
 
             <div class="video-section">
-                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/umt6BB1nJ4w"
                             title="26. Symmetric Matrices and Positive Definiteness — Gilbert Strang"
@@ -76,7 +76,7 @@
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <h5>Paul Cartier — Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
@@ -105,10 +105,10 @@
             <p>For complex matrices, the correct generalization of symmetry is the Hermitian property: $A^H = A$, where $A^H = \bar{A}^T$ is the conjugate transpose. Hermitian matrices also have real eigenvalues and orthogonal eigenvectors (with respect to the complex inner product $\bar{x}^T x$). For real matrices, $A^H = A$ reduces to $A^T = A$, so Hermitian includes symmetric as a special case. The key identity becomes $\bar{x}^T A x = \lambda \bar{x}^T x$, and the length squared of a complex vector $x$ is $\bar{x}^T x$.</p>
 
             <h4>The Spectral Theorem: Decomposition into Projection Matrices</h4>
-            <p>The spectral theorem states that every symmetric matrix $A$ can be written as a sum of rank-1 projection matrices onto its eigenvectors: $A = \lambda_1 q_1 q_1^T + \lambda_2 q_2 q_2^T + \cdots + \lambda_n q_n q_n^T$, where the $q_i$ are orthonormal eigenvectors and $\lambda_i$ are the corresponding eigenvalues. Each term $q_i q_i^T$ is a symmetric projection matrix onto the line spanned by $q_i$. This decomposition reveals that a symmetric matrix is a "combination of mutually perpendicular projection matrices"â€”exactly as Strang describes.</p>
+            <p>The spectral theorem states that every symmetric matrix $A$ can be written as a sum of rank-1 projection matrices onto its eigenvectors: $A = \lambda_1 q_1 q_1^T + \lambda_2 q_2 q_2^T + \cdots + \lambda_n q_n q_n^T$, where the $q_i$ are orthonormal eigenvectors and $\lambda_i$ are the corresponding eigenvalues. Each term $q_i q_i^T$ is a symmetric projection matrix onto the line spanned by $q_i$. This decomposition reveals that a symmetric matrix is a "combination of mutually perpendicular projection matrices"—exactly as Strang describes.</p>
 
             <h4>Pivots and Eigenvalues Have the Same Sign</h4>
-            <p>For a symmetric matrix, the number of positive pivots equals the number of positive eigenvalues, and the number of negative pivots equals the number of negative eigenvalues. This is a profound fact: you can determine the sign pattern of all eigenvalues by computing only the pivots from LU factorizationâ€”no need to find the eigenvalues explicitly. The product of the pivots equals the determinant, which equals the product of the eigenvalues, but the individual signs are what matter. This gives a practical numerical method for estimating eigenvalue distributions in large matrices.</p>
+            <p>For a symmetric matrix, the number of positive pivots equals the number of positive eigenvalues, and the number of negative pivots equals the number of negative eigenvalues. This is a profound fact: you can determine the sign pattern of all eigenvalues by computing only the pivots from LU factorization—no need to find the eigenvalues explicitly. The product of the pivots equals the determinant, which equals the product of the eigenvalues, but the individual signs are what matter. This gives a practical numerical method for estimating eigenvalue distributions in large matrices.</p>
 
             <h4>Positive Definite Matrices</h4>
             <p>A symmetric matrix is positive definite if all its eigenvalues are positive. Equivalently, all its pivots are positive. Equivalently, all leading principal minors (determinants of the top-left $k \times k$ submatrices for $k = 1, 2, \ldots, n$) are positive. For a $2 \times 2$ matrix $\begin{bmatrix} a & b \\ b & c \end{bmatrix}$, the tests are: $a > 0$ (first pivot), $ac - b^2 > 0$ (determinant), and trace $a + c > 0$ (sum of eigenvalues). The determinant alone is not enough: $\begin{bmatrix} -1 & -3 \\ -2 & 1 \end{bmatrix}$ has determinant $1 - 6 = -3$? Wait, the transcript says determinant is positive 3... Let me check: $\det\begin{bmatrix} -1 & -3 \\ -2 & 1 \end{bmatrix} = (-1)(1) - (-3)(-2) = -1 - 6 = -7$, which is negative. Actually the transcript mentions "here is eleven, that's great" for the first matrix and "here the determinant of the whole matrix is three, that's positive" for a counterexample matrix. The key point is that all sub-determinants must be positive, not just the full determinant. Positive definite matrices are the "great" matrices for differential equations because their eigenvalues are all positive, ensuring stability in certain contexts.</p>
@@ -177,7 +177,7 @@
                 <p>For a symmetric matrix, the signs of the pivots from LU factorization match the signs of the eigenvalues:</p>
                 <p>$$\text{Positive pivots: } n_+ \quad \text{Negative pivots: } n_- \quad \text{Zero pivots: } n_0$$</p>
                 <p>$$\text{Positive eigenvalues: } n_+ \quad \text{Negative eigenvalues: } n_- \quad \text{Zero eigenvalues: } n_0$$</p>
-                <p>This means you can determine the eigenvalue sign pattern without computing the eigenvalues themselvesâ€”just compute the pivots.</p>
+                <p>This means you can determine the eigenvalue sign pattern without computing the eigenvalues themselves—just compute the pivots.</p>
             </div>
 
             <div class="visual-aid">
@@ -201,7 +201,7 @@
                     <li>Eigenvalues: $\lambda_1 = 3, \lambda_2 = -1$</li>
                     <li>Eigenvector for $\lambda_1 = 3$: $(A-3I)x = 0 \Rightarrow \begin{bmatrix} -2 & 2 \\ 2 & -2 \end{bmatrix}x = 0$, giving $x_1 = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$</li>
                     <li>Eigenvector for $\lambda_2 = -1$: $(A+I)x = 0 \Rightarrow \begin{bmatrix} 2 & 2 \\ 2 & 2 \end{bmatrix}x = 0$, giving $x_2 = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$</li>
-                    <li>Orthogonality check: $x_1^T x_2 = [1, 1] \begin{bmatrix} 1 \\ -1 \end{bmatrix} = 1 - 1 = 0$ âœ“</li>
+                    <li>Orthogonality check: $x_1^T x_2 = [1, 1] \begin{bmatrix} 1 \\ -1 \end{bmatrix} = 1 - 1 = 0$ ✓</li>
                     <li>Normalized: $q_1 = \frac{1}{\sqrt{2}}[1, 1]^T$, $q_2 = \frac{1}{\sqrt{2}}[1, -1]^T$</li>
                 </ul>
             </div>
@@ -215,7 +215,7 @@
                     <li>Orthonormal eigenvectors: $q_1 = \frac{1}{\sqrt{2}}[1, 1]^T$, $q_2 = \frac{1}{\sqrt{2}}[1, -1]^T$</li>
                     <li>Projection matrices: $P_1 = q_1 q_1^T = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$, $P_2 = q_2 q_2^T = \frac{1}{2}\begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}$</li>
                     <li>Spectral decomposition: $A = 3P_1 + (-1)P_2 = \frac{3}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix} - \frac{1}{2}\begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}$</li>
-                    <li>Compute: $A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$ âœ“</li>
+                    <li>Compute: $A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$ ✓</li>
                     <li>Each $P_i$ is a rank-1 symmetric projection matrix; $P_1^2 = P_1$, $P_2^2 = P_2$, $P_1^T = P_1$, $P_2^T = P_2$</li>
                 </ul>
             </div>
@@ -225,8 +225,8 @@
                 <p><strong>Problem:</strong> Determine whether $A = \begin{bmatrix} 5 & 3 \\ 2 & 2 \end{bmatrix}$ and $B = \begin{bmatrix} -1 & -3 \\ -2 & 1 \end{bmatrix}$ are positive definite.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>For $A$: pivot 1 = 5 > 0, $\det(A) = 10 - 6 = 4 > 0$, both pivots positive â‡’ positive definite</li>
-                    <li>For $B$: pivot 1 = -1 < 0 â‡’ not positive definite</li>
+                    <li>For $A$: pivot 1 = 5 > 0, $\det(A) = 10 - 6 = 4 > 0$, both pivots positive ⇒ positive definite</li>
+                    <li>For $B$: pivot 1 = -1 < 0 ⇒ not positive definite</li>
                     <li>Eigenvalues of $A$: $\lambda^2 - 7\lambda + 4 = 0$, both roots positive (approximately 6.24 and 0.76)</li>
                     <li>Eigenvalues of $B$: $\lambda^2 - 0\lambda - 7 = 0$, one positive and one negative</li>
                     <li>The determinant of $B$ is -7 (negative), so $B$ is not positive definite</li>
@@ -257,7 +257,7 @@
                 <p><em>Hint: This is the tridiagonal matrix from Chapter 19. Compute pivots using LU factorization without row exchanges.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Pivot 1: 2. Eliminate: row 2 + (1/2)row 1 gives $[0, 1.5, -1]$. Pivot 2: 1.5. Eliminate: row 3 + (2/3)row 2 gives $[0, 0, 4/3]$. Pivot 3: 4/3. All pivots are positive (2, 1.5, 4/3), so $A$ is positive definite. Eigenvalues of this tridiagonal matrix are $2(1 - \cos(k\pi/4))$ for $k = 1, 2, 3$, giving approximately 0.586, 2.0, 3.414â€”all positive. Determinant = $2 \cdot 1.5 \cdot (4/3) = 4$.</p>
+                    <p>Pivot 1: 2. Eliminate: row 2 + (1/2)row 1 gives $[0, 1.5, -1]$. Pivot 2: 1.5. Eliminate: row 3 + (2/3)row 2 gives $[0, 0, 4/3]$. Pivot 3: 4/3. All pivots are positive (2, 1.5, 4/3), so $A$ is positive definite. Eigenvalues of this tridiagonal matrix are $2(1 - \cos(k\pi/4))$ for $k = 1, 2, 3$, giving approximately 0.586, 2.0, 3.414—all positive. Determinant = $2 \cdot 1.5 \cdot (4/3) = 4$.</p>
                 </details>
 
                 <p><strong>Problem 4:</strong> Explain why the matrix $A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$ is NOT positive definite, even though its determinant is negative. Use both the pivot test and the eigenvalue test.</p>

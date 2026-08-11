@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@
             <p class="lead">Gaussian elimination and matrix operations for solving systems. This chapter introduces the systematic method for solving linear systems through row operations, transforming complex systems into simple triangular form.</p>
 
             <div class="video-section">
-                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/QVKj3LADCnA"
                             title="2. Elimination with Matrices — Gilbert Strang"
@@ -76,14 +76,14 @@
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <h5>Paul Cartier — Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/P5GJJ02OG08"
-                                    title="Prof Dave Explains — Matrix Multiplication"
+                                    title="Prof Dave Explains — Matrix multiplication"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -105,8 +105,8 @@
             <p>Three types of row operations preserve the solution set:</p>
             <ul>
                 <li><strong>Type I:</strong> Swap two rows (R_i &lt;-&gt; R_j)</li>
-                <li><strong>Type II:</strong> Multiply a row by a nonzero scalar (R_i &lt;- c * R_i)</li>
-                <li><strong>Type III:</strong> Add a ltiple of one row to another (R_i &lt;- R_i + c * R_j)</li>
+                <li><strong>Type II:</strong> multiply a row by a nonzero scalar (R_i &lt;- c * R_i)</li>
+                <li><strong>Type III:</strong> Add a multiple of one row to another (R_i &lt;- R_i + c * R_j)</li>
             </ul>
 
             <h4>Augmented Matrix</h4>
@@ -121,7 +121,7 @@
             <h3>Computation Examples</h3>
 
             <div class="derivation">
-                <h4>Derivation: Row Operations as Matrix Multiplication</h4>
+                <h4>Derivation: Row Operations as Matrix multiplication</h4>
                 <p>Each elementary row operation can be represented as left-multiplication by an elementary matrix. For example, swapping rows 1 and 2:</p>
                 $$E = \begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{bmatrix}, \quad A = \begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix}, \quad EA = \begin{bmatrix} d & e & f \\ a & b & c \\ g & h & i \end{bmatrix}$$
                 <p>Elementary matrices are invertible, and their inverses correspond to the reverse row operations.</p>
@@ -166,14 +166,15 @@
             <div class="visual-aid">
                 <h4>Figure: Augmented Matrix Progression</h4>
                 <p>The elimination process transforms the augmented matrix step by step:</p>
-                $$Step 0 (Original):    Step 1 (After eliminating a21):    Step 2 (Upper Triangular):
-                $$\text{Step 0: } \begin{bmatrix} 2 & 1 & 1 & | & 8 \\ 4 & -6 & 0 & | & -2 \\ -2 & 7 & 2 & | & 3 \end{bmatrix} \rightarrow \text{Step 1: } \begin{bmatrix} 2 & 1 & 1 & | & 8 \\ 0 & -8 & -2 & | & -18 \\ -2 & 7 & 2 & | & 3 \end{bmatrix} \rightarrow \text{Step 2: } \begin{bmatrix} 2 & 1 & 1 & | & 8 \\ 0 & -8 & -2 & | & -18 \\ 0 & 0 & 1 & | & 1 \end{bmatrix}$$
+$$\text{Step 0 (Original): } \quad \text{Step 1 (After eliminating } a_{21}\text{):} \quad \text{Step 2 (Upper Triangular):}$$
+
+                $$\text{Step 0: } \begin{bmatrix} 2 & 1 & 1 & | & 8 \\ 4 & -6 & 0 & | & -2 \\ -2 & 7 & 2 & | & 3 \end{bmatrix} \rightarrow \text{Step 1: } \begin{bmatrix} 2 & 1 & 1 & | & 8 \\ 0 & -8 & -2 & | & -18 \\ -2 & 7 & 2 & | & 3 \end{bmatrix} \rightarrow \text{Step 2: } \begin{bmatrix} 2 & 1 & 1 & | & 8 \\ 0 & -8 & -2 & | & -18 \\ 0 & 0 & 1 & | & -7 \end{bmatrix}$$
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Row Operation Types Illustrated</h4>
                 <p>Visual representation of the three elementary row operations and their effects on a 3x3 identity matrix:</p>
-                $$\text{Swap } R_1,R_2: \begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{bmatrix}, \quad \text{Multiply } R_2 \text{ by } 3: \begin{bmatrix} 1 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 1 \end{bmatrix}, \quad R_3 + 2R_1 \to R_3: \begin{bmatrix} 1 & 0 & 2 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$$
+                $$\text{Swap } R_1,R_2: \begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{bmatrix}, \quad \text{Multiply } R_2 \text{ by } 3: \begin{bmatrix} 1 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 1 \end{bmatrix}, \quad R_3 + 2R_1 \to R_3: \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 2 & 0 & 1 \end{bmatrix}$$
             </div>
 
             <h3>Worked Examples</h3>
@@ -187,9 +188,9 @@
                 <ol>
                     <li>Augmented matrix: <code>[2 1 | 5; 4 -6 | -2]</code></li>
                     <li>Eliminate below pivot: <code>R2 - 2*R1 -&gt; R2</code></li>
-                    <li>Result: <code>[2 1 | 5; 0 -8 | -18]</code></li>
-                    <li>Back substitution: <code>y = (-18)/(-8) = 9/4 = 2.25</code></li>
-                    <li>Substitute: <code>2x + 2.25 = 5 â†’ 2x = 2.75 â†’ x = 1.375</code></li>
+                    <li>Result: <code>[2 1 | 5; 0 -8 | -12]</code></li>
+                    <li>Back substitution: <code>y = (-12)/(-8) = 3/2 = 1.5</code></li>
+                    <li>Substitute: <code>2x + 1.5 = 5 → 2x = 3.5 → x = 1.75</code></li>
                 </ol>
             </div>
 
@@ -221,7 +222,7 @@ x - y + z = 3$$
                     <li>Row 2 = 2 * Row 1 (dependent equations)</li>
                     <li>After elimination: <code>R2 - 2*R1 = [0 0 0 | 0]</code></li>
                     <li>Reduced system: <code>x + y + z = 1</code> and <code>x - y + z = 3</code></li>
-                    <li>Subtracting: <code>2y = -2 â†’ y = -1</code></li>
+                    <li>Subtracting: <code>2y = -2 → y = -1</code></li>
                     <li>From first equation: <code>x + z = 2</code></li>
                     <li><strong>Infinitely many solutions:</strong> Parameterize <code>z = t</code>, then <code>x = 2 - t</code>, <code>y = -1</code></li>
                 </ul>
@@ -237,7 +238,7 @@ $$3x - y = 5
                 <p><em>Hint: Check if the equations are consistent before starting elimination.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>The second equation is <code>2 Ã— (3x - y) = 2 Ã— 5 = 10</code>, but the RHS is 11. Since <code>10 â‰ˆÂ  11</code>, the lines are parallel. <strong>No solution.</strong></p>
+                    <p>The second equation is <code>2 × (3x - y) = 2 × 5 = 10</code>, but the RHS is 11. Since <code>10 ≠ 11</code>, the lines are parallel. <strong>No solution.</strong></p>
                 </details>
 
                 <p><strong>Problem 2:</strong> Solve the system and verify your answer:</p>
@@ -248,10 +249,13 @@ $$x + 2y - z = 3
                 <details>
                     <summary>Solution</summary>
                     <p>Augmented: <code>[1 2 -1 | 3; 2 -1 3 | 7; -1 3 2 | 4]</code></p>
-                    <p>After elimination and back substitution: <code>x = 1, y = 2, z = 0</code></p>
-                    <p>Check: <code>1 + 4 - 0 = 5 â‰ˆÂ  3</code> â€” wait, let me recalculate properly.</p>
-                    <p>Correct solution after proper elimination: <code>x = 2, y = 1, z = 1</code></p>
-                    <p>Verification: <code>2 + 2 - 1 = 3 Ã¢Å“â€œ</code>, <code>4 - 1 + 3 = 6 â‰ˆÂ  7</code> â€” another correction needed in practice.</p>
+                    <p>R2 - 2R1: <code>[0 -5 5 | 1]</code></p>
+                    <p>R3 + R1: <code>[0 5 1 | 7]</code></p>
+                    <p>R3 + R2: <code>[0 0 6 | 8]</code> → z = 4/3</p>
+                    <p>From R2: <code>-5y + 5(4/3) = 1</code> → <code>y = 17/15</code></p>
+                    <p>From R1: <code>x + 2(17/15) - 4/3 = 3</code> → <code>x = 31/15</code></p>
+                    <p>Solution: <code>x = 31/15, y = 17/15, z = 4/3</code></p>
+                    <p>Verification: <code>31/15 + 2(17/15) - 4/3 = 3 ✓</code>, <code>2(31/15) - 17/15 + 3(4/3) = 7 ✓</code>, <code>-31/15 + 3(17/15) + 2(4/3) = 4 ✓</code></p>
                 </details>
 
                 <p><strong>Problem 3:</strong> For the system below, find all solutions by reducing to RREF:</p>
@@ -261,15 +265,13 @@ x + 2y + z = 3
                 <p><em>Hint: Use RREF to identify pivot and free variables.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>RREF yields: <code>x + 0y + z = 1</code>, <code>0x + y + 0z = 1</code>, <code>0x + 0y + 0z = 0</code></p>
-                    <p>Solution: <code>y = 1</code>, <code>x = 1 - z</code> where z is free.</p>
-                    <p>Infinite solutions parameterized by z.</p>
+                    <p>RREF yields: <code>x - z = -1</code>, <code>y + z = 2</code>, <code>0 = 0</code></p>
+                    <p>Solution: <code>x = -1 + z, y = 2 - z</code> where <code>z</code> is free.</p>
+                    <p>Infinite solutions parameterized by <code>z</code>.</p>
                 </details>
 
                 <p><strong>Problem 4:</strong> Determine whether the coefficient matrix is invertible based on the elimination result.</p>
-$$A = [1  2  1]$$
-    [2  5  4]
-    [1  4  6]
+$$A = \begin{bmatrix} 1 & 2 & 1 \\ 2 & 5 & 4 \\ 1 & 4 & 6 \end{bmatrix}$$
                 <p><em>Hint: A matrix is invertible if elimination produces n pivots.</em></p>
                 <details>
                     <summary>Solution</summary>

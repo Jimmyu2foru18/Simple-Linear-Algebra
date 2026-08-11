@@ -1,4 +1,4 @@
-OCTYPE html>
+<!DOCTYPE html>>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@ OCTYPE html>
             <p class="lead">LU decomposition and its applications in solving linear systems. This chapter shows how the elimination process naturally factors a matrix into a lower triangular matrix L and an upper triangular matrix U.</p>
 
             <div class="video-section">
-                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/5hO3MrzPa0A"
                             title="4. Factorization into A = LU — Gilbert Strang"
@@ -76,14 +76,14 @@ OCTYPE html>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <h5>Paul Cartier — Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/P5GJJ02OG08"
-                                    title="Prof Dave Explains — Matrix Multiplication"
+                                    title="Prof Dave Explains — Matrix multiplication"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -105,27 +105,28 @@ OCTYPE html>
             <p>L is lower triangular with ones on the diagonal. Its subdiagonal entries <code>l_ij</code> are exactly the multipliers used to eliminate the entries below the pivots during Gaussian elimination. L captures the row operations in compact form.</p>
 
             <h4>Computational Cost</h4>
-            <p>The cost of Gaussian elimination for an <code>n x n</code> matrix is approximately <code>n^3/3</code> operations. This is far more efficient than computing <code>A^-1</code> (which costs <code>n^3</code> operations) and then ltiplying by b.</p>
+            <p>The cost of Gaussian elimination for an <code>n x n</code> matrix is approximately <code>n^3/3</code> operations. This is far more efficient than computing <code>A^-1</code> (which costs <code>n^3</code> operations) and then multiplying by b.</p>
 
-            <h4>Pertation Matrices</h4>
-            <p>When row exchanges are needed, we introduce pertation matrices P. The factorization becomes <code>PA = LU</code>, where P reorders the rows of A to enable safe elimination. P is orthogonal: <code>P^-1 = P^T</code>.</p>
+            <h4>Permutation Matrices</h4>
+            <p>When row exchanges are needed, we introduce permutation matrices P. The factorization becomes <code>PA = LU</code>, where P reorders the rows of A to enable safe elimination. P is orthogonal: <code>P^-1 = P^T</code>.</p>
 
             <h3>Computation Examples</h3>
 
             <div class="derivation">
                 <h4>Derivation: Constructing L from Multipliers</h4>
-                <p>For a 3x3 system, suppose the multipliers are <code>l_21, l_31, l_32</code>. The elimination matrices ltiply as:</p>
-                $$E_32 * E_31 * E_21 * A = U
+                <p>For a 3x3 system, suppose the multipliers are <code>l_21, l_31, l_32</code>. The elimination matrices multiply as:</p>
+                $$E_{32} E_{31} E_{21} A = U$$
 
-$$Therefore: A = (E_21)^-1 * (E_31)^-1 * (E_32)^-1 * U = L * U$$
+                $$\text{Therefore: } A = E_{21}^{-1} E_{31}^{-1} E_{32}^{-1} U = LU$$
                 <p>Where <code>L = (E_21)^-1 * (E_31)^-1 * (E_32)^-1</code> is lower triangular with the multipliers in the appropriate positions.</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Solving $A\mathbf{x} = \mathbf{b}$ via LU</h4>
                 <p>Once <code>A = LU</code>, solving <code>$A\mathbf{x} = \mathbf{b}$</code> becomes a two-step process:</p>
-                $$Step 1: Forward substitution   Ly = b   (solve for y)
-$$Step 2: Back substitution       Ux = y   (solve for x)$$
+                $$\text{Step 1: Forward substitution } Ly = \mathbf{b} \text{ (solve for } y\text{)}$$
+
+                $$\text{Step 2: Back substitution } U\mathbf{x} = \mathbf{y} \text{ (solve for } \mathbf{x}\text{)}$$
                 <p>Forward substitution is efficient because L is lower triangular. Each step requires only one division and a few subtractions.</p>
             </div>
 
@@ -135,7 +136,7 @@ $$Step 2: Back substitution       Ux = y   (solve for x)$$
                 <h4>Mnemonic Devices</h4>
                 <div class="mnemonic">
                     <strong>Mnemonic: "L Stores the Lifts"</strong>
-                    <p>L contains the multipliers that "lift" the lower entries to zero during elimination. The entry <code>l_ij</code> tells you how ch of row i to subtract from row j.</p>
+                    <p>L contains the multipliers that "lift" the lower entries to zero during elimination. The entry <code>l_ij</code> tells you how much of row i to subtract from row j.</p>
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Forward then Back"</strong>
@@ -149,8 +150,8 @@ $$Step 2: Back substitution       Ux = y   (solve for x)$$
                     <li>Practice computing L by hand for small 3x3 matrices</li>
                     <li>Verify <code>LU = A</code> after computing both factors</li>
                     <li>Understand that row exchanges require P: <code>PA = LU</code></li>
-                    <li>Note that computing <code>A^-1</code> costs ~3 $\times$ more than solving <code>$A\mathbf{x} = \mathbf{b}$</code> ltiple $\times$</li>
-                    <li>Recognize when a matrix cannot be factored without pertations</li>
+                    <li>Note that computing <code>A^-1</code> costs ~3 $\times$ more than solving <code>$A\mathbf{x} = \mathbf{b}$</code> multiple $\times$</li>
+                    <li>Recognize when a matrix cannot be factored without permutations</li>
                 </ul>
             </div>
 
@@ -159,25 +160,23 @@ $$Step 2: Back substitution       Ux = y   (solve for x)$$
             <div class="visual-aid">
                 <h4>Figure: LU Factorization Flow</h4>
                 <p>The elimination process viewed as factorization:</p>
-                $$A = [[2  1  1]     U = [[2  1    1   ]
-    [4 -6  0]  =        [0 -8  -2  ] * L
-    [-2 7  2]]          [0  0   1  ]]
+$$A = \begin{bmatrix} 2 & 1 & 1 \\ 4 & -6 & 0 \\ -2 & 7 & 2 \end{bmatrix} = \begin{bmatrix} 2 & 1 & 1 \\ 0 & -8 & -2 \\ 0 & 0 & 1 \end{bmatrix} \cdot L$$
 
-$$L = [[1    0   0]     Multipliers: l21=2, l31=-1, l32=-1$$
-    [2    1   0]
-    [-1  -1   1]]$$
+$$L = \begin{bmatrix} 1 & 0 & 0 \\ 2 & 1 & 0 \\ -1 & -1 & 1 \end{bmatrix} \quad \text{Multipliers: } l_{21}=2, l_{31}=-1, l_{32}=-1$$
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Operation Counts</h4>
                 <p>Comparing computational costs for an <code>n x n</code> system:</p>
-                $$Forward Substitution:     ~n^2/2  operations
-Back Substitution:        ~n^2/2  operations
-Total for LU solve:       ~n^2    operations
-Gaussian Elimination:     ~n^3/3  operations
-Inverse computation:      ~n^3    operations
+$$\begin{array}{ll}
+\text{Forward Substitution:} & \sim n^2/2 \text{ operations} \\
+\text{Back Substitution:} & \sim n^2/2 \text{ operations} \\
+\text{Total for LU solve:} & \sim n^2 \text{ operations} \\
+\text{Gaussian Elimination:} & \sim n^3/3 \text{ operations} \\
+\text{Inverse computation:} & \sim n^3 \text{ operations}
+\end{array}$$
 
-$$For n=1000: LU is ~300x faster than computing A^-1!$$
+$$\text{For } n=1000: \text{ LU is } \sim 300\text{x faster than computing } A^{-1}!$$
             </div>
 
             <h3>Worked Examples</h3>
@@ -192,7 +191,7 @@ $$For n=1000: LU is ~300x faster than computing A^-1!$$
                     <li>Eliminate: <code>R2 - 2*R1 = [0, -6-2] = [0, -8]</code></li>
                     <li><code>U = [[2, 1], [0, -8]]</code></li>
                     <li><code>L = [[1, 0], [2, 1]]</code></li>
-                    <li>Verify: <code>LU = [[2, 1], [4, -6]] = A</code> Ã¢Å“â€œ</li>
+                    <li>Verify: <code>LU = [[2, 1], [4, -6]] = A</code> ✓</li>
                 </ol>
             </div>
 
@@ -246,14 +245,14 @@ $$For n=1000: LU is ~300x faster than computing A^-1!$$
                     <p><code>L = [[1, 0, 0], [2, 1, 0], [1, 1, 1]]</code></p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Show that if <code>A</code> is singular, the LU factorization (without pertations) fails.</p>
+                <p><strong>Problem 3:</strong> Show that if <code>A</code> is singular, the LU factorization (without permutations) fails.</p>
                 <p><em>Hint: What happens when a pivot is zero?</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>If <code>A</code> is singular, elimination produces a zero pivot. Without row exchange, we cannot proceed. A pertation matrix P reorders rows: <code>PA = LU</code>.</p>
+                    <p>If <code>A</code> is singular, elimination produces a zero pivot. Without row exchange, we cannot proceed. A permutation matrix P reorders rows: <code>PA = LU</code>.</p>
                 </details>
 
-                <p><strong>Problem 4:</strong> Compute the number of multiplications needed to factor an <code>n x n</code> matrix into LU (no pertations).</p>
+                <p><strong>Problem 4:</strong> Compute the number of multiplications needed to factor an <code>n x n</code> matrix into LU (no permutations).</p>
                 <p><em>Hint: Count operations in the elimination loop.</em></p>
                 <details>
                     <summary>Solution</summary>

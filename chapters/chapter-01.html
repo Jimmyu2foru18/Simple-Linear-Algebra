@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -43,7 +43,7 @@
             <!-- CORE LECTURE: Gilbert Strang -->
             <!-- ========================================== -->
             <div class="video-section">
-                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
                             title="1. The Geometry of Linear Equations — Gilbert Strang"
@@ -83,7 +83,7 @@
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <h5>Paul Cartier — Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
@@ -143,7 +143,7 @@
                 <p>$$a_{21}x + a_{22}y = b_2 \quad \text{(Equation 2)}$$</p>
                 <p>This can be written in matrix form as:</p>
                 <p>$$\begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} b_1 \\ b_2 \end{bmatrix}$$</p>
-                <p>Multiplying out the matrix product gives:</p>
+                <p>multiplying out the matrix product gives:</p>
                 <p>$$\text{Row 1: } a_{11} \cdot x + a_{12} \cdot y = b_1$$</p>
                 <p>$$\text{Row 2: } a_{21} \cdot x + a_{22} \cdot y = b_2$$</p>
                 <p>This shows the equivalence between the system of equations and the matrix equation $A\mathbf{x} = \mathbf{b}$.</p>
@@ -195,7 +195,7 @@
                 <p>The solution to a $2 \times 2$ system is the intersection point of two lines. If the lines are parallel, there is no solution. If they coincide, there are infinitely many solutions.</p>
                 <p>$$\text{Line 1: } 2x - y = 0 \quad (\text{slope} = 2, \text{ passes through origin})$$</p>
                 <p>$$\text{Line 2: } x + y = 3 \quad (\text{slope} = -1, \text{ y-intercept} = 3)$$</p>
-                <p>$$\text{Solution: Intersection at } (x, y) = (2, 1)$$</p>
+                <p>$$\text{Solution: Intersection at } (x, y) = (1, 2)$$</p>
             </div>
 
             <div class="visual-aid">
@@ -203,9 +203,8 @@
                 <p>Visualizing the column vectors and their linear combination:</p>
                 <p>$$\mathbf{v}_1 = \begin{bmatrix} 2 \\ -1 \end{bmatrix}, \quad \mathbf{v}_2 = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$$</p>
                 <p>$$\text{Target: } \mathbf{b} = \begin{bmatrix} 0 \\ 3 \end{bmatrix}$$</p>
-                <p>We need $x$ and $y$ such that $x\mathbf{v}_1 + y\mathbf{v}_2 = \mathbf{b}$. Solving gives $x = 1, y = 2$.</p>
-                <p>$$\text{Check: } 1\begin{bmatrix} 2 \\ -1 \end{bmatrix} + 2\begin{bmatrix} 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 2+2 \\ -1+2 \end{bmatrix} = \begin{bmatrix} 4 \\ 1 \end{bmatrix} \neq \begin{bmatrix} 0 \\ 3 \end{bmatrix}$$</p>
-                <p><em>Note: The actual solution requires solving the system $2x + y = 0$ and $-x + y = 3$, which gives $x = -1, y = 2$.</em></p>
+                <p>We need $x$ and $y$ such that $x\mathbf{v}_1 + y\mathbf{v}_2 = \mathbf{b}$. Solving gives $x = -1, y = 2$.</p>
+                <p>$$\text{Check: } (-1)\begin{bmatrix} 2 \\ -1 \end{bmatrix} + 2\begin{bmatrix} 1 \\ 1 \end{bmatrix} = \begin{bmatrix} -2+2 \\ 1+2 \end{bmatrix} = \begin{bmatrix} 0 \\ 3 \end{bmatrix} = \mathbf{b} \checkmark$$</p>
             </div>
 
             <!-- ========================================== -->
@@ -227,8 +226,8 @@
                 </ol>
                 <p><strong>Verification:</strong></p>
                 <ul>
-                    <li>Equation 1: $2(1) - 2 = 0$ âœ“</li>
-                    <li>Equation 2: $1 + 2 = 3$ âœ“</li>
+                    <li>Equation 1: $2(1) - 2 = 0$ ✓</li>
+                    <li>Equation 2: $1 + 2 = 3$ ✓</li>
                 </ul>
                 <p><strong>Geometric Interpretation:</strong></p>
                 <ul>
@@ -252,8 +251,8 @@
                 <p>Substituting back: $x_2 = 1 + \frac{4}{3} = \frac{7}{3}$</p>
                 <p><strong>Verification:</strong></p>
                 <ul>
-                    <li>$2\left(\frac{4}{3}\right) + \frac{7}{3} = \frac{8}{3} + \frac{7}{3} = \frac{15}{3} = 5$ âœ“</li>
-                    <li>$-\frac{4}{3} + \frac{7}{3} = \frac{3}{3} = 1$ âœ“</li>
+                    <li>$2\left(\frac{4}{3}\right) + \frac{7}{3} = \frac{8}{3} + \frac{7}{3} = \frac{15}{3} = 5$ ✓</li>
+                    <li>$-\frac{4}{3} + \frac{7}{3} = \frac{3}{3} = 1$ ✓</li>
                 </ul>
             </div>
 

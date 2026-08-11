@@ -39,7 +39,7 @@
             <p class="lead">This chapter bridges the gap between coordinate-free linear transformations and the matrices that represent them. The key insight is that a linear transformation is completely determined by its action on a basis: if you know $T(v_1), T(v_2), \ldots, T(v_n)$ for a basis $\{v_1, \ldots, v_n\}$, then linearity tells you $T(c_1 v_1 + \cdots + c_n v_n) = c_1 T(v_1) + \cdots + c_n T(v_n)$ for all inputs. Choosing an input basis and an output basis converts the transformation into a matrix: the $j$-th column of the matrix is $T(v_j)$ expressed in the output basis. Different choices of basis give different matrices for the same transformation; the eigenvector basis gives the diagonal matrix of eigenvalues.</p>
 
             <div class="video-section">
-                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/Ts3o2I8_Mxc"
                             title="31. Linear Transformations and Their Matrices — Gilbert Strang"
@@ -76,7 +76,7 @@
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <h5>Paul Cartier — Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
@@ -102,13 +102,13 @@
             <p>The fundamental fact is that a linear transformation $T: V \to W$ is completely determined by what it does to a basis of $V$. If $\{v_1, v_2, \ldots, v_n\}$ is a basis for $V$, then every vector $v \in V$ can be written uniquely as $v = c_1 v_1 + c_2 v_2 + \cdots + c_n v_n$. By linearity, $T(v) = c_1 T(v_1) + c_2 T(v_2) + \cdots + c_n T(v_n)$. So if you know $T(v_1), \ldots, T(v_n)$, you know $T(v)$ for all $v$. The scalars $c_1, \ldots, c_n$ are the coordinates of $v$ in the chosen basis. Change the basis, change the coordinates, but the underlying vector stays the same.</p>
 
             <h4>Coordinates and Bases</h4>
-            <p>Coordinates are not absoluteâ€”they depend on the choice of basis. The standard basis $\{e_1, e_2, \ldots, e_n\}$ gives the familiar coordinate representation: $v = [3, 2, 4]^T$ means $3e_1 + 2e_2 + 4e_3$. But if we choose a different basis, say the eigenvectors of a matrix, the coordinates change. The vector itself is coordinate-free; the coordinates are just the coefficients in the chosen basis expansion. This is why linear algebra can be done without coordinates initiallyâ€”the transformation $T$ exists independently of any basisâ€”and then coordinates are introduced only when we need to write down a matrix.</p>
+            <p>Coordinates are not absolute—they depend on the choice of basis. The standard basis $\{e_1, e_2, \ldots, e_n\}$ gives the familiar coordinate representation: $v = [3, 2, 4]^T$ means $3e_1 + 2e_2 + 4e_3$. But if we choose a different basis, say the eigenvectors of a matrix, the coordinates change. The vector itself is coordinate-free; the coordinates are just the coefficients in the chosen basis expansion. This is why linear algebra can be done without coordinates initially—the transformation $T$ exists independently of any basis—and then coordinates are introduced only when we need to write down a matrix.</p>
 
             <h4>Constructing the Matrix of a Linear Transformation</h4>
             <p>To construct the matrix $A$ representing $T: \mathbb{R}^n \to \mathbb{R}^m$, we need two bases: an input basis $\{v_1, \ldots, v_n\}$ for $\mathbb{R}^n$ and an output basis $\{w_1, \ldots, w_m\}$ for $\mathbb{R}^m$. The rule is simple: the $j$-th column of $A$ is the coordinate vector of $T(v_j)$ expressed in the output basis. That is, write $T(v_j) = a_{1j} w_1 + a_{2j} w_2 + \cdots + a_{mj} w_m$, and the coefficients $a_{1j}, \ldots, a_{mj}$ form the $j$-th column of $A$. Then for any input $v$ with coordinates $c_1, \ldots, c_n$, the output coordinates are given by $A$ times the input coordinate vector: $A [c_1, \ldots, c_n]^T = [\text{output coordinates}]^T$.</p>
 
             <h4>Projection Example: Eigenvector Basis vs Standard Basis</h4>
-            <p>Consider the projection onto the line $y=x$ in $\mathbb{R}^2$. If we choose the input and output basis to be the eigenvectors of the projectionâ€”$v_1 = \frac{1}{\sqrt{2}}[1,1]^T$ (along the line, eigenvalue 1) and $v_2 = \frac{1}{\sqrt{2}}[1,-1]^T$ (perpendicular to the line, eigenvalue 0)â€”then the matrix is diagonal: $A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$. But if we use the standard basis $\{e_1, e_2\}$ for both inputs and outputs, the matrix is $A = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$, the familiar projection matrix $P = \frac{AA^T}{A^T A}$. The same transformation, different bases, different matrices. The eigenvector basis gives the diagonal matrix; the standard basis gives a symmetric but non-diagonal matrix.</p>
+            <p>Consider the projection onto the line $y=x$ in $\mathbb{R}^2$. If we choose the input and output basis to be the eigenvectors of the projection—$v_1 = \frac{1}{\sqrt{2}}[1,1]^T$ (along the line, eigenvalue 1) and $v_2 = \frac{1}{\sqrt{2}}[1,-1]^T$ (perpendicular to the line, eigenvalue 0)—then the matrix is diagonal: $A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$. But if we use the standard basis $\{e_1, e_2\}$ for both inputs and outputs, the matrix is $A = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$, the familiar projection matrix $P = \frac{AA^T}{A^T A}$. The same transformation, different bases, different matrices. The eigenvector basis gives the diagonal matrix; the standard basis gives a symmetric but non-diagonal matrix.</p>
 
             <h4>The Derivative as a Linear Transformation</h4>
             <p>Consider the transformation $T: P_3 \to P_2$ that takes a polynomial $p(x) = c_1 + c_2 x + c_3 x^2$ to its derivative $p'(x) = c_2 + 2c_3 x$. With input basis $\{1, x, x^2\}$ and output basis $\{1, x\}$, the matrix is:
@@ -162,7 +162,7 @@
                 <h4>Study Tips</h4>
                 <ul>
                     <li>Always identify the input basis and output basis before constructing the matrix</li>
-                    <li>The $j$-th column of $A$ is $T(v_j)$ written in the output basisâ€”not the input basis</li>
+                    <li>The $j$-th column of $A$ is $T(v_j)$ written in the output basis—not the input basis</li>
                     <li>If input basis = output basis = eigenvector basis, the matrix is diagonal</li>
                     <li>If input basis = output basis = standard basis, the matrix is the "usual" one</li>
                     <li>For the derivative transformation, the matrix is always a shift: row $i$ has nonzeros in column $i+1$</li>
@@ -236,7 +236,7 @@
                     <li>$T(x^2) = 2x = 0 \cdot 1 + 2 \cdot x \Rightarrow$ column 3 = $[0, 2]^T$</li>
                     <li>Matrix: $A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{bmatrix}$</li>
                     <li>For $p(x) = 3 + 2x - x^2$, input coordinates are $[3, 2, -1]^T$</li>
-                    <li>$A[3, 2, -1]^T = [2, -2]^T$, meaning $p'(x) = 2 - 2x$ âœ“</li>
+                    <li>$A[3, 2, -1]^T = [2, -2]^T$, meaning $p'(x) = 2 - 2x$ ✓</li>
                     <li>The matrix shifts the coefficient of $x$ to the constant term and doubles the coefficient of $x^2$ to the $x$ term</li>
                 </ul>
             </div>
@@ -246,11 +246,11 @@
             <div class="questions">
                 <h4>Problem Set 31</h4>
 
-                <p><strong>Problem 1:</strong> Let $T: \mathbb{R}^2 \to \mathbb{R}^2$ be the linear transformation that rotates every vector by 90Â° counterclockwise: $T([x,y]^T) = [-y, x]^T$. Find the matrix of $T$ with respect to the standard basis.</p>
+                <p><strong>Problem 1:</strong> Let $T: \mathbb{R}^2 \to \mathbb{R}^2$ be the linear transformation that rotates every vector by 90° counterclockwise: $T([x,y]^T) = [-y, x]^T$. Find the matrix of $T$ with respect to the standard basis.</p>
                 <p><em>Hint: Compute $T(e_1)$ and $T(e_2)$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$T(e_1) = T([1,0]^T) = [0,1]^T$, so column 1 is $[0,1]^T$. $T(e_2) = T([0,1]^T) = [-1,0]^T$, so column 2 is $[-1,0]^T$. Matrix: $A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$. Verify: $A[x,y]^T = [-y, x]^T$ âœ“.</p>
+                    <p>$T(e_1) = T([1,0]^T) = [0,1]^T$, so column 1 is $[0,1]^T$. $T(e_2) = T([0,1]^T) = [-1,0]^T$, so column 2 is $[-1,0]^T$. Matrix: $A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$. Verify: $A[x,y]^T = [-y, x]^T$ ✓.</p>
                 </details>
 
                 <p><strong>Problem 2:</strong> Let $T: \mathbb{R}^3 \to \mathbb{R}^2$ be defined by $T([x,y,z]^T) = [x+y, y+z]^T$. Find the matrix of $T$ with respect to the standard bases.</p>

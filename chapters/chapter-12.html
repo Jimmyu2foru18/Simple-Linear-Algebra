@@ -39,7 +39,7 @@
             <p class="lead">Network analysis using graph theory and incidence matrices. This chapter applies linear algebra to analyze electrical networks, traffic flow, and structural rigidity through incidence matrices and Kirchhoff's laws.</p>
 
             <div class="video-section">
-                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/6-wh6yvk6uc"
                             title="12. Graphs, Networks, Incidence Matrices — Gilbert Strang"
@@ -76,14 +76,14 @@
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <h5>Paul Cartier — Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/P5GJJ02OG08"
-                                    title="Prof Dave Explains — Matrix Multiplication"
+                                    title="Prof Dave Explains — Matrix multiplication"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -162,27 +162,27 @@
             <div class="visual-aid">
                 <h4>Figure: Graph and Its Incidence Matrix</h4>
                 <p>A simple 4-node, 5-edge graph:</p>
-                $$Graph:
-$$1 --- 2$$
-  |     |
-$$3 --- 4$$
+$$Graph:$$
+                $$1 --- 2$$
+                $$| \quad |$$
+                $$3 --- 4$$
 
-$$Incidence matrix A (rows = edges):$$
-        n1  n2  n3  n4
-$$e1:     1  -1   0   0   (1â†’2)
-e2:     0   1  -1   0   (2â†’3)
-e3:     1   0   0  -1   (1â†’4)
-e4:     0   0   1  -1   (3â†’4)
-e5:     0   1   0  -1   (2â†’4)$$
+                $$\text{Incidence matrix } A \text{ (rows = edges):}$$
+                $$\begin{array}{cccc} n_1 & n_2 & n_3 & n_4 \end{array}$$
+                $$e_1: \begin{bmatrix} 1 & -1 & 0 & 0 \end{bmatrix} \quad (1 \to 2)$$
+                $$e_2: \begin{bmatrix} 0 & 1 & -1 & 0 \end{bmatrix} \quad (2 \to 3)$$
+                $$e_3: \begin{bmatrix} 1 & 0 & 0 & -1 \end{bmatrix} \quad (1 \to 4)$$
+                $$e_4: \begin{bmatrix} 0 & 0 & 1 & -1 \end{bmatrix} \quad (3 \to 4)$$
+                $$e_5: \begin{bmatrix} 0 & 1 & 0 & -1 \end{bmatrix} \quad (2 \to 4)$$
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Spanning Tree and Cycle</h4>
                 <p>From the graph above, edges {e1, e2, e3} form a spanning tree. Adding e4 creates cycle {e2, e4, e3}.</p>
-                $$Spanning tree: 3 edges (n-1 = 4-1)
-Independent: columns of A for {e1, e2, e3}
-$$Cycle space: dim = 5 - 4 + 1 = 2$$
-Fundamental cycles: {e2, e4, e3}, {e1, e3, e5, e2}$$
+Spanning tree: 3 edges (n-1 = 4-1)
+                $$Independent: columns of A for \{e_1, e_2, e_3\}$$
+                $$Cycle space: dim = 5 - 4 + 1 = 2$$
+                $$Fundamental cycles: \{e_2, e_4, e_3\}, \{e_1, e_3, e_5, e_2\}$$
             </div>
 
             <h3>Worked Examples</h3>

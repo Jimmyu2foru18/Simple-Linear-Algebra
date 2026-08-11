@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@
             <p class="lead">Linear independence, basis vectors, and dimension theory. This chapter defines the fundamental concepts that measure the "size" and structure of vector spaces and subspaces.</p>
 
             <div class="video-section">
-                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/yjBerM5jWsc"
                             title="9. Independence, Basis, and Dimension — Gilbert Strang"
@@ -76,7 +76,7 @@
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <h5>Paul Cartier — Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
@@ -115,20 +115,19 @@
             <div class="derivation">
                 <h4>Derivation: Independence Test via Matrix</h4>
                 <p>To test if vectors <code>v1, v2, ..., vk</code> in <code>$\mathbb{R}^n$</code> are independent:</p>
-                $$Form matrix A = [v1 v2 ... vk]
-$$Solve Ax = 0$$
+                $$A = [\mathbf{v}_1 \ \mathbf{v}_2 \ \cdots \ \mathbf{v}_k]$$
+                $$A\mathbf{x} = \mathbf{0}$$
 
-$$If only trivial solution x = 0 exists: independent$$
-If nontrivial solution exists: dependent$$
+                <p>If only trivial solution <code>$\mathbf{x} = \mathbf{0}$</code> exists: independent. If nontrivial solution exists: dependent.</p>
                 <p>The vectors are independent exactly when $\text{rank}(A)$ = k.</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Uniqueness of Basis Representation</h4>
                 <p>If <code>{v1, ..., vn}</code> is a basis for V and <code>v = c1*v1 + ... + cn*vn = d1*v1 + ... + dn*vn</code>, then:</p>
-                $$(c1-d1)*v1 + ... + (cn-dn)*vn = 0
-$$By independence: c1-d1 = 0, ..., cn-dn = 0
-Therefore: ci = di for all i$$
+                $$(c_1 - d_1)\mathbf{v}_1 + \cdots + (c_n - d_n)\mathbf{v}_n = \mathbf{0}$$
+                $$\text{By independence: } c_1 - d_1 = 0, \ldots, c_n - d_n = 0$$
+                $$\text{Therefore: } c_i = d_i \text{ for all } i$$
                 <p>Basis representations are unique.</p>
             </div>
 
@@ -189,7 +188,7 @@ Any vector in plane: c1*v1 + c2*v2$$
                     <li>Form <code>A = [[1, 2, 3], [2, 5, 7], [3, 7, 10]]</code></li>
                     <li>RREF: <code>[[1, 0, 1], [0, 1, 1], [0, 0, 0]]</code></li>
                     <li>Rank = 2 &lt; 3 (number of vectors)</li>
-                    <li>Nontrivial solution exists: <code>v3 = -v1 - v2</code></li>
+                    <li>Nontrivial solution exists: <code>v3 = v1 + v2</code></li>
                     <li><strong>Vectors are dependent.</strong></li>
                 </ol>
             </div>
@@ -200,7 +199,7 @@ Any vector in plane: c1*v1 + c2*v2$$
                 <p><strong>Solution:</strong></p>
                 <ul>
                     <li>Note: <code>v2 = 2*v1</code>, so <code>v2</code> is dependent on <code>v1</code></li>
-                    <li>Check if <code>v3</code> is independent of <code>v1</code>: not a ltiple</li>
+                    <li>Check if <code>v3</code> is independent of <code>v1</code>: not a multiple</li>
                     <li>RREF of <code>[v1 v2 v3]</code> gives pivots in columns 1 and 3</li>
                     <li>Basis: <code>{[1, 2, 1]^T, [1, 0, 1]^T}</code></li>
                     <li>dim(S) = 2</li>
@@ -232,11 +231,11 @@ Any vector in plane: c1*v1 + c2*v2$$
                     <p>Add <code>[0, 1]^T</code> or <code>[1, 0]^T</code> or any vector not equal to <code>c*[1, 1]^T</code>. Basis: <code>{[1, 1]^T, [0, 1]^T}</code>.</p>
                 </details>
 
-                <p><strong>Problem 4:</strong> If a subspace S of <code>R^5</code> has dimension 3, what is the maxim number of linearly independent vectors it can contain?</p>
+                <p><strong>Problem 4:</strong> If a subspace S of <code>R^5</code> has dimension 3, what is the maximum number of linearly independent vectors it can contain?</p>
                 <p><em>Hint: Think about the definition of dimension.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>3. Any set of 4 or more vectors in a 3-dimensional subspace st be dependent.</p>
+                    <p>3. Any set of 4 or more vectors in a 3-dimensional subspace must be dependent.</p>
                 </details>
             </div>
 

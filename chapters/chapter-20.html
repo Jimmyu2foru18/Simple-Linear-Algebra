@@ -39,7 +39,7 @@
             <p class="lead">This chapter completes the determinant trilogy: formulas, cofactors, and now geometric meaning. You will see why the determinant equals the volume of a box, how Cramer's Rule solves linear systems, and when the inverse matrix exists. The geometric interpretation connects the abstract determinant formula to area, volume, and orientation in space.</p>
 
             <div class="video-section">
-                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/QNpj-gOXW9M"
                             title="20. Cramer's Rule, Inverse Matrix, and Volume — Gilbert Strang"
@@ -76,7 +76,7 @@
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <h5>Paul Cartier — Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
             <p>To complete the proof that determinant equals volume, we must check Property 3b: linearity of the determinant in one row when the other rows are fixed. In $2 \times 2$ terms, if row $1$ is $(a+a', b+b')$ while row $2$ is $(c,d)$, then the area splits into the sum of two parallelogram areas. This corresponds to splitting the determinant: $\det\begin{pmatrix} a+a' & b+b' \\ c & d \end{pmatrix} = \det\begin{pmatrix} a & b \\ c & d \end{pmatrix} + \det\begin{pmatrix} a' & b' \\ c & d \end{pmatrix}$.</p>
 
             <h4>Area of a Parallelogram and Triangle</h4>
-            <p>The determinant gives the area of a parallelogram spanned by vectors $(a,b)$ and $(c,d)$ as $|ad - bc|$ â€” no square roots, no trigonometry. For the triangle with vertices at $(0,0)$, $(a,b)$, and $(c,d)$, the area is $\frac{1}{2}|ad - bc|$. If the triangle does not start at the origin, with vertices $(x_1,y_1)$, $(x_2,y_2)$, $(x_3,y_3)$, the area is $\frac{1}{2} \left| \det\begin{pmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{pmatrix} \right|$. Subtracting one row from the others translates the triangle to the origin, revealing the same determinant formula.</p>
+            <p>The determinant gives the area of a parallelogram spanned by vectors $(a,b)$ and $(c,d)$ as $|ad - bc|$ — no square roots, no trigonometry. For the triangle with vertices at $(0,0)$, $(a,b)$, and $(c,d)$, the area is $\frac{1}{2}|ad - bc|$. If the triangle does not start at the origin, with vertices $(x_1,y_1)$, $(x_2,y_2)$, $(x_3,y_3)$, the area is $\frac{1}{2} \left| \det\begin{pmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{pmatrix} \right|$. Subtracting one row from the others translates the triangle to the origin, revealing the same determinant formula.</p>
 
             <h3>Computation Examples</h3>
 
@@ -171,7 +171,7 @@
                     <li>Always visualize the box: rows as edges, determinant as signed volume</li>
                     <li>For the identity matrix, the box is the unit cube; verify $\det(I) = 1$</li>
                     <li>For orthogonal $Q$, remember $Q^T Q = I$ implies $|\det(Q)| = 1$</li>
-                    <li>Doubling a row doubles the determinant â€” this matches doubling the edge and the volume</li>
+                    <li>Doubling a row doubles the determinant — this matches doubling the edge and the volume</li>
                     <li>The area of a parallelogram with vectors $(a,b)$ and $(c,d)$ is $|ad-bc|$</li>
                     <li>For a triangle not at the origin, use the $3 \times 3$ determinant with a column of ones</li>
                     <li>Property 3b (linearity) is the hardest to visualize; draw the parallelogram decomposition</li>
@@ -191,7 +191,7 @@
                 <h4>Figure: Parallelogram Area from Determinant</h4>
                 <p>Two vectors $(a,b)$ and $(c,d)$ span a parallelogram:</p>
                 <p>$$ \text{Area} = \left| \det\begin{pmatrix} a & b \\ c & d \end{pmatrix} \right| = |ad - bc| $$</p>
-                <p>No square roots, no heights, no angles â€” just the coordinates.</p>
+                <p>No square roots, no heights, no angles — just the coordinates.</p>
             </div>
 
             <div class="visual-aid">

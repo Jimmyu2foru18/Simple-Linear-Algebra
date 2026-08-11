@@ -36,10 +36,10 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 22: Diagonalization and Powers of A</h2>
-            <p class="lead">Computing matrix powers through diagonalization. This chapter reveals how any diagonalizable matrix can be written as A = SÎ›S<sup>-1</sup>, which immediately gives A<sup>k</sup> = SÎ›<sup>k</sup>S<sup>-1</sup>. The Fibonacci sequence serves as the central example, showing how eigenvalues control the growth rate of dynamical systems and how a second-order recurrence can be converted to a first-order matrix system.</p>
+            <p class="lead">Computing matrix powers through diagonalization. This chapter reveals how any diagonalizable matrix can be written as A = SΛS<sup>-1</sup>, which immediately gives A<sup>k</sup> = SΛ<sup>k</sup>S<sup>-1</sup>. The Fibonacci sequence serves as the central example, showing how eigenvalues control the growth rate of dynamical systems and how a second-order recurrence can be converted to a first-order matrix system.</p>
 
             <div class="video-section">
-                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/13r9QY6cmjc"
                             title="22. Diagonalization and Powers of A — Gilbert Strang"
@@ -76,7 +76,7 @@
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <h5>Paul Cartier — Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
@@ -99,29 +99,29 @@
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>The Diagonalization Formula</h4>
-            <p>If A is diagonalizable with eigenvector matrix S and eigenvalue matrix Î›, then A = SÎ›S<sup>-1</sup>. Consequently, A<sup>k</sup> = SÎ›<sup>k</sup>S<sup>-1</sup>. This formula means that to compute A<sup>k</sup>, you expand the initial vector u<sub>0</sub> into eigenvectors, multiply each eigencomponent by its eigenvalue raised to the k-th power, and recombine. The matrix S contains the eigenvectors as columns, and Î› is the diagonal matrix of eigenvalues.</p>
+            <p>If A is diagonalizable with eigenvector matrix S and eigenvalue matrix Λ, then A = SΛS<sup>-1</sup>. Consequently, A<sup>k</sup> = SΛ<sup>k</sup>S<sup>-1</sup>. This formula means that to compute A<sup>k</sup>, you expand the initial vector u<sub>0</sub> into eigenvectors, multiply each eigencomponent by its eigenvalue raised to the k-th power, and recombine. The matrix S contains the eigenvectors as columns, and Λ is the diagonal matrix of eigenvalues.</p>
 
             <h4>From Recurrence to Dynamical Systems</h4>
-            <p>The Fibonacci sequence satisfies F<sub>k+2</sub> = F<sub>k+1</sub> + F<sub>k</sub>, which is a second-order scalar recurrence. To convert it to a first-order system, define the state vector u<sub>k</sub> = [F<sub>k+1</sub>, F<sub>k</sub>]<sup>T</sup>. Then u<sub>k+1</sub> = Au<sub>k</sub> where A = [[1, 1], [1, 0]]. This transforms a single second-order equation into a 2Ã—2 matrix system. The matrix A captures the recurrence in first-order form.</p>
+            <p>The Fibonacci sequence satisfies F<sub>k+2</sub> = F<sub>k+1</sub> + F<sub>k</sub>, which is a second-order scalar recurrence. To convert it to a first-order system, define the state vector u<sub>k</sub> = [F<sub>k+1</sub>, F<sub>k</sub>]<sup>T</sup>. Then u<sub>k+1</sub> = Au<sub>k</sub> where A = [[1, 1], [1, 0]]. This transforms a single second-order equation into a 2×2 matrix system. The matrix A captures the recurrence in first-order form.</p>
 
             <h4>Eigenvalues of the Fibonacci Matrix</h4>
-            <p>For A = [[1, 1], [1, 0]], the characteristic equation is det(A - Î»I) = Î»<sup>2</sup> - Î» - 1 = 0. The eigenvalues are Î»<sub>1</sub> = (1+âˆš5)/2 â‰ˆ 1.618 and Î»<sub>2</sub> = (1-âˆš5)/2 â‰ˆ -0.618. They add to the trace (1) and multiply to the determinant (-1). The dominant eigenvalue Î»<sub>1</sub> is the golden ratio, and it controls the exponential growth of the Fibonacci numbers. The second eigenvalue Î»<sub>2</sub> has magnitude less than 1, so its contribution vanishes as k increases.</p>
+            <p>For A = [[1, 1], [1, 0]], the characteristic equation is det(A - λI) = λ<sup>2</sup> - λ - 1 = 0. The eigenvalues are λ<sub>1</sub> = (1+√5)/2 ≠ 1.618 and λ<sub>2</sub> = (1-√5)/2 ≠ -0.618. They add to the trace (1) and multiply to the determinant (-1). The dominant eigenvalue λ<sub>1</sub> is the golden ratio, and it controls the exponential growth of the Fibonacci numbers. The second eigenvalue λ<sub>2</sub> has magnitude less than 1, so its contribution vanishes as k increases.</p>
 
             <h4>Eigenvectors and the Expansion of u<sub>0</sub></h4>
-            <p>The eigenvectors of A are x<sub>1</sub> = [Î»<sub>1</sub>, 1]<sup>T</sup> and x<sub>2</sub> = [Î»<sub>2</sub>, 1]<sup>T</sup>. The initial vector u<sub>0</sub> = [F<sub>1</sub>, F<sub>0</sub>]<sup>T</sup> = [1, 0]<sup>T</sup> is expressed as a linear combination u<sub>0</sub> = c<sub>1</sub>x<sub>1</sub> + c<sub>2</sub>x<sub>2</sub>. Then u<sub>k</sub> = A<sup>k</sup>u<sub>0</sub> = c<sub>1</sub>Î»<sub>1</sub><sup>k</sup>x<sub>1</sub> + c<sub>2</sub>Î»<sub>2</sub><sup>k</sup>x<sub>2</sup>. As k grows, the term with |Î»<sub>1</sub>|<sup>k</sup> dominates because |Î»<sub>1</sub>| > 1 and |Î»<sub>2</sub>| < 1.</p>
+            <p>The eigenvectors of A are x<sub>1</sub> = [λ<sub>1</sub>, 1]<sup>T</sup> and x<sub>2</sub> = [λ<sub>2</sub>, 1]<sup>T</sup>. The initial vector u<sub>0</sub> = [F<sub>1</sub>, F<sub>0</sub>]<sup>T</sup> = [1, 0]<sup>T</sup> is expressed as a linear combination u<sub>0</sub> = c<sub>1</sub>x<sub>1</sub> + c<sub>2</sub>x<sub>2</sub>. Then u<sub>k</sub> = A<sup>k</sup>u<sub>0</sub> = c<sub>1</sub>λ<sub>1</sub><sup>k</sup>x<sub>1</sub> + c<sub>2</sub>λ<sub>2</sub><sup>k</sup>x<sub>2</sup>. As k grows, the term with |λ<sub>1</sub>|<sup>k</sup> dominates because |λ<sub>1</sub>| > 1 and |λ<sub>2</sub>| < 1.</p>
 
             <h4>Dynamic Systems vs Static Problems</h4>
-            <p>Static problems solve Ax = b for a fixed right-hand side. Dynamic problems follow u<sub>k+1</sub> = Au<sub>k</sub> over time. The eigenvalues determine the long-term behavior: if |Î»| < 1, solutions decay to zero; if |Î»| > 1, solutions grow exponentially; if |Î»| = 1, solutions remain bounded. For the Fibonacci matrix, Î»<sub>1</sub> â‰ˆ 1.618 > 1 means exponential growth, and the growth rate is approximately Î»<sub>1</sub><sup>k</sup>.</p>
+            <p>Static problems solve Ax = b for a fixed right-hand side. Dynamic problems follow u<sub>k+1</sub> = Au<sub>k</sub> over time. The eigenvalues determine the long-term behavior: if |λ| < 1, solutions decay to zero; if |λ| > 1, solutions grow exponentially; if |λ| = 1, solutions remain bounded. For the Fibonacci matrix, λ<sub>1</sub> ≠ 1.618 > 1 means exponential growth, and the growth rate is approximately λ<sub>1</sub><sup>k</sup>.</p>
 
             <h3>Computation Examples</h3>
 
             <div class="derivation">
                 <h4>Derivation: The Diagonalization Formula for A<sup>k</sup></h4>
-                <p>If A has n independent eigenvectors, they form the columns of S = [x<sub>1</sub> x<sub>2</sub> ... x<sub>n</sub>]. Then A = SÎ›S<sup>-1</sup> where Î› = diag(Î»<sub>1</sub>, Î»<sub>2</sub>, ..., Î»<sub>n</sub>). Raising to the k-th power:</p>
+                <p>If A has n independent eigenvectors, they form the columns of S = [x<sub>1</sub> x<sub>2</sub> ... x<sub>n</sub>]. Then A = SΛS<sup>-1</sup> where Λ = diag(λ<sub>1</sub>, λ<sub>2</sub>, ..., λ<sub>n</sub>). Raising to the k-th power:</p>
                 <p>$$ A^k = (S\Lambda S^{-1})^k = S\Lambda S^{-1} S\Lambda S^{-1} \cdots S\Lambda S^{-1} $$</p>
                 <p>Since S<sup>-1</sup>S = I in the middle, all interior terms cancel:</p>
                 <p>$$ A^k = S\Lambda^k S^{-1} $$</p>
-                <p>Here Î›<sup>k</sup> = diag(Î»<sub>1</sub><sup>k</sup>, Î»<sub>2</sub><sup>k</sup>, ..., Î»<sub>n</sub><sup>k</sup>). This is the fundamental formula for matrix powers.</p>
+                <p>Here Λ<sup>k</sup> = diag(λ<sub>1</sub><sup>k</sup>, λ<sub>2</sub><sup>k</sup>, ..., λ<sub>n</sub><sup>k</sup>). This is the fundamental formula for matrix powers.</p>
             </div>
 
             <div class="derivation">
@@ -137,9 +137,9 @@
                 <p>$$ \det(A - \lambda I) = \det\begin{pmatrix} 1-\lambda & 1 \\ 1 & -\lambda \end{pmatrix} = \lambda^2 - \lambda - 1 = 0 $$</p>
                 <p>Using the quadratic formula:</p>
                 <p>$$ \lambda_{1,2} = \frac{1 \pm \sqrt{5}}{2} $$</p>
-                <p>For each eigenvalue, the eigenvector satisfies (A - Î»I)x = 0. For a 2Ã—2 matrix, if Î» is an eigenvalue, then [Î», 1]<sup>T</sup> is an eigenvector because:</p>
+                <p>For each eigenvalue, the eigenvector satisfies (A - λI)x = 0. For a 2×2 matrix, if λ is an eigenvalue, then [λ, 1]<sup>T</sup> is an eigenvector because:</p>
                 <p>$$ \begin{pmatrix} 1-\lambda & 1 \\ 1 & -\lambda \end{pmatrix} \begin{pmatrix} \lambda \\ 1 \end{pmatrix} = \begin{pmatrix} \lambda - \lambda^2 + 1 \\ \lambda - \lambda^2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} $$</p>
-                <p>since Î»<sup>2</sup> - Î» - 1 = 0. Thus x<sub>1</sub> = [Î»<sub>1</sub>, 1]<sup>T</sup> and x<sub>2</sub> = [Î»<sub>2</sub>, 1]<sup>T</sup>.</p>
+                <p>since λ<sup>2</sup> - λ - 1 = 0. Thus x<sub>1</sub> = [λ<sub>1</sub>, 1]<sup>T</sup> and x<sub>2</sub> = [λ<sub>2</sub>, 1]<sup>T</sup>.</p>
             </div>
 
             <h3>Learning Strategies</h3>
@@ -148,7 +148,7 @@
                 <h4>Mnemonic Devices</h4>
                 <div class="mnemonic">
                     <strong>Mnemonic: "A to the k = S Lambda to the k S inverse"</strong>
-                    <p>To compute A<sup>k</sup>, diagonalize A = SÎ›S<sup>-1</sup>, then raise the diagonal matrix Î› to the k-th power entrywise, and sandwich it between S and S<sup>-1</sup>. The hard work is finding S and Î›; raising Î›<sup>k</sup> is trivial.</p>
+                    <p>To compute A<sup>k</sup>, diagonalize A = SΛS<sup>-1</sup>, then raise the diagonal matrix Λ to the k-th power entrywise, and sandwich it between S and S<sup>-1</sup>. The hard work is finding S and Λ; raising Λ<sup>k</sup> is trivial.</p>
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Second Order to First Order: Stack the State"</strong>
@@ -156,19 +156,19 @@
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Dominant Eigenvalue Controls Growth"</strong>
-                    <p>For large k, the term with the largest |Î»| dominates A<sup>k</sup>. If |Î»<sub>1</sub>| > |Î»<sub>2</sub>| > ... > |Î»<sub>n</sub>|, then A<sup>k</sup> â‰ˆ Î»<sub>1</sub><sup>k</sup> times a rank-1 matrix. The Fibonacci growth rate is Î»<sub>1</sub> â‰ˆ 1.618.</p>
+                    <p>For large k, the term with the largest |λ| dominates A<sup>k</sup>. If |λ<sub>1</sub>| > |λ<sub>2</sub>| > ... > |λ<sub>n</sub>|, then A<sup>k</sup> ≠ λ<sub>1</sub><sup>k</sup> times a rank-1 matrix. The Fibonacci growth rate is λ<sub>1</sub> ≠ 1.618.</p>
                 </div>
             </div>
 
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Always check that A has n independent eigenvectors before applying A<sup>k</sup> = SÎ›<sup>k</sup>S<sup>-1</sup></li>
-                    <li>For a 2Ã—2 matrix, the eigenvectors often have the simple form [Î», 1]<sup>T</sup></li>
+                    <li>Always check that A has n independent eigenvectors before applying A<sup>k</sup> = SΛ<sup>k</sup>S<sup>-1</sup></li>
+                    <li>For a 2×2 matrix, the eigenvectors often have the simple form [λ, 1]<sup>T</sup></li>
                     <li>The trace equals the sum of eigenvalues; the determinant equals the product - use these to check your work</li>
                     <li>When converting recurrences to matrix form, the state vector must contain enough history to make the system first-order</li>
                     <li>The dominant eigenvalue (largest magnitude) determines the long-term growth or decay rate</li>
-                    <li>If all |Î»<sub>i</sub>| < 1, then A<sup>k</sup> â†’ 0 as k â†’ âˆž</li>
+                    <li>If all |λ<sub>i</sub>| < 1, then A<sup>k</sup> → 0 as k → ∞</li>
                 </ul>
             </div>
 
@@ -178,48 +178,48 @@
                 <h4>Figure: Diagonalization and Matrix Powers</h4>
                 <p>Computing A<sup>k</sup> via the diagonalization formula:</p>
                 <p>$$ A = S\Lambda S^{-1} \implies A^k = S\Lambda^k S^{-1} $$</p>
-                <p>S contains eigenvectors as columns. Î›<sup>k</sup> raises each eigenvalue to the k-th power on the diagonal. The result is A<sup>k</sup> = SÎ›<sup>k</sup>S<sup>-1</sup>.</p>
+                <p>S contains eigenvectors as columns. Λ<sup>k</sup> raises each eigenvalue to the k-th power on the diagonal. The result is A<sup>k</sup> = SΛ<sup>k</sup>S<sup>-1</sup>.</p>
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Fibonacci Recurrence as a Dynamical System</h4>
                 <p>The Fibonacci recurrence F<sub>k+2</sub> = F<sub>k+1</sub> + F<sub>k</sub> becomes the matrix system u<sub>k+1</sub> = Au<sub>k</sub>:</p>
                 <p>$$ A = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}, \quad u_k = \begin{bmatrix} F_{k+1} \\ F_k \end{bmatrix} $$</p>
-                <p>The eigenvalues Î»<sub>1</sub> â‰ˆ 1.618 and Î»<sub>2</sub> â‰ˆ -0.618 determine the growth. The dominant eigenvalue Î»<sub>1</sub> causes exponential growth at rate â‰ˆ 1.618<sup>k</sup>.</p>
+                <p>The eigenvalues λ<sub>1</sub> ≠ 1.618 and λ<sub>2</sub> ≠ -0.618 determine the growth. The dominant eigenvalue λ<sub>1</sub> causes exponential growth at rate ≠ 1.618<sup>k</sup>.</p>
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Eigenvalue Spectrum and Long-Term Behavior</h4>
                 <p>For different dynamical systems, the eigenvalue locations control the behavior:</p>
                 <p>$$ |\lambda| < 1: \text{decay to zero} \quad |\lambda| > 1: \text{exponential growth} \quad |\lambda| = 1: \text{oscillation or steady state} $$</p>
-                <p>For the Fibonacci matrix, Î»<sub>1</sub> â‰ˆ 1.618 lies outside the unit circle (growth), while Î»<sub>2</sub> â‰ˆ -0.618 lies inside (decay). The long-term behavior is dominated by the larger magnitude.</p>
+                <p>For the Fibonacci matrix, λ<sub>1</sub> ≠ 1.618 lies outside the unit circle (growth), while λ<sub>2</sub> ≠ -0.618 lies inside (decay). The long-term behavior is dominated by the larger magnitude.</p>
             </div>
 
             <h3>Worked Examples</h3>
 
             <div class="example">
-                <h4>Example 1: Diagonalizing a 2Ã—2 Matrix</h4>
-                <p><strong>Problem:</strong> Diagonalize A = [[1, 1], [1, 0]] and compute A<sup>5</sup> using the formula A<sup>k</sup> = SÎ›<sup>k</sup>S<sup>-1</sup>.</p>
+                <h4>Example 1: Diagonalizing a 2×2 Matrix</h4>
+                <p><strong>Problem:</strong> Diagonalize A = [[1, 1], [1, 0]] and compute A<sup>5</sup> using the formula A<sup>k</sup> = SΛ<sup>k</sup>S<sup>-1</sup>.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>Eigenvalues: Î»<sub>1</sub> = (1+âˆš5)/2 â‰ˆ 1.618, Î»<sub>2</sub> = (1-âˆš5)/2 â‰ˆ -0.618</li>
-                    <li>Eigenvectors: x<sub>1</sub> = [Î»<sub>1</sub>, 1]<sup>T</sup>, x<sub>2</sub> = [Î»<sub>2</sub>, 1]<sup>T</sup></li>
-                    <li>S = [[Î»<sub>1</sub>, Î»<sub>2</sub>], [1, 1]], Î› = [[Î»<sub>1</sub>, 0], [0, Î»<sub>2</sub>]]</li>
-                    <li>A<sup>5</sup> = SÎ›<sup>5</sup>S<sup>-1</sup>. Rather than multiply A five times, compute Î›<sup>5</sup> = [[Î»<sub>1</sub><sup>5</sup>, 0], [0, Î»<sub>2</sub><sup>5</sup>]] and sandwich between S and S<sup>-1</sup></li>
+                    <li>Eigenvalues: λ<sub>1</sub> = (1+√5)/2 ≠ 1.618, λ<sub>2</sub> = (1-√5)/2 ≠ -0.618</li>
+                    <li>Eigenvectors: x<sub>1</sub> = [λ<sub>1</sub>, 1]<sup>T</sup>, x<sub>2</sub> = [λ<sub>2</sub>, 1]<sup>T</sup></li>
+                    <li>S = [[λ<sub>1</sub>, λ<sub>2</sub>], [1, 1]], Λ = [[λ<sub>1</sub>, 0], [0, λ<sub>2</sub>]]</li>
+                    <li>A<sup>5</sup> = SΛ<sup>5</sup>S<sup>-1</sup>. Rather than multiply A five times, compute Λ<sup>5</sup> = [[λ<sub>1</sub><sup>5</sup>, 0], [0, λ<sub>2</sub><sup>5</sup>]] and sandwich between S and S<sup>-1</sup></li>
                     <li>This gives F<sub>6</sub> = 8 and F<sub>5</sub> = 5 in the matrix entries</li>
                 </ul>
             </div>
 
             <div class="example">
                 <h4>Example 2: Fibonacci Numbers via Diagonalization</h4>
-                <p><strong>Problem:</strong> Use diagonalization to find a closed formula for F<sub>k</sub> and explain why F<sub>100</sub> â‰ˆ c<sub>1</sub>Î»<sub>1</sub><sup>100</sup>.</p>
+                <p><strong>Problem:</strong> Use diagonalization to find a closed formula for F<sub>k</sub> and explain why F<sub>100</sub> ≠ c<sub>1</sub>λ<sub>1</sub><sup>100</sup>.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
                     <li>u<sub>0</sub> = [1, 0]<sup>T</sup> = c<sub>1</sub>x<sub>1</sub> + c<sub>2</sub>x<sub>2</sub></li>
-                    <li>Solving for c<sub>1</sub>, c<sub>2</sub> gives c<sub>1</sub> = 1/âˆš5, c<sub>2</sub> = -1/âˆš5</li>
-                    <li>Thus u<sub>k</sub> = (1/âˆš5)Î»<sub>1</sub><sup>k</sup>x<sub>1</sub> - (1/âˆš5)Î»<sub>2</sub><sup>k</sup>x<sub>2</sub></li>
-                    <li>The second term Î»<sub>2</sub><sup>100</sup> â‰ˆ (-0.618)<sup>100</sup> â‰ˆ 10<sup>-25</sup> is negligible</li>
-                    <li>Therefore F<sub>100</sub> â‰ˆ (1/âˆš5)Î»<sub>1</sub><sup>100</sup> â‰ˆ (1/âˆš5)(1.618)<sup>100</sup></li>
+                    <li>Solving for c<sub>1</sub>, c<sub>2</sub> gives c<sub>1</sub> = 1/√5, c<sub>2</sub> = -1/√5</li>
+                    <li>Thus u<sub>k</sub> = (1/√5)λ<sub>1</sub><sup>k</sup>x<sub>1</sub> - (1/√5)λ<sub>2</sub><sup>k</sup>x<sub>2</sub></li>
+                    <li>The second term λ<sub>2</sub><sup>100</sup> ≠ (-0.618)<sup>100</sup> ≠ 10<sup>-25</sup> is negligible</li>
+                    <li>Therefore F<sub>100</sub> ≠ (1/√5)λ<sub>1</sub><sup>100</sup> ≠ (1/√5)(1.618)<sup>100</sup></li>
                 </ul>
             </div>
 
@@ -228,9 +228,9 @@
                 <p><strong>Problem:</strong> Describe the long-term behavior of u<sub>k</sub> = A<sup>k</sup>u<sub>0</sub> for matrices with eigenvalues (a) 0.5 and 0.3, (b) 2 and -3, (c) 1 and 1.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>(a) Both |Î»| < 1: u<sub>k</sub> â†’ 0 exponentially fast</li>
-                    <li>(b) |Î»<sub>1</sub>| = 2 > 1 and |Î»<sub>2</sub>| = 3 > 1: u<sub>k</sub> grows exponentially, dominated by (-3)<sup>k</sup> with sign oscillations</li>
-                    <li>(c) |Î»| = 1: u<sub>k</sub> stays bounded but may oscillate; growth rate is polynomial, not exponential</li>
+                    <li>(a) Both |λ| < 1: u<sub>k</sub> → 0 exponentially fast</li>
+                    <li>(b) |λ<sub>1</sub>| = 2 > 1 and |λ<sub>2</sub>| = 3 > 1: u<sub>k</sub> grows exponentially, dominated by (-3)<sup>k</sup> with sign oscillations</li>
+                    <li>(c) |λ| = 1: u<sub>k</sub> stays bounded but may oscillate; growth rate is polynomial, not exponential</li>
                 </ul>
             </div>
 
@@ -239,18 +239,18 @@
             <div class="questions">
                 <h4>Problem Set 22</h4>
 
-                <p><strong>Problem 1:</strong> Let A = [[2, 1], [1, 2]]. Diagonalize A and compute A<sup>10</sup> using the formula A<sup>k</sup> = SÎ›<sup>k</sup>S<sup>-1</sup>.</p>
+                <p><strong>Problem 1:</strong> Let A = [[2, 1], [1, 2]]. Diagonalize A and compute A<sup>10</sup> using the formula A<sup>k</sup> = SΛ<sup>k</sup>S<sup>-1</sup>.</p>
                 <p><em>Hint: Find eigenvalues 3 and 1 with eigenvectors [1,1]<sup>T</sup> and [1,-1]<sup>T</sup>. Then S = [[1,1],[1,-1]].</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Î› = [[3,0],[0,1]], Î›<sup>10</sup> = [[3<sup>10</sup>,0],[0,1]]. S<sup>-1</sup> = (1/2)[[1,1],[1,-1]]. A<sup>10</sup> = SÎ›<sup>10</sup>S<sup>-1</sup> gives the result without multiplying A ten times.</p>
+                    <p>Λ = [[3,0],[0,1]], Λ<sup>10</sup> = [[3<sup>10</sup>,0],[0,1]]. S<sup>-1</sup> = (1/2)[[1,1],[1,-1]]. A<sup>10</sup> = SΛ<sup>10</sup>S<sup>-1</sup> gives the result without multiplying A ten times.</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> For the Fibonacci matrix A = [[1, 1], [1, 0]], verify that the eigenvectors are [Î»<sub>1</sub>, 1]<sup>T</sup> and [Î»<sub>2</sub>, 1]<sup>T</sup> by direct multiplication.</p>
-                <p><em>Hint: Show that (A - Î»I)[Î», 1]<sup>T</sup> = 0 using the fact that Î»<sup>2</sup> - Î» - 1 = 0.</em></p>
+                <p><strong>Problem 2:</strong> For the Fibonacci matrix A = [[1, 1], [1, 0]], verify that the eigenvectors are [λ<sub>1</sub>, 1]<sup>T</sup> and [λ<sub>2</sub>, 1]<sup>T</sup> by direct multiplication.</p>
+                <p><em>Hint: Show that (A - λI)[λ, 1]<sup>T</sup> = 0 using the fact that λ<sup>2</sup> - λ - 1 = 0.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>(A - Î»I)[Î», 1]<sup>T</sup> = [1-Î», 1; 1, -Î»][Î», 1]<sup>T</sup> = [Î» - Î»<sup>2</sup> + 1, Î» - Î»<sup>2</sup>]<sup>T</sup>. Since Î»<sup>2</sup> = Î» + 1, both entries are zero. Thus [Î», 1]<sup>T</sup> is indeed an eigenvector.</p>
+                    <p>(A - λI)[λ, 1]<sup>T</sup> = [1-λ, 1; 1, -λ][λ, 1]<sup>T</sup> = [λ - λ<sup>2</sup> + 1, λ - λ<sup>2</sup>]<sup>T</sup>. Since λ<sup>2</sup> = λ + 1, both entries are zero. Thus [λ, 1]<sup>T</sup> is indeed an eigenvector.</p>
                 </details>
 
                 <p><strong>Problem 3:</strong> Convert the recurrence G<sub>k+2</sub> = 2G<sub>k+1</sub> + 3G<sub>k</sub> with G<sub>0</sub> = 1, G<sub>1</sub> = 2 into a first-order matrix system. Find the matrix A and the initial vector u<sub>0</sub>.</p>
@@ -260,11 +260,11 @@
                     <p>u<sub>k</sub> = [G<sub>k+1</sub>, G<sub>k</sub>]<sup>T</sup>. Then u<sub>k+1</sub> = [G<sub>k+2</sub>, G<sub>k+1</sub>]<sup>T</sup> = [2G<sub>k+1</sub> + 3G<sub>k</sub>, G<sub>k+1</sub>]<sup>T</sup> = [[2, 3], [1, 0]]u<sub>k</sub>. So A = [[2, 3], [1, 0]] and u<sub>0</sub> = [2, 1]<sup>T</sup>.</p>
                 </details>
 
-                <p><strong>Problem 4:</strong> Explain why A<sup>k</sup> â†’ 0 as k â†’ âˆž when all eigenvalues satisfy |Î»<sub>i</sub>| < 1. What happens if one eigenvalue has |Î»| = 1 and all others have |Î»| < 1?</p>
-                <p><em>Hint: Consider the diagonal matrix Î›<sup>k</sup> and what happens to each diagonal entry as k grows.</em></p>
+                <p><strong>Problem 4:</strong> Explain why A<sup>k</sup> → 0 as k → ∞ when all eigenvalues satisfy |λ<sub>i</sub>| < 1. What happens if one eigenvalue has |λ| = 1 and all others have |λ| < 1?</p>
+                <p><em>Hint: Consider the diagonal matrix Λ<sup>k</sup> and what happens to each diagonal entry as k grows.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>If |Î»<sub>i</sub>| < 1 for all i, then Î»<sub>i</sub><sup>k</sup> â†’ 0 as k â†’ âˆž, so Î›<sup>k</sup> â†’ 0. Since A<sup>k</sup> = SÎ›<sup>k</sup>S<sup>-1</sup>, we have A<sup>k</sup> â†’ 0. If one eigenvalue has |Î»| = 1 and others have |Î»| < 1, then A<sup>k</sup> does not converge to zero; the term with |Î»| = 1 persists, and A<sup>k</sup> approaches a rank-1 projection onto the corresponding eigenvector direction.</p>
+                    <p>If |λ<sub>i</sub>| < 1 for all i, then λ<sub>i</sub><sup>k</sup> → 0 as k → ∞, so Λ<sup>k</sup> → 0. Since A<sup>k</sup> = SΛ<sup>k</sup>S<sup>-1</sup>, we have A<sup>k</sup> → 0. If one eigenvalue has |λ| = 1 and others have |λ| < 1, then A<sup>k</sup> does not converge to zero; the term with |λ| = 1 persists, and A<sup>k</sup> approaches a rank-1 projection onto the corresponding eigenvector direction.</p>
                 </details>
             </div>
 

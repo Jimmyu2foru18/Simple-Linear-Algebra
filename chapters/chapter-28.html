@@ -36,10 +36,10 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 28: Positive Definite Matrices and Minima</h2>
-            <p class="lead">This chapter reveals the deep connection between positive definite matrices and optimization. Just as a positive second derivative guarantees a minimum in single-variable calculus, a positive definite matrix of second derivatives guarantees a minimum in multivariable calculus. The chapter shows how completing the square is exactly Gaussian elimination in disguise, how pivots appear outside the squares and multipliers inside, and how the geometry of the graphâ€”a bowl, an ellipsoid, a paraboloidâ€”reflects the eigenvalue structure of the matrix. The principal axis theorem states that every positive definite matrix can be diagonalized by an orthogonal transformation, aligning the axes of the bowl with the eigenvectors.</p>
+            <p class="lead">This chapter reveals the deep connection between positive definite matrices and optimization. Just as a positive second derivative guarantees a minimum in single-variable calculus, a positive definite matrix of second derivatives guarantees a minimum in multivariable calculus. The chapter shows how completing the square is exactly Gaussian elimination in disguise, how pivots appear outside the squares and multipliers inside, and how the geometry of the graph—a bowl, an ellipsoid, a paraboloid—reflects the eigenvalue structure of the matrix. The principal axis theorem states that every positive definite matrix can be diagonalized by an orthogonal transformation, aligning the axes of the bowl with the eigenvectors.</p>
 
             <div class="video-section">
-                <h4>Core Lecture â€” Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/vF7eyJ2g3kU"
                             title="28. Positive Definite Matrices and Minima — Gilbert Strang"
@@ -76,7 +76,7 @@
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Dawkins â€” Textbook Context</h5>
+                        <h5>Paul Cartier — Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
             where $f_{xx} = \frac{\partial^2 f}{\partial x^2}$, $f_{yy} = \frac{\partial^2 f}{\partial y^2}$, and $f_{xy} = f_{yx} = \frac{\partial^2 f}{\partial x \partial y}$. The diagonal entries $f_{xx}$ and $f_{yy}$ must be positive for a minimum. But that is not enough: the cross-derivative $f_{xy}$ must not be too large. The determinant condition $f_{xx} f_{yy} - f_{xy}^2 > 0$ ensures the cross-term is controlled. In matrix language, $H$ must be positive definite: all eigenvalues positive, all pivots positive, all leading principal minors positive.</p>
 
             <h4>Geometry: Bowls, Ellipsoids, and the Principal Axis Theorem</h4>
-            <p>The graph of $f(x) = x^T A x$ with $A$ positive definite is a bowl-shaped surface called a paraboloid. For $A = \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$, the function is $f(x) = 2x_1^2 + 2x_2^2 + 2x_3^2 - 2x_1x_2 - 2x_2x_3$. The level set $f(x) = 1$ is an ellipsoidâ€”a "football" shape in 3D. The principal axis theorem states that $A = Q \Lambda Q^T$ where $Q$ has orthonormal eigenvectors and $\Lambda$ is diagonal with eigenvalues $\lambda_i$. The eigenvectors give the principal axes of the ellipsoid; the eigenvalues determine the lengths of those axes. Specifically, the axis in direction $q_i$ has length proportional to $1/\sqrt{\lambda_i}$.</p>
+            <p>The graph of $f(x) = x^T A x$ with $A$ positive definite is a bowl-shaped surface called a paraboloid. For $A = \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$, the function is $f(x) = 2x_1^2 + 2x_2^2 + 2x_3^2 - 2x_1x_2 - 2x_2x_3$. The level set $f(x) = 1$ is an ellipsoid—a "football" shape in 3D. The principal axis theorem states that $A = Q \Lambda Q^T$ where $Q$ has orthonormal eigenvectors and $\Lambda$ is diagonal with eigenvalues $\lambda_i$. The eigenvectors give the principal axes of the ellipsoid; the eigenvalues determine the lengths of those axes. Specifically, the axis in direction $q_i$ has length proportional to $1/\sqrt{\lambda_i}$.</p>
 
             <h4>The Test for Positive Definiteness</h4>
             <p>For a symmetric matrix $A$, these conditions are equivalent: (1) all eigenvalues $\lambda_i > 0$; (2) all pivots $d_i > 0$; (3) all leading principal minors $\det(A_k) > 0$ for $k = 1, 2, \ldots, n$; (4) $x^T A x > 0$ for all nonzero $x$; (5) $A$ can be written as $A = L D L^T$ with $D$ having positive diagonal entries. The pivot test is often fastest computationally. For the matrix $\begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$, the pivots are $2, 3/2, 4/3$, all positive, so the matrix is positive definite. The eigenvalues are $2 - \sqrt{2} \approx 0.586$, $2$, and $2 + \sqrt{2} \approx 3.414$, all positive. The determinants of leading principal minors are $2, 3, 4$, all positive.</p>
