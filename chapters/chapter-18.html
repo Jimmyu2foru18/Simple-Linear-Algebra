@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 18: Properties of Determinants - Linear Algebra</title>
     <link rel="stylesheet" href="../css/styles.css">
+
     <!-- MathJax Configuration -->
     <script>
     window.MathJax = {
@@ -38,6 +39,9 @@
             <h2>Chapter 18: Properties of Determinants</h2>
             <p class="lead">Determinant properties and their relationship to matrix invertibility. This chapter establishes the fundamental properties of determinants, connects them to LU factorization and elimination, and reveals how determinants measure volume and test for singularity.</p>
 
+            <!-- ========================================== -->
+            <!-- CORE LECTURE: Gilbert Strang -->
+            <!-- ========================================== -->
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
@@ -50,6 +54,9 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CONCEPT BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Concept Breakdowns</h3>
             <div class="video-grid">
                 <div class="video-card">
@@ -58,7 +65,7 @@
                                     title="Prof Dave Explains — Determinant of a Matrix"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
+                                    allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -72,7 +79,7 @@
                                     title="Dr. Valerie Hower — Determinants"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
+                                    allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -86,7 +93,7 @@
                                     title="3Blue1Brown — Linear combinations, span, and basis vectors"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
+                                    allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
@@ -96,6 +103,9 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- DETAILED TOPIC BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>Determinant via Elimination</h4>
@@ -116,6 +126,9 @@
             <h4>Singular vs Non-Singular</h4>
             <p>The determinant provides a complete test for invertibility: $\text{det}(A) \neq 0$ if and only if $A$ is invertible. If $A$ is singular, elimination produces a row of zeroes, and by Property 6 the determinant is zero. If $A$ is invertible, elimination produces a full set of pivots, and the determinant is the product of those non-zero pivots. The determinant is zero exactly when the column space is not full-dimensional, equivalently when the null space is non-trivial.</p>
 
+            <!-- ========================================== -->
+            <!-- Computation Examples -->
+            <!-- ========================================== -->
             <h3>Computation Examples</h3>
 
             <div class="derivation">
@@ -137,6 +150,9 @@
                 <p>For singular matrices, both determinants are zero. For matrices requiring row exchanges, the sign changes cancel because the same number of exchanges applies to $A^T$.</p>
             </div>
 
+            <!-- ========================================== -->
+            <!-- LEARNING STRATEGIES -->
+            <!-- ========================================== -->
             <h3>Learning Strategies</h3>
 
             <div class="strategies">
@@ -147,7 +163,7 @@
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "det(AB) = det(A) times det(B)"</strong>
-                    <p>multiplication multiplies determinants. This gives $\text{det}(A^{-1}) = 1/\text{det}(A)$, $\text{det}(A^2) = (\text{det}(A))^2$, and $\text{det}(cA) = c^n \text{det}(A)$. The determinant turns matrix multiplication into number multiplication.</p>
+                    <p>Multiplication multiplies determinants. This gives $\text{det}(A^{-1}) = 1/\text{det}(A)$, $\text{det}(A^2) = (\text{det}(A))^2$, and $\text{det}(cA) = c^n \text{det}(A)$. The determinant turns matrix multiplication into number multiplication.</p>
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Rows and Columns are Equal"</strong>
@@ -158,7 +174,7 @@
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Compute determinants via elimination whenever possible - it is far more efficient than cofactor expansion for large matrices</li>
+                    <li>Compute determinants via elimination whenever possible — it is far more efficient than cofactor expansion for large matrices</li>
                     <li>If any pivot is zero during elimination, the determinant is zero and the matrix is singular</li>
                     <li>Remember: $\text{det}(I) = 1$, $\text{det}(A^T) = \text{det}(A)$, $\text{det}(AB) = \text{det}(A)\text{det}(B)$</li>
                     <li>For diagonal or triangular matrices, the determinant is immediately the product of diagonal entries</li>
@@ -167,12 +183,15 @@
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- VISUAL AIDS -->
+            <!-- ========================================== -->
             <h3>Visual Aids</h3>
 
             <div class="visual-aid">
                 <h4>Figure: Elimination Path to the Determinant</h4>
                 <p>From matrix $A$ to determinant via LU factorization:</p>
-                $$A \xrightarrow{\text{elimination}} U \xrightarrow{\text{diagonal}} D$$
+                $$A \xrightarrow{\text{elimination}} U \xrightarrow{\text{diagonal}} \text{det}$$
                 <p>Each elimination step preserves the determinant up to sign. Once $U$ is upper triangular, $\text{det}(A) = (-1)^r \cdot d_1 d_2 \cdots d_n$ where $r$ is the number of row exchanges and $d_i$ are the diagonal entries of $U$.</p>
             </div>
 
@@ -180,7 +199,7 @@
                 <h4>Figure: The Ten Properties of Determinants</h4>
                 <p>Summary of the fundamental determinant properties:</p>
                 $$\text{Property 1: } \text{det}(I) = 1$$
-                $$\text{Property 2: Row exchange reverses sign: } \text{det}(P A) = -\text{det}(A)$$
+                $$\text{Property 2: Row exchange reverses sign: } \text{det}(PA) = -\text{det}(A)$$
                 $$\text{Property 3A: } \text{det}(cR) = c \cdot \text{det}(A) \quad \text{(factor from row)}$$
                 $$\text{Property 3B: } \text{det}(R_1 + R_2) = \text{det}(R_1) + \text{det}(R_2) \quad \text{(linear in each row)}$$
                 $$\text{Property 4: Zero row } \Rightarrow \text{det} = 0$$
@@ -188,7 +207,7 @@
                 $$\text{Property 6: Row operation } R_i \leftarrow R_i + cR_j \text{ leaves det unchanged}$$
                 $$\text{Property 9: } \text{det}(AB) = \text{det}(A)\text{det}(B)$$
                 $$\text{Property 10: } \text{det}(A^T) = \text{det}(A)$$
-                <p>Properties 1-6 define the determinant; Properties 7-10 are consequences.</p>
+                <p>Properties 1–6 define the determinant; Properties 7–10 are consequences.</p>
             </div>
 
             <div class="visual-aid">
@@ -198,6 +217,9 @@
                 <p>For a $2 \times 2$ matrix, $|\text{det}(A)|$ is the area of the parallelogram. For a $3 \times 3$ matrix, it is the volume of the parallelepiped. Scaling the matrix by $c$ multiplies the volume by $c^n$.</p>
             </div>
 
+            <!-- ========================================== -->
+            <!-- WORKED EXAMPLES -->
+            <!-- ========================================== -->
             <h3>Worked Examples</h3>
 
             <div class="example">
@@ -217,7 +239,7 @@
                 <p><strong>Problem:</strong> Compute $\text{det}(A)$ for $A = \begin{bmatrix} 2 & 1 & 0 \\ 0 & 3 & 1 \\ 0 & 0 & 4 \end{bmatrix}$ and verify using the product of pivots.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>A is already upper triangular</li>
+                    <li>$A$ is already upper triangular</li>
                     <li>Diagonal entries: 2, 3, 4</li>
                     <li>$\text{det}(A) = 2 \cdot 3 \cdot 4 = 24$</li>
                     <li>No row exchanges needed, so sign factor is $(-1)^0 = 1$</li>
@@ -245,7 +267,7 @@
                 <p><strong>Problem:</strong> For what value of $c$ is $A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & c \end{bmatrix}$ singular? Verify using the determinant.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>A is singular when $\text{det}(A) = 0$</li>
+                    <li>$A$ is singular when $\text{det}(A) = 0$</li>
                     <li>Compute by elimination or cofactor expansion</li>
                     <li>Row 2 $- 4 \times$ row 1: $\begin{bmatrix} 1 & 2 & 3 \\ 0 & -3 & -6 \\ 7 & 8 & c \end{bmatrix}$</li>
                     <li>Row 3 $- 7 \times$ row 1: $\begin{bmatrix} 1 & 2 & 3 \\ 0 & -3 & -6 \\ 0 & -6 & c-21 \end{bmatrix}$</li>
@@ -256,6 +278,9 @@
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- PRACTICE PROBLEMS -->
+            <!-- ========================================== -->
             <h3>Practice Problems</h3>
 
             <div class="questions">
@@ -293,10 +318,13 @@
                     <summary>Solution</summary>
                     <p>Expand along row 1: $\text{det}(A) = t \cdot \text{det}\begin{bmatrix} t & 1 \\ 1 & t \end{bmatrix} - 1 \cdot \text{det}\begin{bmatrix} 1 & 1 \\ 0 & t \end{bmatrix} = t(t^2 - 1) - 1(t) = t^3 - 2t$.</p>
                     <p>Set to zero: $t(t^2 - 2) = 0$, so $t = 0$ or $t = \pm\sqrt{2}$.</p>
-                    <p>A is singular for $t = 0, \sqrt{2}, -\sqrt{2}$.</p>
+                    <p>$A$ is singular for $t = 0, \sqrt{2}, -\sqrt{2}$.</p>
                 </details>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CHAPTER NAVIGATION -->
+            <!-- ========================================== -->
             <nav class="chapter-nav">
                 <a href="chapter-17.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
@@ -308,6 +336,3 @@
     <script src="../js/app.js"></script>
 </body>
 </html>
-
-
-

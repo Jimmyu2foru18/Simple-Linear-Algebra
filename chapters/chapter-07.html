@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 7: Solving Ax = 0: Pivot Variables, Special Solutions - Linear Algebra</title>
     <link rel="stylesheet" href="../css/styles.css">
+
     <!-- MathJax Configuration -->
     <script>
     window.MathJax = {
@@ -36,8 +37,11 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 7: Solving Ax = 0: Pivot Variables, Special Solutions</h2>
-            <p class="lead">Homogeneous systems and finding the nullspace. This chapter focuses on the complete algorithm for solving <code>Ax = 0</code> and understanding the structure of the nullspace through pivot and free variables.</p>
+            <p class="lead">Homogeneous systems and finding the nullspace. This chapter focuses on the complete algorithm for solving $A\mathbf{x} = \mathbf{0}$ and understanding the structure of the nullspace through pivot and free variables.</p>
 
+            <!-- ========================================== -->
+            <!-- CORE LECTURE: Gilbert Strang -->
+            <!-- ========================================== -->
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
@@ -50,6 +54,9 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CONCEPT BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Concept Breakdowns</h3>
             <div class="video-grid">
                 <div class="video-card">
@@ -85,7 +92,7 @@
                         <iframe src="https://www.youtube.com/embed/T2Gtt8WygiU"
                                     title="Prof Dave Explains — Elementary Row Operations"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                         </iframe>
                     </div>
@@ -96,6 +103,9 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- DETAILED TOPIC BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>Reduced Row Echelon Form (RREF)</h4>
@@ -108,26 +118,35 @@
             <p>To find a basis for the nullspace, set each free variable to 1 (one at a time, others to 0) and solve for the pivot variables. Each choice produces one special solution. All special solutions span the nullspace.</p>
 
             <h4>RREF and the Identity Matrix</h4>
-            <p>If A is invertible, RREF(A) = I. If A is singular, RREF(A) has at least one zero row. The RREF reveals the rank, pivot positions, and structure of the solution space.</p>
+            <p>If $A$ is invertible, $\text{RREF}(A) = I$. If $A$ is singular, $\text{RREF}(A)$ has at least one zero row. The RREF reveals the rank, pivot positions, and structure of the solution space.</p>
 
+            <!-- ========================================== -->
+            <!-- Computation Examples -->
+            <!-- ========================================== -->
             <h3>Computation Examples</h3>
 
             <div class="derivation">
                 <h4>Derivation: Finding Special Solutions from RREF</h4>
-                <p>Given RREF R with r pivots and n-r free variables:</p>
-$$\text{For free variable } x_j = 1:\text{ set all other free variables to 0, read pivot values from } R, \text{ giving one special solution with } x_j = 1 \text{ and } x_i = -R_{ij} \text{ in pivot row } i\text{'s column } j$$
-                <p>Repeat for each free variable to get the basis of <code>N(A)</code>.</p>
+                <p>Given RREF $R$ with $r$ pivots and $n-r$ free variables:</p>
+                <p>For each free variable $x_j$:</p>
+                <p>1. Set $x_j = 1$ and all other free variables to $0$.</p>
+                <p>2. Read the pivot values from $R$.</p>
+                <p>3. The special solution has $x_j = 1$ and $x_i = -R_{ij}$ for each pivot row $i$ in column $j$.</p>
+                <p>Repeat for each free variable to get the basis of $N(A)$.</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Nullspace Dimension Formula</h4>
-                <p>From the RREF of an <code>m x n</code> matrix A with rank r:</p>
-                $$\text{Number of free variables } = n - r$$
-$$\text{Each free variable gives one special solution}$$
-$$\text{Therefore: } \dim(N(A)) = n - r$$
-                <p>This is half of the Rank-Nullity theorem: <code>$\text{rank}(A)$ + nullity(A) = n</code>.</p>
+                <p>From the RREF of an $m \times n$ matrix $A$ with rank $r$:</p>
+                $$\text{Number of free variables} = n - r$$
+                $$\text{Each free variable gives one special solution}$$
+                $$\text{Therefore: } \dim(N(A)) = n - r$$
+                <p>This is half of the Rank-Nullity theorem: $\text{rank}(A) + \text{nullity}(A) = n$.</p>
             </div>
 
+            <!-- ========================================== -->
+            <!-- LEARNING STRATEGIES -->
+            <!-- ========================================== -->
             <h3>Learning Strategies</h3>
 
             <div class="strategies">
@@ -145,102 +164,112 @@ $$\text{Therefore: } \dim(N(A)) = n - r$$
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Practice computing RREF by hand for 3x3 and 3x4 matrices</li>
+                    <li>Practice computing RREF by hand for $3 \times 3$ and $3 \times 4$ matrices</li>
                     <li>When finding special solutions, always set ONE free variable to 1 at a time</li>
-                    <li>Verify special solutions by multiplying <code>A * x_special</code> and confirming it equals zero</li>
+                    <li>Verify special solutions by multiplying $A \mathbf{x}_{\text{special}}$ and confirming it equals zero</li>
                     <li>The nullspace contains the zero vector and is closed under addition and scalar multiplication</li>
-                    <li>If no free variables exist, nullspace = <code>{0}</code> only</li>
+                    <li>If no free variables exist, nullspace = $\{\mathbf{0}\}$ only</li>
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- VISUAL AIDS -->
+            <!-- ========================================== -->
             <h3>Visual Aids</h3>
 
             <div class="visual-aid">
                 <h4>Figure: From RREF to Special Solutions</h4>
-                <p>Given RREF: <code>[[1, -2, 0, 3], [0, 0, 1, 4]]</code></p>
-$$Free variables: x_2, x_4$$
-                $$Special solution 1 (x_2=1, x_4=0): \mathbf{x} = [2, 1, 0, 0]^T$$
+                <p>Given RREF: $\begin{bmatrix} 1 & -2 & 0 & 3 \\ 0 & 0 & 1 & 4 \end{bmatrix}$</p>
+                $$\text{Free variables: } x_2, x_4$$
+                $$\text{Special solution 1 } (x_2=1, x_4=0): \quad \mathbf{x} = \begin{bmatrix} 2 \\ 1 \\ 0 \\ 0 \end{bmatrix}$$
 
-                $$Special solution 2 (x_2=0, x_4=1): \mathbf{x} = [-3, 0, -4, 1]^T$$
+                $$\text{Special solution 2 } (x_2=0, x_4=1): \quad \mathbf{x} = \begin{bmatrix} -3 \\ 0 \\ -4 \\ 1 \end{bmatrix}$$
 
-                $$N(A) = \text{span}\{[2, 1, 0, 0]^T, [-3, 0, -4, 1]^T\}$$
+                $$N(A) = \text{span}\{\begin{bmatrix} 2 \\ 1 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} -3 \\ 0 \\ -4 \\ 1 \end{bmatrix}\}$$
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Nullspace Dimension vs. Rank</h4>
-                <p>Relationship between rank and nullspace dimension for an <code>m x n</code> matrix:</p>
-                $$\text{Rank } r: \quad 0 \ 1 \ 2 \ 3 \ \cdots \ n$$
-                $$\text{Nullity: } \quad n \ n-1 \ n-2 \ n-3 \ \cdots \ 0$$
-                $$\text{Sum: } \quad n \ n \ n \ n \ \cdots \ n$$
+                <p>Relationship between rank and nullspace dimension for an $m \times n$ matrix:</p>
+                $$\text{Rank } r: \quad 0 \quad 1 \quad 2 \quad 3 \quad \cdots \quad n$$
+                $$\text{Nullity: } \quad n \quad n-1 \quad n-2 \quad n-3 \quad \cdots \quad 0$$
+                $$\text{Sum: } \quad n \quad n \quad n \quad n \quad \cdots \quad n$$
             </div>
 
+            <!-- ========================================== -->
+            <!-- WORKED EXAMPLES -->
+            <!-- ========================================== -->
             <h3>Worked Examples</h3>
 
             <div class="example">
-                <h4>Example 1: Solving Ax = 0</h4>
-                <p><strong>Problem:</strong> Describe the nullspace of <code>A = [[1, 2, 2, 2], [2, 4, 6, 8], [3, 6, 8, 10]]</code>.</p>
+                <h4>Example 1: Solving $A\mathbf{x} = \mathbf{0}$</h4>
+                <p><strong>Problem:</strong> Describe the nullspace of $A = \begin{bmatrix} 1 & 2 & 2 & 2 \\ 2 & 4 & 6 & 8 \\ 3 & 6 & 8 & 10 \end{bmatrix}$.</p>
                 <p><strong>Solution:</strong></p>
                 <ol>
-                    <li>RREF: <code>[[1, 2, 0, -2], [0, 0, 1, 2], [0, 0, 0, 0]]</code></li>
-                    <li>Pivot columns: 1, 3. Free variables: <code>x2, x4</code></li>
-                    <li>Special solution 1 (<code>x2=1, x4=0</code>): <code>[-2, 1, 0, 0]^T</code></li>
-                    <li>Special solution 2 (<code>x2=0, x4=1</code>): <code>[2, 0, -2, 1]^T</code></li>
-                    <li><code>N(A) = c1*[-2, 1, 0, 0]^T + c2*[2, 0, -2, 1]^T</code></li>
+                    <li>RREF: $\begin{bmatrix} 1 & 2 & 0 & -2 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0 \end{bmatrix}$</li>
+                    <li>Pivot columns: 1, 3. Free variables: $x_2, x_4$</li>
+                    <li>Special solution 1 ($x_2=1, x_4=0$): $\begin{bmatrix} -2 \\ 1 \\ 0 \\ 0 \end{bmatrix}$</li>
+                    <li>Special solution 2 ($x_2=0, x_4=1$): $\begin{bmatrix} 2 \\ 0 \\ -2 \\ 1 \end{bmatrix}$</li>
+                    <li>$N(A) = c_1 \begin{bmatrix} -2 \\ 1 \\ 0 \\ 0 \end{bmatrix} + c_2 \begin{bmatrix} 2 \\ 0 \\ -2 \\ 1 \end{bmatrix}$</li>
                 </ol>
             </div>
 
             <div class="example">
                 <h4>Example 2: Square Invertible Matrix</h4>
-                <p><strong>Problem:</strong> What is the nullspace of <code>A = [[1, 2], [3, 8]]</code>?</p>
+                <p><strong>Problem:</strong> What is the nullspace of $A = \begin{bmatrix} 1 & 2 \\ 3 & 8 \end{bmatrix}$?</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>RREF: <code>[[1, 0], [0, 1]]</code> (identity)</li>
+                    <li>RREF: $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ (identity)</li>
                     <li>Two pivots, zero free variables</li>
-                    <li>Only solution to <code>Ax = 0</code> is <code>x = [0, 0]^T</code></li>
-                    <li><code>N(A) = {0}</code>, dim(<code>N(A)</code>) = 0</li>
+                    <li>Only solution to $A\mathbf{x} = \mathbf{0}$ is $\mathbf{x} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$</li>
+                    <li>$N(A) = \{\mathbf{0}\}$, $\dim(N(A)) = 0$</li>
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- PRACTICE PROBLEMS -->
+            <!-- ========================================== -->
             <h3>Practice Problems</h3>
 
             <div class="questions">
                 <h4>Problem Set 7</h4>
-                <p><strong>Problem 1:</strong> Find the RREF and describe the nullspace of <code>A = [[1, 1, 1], [1, 2, 3], [2, 3, 4]]</code>.</p>
+                <p><strong>Problem 1:</strong> Find the RREF and describe the nullspace of $A = \begin{bmatrix} 1 & 1 & 1 \\ 1 & 2 & 3 \\ 2 & 3 & 4 \end{bmatrix}$.</p>
                 <p><em>Hint: Notice any relationships between rows or columns.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>RREF: <code>[[1, 0, -1], [0, 1, 2], [0, 0, 0]]</code></p>
-                    <p>Free variable: <code>x3</code></p>
-                    <p>Special solution: <code>[1, -2, 1]^T</code></p>
-                    <p><code>N(A) = c*[1, -2, 1]^T</code></p>
+                    <p>RREF: $\begin{bmatrix} 1 & 0 & -1 \\ 0 & 1 & 2 \\ 0 & 0 & 0 \end{bmatrix}$</p>
+                    <p>Free variable: $x_3$</p>
+                    <p>Special solution: $\begin{bmatrix} 1 \\ -2 \\ 1 \end{bmatrix}$</p>
+                    <p>$N(A) = c \begin{bmatrix} 1 \\ -2 \\ 1 \end{bmatrix}$</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> For <code>A = [[1, 2, 3, 4], [2, 4, 6, 8]]</code>, how many independent special solutions exist?</p>
+                <p><strong>Problem 2:</strong> For $A = \begin{bmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 6 & 8 \end{bmatrix}$, how many independent special solutions exist?</p>
                 <p><em>Hint: Find the rank first.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Rank = 1 (row 2 = 2*row 1). Free variables = <code>4 - 1 = 3</code>. Three special solutions span <code>N(A)</code>.</p>
+                    <p>Rank = 1 (row 2 = $2 \times$ row 1). Free variables = $4 - 1 = 3$. Three special solutions span $N(A)$.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Construct a 3x3 matrix whose nullspace is a line (dimension 1).</p>
+                <p><strong>Problem 3:</strong> Construct a $3 \times 3$ matrix whose nullspace is a line (dimension 1).</p>
                 <p><em>Hint: Rank should be 2.</em></p>
                 <details>
                     <summary>Solution</summary>
-$$A = [[1, 0, -1],$$
-     [0, 1, -1],
-     [0, 0,  0]]
+                    $$A = \begin{bmatrix} 1 & 0 & -1 \\ 0 & 1 & -1 \\ 0 & 0 & 0 \end{bmatrix}$$
 
-$$N(A) = c*[1, 1, 1]^T$$
+                    $$N(A) = c \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$$
                 </details>
 
-                <p><strong>Problem 4:</strong> If A is 5x7 and $\text{rank}(A)$ = 3, what is dim(<code>N(A)</code>)?</p>
+                <p><strong>Problem 4:</strong> If $A$ is $5 \times 7$ and $\text{rank}(A) = 3$, what is $\dim(N(A))$?</p>
                 <p><em>Hint: Use the Rank-Nullity theorem.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>dim(<code>N(A)</code>) = <code>n - rank = 7 - 3 = 4</code>.</p>
+                    <p>$\dim(N(A)) = n - \text{rank} = 7 - 3 = 4$.</p>
                 </details>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CHAPTER NAVIGATION -->
+            <!-- ========================================== -->
             <nav class="chapter-nav">
                 <a href="chapter-06.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
@@ -252,7 +281,3 @@ $$N(A) = c*[1, 1, 1]^T$$
     <script src="../js/app.js"></script>
 </body>
 </html>
-
-
-
-

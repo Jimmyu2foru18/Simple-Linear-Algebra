@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 10: The Four Fundamental Subspaces - Linear Algebra</title>
     <link rel="stylesheet" href="../css/styles.css">
+
     <!-- MathJax Configuration -->
     <script>
     window.MathJax = {
@@ -38,6 +39,9 @@
             <h2>Chapter 10: The Four Fundamental Subspaces</h2>
             <p class="lead">Column space, nullspace, row space, and left nullspace. This chapter unifies the fundamental subspaces associated with a matrix and reveals their deep relationships through the Fundamental Theorem of Linear Algebra.</p>
 
+            <!-- ========================================== -->
+            <!-- CORE LECTURE: Gilbert Strang -->
+            <!-- ========================================== -->
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
@@ -50,6 +54,9 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CONCEPT BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Concept Breakdowns</h3>
             <div class="video-grid">
                 <div class="video-card">
@@ -85,7 +92,7 @@
                         <iframe src="https://www.youtube.com/embed/k7RM-ot2NWY"
                                     title="3Blue1Brown — Linear combinations, span, and basis vectors"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                         </iframe>
                     </div>
@@ -96,59 +103,69 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- DETAILED TOPIC BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>The Four Subspaces</h4>
-            <p>For an <code>m x n</code> matrix A of rank r, the four fundamental subspaces are:</p>
+            <p>For an $m \times n$ matrix $A$ of rank $r$, the four fundamental subspaces are:</p>
             <ul>
-                <li><strong>Column Space C(A):</strong> In <code>$\mathbb{R}^m$</code>, dimension r. All combinations of columns of A.</li>
-                <li><strong>Nullspace N(A):</strong> In <code>$\mathbb{R}^n$</code>, dimension n-r. All solutions to <code>Ax = 0</code>.</li>
-                <li><strong>Row Space C(A^T):</strong> In <code>$\mathbb{R}^n$</code>, dimension r. All combinations of rows of A.</li>
-                <li><strong>Left Nullspace N(A^T):</strong> In <code>$\mathbb{R}^m$</code>, dimension m-r. All solutions to <code>A^T y = 0</code>.</li>
+                <li><strong>Column Space $C(A)$:</strong> In $\mathbb{R}^m$, dimension $r$. All combinations of columns of $A$.</li>
+                <li><strong>Nullspace $N(A)$:</strong> In $\mathbb{R}^n$, dimension $n-r$. All solutions to $A\mathbf{x} = \mathbf{0}$.</li>
+                <li><strong>Row Space $C(A^T)$:</strong> In $\mathbb{R}^n$, dimension $r$. All combinations of rows of $A$.</li>
+                <li><strong>Left Nullspace $N(A^T)$:</strong> In $\mathbb{R}^m$, dimension $m-r$. All solutions to $A^T\mathbf{y} = \mathbf{0}$.</li>
             </ul>
 
             <h4>Orthogonal Complements</h4>
-            <p>The row space <code>C(A^T)</code> and nullspace <code>N(A)</code> are orthogonal complements in <code>$\mathbb{R}^n$</code>. Similarly, <code>C(A)</code> and <code>N(A^T)</code> are orthogonal complements in <code>$\mathbb{R}^m$</code>. Every vector in one space is orthogonal to every vector in the other.</p>
+            <p>The row space $C(A^T)$ and nullspace $N(A)$ are orthogonal complements in $\mathbb{R}^n$. Similarly, $C(A)$ and $N(A^T)$ are orthogonal complements in $\mathbb{R}^m$. Every vector in one space is orthogonal to every vector in the other.</p>
 
             <h4>Fundamental Theorem of Linear Algebra</h4>
-            <p>The theorem connects the four subspaces through dimensions and orthogonality. Part 1 states <code>C(A)</code> and <code>N(A^T)</code> are orthogonal complements in <code>$\mathbb{R}^m$</code>. Part 2 states <code>C(A^T)</code> and <code>N(A)</code> are orthogonal complements in <code>$\mathbb{R}^n$</code>.</p>
+            <p>The theorem connects the four subspaces through dimensions and orthogonality. Part 1 states $C(A)$ and $N(A^T)$ are orthogonal complements in $\mathbb{R}^m$. Part 2 states $C(A^T)$ and $N(A)$ are orthogonal complements in $\mathbb{R}^n$.</p>
 
             <h4>Rank Equality</h4>
             <p>The row rank equals the column rank. Both equal the number of pivots in the RREF. This fundamental equality unifies the row space and column space dimensions.</p>
 
+            <!-- ========================================== -->
+            <!-- Computation Examples -->
+            <!-- ========================================== -->
             <h3>Computation Examples</h3>
 
             <div class="derivation">
-                <h4>Derivation: Orthogonality of C(A) and N(A^T)</h4>
+                <h4>Derivation: Orthogonality of $C(A)$ and $N(A^T)$</h4>
                 <p>If $\mathbf{y} \in N(A^T)$, then $A^T\mathbf{y} = \mathbf{0}$. For any $\mathbf{b} \in C(A)$, there exists $\mathbf{x}$ with $A\mathbf{x} = \mathbf{b}$. Then:</p>
-                $$ \mathbf{y}^T\mathbf{b} = \mathbf{y}^T(A\mathbf{x}) = (A^T\mathbf{y})^T\mathbf{x} = \mathbf{0}^T\mathbf{x} = 0 $$
+                $$\mathbf{y}^T\mathbf{b} = \mathbf{y}^T(A\mathbf{x}) = (A^T\mathbf{y})^T\mathbf{x} = \mathbf{0}^T\mathbf{x} = 0$$
                 <p>Thus $\mathbf{y} \perp \mathbf{b}$. Every vector in $N(A^T)$ is orthogonal to every vector in $C(A)$.</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Dimension Formula Verification</h4>
-                <p>For an <code>m x n</code> matrix A with rank r:</p>
+                <p>For an $m \times n$ matrix $A$ with rank $r$:</p>
                 $$\dim(C(A)) = r$$
                 $$\dim(N(A)) = n - r$$
                 $$\dim(C(A^T)) = r$$
                 $$\dim(N(A^T)) = m - r$$
 
-                $$\text{Sum of dimensions in } \mathbb{R}^m: r + (m-r) = m \quad \checkmark$$
-                $$\text{Sum of dimensions in } \mathbb{R}^n: r + (n-r) = n \quad \checkmark$$
+                $$\text{Sum of dimensions in } \mathbb{R}^m: \quad r + (m-r) = m \checkmark$$
+
+                $$\text{Sum of dimensions in } \mathbb{R}^n: \quad r + (n-r) = n \checkmark$$
                 <p>The orthogonal complement dimensions sum to the ambient space dimension, as expected.</p>
             </div>
 
+            <!-- ========================================== -->
+            <!-- LEARNING STRATEGIES -->
+            <!-- ========================================== -->
             <h3>Learning Strategies</h3>
 
             <div class="strategies">
                 <h4>Mnemonic Devices</h4>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Row and Column, Left and Right"</strong>
-                    <p>Remember the pairs: <code>C(A)</code> (columns) pairs with <code>N(A^T)</code> (left nullspace). <code>C(A^T)</code> (rows) pairs with <code>N(A)</code> (nullspace). Each pair lives in complementary dimensions.</p>
+                    <p>Remember the pairs: $C(A)$ (columns) pairs with $N(A^T)$ (left nullspace). $C(A^T)$ (rows) pairs with $N(A)$ (nullspace). Each pair lives in complementary dimensions.</p>
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Same Rank, Orthogonal Complements"</strong>
-                    <p><code>C(A)</code> and <code>C(A^T)</code> have the same dimension (the rank). Their orthogonal complements (<code>N(A^T)</code> and <code>N(A)</code>) fill the remaining dimensions.</p>
+                    <p>$C(A)$ and $C(A^T)$ have the same dimension (the rank). Their orthogonal complements ($N(A^T)$ and $N(A)$) fill the remaining dimensions.</p>
                 </div>
             </div>
 
@@ -156,21 +173,24 @@
                 <h4>Study Tips</h4>
                 <ul>
                     <li>Draw the "Fundamental Theorem" diagram showing the four subspaces</li>
-                    <li>Always determine the rank first - it gives dimensions of all four subspaces</li>
+                    <li>Always determine the rank first — it gives dimensions of all four subspaces</li>
                     <li>The row space basis comes from the nonzero rows of RREF</li>
-                    <li>The left nullspace basis comes from the special solutions to <code>A^T y = 0</code></li>
+                    <li>The left nullspace basis comes from the special solutions to $A^T\mathbf{y} = \mathbf{0}$</li>
                     <li>Practice identifying which subspace a given vector belongs to</li>
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- VISUAL AIDS -->
+            <!-- ========================================== -->
             <h3>Visual Aids</h3>
 
             <div class="visual-aid">
                 <h4>Figure: The Four Subspaces Diagram</h4>
                 <p>Visual representation of the Fundamental Theorem:</p>
-                $$\mathbb{R}^m: \quad C(A) \rule{2cm}{0.4pt} N(A^T) \quad (\text{rank } r) \quad (\dim r) \perp (\dim m-r)$$
+                $$\mathbb{R}^m: \quad C(A) \quad \perp \quad N(A^T) \quad (\text{rank } r) \quad (\dim r) + (\dim m-r) = m$$
 
-                $$\mathbb{R}^n: \quad C(A^T) \rule{2cm}{0.4pt} N(A) \quad (\text{rank } r) \quad (\dim r) \perp (\dim n-r)$$
+                $$\mathbb{R}^n: \quad C(A^T) \quad \perp \quad N(A) \quad (\text{rank } r) \quad (\dim r) + (\dim n-r) = n$$
                 <p>Row space and column space share the same dimension (rank). Each orthogonal pair sums to the full space dimension.</p>
             </div>
 
@@ -181,82 +201,92 @@
 
                 $$RREF(A) = \begin{bmatrix} 1 & 2 & 0 & 3 \\ 0 & 0 & 1 & 1 \end{bmatrix}$$
 
-                <p>Column space basis <code>C(A)</code>: columns 1, 3 of A → <code>{[1,2]^T, [0,1]^T}</code></p>
-                <p>Row space basis: rows of RREF → <code>{[1,2,0,3], [0,0,1,1]}</code></p>
+                <p>Column space basis $C(A)$: columns 1, 3 of $A$ → $\{\begin{bmatrix} 1 \\ 2 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \end{bmatrix}\}$</p>
+                <p>Row space basis: rows of RREF → $\{[1, 2, 0, 3], [0, 0, 1, 1]\}$</p>
                 $$N(A): \text{ solve } R\mathbf{x}=\mathbf{0} \rightarrow \text{span}\left\{\begin{bmatrix}-2\\1\\0\\0\end{bmatrix}, \begin{bmatrix}-3\\0\\-1\\1\end{bmatrix}\right\}$$
+
                 $$N(A^T): \text{ solve } A^T\mathbf{y}=\mathbf{0} \rightarrow \text{span}\left\{\begin{bmatrix}-2\\1\end{bmatrix}\right\}$$
             </div>
 
+            <!-- ========================================== -->
+            <!-- WORKED EXAMPLES -->
+            <!-- ========================================== -->
             <h3>Worked Examples</h3>
 
             <div class="example">
                 <h4>Example 1: Identifying All Four Subspaces</h4>
-                <p><strong>Problem:</strong> Find bases and dimensions for all four subspaces of <code>A = [[1, 2, 3], [2, 4, 6]]</code>.</p>
+                <p><strong>Problem:</strong> Find bases and dimensions for all four subspaces of $A = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{bmatrix}$.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>RREF: <code>[[1, 2, 3], [0, 0, 0]]</code>, rank = 1</li>
-                    <li><code>C(A)</code>: basis = <code>{[1, 2]^T}</code>, dim = 1</li>
-                    <li><code>N(A)</code>: <code>x1 + 2x2 + 3x3 = 0</code>, free: <code>x2, x3</code></li>
-                    <li>Special solutions: <code>[-2, 1, 0]^T</code>, <code>[-3, 0, 1]^T</code>, dim = 2</li>
-                    <li>Row space: basis = <code>{[1, 2, 3]}</code>, dim = 1</li>
-                    <li>Left nullspace <code>N(A^T)</code>: <code>y1 + 2y2 = 0</code>, basis = <code>{[-2, 1]^T}</code>, dim = 1</li>
+                    <li>RREF: $\begin{bmatrix} 1 & 2 & 3 \\ 0 & 0 & 0 \end{bmatrix}$, rank = 1</li>
+                    <li>$C(A)$: basis = $\{\begin{bmatrix} 1 \\ 2 \end{bmatrix}\}$, dim = 1</li>
+                    <li>$N(A)$: $x_1 + 2x_2 + 3x_3 = 0$, free: $x_2, x_3$</li>
+                    <li>Special solutions: $\begin{bmatrix} -2 \\ 1 \\ 0 \end{bmatrix}$, $\begin{bmatrix} -3 \\ 0 \\ 1 \end{bmatrix}$, dim = 2</li>
+                    <li>Row space: basis = $\{[1, 2, 3]\}$, dim = 1</li>
+                    <li>Left nullspace $N(A^T)$: $y_1 + 2y_2 = 0$, basis = $\{\begin{bmatrix} -2 \\ 1 \end{bmatrix}\}$, dim = 1</li>
                 </ul>
             </div>
 
             <div class="example">
                 <h4>Example 2: Orthogonality Verification</h4>
-                <p><strong>Problem:</strong> Verify that every vector in <code>C(A^T)</code> is orthogonal to every vector in <code>N(A)</code> for A from Example 1.</p>
+                <p><strong>Problem:</strong> Verify that every vector in $C(A^T)$ is orthogonal to every vector in $N(A)$ for $A$ from Example 1.</p>
                 <p><strong>Solution:</strong></p>
-                $$\text{Row space vector: } [1, 2, 3]$$
-                $$\text{Nullspace vector: } [-2, 1, 0]^T$$
+                $$\text{Row space vector: } \begin{bmatrix} 1 & 2 & 3 \end{bmatrix}$$
+                $$\text{Nullspace vector: } \begin{bmatrix} -2 \\ 1 \\ 0 \end{bmatrix}$$
 
                 $$\text{Dot product: } 1(-2) + 2(1) + 3(0) = -2 + 2 + 0 = 0 \checkmark$$
 
-                $$\text{Row space vector: } [1, 2, 3]$$
-                $$\text{Nullspace vector: } [-3, 0, 1]^T$$
+                $$\text{Row space vector: } \begin{bmatrix} 1 & 2 & 3 \end{bmatrix}$$
+                $$\text{Nullspace vector: } \begin{bmatrix} -3 \\ 0 \\ 1 \end{bmatrix}$$
 
                 $$\text{Dot product: } 1(-3) + 2(0) + 3(1) = -3 + 0 + 3 = 0 \checkmark$$
             </div>
 
+            <!-- ========================================== -->
+            <!-- PRACTICE PROBLEMS -->
+            <!-- ========================================== -->
             <h3>Practice Problems</h3>
 
             <div class="questions">
                 <h4>Problem Set 10</h4>
-                <p><strong>Problem 1:</strong> For <code>A = [[1, 0, 0], [0, 1, 0], [0, 0, 0]]</code>, find all four subspaces and their dimensions.</p>
-                <p><em>Hint: A is already in RREF form.</em></p>
+                <p><strong>Problem 1:</strong> For $A = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}$, find all four subspaces and their dimensions.</p>
+                <p><em>Hint: $A$ is already in RREF form.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p><code>C(A)</code>: span{[1,0,0]^T, [0,1,0]^T}, dim = 2</p>
-                    <p><code>N(A)</code>: span{[0,0,1]^T}, dim = 1</p>
-                    <p>Row space: span{[1,0,0], [0,1,0]}, dim = 2</p>
-                    <p><code>N(A^T)</code>: span{[0,0,1]^T}, dim = 1</p>
+                    <p>$C(A)$: $\text{span}\{\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}\}$, dim = 2</p>
+                    <p>$N(A)$: $\text{span}\{\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}\}$, dim = 1</p>
+                    <p>Row space: $\text{span}\{[1, 0, 0], [0, 1, 0]\}$, dim = 2</p>
+                    <p>$N(A^T)$: $\text{span}\{\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}\}$, dim = 1</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> True or false: The row space of A equals the column space of <code>A^T</code>. Explain.</p>
-                <p><em>Hint: What are the columns of <code>A^T</code>?</em></p>
+                <p><strong>Problem 2:</strong> True or false: The row space of $A$ equals the column space of $A^T$. Explain.</p>
+                <p><em>Hint: What are the columns of $A^T$?</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p><strong>True.</strong> The columns of <code>A^T</code> are the rows of A. The row space of A is defined as the span of its rows, which equals <code>C(A^T)</code>.</p>
+                    <p><strong>True.</strong> The columns of $A^T$ are the rows of $A$. The row space of $A$ is defined as the span of its rows, which equals $C(A^T)$.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> If A is 4x6 with rank 3, what are the dimensions of all four subspaces?</p>
-                <p><em>Hint: Apply the dimension formulas with m=4, n=6, r=3.</em></p>
+                <p><strong>Problem 3:</strong> If $A$ is $4 \times 6$ with rank 3, what are the dimensions of all four subspaces?</p>
+                <p><em>Hint: Apply the dimension formulas with $m=4, n=6, r=3$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p><code>C(A)</code>: dim = 3 (in <code>R^4</code>)</p>
-                    <p><code>N(A)</code>: dim = 6-3 = 3 (in <code>R^6</code>)</p>
-                    <p>Row space: dim = 3 (in <code>R^6</code>)</p>
-                    <p><code>N(A^T)</code>: dim = 4-3 = 1 (in <code>R^4</code>)</p>
+                    <p>$C(A)$: dim = 3 (in $\mathbb{R}^4$)</p>
+                    <p>$N(A)$: dim = $6-3 = 3$ (in $\mathbb{R}^6$)</p>
+                    <p>Row space: dim = 3 (in $\mathbb{R}^6$)</p>
+                    <p>$N(A^T)$: dim = $4-3 = 1$ (in $\mathbb{R}^4$)</p>
                 </details>
 
-                <p><strong>Problem 4:</strong> Show that the left nullspace of A is the orthogonal complement of <code>C(A)</code> in <code>$\mathbb{R}^m$</code>.</p>
-                <p><em>Hint: Use the definition of <code>N(A^T)</code> and the argument from the derivation section.</em></p>
+                <p><strong>Problem 4:</strong> Show that the left nullspace of $A$ is the orthogonal complement of $C(A)$ in $\mathbb{R}^m$.</p>
+                <p><em>Hint: Use the definition of $N(A^T)$ and the argument from the derivation section.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>If <code>y ∈ N(A^T)</code>, then <code>A^T y = 0</code>. For any <code>b ∈ C(A)</code>, <code>b = Ax</code>. Then <code>y^T b = y^T Ax = (A^T y)^T x = 0</code>. So y is orthogonal to all vectors in <code>C(A)</code>. Thus <code>N(A^T) = C(A)^perp</code>.</p>
+                    <p>If $\mathbf{y} \in N(A^T)$, then $A^T\mathbf{y} = \mathbf{0}$. For any $\mathbf{b} \in C(A)$, $\mathbf{b} = A\mathbf{x}$. Then $\mathbf{y}^T\mathbf{b} = \mathbf{y}^T A\mathbf{x} = (A^T\mathbf{y})^T\mathbf{x} = \mathbf{0}$. So $\mathbf{y}$ is orthogonal to all vectors in $C(A)$. Thus $N(A^T) = C(A)^\perp$.</p>
                 </details>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CHAPTER NAVIGATION -->
+            <!-- ========================================== -->
             <nav class="chapter-nav">
                 <a href="chapter-09.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
@@ -268,7 +298,3 @@
     <script src="../js/app.js"></script>
 </body>
 </html>
-
-
-
-

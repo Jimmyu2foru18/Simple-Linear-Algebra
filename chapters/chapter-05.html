@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 5: Transposes, Permutations, Spaces R^n - Linear Algebra</title>
     <link rel="stylesheet" href="../css/styles.css">
+
     <!-- MathJax Configuration -->
     <script>
     window.MathJax = {
@@ -38,6 +39,9 @@
             <h2>Chapter 5: Transposes, Permutations, Spaces R^n</h2>
             <p class="lead">Matrix transposes, permutation matrices, and vector spaces. This chapter introduces the algebraic structure underlying linear algebra, including the vector space $\mathbb{R}^n$ and its subspaces.</p>
 
+            <!-- ========================================== -->
+            <!-- CORE LECTURE: Gilbert Strang -->
+            <!-- ========================================== -->
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
@@ -50,6 +54,9 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CONCEPT BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Concept Breakdowns</h3>
             <div class="video-grid">
                 <div class="video-card">
@@ -85,7 +92,7 @@
                         <iframe src="https://www.youtube.com/embed/Zd7wCsUM4pg"
                                     title="Dr. Valerie Hower — Intro to Linear Transformations"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                         </iframe>
                     </div>
@@ -96,56 +103,65 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- DETAILED TOPIC BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>Matrix Transpose</h4>
-            <p>The transpose of a matrix A, denoted <code>A^T</code>, is formed by flipping A across its main diagonal. Rows become columns and columns become rows. The <code>(i, j)</code> entry of <code>A^T</code> is the <code>(j, i)</code> entry of A.</p>
+            <p>The transpose of a matrix $A$, denoted $A^T$, is formed by flipping $A$ across its main diagonal. Rows become columns and columns become rows. The $(i, j)$ entry of $A^T$ is the $(j, i)$ entry of $A$.</p>
 
             <h4>Properties of Transposes</h4>
-            <p>Key algebraic rules include <code>(A^T)^T = A</code>, <code>(A + B)^T = A^T + B^T</code>, and <code>(AB)^T = B^T A^T</code>. The order reversal in the product rule is essential and often counterintuitive.</p>
+            <p>Key algebraic rules include $(A^T)^T = A$, $(A + B)^T = A^T + B^T$, and $(AB)^T = B^T A^T$. The order reversal in the product rule is essential and often counterintuitive.</p>
 
             <h4>Symmetric Matrices</h4>
-            <p>A matrix is symmetric if <code>A^T = A</code>. Symmetric matrices have real eigenvalues and orthogonal eigenvectors. They appear frequently in applications because they represent quadratic forms and covariance matrices.</p>
+            <p>A matrix is symmetric if $A^T = A$. Symmetric matrices have real eigenvalues and orthogonal eigenvectors. They appear frequently in applications because they represent quadratic forms and covariance matrices.</p>
 
             <h4>Permutation Matrices</h4>
-            <p>Permutation matrices are obtained by perting the rows (or columns) of the identity matrix. They have exactly one '1' in each row and column, with zeros elsewhere. <code>P^T = P^-1</code>, so permutation matrices are orthogonal.</p>
+            <p>Permutation matrices are obtained by permuting the rows (or columns) of the identity matrix. They have exactly one '1' in each row and column, with zeros elsewhere. $P^T = P^{-1}$, so permutation matrices are orthogonal.</p>
 
             <h4>Vector Spaces and Subspaces</h4>
-            <p>A vector space is a collection of vectors closed under addition and scalar multiplication. <code>$\mathbb{R}^n$</code> is the n-dimensional real vector space. A subspace is a subset that is itself a vector space, requiring closure under linear combinations.</p>
+            <p>A vector space is a collection of vectors closed under addition and scalar multiplication. $\mathbb{R}^n$ is the $n$-dimensional real vector space. A subspace is a subset that is itself a vector space, requiring closure under linear combinations.</p>
 
+            <!-- ========================================== -->
+            <!-- Computation Examples -->
+            <!-- ========================================== -->
             <h3>Computation Examples</h3>
 
             <div class="derivation">
                 <h4>Derivation: The Four Requirements of a Vector Space</h4>
-                <p>A set V with addition and scalar multiplication is a vector space if it satisfies:</p>
-                $$1. \text{Closure under addition: } \mathbf{u} + \mathbf{v} \in V \\
-2. \text{Closure under scalar multiplication: } c\mathbf{u} \in V \\
-3. \text{Commutativity: } \mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u} \\
-4. \text{Existence of zero vector: } \mathbf{0} \in V \\
-\text{(plus associativity, distributivity, identity)}$$
+                <p>A set $V$ with addition and scalar multiplication is a vector space if it satisfies:</p>
+                $$1. \text{Closure under addition: } \mathbf{u} + \mathbf{v} \in V$$
+                $$2. \text{Closure under scalar multiplication: } c\mathbf{u} \in V$$
+                $$3. \text{Commutativity: } \mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$$
+                $$4. \text{Existence of zero vector: } \mathbf{0} \in V$$
+                <p>(plus associativity, distributivity, identity)</p>
                 <p>For subspaces, only closure properties (1 and 2) plus existence of zero vector need verification.</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Transpose of a Product</h4>
-                <p>Let <code>C = AB</code>. The <code>(i, j)</code> entry of <code>C^T</code> is <code>c_ji</code>:</p>
+                <p>Let $C = AB$. The $(i, j)$ entry of $C^T$ is $c_{ji}$:</p>
                 $$c_{ji} = \sum_k a_{jk} b_{ki} \quad \text{(entry of } AB\text{)}$$
                 $$= \sum_k b_{ki} a_{jk} \quad \text{(commute scalars)}$$
                 $$= \text{entry } (j, i) \text{ of } B^T A^T$$
-                <p>Therefore <code>C^T = B^T A^T</code>.</p>
+                <p>Therefore $C^T = B^T A^T$.</p>
             </div>
 
+            <!-- ========================================== -->
+            <!-- LEARNING STRATEGIES -->
+            <!-- ========================================== -->
             <h3>Learning Strategies</h3>
 
             <div class="strategies">
                 <h4>Mnemonic Devices</h4>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Flip Across the Diagonal"</strong>
-                    <p>To transpose a matrix, flip it across its main diagonal (top-left to bottom-right). Visualize turning the page of a book - what was on the left is now on the right.</p>
+                    <p>To transpose a matrix, flip it across its main diagonal (top-left to bottom-right). Visualize turning the page of a book — what was on the left is now on the right.</p>
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Subspace CLIP"</strong>
-                    <p>A subset S of <code>$\mathbb{R}^n$</code> is a subspace if it satisfies: <strong>C</strong>losure (under addition and scalar multiplication), contains the <strong>L</strong>eft zero vector, is <strong>I</strong>nherited from <code>$\mathbb{R}^n$</strong>, and is <strong>P</strong>roperly closed under linear combinations.</p>
+                    <p>A subset $S$ of $\mathbb{R}^n$ is a subspace if it satisfies: <strong>C</strong>losure (under addition and scalar multiplication), contains the <strong>L</strong>eft zero vector, is <strong>I</strong>nherited from $\mathbb{R}^n$, and is <strong>P</strong>roperly closed under linear combinations.</p>
                 </div>
             </div>
 
@@ -153,113 +169,110 @@
                 <h4>Study Tips</h4>
                 <ul>
                     <li>Practice transposing matrices of different shapes to internalize the pattern</li>
-                    <li>Memorize the key transpose properties, especially <code>(AB)^T = B^T A^T</code></li>
-                    <li>Draw permutation matrices for small n to see the pattern</li>
+                    <li>Memorize the key transpose properties, especially $(AB)^T = B^T A^T$</li>
+                    <li>Draw permutation matrices for small $n$ to see the pattern</li>
                     <li>Verify subspaces by checking: zero vector, closure under addition, closure under scalar multiplication</li>
                     <li>Common subspaces: lines through origin, planes through origin, whole space, zero subspace</li>
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- VISUAL AIDS -->
+            <!-- ========================================== -->
             <h3>Visual Aids</h3>
 
             <div class="visual-aid">
                 <h4>Figure: Transpose Operation</h4>
-                <p>Visualizing the transpose of a 3x2 matrix:</p>
-$$A = [a  d]        A^T = [a  b  c]$$
-    [b  e]               [d  e  f]
-    [c  f]
-                <p>Column 1 of A becomes Row 1 of <code>A^T</code>. Column 2 becomes Row 2.</p>
+                <p>Visualizing the transpose of a $3 \times 2$ matrix:</p>
+                $$A = \begin{bmatrix} a & d \\ b & e \\ c & f \end{bmatrix}, \quad A^T = \begin{bmatrix} a & b & c \\ d & e & f \end{bmatrix}$$
+                <p>Column 1 of $A$ becomes Row 1 of $A^T$. Column 2 becomes Row 2.</p>
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Permutation Matrices</h4>
-                <p>3x3 permutation matrices corresponding to different orderings:</p>
-                $$Identity (no swap):      Swap R1,R3:       Cycle R1->R2->R3:
-[1 0 0]                 [0 0 1]            [0 1 0]
-[0 1 0]                 [0 1 0]            [0 0 1]
-[0 0 1]                 [1 0 0]            [1 0 0]$$
+                <p>$3 \times 3$ permutation matrices corresponding to different orderings:</p>
+                $$\text{Identity (no swap):} \quad \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}, \quad \text{Swap } R_1,R_3: \quad \begin{bmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{bmatrix}, \quad \text{Cycle } R_1 \to R_2 \to R_3: \quad \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{bmatrix}$$
             </div>
 
+            <!-- ========================================== -->
+            <!-- WORKED EXAMPLES -->
+            <!-- ========================================== -->
             <h3>Worked Examples</h3>
 
             <div class="example">
                 <h4>Example 1: Computing a Transpose</h4>
-                <p><strong>Problem:</strong> Find <code>A^T</code> and verify <code>(A^T)^T = A</code>.</p>
-$$A = [1  2  3]$$
-    [4  5  6]
+                <p><strong>Problem:</strong> Find $A^T$ and verify $(A^T)^T = A$.</p>
+                $$A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}$$
                 <p><strong>Solution:</strong></p>
-$$A^T = [1  4]$$
-     [2  5]
-     [3  6]
+                $$A^T = \begin{bmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{bmatrix}$$
 
-(A^T)^T = [1  2  3] = A  ✓
-         [4  5  6]
+                $$(A^T)^T = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix} = A \checkmark$$
             </div>
 
             <div class="example">
                 <h4>Example 2: Symmetric Matrix</h4>
-                <p><strong>Problem:</strong> Show that <code>A = [[2, 3, 1], [3, 5, 4], [1, 4, 6]]</code> is symmetric.</p>
+                <p><strong>Problem:</strong> Show that $A = \begin{bmatrix} 2 & 3 & 1 \\ 3 & 5 & 4 \\ 1 & 4 & 6 \end{bmatrix}$ is symmetric.</p>
                 <p><strong>Solution:</strong></p>
-$$A^T = [2  3  1] = A  ✓$$
-     [3  5  4]
-     [1  4  6]
-                <p>Since <code>A^T = A</code>, A is symmetric.</p>
+                $$A^T = \begin{bmatrix} 2 & 3 & 1 \\ 3 & 5 & 4 \\ 1 & 4 & 6 \end{bmatrix} = A \checkmark$$
+                <p>Since $A^T = A$, $A$ is symmetric.</p>
             </div>
 
             <div class="example">
                 <h4>Example 3: Verifying a Subspace</h4>
-                <p><strong>Problem:</strong> Is the set <code>S = {(x, y) ∈ R^2 : x + y = 0}</code> a subspace of <code>R^2</code>?</p>
+                <p><strong>Problem:</strong> Is the set $S = \{(x, y) \in \mathbb{R}^2 : x + y = 0\}$ a subspace of $\mathbb{R}^2$?</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>Zero vector: <code>(0, 0)</code> satisfies <code>0 + 0 = 0</code> ✓</li>
-                    <li>Closure: If <code>(x1, y1)</code> and <code>(x2, y2)</code> satisfy <code>x + y = 0</code>, then <code>(x1+x2) + (y1+y2) = (x1+y1) + (x2+y2) = 0 + 0 = 0</code> ✓</li>
-                    <li>Scalar multiplication: If <code>x + y = 0</code>, then <code>cx + cy = c(x+y) = c*0 = 0</code> ✓</li>
-                    <li><strong>S is a subspace</strong> (specifically, a line through the origin)</li>
+                    <li>Zero vector: $(0, 0)$ satisfies $0 + 0 = 0$ ✓</li>
+                    <li>Closure: If $(x_1, y_1)$ and $(x_2, y_2)$ satisfy $x + y = 0$, then $(x_1+x_2) + (y_1+y_2) = (x_1+y_1) + (x_2+y_2) = 0 + 0 = 0$ ✓</li>
+                    <li>Scalar multiplication: If $x + y = 0$, then $cx + cy = c(x+y) = c \cdot 0 = 0$ ✓</li>
+                    <li><strong>$S$ is a subspace</strong> (specifically, a line through the origin)</li>
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- PRACTICE PROBLEMS -->
+            <!-- ========================================== -->
             <h3>Practice Problems</h3>
 
             <div class="questions">
                 <h4>Problem Set 5</h4>
-                <p><strong>Problem 1:</strong> Compute <code>(AB)^T</code> and verify it equals <code>B^T A^T</code> for:</p>
-$$A = [1 2]    B = [3 1]$$
-    [0 1]        [0 4]
-                <p><em>Hint: Compute AB first, then transpose both sides.</em></p>
+                <p><strong>Problem 1:</strong> Compute $(AB)^T$ and verify it equals $B^T A^T$ for:</p>
+                $$A = \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}, \quad B = \begin{bmatrix} 3 & 1 \\ 0 & 4 \end{bmatrix}$$
+                <p><em>Hint: Compute $AB$ first, then transpose both sides.</em></p>
                 <details>
                     <summary>Solution</summary>
-$$AB = [3  9]    (AB)^T = [3  0]$$
-     [0  4]              [9  4]
+                    $$AB = \begin{bmatrix} 3 & 9 \\ 0 & 4 \end{bmatrix}, \quad (AB)^T = \begin{bmatrix} 3 & 0 \\ 9 & 4 \end{bmatrix}$$
 
-$$B^T = [3 0]    A^T = [1 0]$$
-     [1 4]           [2 1]
+                    $$B^T = \begin{bmatrix} 3 & 0 \\ 1 & 4 \end{bmatrix}, \quad A^T = \begin{bmatrix} 1 & 0 \\ 2 & 1 \end{bmatrix}$$
 
-$$B^T A^T = [3*1+0*2  3*0+0*1] = [3  0]$$
-          [1*1+4*2  1*0+4*1]   [9  4] ✓
+                    $$B^T A^T = \begin{bmatrix} 3 \cdot 1 + 0 \cdot 2 & 3 \cdot 0 + 0 \cdot 1 \\ 1 \cdot 1 + 4 \cdot 2 & 1 \cdot 0 + 4 \cdot 1 \end{bmatrix} = \begin{bmatrix} 3 & 0 \\ 9 & 4 \end{bmatrix} \checkmark$$
                 </details>
 
-                <p><strong>Problem 2:</strong> Find all 3x3 permutation matrices and determine their inverses.</p>
-                <p><em>Hint: There are 3! = 6 permutation matrices. Each is its own inverse or transpose.</em></p>
+                <p><strong>Problem 2:</strong> Find all $3 \times 3$ permutation matrices and determine their inverses.</p>
+                <p><em>Hint: There are $3! = 6$ permutation matrices. Each is its own inverse or transpose.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>The 6 permutation matrices correspond to the 6 orderings of (1,2,3). Each satisfies <code>P^T = P^-1</code>. For transpositions (swaps), <code>P^2 = I</code> so <code>P^-1 = P</code>. For 3-cycles, <code>P^3 = I</code>.</p>
+                    <p>The 6 permutation matrices correspond to the 6 orderings of $(1,2,3)$. Each satisfies $P^T = P^{-1}$. For transpositions (swaps), $P^2 = I$ so $P^{-1} = P$. For 3-cycles, $P^3 = I$.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Is <code>S = {(x, y, z) : x + y + z = 1}</code> a subspace of <code>R^3</code>?</p>
-                <p><em>Hint: Check if the zero vector is in S.</em></p>
+                <p><strong>Problem 3:</strong> Is $S = \{(x, y, z) : x + y + z = 1\}$ a subspace of $\mathbb{R}^3$?</p>
+                <p><em>Hint: Check if the zero vector is in $S$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>No. The zero vector <code>(0, 0, 0)</code> does not satisfy <code>x + y + z = 1</code>. Subspaces st contain the zero vector.</p>
+                    <p>No. The zero vector $(0, 0, 0)$ does not satisfy $x + y + z = 1$. Subspaces must contain the zero vector.</p>
                 </details>
 
-                <p><strong>Problem 4:</strong> Show that the set of all symmetric <code>n x n</code> matrices forms a subspace of the vector space of all <code>n x n</code> matrices.</p>
+                <p><strong>Problem 4:</strong> Show that the set of all symmetric $n \times n$ matrices forms a subspace of the vector space of all $n \times n$ matrices.</p>
                 <p><em>Hint: Check closure under addition and scalar multiplication.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>If <code>A^T = A</code> and <code>B^T = B</code>, then <code>(A+B)^T = A^T + B^T = A + B</code>. Also <code>(cA)^T = cA^T = cA</code>. The zero matrix is symmetric. Thus, symmetric matrices form a subspace.</p>
+                    <p>If $A^T = A$ and $B^T = B$, then $(A+B)^T = A^T + B^T = A + B$. Also $(cA)^T = cA^T = cA$. The zero matrix is symmetric. Thus, symmetric matrices form a subspace.</p>
                 </details>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CHAPTER NAVIGATION -->
+            <!-- ========================================== -->
             <nav class="chapter-nav">
                 <a href="chapter-04.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
@@ -271,6 +284,3 @@ $$B^T A^T = [3*1+0*2  3*0+0*1] = [3  0]$$
     <script src="../js/app.js"></script>
 </body>
 </html>
-
-
-

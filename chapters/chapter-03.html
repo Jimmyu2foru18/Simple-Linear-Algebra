@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 3: Multiplication and Inverse Matrices - Linear Algebra</title>
     <link rel="stylesheet" href="../css/styles.css">
+
     <!-- MathJax Configuration -->
     <script>
     window.MathJax = {
@@ -26,7 +27,7 @@
 <body>
     <header>
         <h1>Linear Algebra</h1>
-        <p class="subtitle">Chapter 3: multiplication and Inverse Matrices</p>
+        <p class="subtitle">Chapter 3: Multiplication and Inverse Matrices</p>
         <nav>
             <a href="../index.html">Home</a>
             <a href="index.html">Curriculum</a>
@@ -38,11 +39,14 @@
             <h2>Chapter 3: Multiplication and Inverse Matrices</h2>
             <p class="lead">Matrix multiplication rules and the concept of matrix inverses. This chapter explores how matrices combine, the conditions for invertibility, and how inverses solve linear systems.</p>
 
+            <!-- ========================================== -->
+            <!-- CORE LECTURE: Gilbert Strang -->
+            <!-- ========================================== -->
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/FX4C-JpTFgY"
-                            title="3. multiplication and Inverse Matrices — Gilbert Strang"
+                            title="3. Multiplication and Inverse Matrices — Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -50,6 +54,9 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CONCEPT BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Concept Breakdowns</h3>
             <div class="video-grid">
                 <div class="video-card">
@@ -85,7 +92,7 @@
                         <iframe src="https://www.youtube.com/embed/kWorj5BBy9k"
                                     title="Prof Dave Explains — Inverse Matrices"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                         </iframe>
                     </div>
@@ -96,165 +103,174 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- DETAILED TOPIC BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Detailed Topic Breakdowns</h3>
 
-            <h4>Matrix multiplication</h4>
-            <p>Matrix multiplication is defined by taking the dot product of rows of the first matrix with columns of the second. The product <code>AB</code> exists only when the number of columns of A equals the number of rows of B.</p>
+            <h4>Matrix Multiplication</h4>
+            <p>Matrix multiplication is defined by taking the dot product of rows of the first matrix with columns of the second. The product $AB$ exists only when the number of columns of $A$ equals the number of rows of $B$.</p>
 
             <h4>Inverse of a Matrix</h4>
-            <p>A square matrix A has an inverse <code>A^-1</code> if there exists a matrix such that <code>AA^-1 = A^-1A = I</code>. Not all square matrices are invertible - those that are not are called singular or degenerate.</p>
+            <p>A square matrix $A$ has an inverse $A^{-1}$ if there exists a matrix such that $AA^{-1} = A^{-1}A = I$. Not all square matrices are invertible — those that are not are called singular or degenerate.</p>
 
             <h4>Diagonal and Elimination Matrices</h4>
             <p>Diagonal matrices have nonzero entries only on the main diagonal. They are easy to invert: simply invert each diagonal entry. Elimination matrices perform row operations and their inverses reverse those operations.</p>
 
             <h4>Gauss-Jordan Elimination</h4>
-            <p>By augmenting A with the identity matrix [A | I] and reducing to [I | A^-1], we can compute the inverse directly. If A cannot be reduced to the identity, it is singular.</p>
+            <p>By augmenting $A$ with the identity matrix $[A \mid I]$ and reducing to $[I \mid A^{-1}]$, we can compute the inverse directly. If $A$ cannot be reduced to the identity, it is singular.</p>
 
+            <!-- ========================================== -->
+            <!-- Computation Examples -->
+            <!-- ========================================== -->
             <h3>Computation Examples</h3>
 
             <div class="derivation">
-                <h4>Derivation: Inverse of a 2x2 Matrix</h4>
-                <p>For a 2x2 matrix <code>A = [[a, b], [c, d]]</code>, the inverse exists when <code>ad - bc ≠ 0</code>:</p>
-$$A^-1 = (1/(ad-bc)) * [[d, -b],$$
-                      [-c, a]]
-                <p>The determinant <code>ad - bc</code> must be nonzero for the inverse to exist. Verify by multiplying <code>A * A^-1</code>:</p>
-                $$[a  b] * [(d/det)  (-b/det)]   = [1  0]
-[c  d]   [(-c/det) (a/det) ]     [0  1]$$
+                <h4>Derivation: Inverse of a $2 \times 2$ Matrix</h4>
+                <p>For a $2 \times 2$ matrix $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, the inverse exists when $ad - bc \neq 0$:</p>
+                $$A^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}$$
+                <p>The determinant $ad - bc$ must be nonzero for the inverse to exist. Verify by multiplying $A \cdot A^{-1}$:</p>
+                $$\begin{bmatrix} a & b \\ c & d \end{bmatrix} \begin{bmatrix} \frac{d}{\det} & \frac{-b}{\det} \\ \frac{-c}{\det} & \frac{a}{\det} \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$$
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Properties of Matrix Inverses</h4>
                 <p>Key algebraic properties:</p>
-                $$(AB)^-1 = B^-1 * A^-1        (reverse order!)
-(A^-1)^-1 = A
-(A^T)^-1 = (A^-1)^T
-(A + B)^-1 ≠ A^-1 + B^-1    (warning: does not distribute!)$$
-                <p>The reversal of order in <code>(AB)^-1 = B^-1 A^-1</code> is crucial: you st undo the last operation first when inverting a product.</p>
+                $$(AB)^{-1} = B^{-1} A^{-1} \quad \text{(reverse order!)}$$
+                $$(A^{-1})^{-1} = A$$
+                $$(A^T)^{-1} = (A^{-1})^T$$
+                $$(A + B)^{-1} \neq A^{-1} + B^{-1} \quad \text{(warning: does not distribute!)}$$
+                <p>The reversal of order in $(AB)^{-1} = B^{-1}A^{-1}$ is crucial: you must undo the last operation first when inverting a product.</p>
             </div>
 
+            <!-- ========================================== -->
+            <!-- LEARNING STRATEGIES -->
+            <!-- ========================================== -->
             <h3>Learning Strategies</h3>
 
             <div class="strategies">
                 <h4>Mnemonic Devices</h4>
                 <div class="mnemonic">
-                    <strong>Mnemonic: "S-O-S" - Same Order, Switch, Swap</strong>
-                    <p>For a 2x2 inverse: <strong>S</strong>ame diagonal entries stay, <strong>O</strong>ff-diagonals switch positions, <strong>S</strong>wap signs of off-diagonals, then divide by determinant.</p>
+                    <strong>Mnemonic: "S-O-S" — Same Order, Switch, Swap</strong>
+                    <p>For a $2 \times 2$ inverse: <strong>S</strong>ame diagonal entries stay, <strong>O</strong>ff-diagonals switch positions, <strong>S</strong>wap signs of off-diagonals, then divide by determinant.</p>
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Last In, First Out" for Inverses</strong>
-                    <p>When inverting a product AB, undo B first (B^-1), then undo A (A^-1). This is why <code>(AB)^-1 = B^-1 A^-1</code>.</p>
+                    <p>When inverting a product $AB$, undo $B$ first ($B^{-1}$), then undo $A$ ($A^{-1}$). This is why $(AB)^{-1} = B^{-1}A^{-1}$.</p>
                 </div>
             </div>
 
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Always check dimensions before multiplying - incompatible sizes mean the product doesn't exist</li>
-                    <li>Memorize the 2x2 inverse formula; for larger matrices, use Gauss-Jordan</li>
-                    <li>Verify inverses by checking <code>AA^-1 = I</code>, not just <code>A^-1A = I</code></li>
+                    <li>Always check dimensions before multiplying — incompatible sizes mean the product doesn't exist</li>
+                    <li>Memorize the $2 \times 2$ inverse formula; for larger matrices, use Gauss-Jordan</li>
+                    <li>Verify inverses by checking $AA^{-1} = I$, not just $A^{-1}A = I$</li>
                     <li>Remember: a zero determinant means singularity and no inverse</li>
-                    <li>Practice with permutation matrices - their inverses are their transposes</li>
+                    <li>Practice with permutation matrices — their inverses are their transposes</li>
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- VISUAL AIDS -->
+            <!-- ========================================== -->
             <h3>Visual Aids</h3>
 
             <div class="visual-aid">
-                <h4>Figure: Matrix multiplication - Row-by-Column</h4>
-                <p>Computing <code>C = AB</code> where each entry <code>c_ij</code> is the dot product of row i of A and column j of B:</p>
-$$A = [1 2]   B = [5 6]   C = [1*5+2*7  1*6+2*8] = [19 22]$$
-    [3 4]       [7 8]       [3*5+4*7  3*6+4*8]   [43 50]
+                <h4>Figure: Matrix Multiplication — Row-by-Column</h4>
+                <p>Computing $C = AB$ where each entry $c_{ij}$ is the dot product of row $i$ of $A$ and column $j$ of $B$:</p>
+                $$A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}, \quad B = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}, \quad C = \begin{bmatrix} 1 \cdot 5 + 2 \cdot 7 & 1 \cdot 6 + 2 \cdot 8 \\ 3 \cdot 5 + 4 \cdot 7 & 3 \cdot 6 + 4 \cdot 8 \end{bmatrix} = \begin{bmatrix} 19 & 22 \\ 43 & 50 \end{bmatrix}$$
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Gauss-Jordan Process for Inverse</h4>
-                <p>Augmenting A with I and row-reducing:</p>
-                [A | I]    -->    [I | A^-1]
-
-[1 2 | 1 0]  -->  [1 0 |  -2  1]
-[3 4 | 0 1]  -->  [0 1 | 1.5 -0.5]
+                <p>Augmenting $A$ with $I$ and row-reducing:</p>
+                $$[A \mid I] \quad \longrightarrow \quad [I \mid A^{-1}]$$
+                $$\begin{bmatrix} 1 & 2 & \mid & 1 & 0 \\ 3 & 4 & \mid & 0 & 1 \end{bmatrix} \longrightarrow \begin{bmatrix} 1 & 0 & \mid & -2 & 1 \\ 0 & 1 & \mid & 1.5 & -0.5 \end{bmatrix}$$
             </div>
 
+            <!-- ========================================== -->
+            <!-- WORKED EXAMPLES -->
+            <!-- ========================================== -->
             <h3>Worked Examples</h3>
 
             <div class="example">
-                <h4>Example 1: Matrix multiplication</h4>
-                <p><strong>Problem:</strong> Compute <code>AB</code> and <code>BA</code> and determine if they are equal.</p>
-$$A = [1 2]    B = [3 0]$$
-    [0 1]        [1 4]
+                <h4>Example 1: Matrix Multiplication</h4>
+                <p><strong>Problem:</strong> Compute $AB$ and $BA$ and determine if they are equal.</p>
+                $$A = \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}, \quad B = \begin{bmatrix} 3 & 0 \\ 1 & 4 \end{bmatrix}$$
                 <p><strong>Solution:</strong></p>
-$$AB = [1*3+2*1  1*0+2*4] = [5  8]$$
-     [0*3+1*1  0*0+1*4]   [1  4]
+                $$AB = \begin{bmatrix} 1 \cdot 3 + 2 \cdot 1 & 1 \cdot 0 + 2 \cdot 4 \\ 0 \cdot 3 + 1 \cdot 1 & 0 \cdot 0 + 1 \cdot 4 \end{bmatrix} = \begin{bmatrix} 5 & 8 \\ 1 & 4 \end{bmatrix}$$
 
-$$BA = [3*1+0*0  3*2+0*1] = [3  6]$$
-     [1*1+4*0  1*2+4*1]   [1  6]
-                <p><code>AB ≠ BA</code>. Matrix multiplication is not commutative.</p>
+                $$BA = \begin{bmatrix} 3 \cdot 1 + 0 \cdot 0 & 3 \cdot 2 + 0 \cdot 1 \\ 1 \cdot 1 + 4 \cdot 0 & 1 \cdot 2 + 4 \cdot 1 \end{bmatrix} = \begin{bmatrix} 3 & 6 \\ 1 & 6 \end{bmatrix}$$
+                <p>$AB \neq BA$. Matrix multiplication is not commutative.</p>
             </div>
 
             <div class="example">
                 <h4>Example 2: Finding an Inverse</h4>
-                <p><strong>Problem:</strong> Find <code>A^-1</code> using the formula and verify.</p>
-$$A = [2  3]$$
-    [1  2]
+                <p><strong>Problem:</strong> Find $A^{-1}$ using the formula and verify.</p>
+                $$A = \begin{bmatrix} 2 & 3 \\ 1 & 2 \end{bmatrix}$$
                 <p><strong>Solution:</strong></p>
                 <ol>
-                    <li>Determinant: <code>$\det(A)$ = 2*2 - 3*1 = 1</code></li>
-                    <li>Apply formula: <code>A^-1 = [[2, -3], [-1, 2]]</code></li>
-                    <li>Verify: <code>[[2,3],[1,2]] * [[2,-3],[-1,2]] = [[1,0],[0,1]]</code> ✓</li>
+                    <li>Determinant: $\det(A) = 2 \cdot 2 - 3 \cdot 1 = 1$</li>
+                    <li>Apply formula: $A^{-1} = \begin{bmatrix} 2 & -3 \\ -1 & 2 \end{bmatrix}$</li>
+                    <li>Verify: $\begin{bmatrix} 2 & 3 \\ 1 & 2 \end{bmatrix} \begin{bmatrix} 2 & -3 \\ -1 & 2 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ ✓</li>
                 </ol>
             </div>
 
             <div class="example">
                 <h4>Example 3: Singular Matrix</h4>
-                <p><strong>Problem:</strong> Show that <code>A = [[1, 2], [2, 4]]</code> has no inverse.</p>
+                <p><strong>Problem:</strong> Show that $A = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$ has no inverse.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>Determinant: <code>1*4 - 2*2 = 4 - 4 = 0</code></li>
-                    <li>Row 2 = 2 * Row 1</li>
+                    <li>Determinant: $1 \cdot 4 - 2 \cdot 2 = 4 - 4 = 0$</li>
+                    <li>Row 2 = $2 \times$ Row 1</li>
                     <li>Columns are linearly dependent</li>
-                    <li>Rank = 1 &lt; 2, so A is singular</li>
+                    <li>Rank = 1 $< 2$, so $A$ is singular</li>
                     <li><strong>No inverse exists.</strong></li>
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- PRACTICE PROBLEMS -->
+            <!-- ========================================== -->
             <h3>Practice Problems</h3>
 
             <div class="questions">
                 <h4>Problem Set 3</h4>
-                <p><strong>Problem 1:</strong> Compute the product <code>AB</code>:</p>
-$$A = [1 0 2]    B = [1]$$
-    [3 1 1]        [2]
-                    [1]
-                <p><em>Hint: multiply row by column for each entry.</em></p>
+                <p><strong>Problem 1:</strong> Compute the product $AB$:</p>
+                $$A = \begin{bmatrix} 1 & 0 & 2 \\ 3 & 1 & 1 \end{bmatrix}, \quad B = \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}$$
+                <p><em>Hint: Multiply row by column for each entry.</em></p>
                 <details>
                     <summary>Solution</summary>
-$$AB = [1*1+0*2+2*1] = [3]$$
-    [3*1+1*2+1*1]   [6]
+                    $$AB = \begin{bmatrix} 1 \cdot 1 + 0 \cdot 2 + 2 \cdot 1 \\ 3 \cdot 1 + 1 \cdot 2 + 1 \cdot 1 \end{bmatrix} = \begin{bmatrix} 3 \\ 6 \end{bmatrix}$$
                 </details>
 
-                <p><strong>Problem 2:</strong> Find the inverse of <code>A = [[4, 7], [2, 6]]</code> and verify.</p>
+                <p><strong>Problem 2:</strong> Find the inverse of $A = \begin{bmatrix} 4 & 7 \\ 2 & 6 \end{bmatrix}$ and verify.</p>
                 <p><em>Hint: Calculate the determinant first.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p><code>det = 4*6 - 7*2 = 24 - 14 = 10</code></p>
-                    <p><code>A^-1 = (1/10) * [[6, -7], [-2, 4]] = [[0.6, -0.7], [-0.2, 0.4]]</code></p>
+                    <p>$\det = 4 \cdot 6 - 7 \cdot 2 = 24 - 14 = 10$</p>
+                    <p>$A^{-1} = \frac{1}{10} \begin{bmatrix} 6 & -7 \\ -2 & 4 \end{bmatrix} = \begin{bmatrix} 0.6 & -0.7 \\ -0.2 & 0.4 \end{bmatrix}$</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Show that if <code>A</code> and <code>B</code> are invertible, then <code>AB</code> is invertible with <code>(AB)^-1 = B^-1 A^-1</code>.</p>
-                <p><em>Hint: multiply <code>(AB)(B^-1 A^-1)</code> and use associativity.</em></p>
+                <p><strong>Problem 3:</strong> Show that if $A$ and $B$ are invertible, then $AB$ is invertible with $(AB)^{-1} = B^{-1}A^{-1}$.</p>
+                <p><em>Hint: Multiply $(AB)(B^{-1}A^{-1})$ and use associativity.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    $$(AB)(B^-1 A^-1) = A(B B^-1)A^-1 = AIA^-1 = AA^-1 = I$$
+                    $$(AB)(B^{-1}A^{-1}) = A(BB^{-1})A^{-1} = AIA^{-1} = AA^{-1} = I$$
                 </details>
 
-                <p><strong>Problem 4:</strong> For <code>A = [[1, 2, 3], [0, 1, 4], [5, 6, 0]]</code>, use Gauss-Jordan to find <code>A^-1</code>.</p>
-                <p><em>Hint: Augment [A | I] and reduce the left side to I.</em></p>
+                <p><strong>Problem 4:</strong> For $A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 5 & 6 & 0 \end{bmatrix}$, use Gauss-Jordan to find $A^{-1}$.</p>
+                <p><em>Hint: Augment $[A \mid I]$ and reduce the left side to $I$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>After Gauss-Jordan elimination: <code>A^-1 = [[-24, 18, 5], [20, -15, -4], [-5, 4, 1]]</code></p>
+                    <p>After Gauss-Jordan elimination: $A^{-1} = \begin{bmatrix} -24 & 18 & 5 \\ 20 & -15 & -4 \\ -5 & 4 & 1 \end{bmatrix}$</p>
                 </details>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CHAPTER NAVIGATION -->
+            <!-- ========================================== -->
             <nav class="chapter-nav">
                 <a href="chapter-02.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
@@ -266,6 +282,3 @@ $$AB = [1*1+0*2+2*1] = [3]$$
     <script src="../js/app.js"></script>
 </body>
 </html>
-
-
-

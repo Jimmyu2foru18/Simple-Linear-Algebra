@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 17: Orthogonal Matrices and Gram-Schmidt - Linear Algebra</title>
     <link rel="stylesheet" href="../css/styles.css">
+
     <!-- MathJax Configuration -->
     <script>
     window.MathJax = {
@@ -36,8 +37,11 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 17: Orthogonal Matrices and Gram-Schmidt</h2>
-            <p class="lead">Orthogonal bases and the Gram-Schmidt orthogonalization process. This chapter transforms arbitrary bases into orthonormal ones, connects orthogonal matrices to rotations and reflections, and introduces the QR factorization that underlies many numerical algorithms. The Gram-Schmidt process reveals how any independent set of vectors can be systematically orthogonalized and normalized.</p>
+            <p class="lead">Orthogonal bases and the Gram-Schmidt orthogonalization process. This chapter transforms arbitrary bases into orthonormal ones, connects orthogonal matrices to rotations and reflections, and introduces the QR factorization that underlies many numerical algorithms.</p>
 
+            <!-- ========================================== -->
+            <!-- CORE LECTURE: Gilbert Strang -->
+            <!-- ========================================== -->
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
@@ -50,6 +54,9 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CONCEPT BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Concept Breakdowns</h3>
             <div class="video-grid">
                 <div class="video-card">
@@ -63,7 +70,7 @@
                     </div>
                     <div class="video-card-caption">
                         <h5>Prof. Dave Explains</h5>
-                        <p>Concise breakdown of orthogonal matrices and gram-schmidt</p>
+                        <p>Concise breakdown of orthogonal matrices and Gram-Schmidt</p>
                     </div>
                 </div>
                 <div class="video-card">
@@ -85,7 +92,7 @@
                         <iframe src="https://www.youtube.com/embed/6nqMegdbxik"
                                     title="Prof Dave Explains — Orthogonality and Orthonormality"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                         </iframe>
                     </div>
@@ -96,67 +103,60 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- DETAILED TOPIC BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Detailed Topic Breakdowns</h3>
 
-            <h4>The Error Vector</h4>
-            <p>The error vector is the component of a vector $\mathbf{b}$ that is perpendicular to a given vector $\mathbf{a}$. Starting with the original vector $\mathbf{b}$, we remove its projection onto $\mathbf{a}$ to obtain the perpendicular part.</p>
+            <h4>Orthogonal and Orthonormal Vectors</h4>
+            <p>Two vectors $\mathbf{u}$ and $\mathbf{v}$ are <strong>orthogonal</strong> if $\mathbf{u}^T\mathbf{v} = 0$. They are <strong>orthonormal</strong> if they are orthogonal and each has unit length: $\|\mathbf{u}\| = \|\mathbf{v}\| = 1$. A set of vectors $\{\mathbf{q}_1, \ldots, \mathbf{q}_n\}$ is orthonormal if $\mathbf{q}_i^T\mathbf{q}_j = \delta_{ij}$ (Kronecker delta: 1 if $i=j$, 0 otherwise).</p>
 
-            <div class="derivation">
-                <h4>Formula for the Error Vector</h4>
-                <p>If $\mathbf{b}$ is the original vector and $\mathbf{a}$ is the vector we project onto, the error vector $\mathbf{e}$ (or $\mathbf{B}$ in the lecture notation) is:</p>
-                $$ \mathbf{B} = \mathbf{b} - \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}\mathbf{a} $$
-                <p>To verify orthogonality, we check that $\mathbf{a}^T\mathbf{B} = 0$. Expanding:</p>
-                $$ \mathbf{a}^T\mathbf{B} = \mathbf{a}^T\mathbf{b} - \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}\mathbf{a}^T\mathbf{a} = \mathbf{a}^T\mathbf{b} - \mathbf{a}^T\mathbf{b} = 0 $$
-            </div>
+            <h4>Orthogonal Matrices</h4>
+            <p>A square matrix $Q$ is <strong>orthogonal</strong> if its columns are orthonormal. This means $Q^T Q = I$. Equivalently, $Q^{-1} = Q^T$. Orthogonal matrices preserve lengths and angles: $|Q\mathbf{x}| = |\mathbf{x}|$ for all $\mathbf{x}$. They represent rotations and reflections in $\mathbb{R}^n$. The determinant of an orthogonal matrix is either $+1$ (rotation) or $-1$ (reflection).</p>
 
-            <h4>Gram-Schmidt Orthogonalization</h4>
-            <p>Given independent vectors $\mathbf{a}$, $\mathbf{b}$, and $\mathbf{c}$, Gram-Schmidt produces orthogonal vectors $\mathbf{A}$, $\mathbf{B}$, and $\mathbf{C}$:</p>
-            <ul>
-                <li>$\mathbf{A} = \mathbf{a}$ (unchanged)</li>
-                <li>$\mathbf{B} = \mathbf{b} - \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}\mathbf{a}$</li>
-                <li>$\mathbf{C} = \mathbf{c} - \frac{\mathbf{a}^T\mathbf{c}}{\mathbf{a}^T\mathbf{a}}\mathbf{a} - \frac{\mathbf{b}^T\mathbf{c}}{\mathbf{b}^T\mathbf{b}}\mathbf{b}$</li>
-            </ul>
-            <p>To obtain orthonormal vectors, divide each by its length: $\mathbf{q}_1 = \frac{\mathbf{A}}{\|\mathbf{A}\|}$, $\mathbf{q}_2 = \frac{\mathbf{B}}{\|\mathbf{B}\|}$, etc.</p>
+            <h4>The Gram-Schmidt Process</h4>
+            <p>Given linearly independent vectors $\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n$, Gram-Schmidt constructs orthonormal vectors $\mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_n$ spanning the same subspace. The process proceeds sequentially: at step $j$, subtract from $\mathbf{a}_j$ its projection onto each previously constructed orthogonal vector. The result is orthogonal to all previous vectors. Then normalize to get $\mathbf{q}_j$.</p>
 
-            <h4>Worked Numerical Example</h4>
-            <div class="example">
-                <h5>Example: Gram-Schmidt with Two Vectors</h5>
-                <p><strong>Given:</strong></p>
-                <ul>
-                    <li>$\mathbf{a} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$</li>
-                    <li>$\mathbf{b} = \begin{bmatrix} 1 \\ 0 \\ 2 \end{bmatrix}$</li>
-                </ul>
+            <h4>The QR Factorization</h4>
+            <p>Any matrix $A$ with linearly independent columns can be factored as $A = QR$, where $Q$ has orthonormal columns and $R$ is upper triangular. The entries of $R$ are inner products: $r_{ij} = \mathbf{q}_i^T\mathbf{a}_j$. Because each $\mathbf{q}_i$ is orthogonal to all $\mathbf{q}_j$ with $j > i$, the lower triangle of $R$ is zero. QR factorization is the key to many numerical algorithms, including solving least squares problems.</p>
 
-                <p><strong>Step 1:</strong> Compute $\mathbf{B}$:</p>
-                <p>$\mathbf{a}^T\mathbf{b} = 1(1) + 1(0) + 1(2) = 3$</p>
-                <p>$\mathbf{a}^T\mathbf{a} = 1^2 + 1^2 + 1^2 = 3$</p>
-                <p>$$ \mathbf{B} = \begin{bmatrix} 1 \\ 0 \\ 2 \end{bmatrix} - \frac{3}{3}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 1-1 \\ 0-1 \\ 2-1 \end{bmatrix} = \begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix} $$</p>
-
-                <p><strong>Step 2:</strong> Verify orthogonality:</p>
-                <p>$\mathbf{a}^T\mathbf{B} = 1(0) + 1(-1) + 1(1) = 0$ ✓</p>
-
-                <p><strong>Step 3:</strong> Normalize to get orthonormal basis:</p>
-                <p>$\mathbf{q}_1 = \frac{1}{\sqrt{3}}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$, $\mathbf{q}_2 = \frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}$</p>
-
-                <p><strong>Step 4:</strong> Form the matrix $Q$:</p>
-                <p>$$ Q = \begin{bmatrix} \frac{1}{\sqrt{3}} & 0 \\ \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{2}} \end{bmatrix} $$</p>
-            </div>
-
-            <h4>The A = QR Factorization</h4>
-            <p>The connection between the original matrix $A$ and the orthonormal matrix $Q$ is expressed through an upper triangular matrix $R$:</p>
-            <p>$$ A = QR $$</p>
-            <p>Since $Q$ has orthonormal columns and $A$ has the same column space, $R$ must be upper triangular. The entries of $R$ are inner products of the original columns of $A$ with the orthonormal columns of $Q$. The zero entries in $R$ arise because each $\mathbf{q}_i$ is constructed to be perpendicular to all previous $\mathbf{q}_j$ ($j < i$).</p>
-
+            <!-- ========================================== -->
+            <!-- Computation Examples -->
+            <!-- ========================================== -->
             <h3>Computation Examples</h3>
+
             <div class="derivation">
-                <h4>Formal Definitions</h4>
-                <p><strong>Orthogonal vectors:</strong> Vectors $\mathbf{u}$ and $\mathbf{v}$ are orthogonal if $\mathbf{u}^T\mathbf{v} = 0$.</p>
-                <p><strong>Orthonormal vectors:</strong> Vectors are orthonormal if they are orthogonal and each has unit length ($\|\mathbf{v}\| = 1$).</p>
-                <p><strong>Gram-Schmidt process:</strong> A method for converting a set of linearly independent vectors into an orthonormal set spanning the same subspace.</p>
-                <p><strong>QR factorization:</strong> Any matrix $A$ with linearly independent columns can be factored as $A = QR$ where $Q$ has orthonormal columns and $R$ is upper triangular.</p>
+                <h4>Derivation: The Gram-Schmidt Formulas</h4>
+                <p>Given independent vectors $\mathbf{a}_1, \ldots, \mathbf{a}_n$:</p>
+                $$\mathbf{A}_1 = \mathbf{a}_1, \quad \mathbf{q}_1 = \frac{\mathbf{A}_1}{\|\mathbf{A}_1\|}$$
+                $$\mathbf{A}_2 = \mathbf{a}_2 - (\mathbf{q}_1^T\mathbf{a}_2)\mathbf{q}_1, \quad \mathbf{q}_2 = \frac{\mathbf{A}_2}{\|\mathbf{A}_2\|}$$
+                $$\mathbf{A}_3 = \mathbf{a}_3 - (\mathbf{q}_1^T\mathbf{a}_3)\mathbf{q}_1 - (\mathbf{q}_2^T\mathbf{a}_3)\mathbf{q}_2, \quad \mathbf{q}_3 = \frac{\mathbf{A}_3}{\|\mathbf{A}_3\|}$$
+                <p>In general:</p>
+                $$\mathbf{A}_j = \mathbf{a}_j - \sum_{i=1}^{j-1} (\mathbf{q}_i^T\mathbf{a}_j)\mathbf{q}_i, \quad \mathbf{q}_j = \frac{\mathbf{A}_j}{\|\mathbf{A}_j\|}$$
             </div>
 
+            <div class="derivation">
+                <h4>Derivation: QR Factorization from Gram-Schmidt</h4>
+                <p>Each original vector $\mathbf{a}_j$ can be written in terms of the orthonormal basis:</p>
+                $$\mathbf{a}_j = \sum_{i=1}^{j} (\mathbf{q}_i^T\mathbf{a}_j)\mathbf{q}_i = \sum_{i=1}^{j} r_{ij}\mathbf{q}_i$$
+                <p>where $r_{ij} = \mathbf{q}_i^T\mathbf{a}_j$. In matrix form:</p>
+                $$A = [\mathbf{a}_1 \; \cdots \; \mathbf{a}_n] = [\mathbf{q}_1 \; \cdots \; \mathbf{q}_n] \begin{bmatrix} r_{11} & r_{12} & \cdots & r_{1n} \\ 0 & r_{22} & \cdots & r_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & r_{nn} \end{bmatrix} = QR$$
+            </div>
+
+            <div class="derivation">
+                <h4>Derivation: Properties of Orthogonal Matrices</h4>
+                <p>If $Q$ is orthogonal ($Q^T Q = I$):</p>
+                $$Q^T Q = I \implies Q^{-1} = Q^T$$
+                $$|Q\mathbf{x}|^2 = \mathbf{x}^T Q^T Q \mathbf{x} = \mathbf{x}^T \mathbf{x} = |\mathbf{x}|^2 \implies |Q\mathbf{x}| = |\mathbf{x}|$$
+                $$\det(Q^T Q) = \det(I) = 1 \implies (\det Q)^2 = 1 \implies \det Q = \pm 1$$
+                <p>Orthogonal matrices preserve lengths and angles. They are the rotations and reflections of $n$-dimensional space.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- LEARNING STRATEGIES -->
+            <!-- ========================================== -->
             <h3>Learning Strategies</h3>
+
             <div class="strategies">
                 <h4>Mnemonic Devices</h4>
                 <div class="mnemonic">
@@ -169,80 +169,116 @@
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "QR: Q is Orthonormal, R is Upper Triangular"</strong>
-                    <p>In A = QR, Q has orthonormal columns (Q^T Q = I) and R is upper triangular. The entries of R are inner products: R_ij = q_i^T a_j. Because q_i is perpendicular to q_j for j < i, the lower triangle of R is zero.</p>
+                    <p>In $A = QR$, $Q$ has orthonormal columns ($Q^T Q = I$) and $R$ is upper triangular. The entries of $R$ are inner products: $r_{ij} = \mathbf{q}_i^T\mathbf{a}_j$. Because $\mathbf{q}_i$ is perpendicular to $\mathbf{q}_j$ for $j < i$, the lower triangle of $R$ is zero.</p>
                 </div>
             </div>
 
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Watch the core lecture first for the main concepts</li>
-                    <li>Review the concept breakdowns for alternative explanations</li>
-                    <li>Work through the numerical example step by step</li>
-                    <li>Verify orthogonality by computing dot products</li>
-                    <li>Practice the Gram-Schmidt process with 2 and 3 vectors</li>
-                    <li>Use the note-taking feature to capture key insights</li>
+                    <li>Practice the Gram-Schmidt process with 2 and 3 vectors until the pattern is automatic</li>
+                    <li>Always verify orthogonality by computing dot products after each step</li>
+                    <li>Check that $Q^T Q = I$ after constructing $Q$</li>
+                    <li>Remember: $R = Q^T A$ when $Q$ has orthonormal columns</li>
+                    <li>The key insight: Gram-Schmidt subtracts projections to make vectors orthogonal</li>
+                    <li>Orthogonal matrices satisfy $Q^T = Q^{-1}$ — use this to check your work</li>
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- VISUAL AIDS -->
+            <!-- ========================================== -->
             <h3>Visual Aids</h3>
 
             <div class="visual-aid">
                 <h4>Figure: Gram-Schmidt as Successive Projection Removal</h4>
                 <p>Starting with independent vectors $\mathbf{a}, \mathbf{b}, \mathbf{c}$, Gram-Schmidt subtracts projections step by step:</p>
-                <p>$$\mathbf{A} = \mathbf{a}$$</p>
-                <p>$$\mathbf{B} = \mathbf{b} - \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}\mathbf{a} \quad (\text{remove projection of } \mathbf{b} \text{ onto } \mathbf{A})$$</p>
-                <p>$$\mathbf{C} = \mathbf{c} - \frac{\mathbf{a}^T\mathbf{c}}{\mathbf{a}^T\mathbf{a}}\mathbf{a} - \frac{\mathbf{b}^T\mathbf{c}}{\mathbf{b}^T\mathbf{b}}\mathbf{b} \quad (\text{remove projections of } \mathbf{c} \text{ onto } \mathbf{A} \text{ and } \mathbf{B})$$</p>
+                $$\mathbf{A} = \mathbf{a}$$
+                $$\mathbf{B} = \mathbf{b} - \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}\mathbf{a} \quad (\text{remove projection of } \mathbf{b} \text{ onto } \mathbf{A})$$
+                $$\mathbf{C} = \mathbf{c} - \frac{\mathbf{a}^T\mathbf{c}}{\mathbf{a}^T\mathbf{a}}\mathbf{a} - \frac{\mathbf{b}^T\mathbf{c}}{\mathbf{b}^T\mathbf{b}}\mathbf{b} \quad (\text{remove projections of } \mathbf{c} \text{ onto } \mathbf{A} \text{ and } \mathbf{B})$$
                 <p>Each new vector is orthogonal to all previous ones.</p>
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: The QR Factorization Geometry</h4>
                 <p>The matrix $A$ has columns $\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n$. The matrix $Q$ has orthonormal columns $\mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_n$ spanning the same column space. The upper triangular matrix $R$ encodes the coefficients:</p>
-                <p>$$A = QR \implies \mathbf{a}_j = \sum_{i=1}^{j} r_{ij} \mathbf{q}_i$$</p>
+                $$A = QR \implies \mathbf{a}_j = \sum_{i=1}^{j} r_{ij}\mathbf{q}_i$$
                 <p>Because each $\mathbf{q}_j$ is orthogonal to all $\mathbf{q}_i$ with $i < j$, the coefficients $r_{ij}$ for $i > j$ are zero.</p>
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Orthogonal Matrix as Rotation/Reflection</h4>
                 <p>An orthogonal matrix $Q$ with $\det(Q) = +1$ is a rotation. An orthogonal matrix with $\det(Q) = -1$ is a reflection. Both preserve lengths and angles: $|Q\mathbf{x}| = |\mathbf{x}|$ for all $\mathbf{x}$.</p>
-                <p>$$Q^T Q = I \implies |Q\mathbf{x}|^2 = \mathbf{x}^T Q^T Q \mathbf{x} = \mathbf{x}^T \mathbf{x} = |\mathbf{x}|^2$$</p>
+                $$Q^T Q = I \implies |Q\mathbf{x}|^2 = \mathbf{x}^T Q^T Q \mathbf{x} = \mathbf{x}^T \mathbf{x} = |\mathbf{x}|^2$$
             </div>
 
+            <!-- ========================================== -->
+            <!-- WORKED EXAMPLES -->
+            <!-- ========================================== -->
             <h3>Worked Examples</h3>
-            <div class="example">
-                <h4>Example 1: Basic Application</h4>
-                <p><strong>Problem:</strong> Apply Gram-Schmidt to vectors $\mathbf{a} = [1, 1, 1]^T$ and $\mathbf{b} = [1, 0, 2]^T$.</p>
-                <p><strong>Solution:</strong> See the worked numerical example above. The resulting orthonormal basis is $\mathbf{q}_1 = \frac{1}{\sqrt{3}}[1,1,1]^T$ and $\mathbf{q}_2 = \frac{1}{\sqrt{2}}[0,-1,1]^T$.</p>
-            </div>
 
             <div class="example">
-                <h4>Example 2: Advanced Application</h4>
-                <p><strong>Problem:</strong> Show that $A = QR$ for the example above, and identify $R$.</p>
+                <h4>Example 1: Gram-Schmidt with Two Vectors</h4>
+                <p><strong>Problem:</strong> Apply Gram-Schmidt to $\mathbf{a} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$ and $\mathbf{b} = \begin{bmatrix} 1 \\ 0 \\ 2 \end{bmatrix}$.</p>
                 <p><strong>Solution:</strong></p>
                 <ol>
-                    <li>$R = Q^T A$ (since $Q$ has orthonormal columns)</li>
-                    <li>$R_{11} = \mathbf{q}_1^T \mathbf{a} = \sqrt{3}$, $R_{12} = \mathbf{q}_1^T \mathbf{b} = \sqrt{3}$</li>
-                    <li>$R_{22} = \mathbf{q}_2^T \mathbf{b} = \sqrt{2}$</li>
-                    <li>$$ R = \begin{bmatrix} \sqrt{3} & \sqrt{3} \\ 0 & \sqrt{2} \end{bmatrix} $$</li>
+                    <li>$\mathbf{a}^T\mathbf{b} = 1(1) + 1(0) + 1(2) = 3$</li>
+                    <li>$\mathbf{a}^T\mathbf{a} = 1^2 + 1^2 + 1^2 = 3$</li>
+                    <li>$\mathbf{B} = \begin{bmatrix} 1 \\ 0 \\ 2 \end{bmatrix} - \frac{3}{3}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}$</li>
+                    <li>Verify: $\mathbf{a}^T\mathbf{B} = 1(0) + 1(-1) + 1(1) = 0$ ✓</li>
+                    <li>Normalize: $\mathbf{q}_1 = \frac{1}{\sqrt{3}}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$, $\mathbf{q}_2 = \frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}$</li>
                 </ol>
             </div>
 
+            <div class="example">
+                <h4>Example 2: QR Factorization</h4>
+                <p><strong>Problem:</strong> Find $Q$ and $R$ such that $A = QR$ for $A = \begin{bmatrix} 1 & 1 \\ 1 & 0 \\ 1 & 2 \end{bmatrix}$.</p>
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li>From Example 1: $\mathbf{q}_1 = \frac{1}{\sqrt{3}}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$, $\mathbf{q}_2 = \frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}$</li>
+                    <li>$R = Q^T A$ (since $Q^T Q = I$)</li>
+                    <li>$r_{11} = \mathbf{q}_1^T\mathbf{a}_1 = \sqrt{3}$, $r_{12} = \mathbf{q}_1^T\mathbf{a}_2 = \sqrt{3}$</li>
+                    <li>$r_{22} = \mathbf{q}_2^T\mathbf{a}_2 = \sqrt{2}$</li>
+                    <li>$$R = \begin{bmatrix} \sqrt{3} & \sqrt{3} \\ 0 & \sqrt{2} \end{bmatrix}$$</li>
+                    <li>Verify: $QR = \begin{bmatrix} 1 & 1 \\ 1 & 0 \\ 1 & 2 \end{bmatrix} = A$ ✓</li>
+                </ol>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: Orthogonal Matrix Verification</h4>
+                <p><strong>Problem:</strong> Show that $Q = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}$ is orthogonal.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>$Q^T = \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix}$</li>
+                    <li>$Q^T Q = \begin{bmatrix} \cos^2\theta + \sin^2\theta & -\cos\theta\sin\theta + \sin\theta\cos\theta \\ -\sin\theta\cos\theta + \cos\theta\sin\theta & \sin^2\theta + \cos^2\theta \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} = I$</li>
+                    <li>Columns are orthonormal: $| \begin{bmatrix} \cos\theta \\ \sin\theta \end{bmatrix} | = 1$, $| \begin{bmatrix} -\sin\theta \\ \cos\theta \end{bmatrix} | = 1$, dot product $= 0$</li>
+                    <li>$\det(Q) = \cos^2\theta + \sin^2\theta = 1$ (rotation matrix)</li>
+                </ul>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- PRACTICE PROBLEMS -->
+            <!-- ========================================== -->
             <h3>Practice Problems</h3>
+
             <div class="questions">
                 <h4>Problem Set 17</h4>
-                <p><strong>Problem 1:</strong> Apply Gram-Schmidt to $\mathbf{a} = [1, 2]^T$ and $\mathbf{b} = [2, 1]^T$ to find orthonormal $\mathbf{q}_1, \mathbf{q}_2$.</p>
+
+                <p><strong>Problem 1:</strong> Apply Gram-Schmidt to $\mathbf{a} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$ and $\mathbf{b} = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$ to find orthonormal $\mathbf{q}_1, \mathbf{q}_2$.</p>
                 <p><em>Hint: Compute projections and normalize.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$\mathbf{q}_1 = \frac{1}{\sqrt{5}}[1,2]^T$, $\mathbf{q}_2 = \frac{1}{\sqrt{5}}[2,-1]^T$</p>
+                    <p>$\mathbf{a}^T\mathbf{a} = 5$, $\mathbf{a}^T\mathbf{b} = 4$</p>
+                    <p>$\mathbf{B} = \mathbf{b} - \frac{4}{5}\mathbf{a} = \begin{bmatrix} 2 \\ 1 \end{bmatrix} - \begin{bmatrix} 8/5 \\ 4/5 \end{bmatrix} = \begin{bmatrix} 2/5 \\ 1/5 \end{bmatrix}$</p>
+                    <p>$\|\mathbf{B}\| = \sqrt{4/25 + 1/25} = \sqrt{5}/5 = 1/\sqrt{5}$</p>
+                    <p>$\mathbf{q}_1 = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 \\ 2 \end{bmatrix}$, $\mathbf{q}_2 = \frac{1}{\sqrt{5}}\begin{bmatrix} 2 \\ -1 \end{bmatrix}$</p>
                 </details>
 
                 <p><strong>Problem 2:</strong> Given three independent vectors in $\mathbb{R}^3$, write the full Gram-Schmidt formula for the third orthogonal vector $\mathbf{C}$.</p>
                 <p><em>Hint: Subtract projections onto both $\mathbf{A}$ and $\mathbf{B}$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$\mathbf{C} = \mathbf{c} - \frac{\mathbf{a}^T\mathbf{c}}{\mathbf{a}^T\mathbf{a}}\mathbf{a} - \frac{\mathbf{b}^T\mathbf{c}}{\mathbf{b}^T\mathbf{b}}\mathbf{B}$</p>
+                    <p>$$\mathbf{C} = \mathbf{c} - \frac{\mathbf{a}^T\mathbf{c}}{\mathbf{a}^T\mathbf{a}}\mathbf{a} - \frac{\mathbf{b}^T\mathbf{c}}{\mathbf{b}^T\mathbf{b}}\mathbf{b}$$</p>
                 </details>
 
                 <p><strong>Problem 3:</strong> Prove that if $A$ has independent columns, then $R$ in the QR factorization $A = QR$ is invertible.</p>
@@ -251,8 +287,18 @@
                     <summary>Solution</summary>
                     <p>Since $A = QR$ and $A$ has independent columns, $A$ is invertible. Also $Q^T Q = I$, so $R = Q^T A$ is a product of invertible matrices, hence invertible.</p>
                 </details>
+
+                <p><strong>Problem 4:</strong> Let $Q$ be an orthogonal matrix. Show that $|Q\mathbf{x}| = |\mathbf{x}|$ for any $\mathbf{x} \in \mathbb{R}^n$.</p>
+                <p><em>Hint: Compute $|Q\mathbf{x}|^2 = (Q\mathbf{x})^T(Q\mathbf{x})$ and use $Q^T Q = I$.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>$|Q\mathbf{x}|^2 = (Q\mathbf{x})^T(Q\mathbf{x}) = \mathbf{x}^T Q^T Q \mathbf{x} = \mathbf{x}^T \mathbf{x} = |\mathbf{x}|^2$. Therefore $|Q\mathbf{x}| = |\mathbf{x}|$. Orthogonal matrices preserve lengths.</p>
+                </details>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CHAPTER NAVIGATION -->
+            <!-- ========================================== -->
             <nav class="chapter-nav">
                 <a href="chapter-16.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
@@ -264,6 +310,3 @@
     <script src="../js/app.js"></script>
 </body>
 </html>
-
-
-

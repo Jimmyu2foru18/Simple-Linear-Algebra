@@ -36,7 +36,8 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 25: Quiz 2 Review</h2>
-            <p class="lead">Comprehensive review of the second half of the course, emphasizing determinant recurrences, complex eigenvalues, Markov matrices, Fourier series, and the deeper structural questions that appear on Quiz 2. This chapter works through two central exam themes: how cofactor expansion leads to recurrence relations for determinants, and how a family of symmetric matrices reveals patterns in singularity, eigenvalues, and projection matrices.</p>
+            <p class="lead">Comprehensive review of the second half of the course, emphasizing determinant recurrences, complex eigenvalues, Markov matrices, Fourier series, and the deeper structural questions that appear on Quiz 2.</p>
+            <p class="lead">This chapter works through two central exam themes. First, how cofactor expansion leads to recurrence relations for determinants. Second, how a family of symmetric matrices reveals patterns in singularity, eigenvalues, and projection matrices.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -99,27 +100,55 @@
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>Cofactor Expansion and Determinant Recurrences</h4>
-            <p>Cofactor expansion along the first row of a tri-diagonal matrix of ones produces a recurrence relation for the determinant. For the $n \times n$ matrix $A_n$ with 1s on the main diagonal and the first super-diagonal and sub-diagonal, expanding along row 1 gives $D_n = D_{n-1} - D_{n-2}$. The base cases are $D_1 = 1$ and $D_2 = 0$. This recurrence is similar to the Fibonacci recurrence but with a minus sign, and it produces a periodic sequence with period 6: $1, 0, -1, -1, 0, 1, 1, 0, \ldots$</p>
+            <p>Cofactor expansion along the first row of a tri-diagonal matrix of ones produces a recurrence relation for the determinant.</p>
+            <p>For the n × n matrix A<sub>n</sub> with 1s on the main diagonal and the first super-diagonal and sub-diagonal, expanding along row 1 gives:</p>
+            <p>$$ D_n = D_{n-1} - D_{n-2} $$</p>
+            <p>The base cases are D<sub>1</sub> = 1 and D<sub>2</sub> = 0. This recurrence is similar to the Fibonacci recurrence but with a minus sign, and it produces a periodic sequence with period 6: 1, 0, -1, -1, 0, 1, 1, 0, ...</p>
 
             <h4>From Recurrence to Matrix Powers</h4>
-            <p>Any second-order recurrence can be written as a first-order matrix system. For $D_n = D_{n-1} - D_{n-2}$, define the state vector $u_n = \begin{bmatrix} D_n \\ D_{n-1} \end{bmatrix}$. Then $u_n = A u_{n-1}$ where $A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix}$. This converts the scalar recurrence into a matrix system that can be analyzed with eigenvalues and eigenvectors. The matrix $A$ encodes the recurrence in first-order form.</p>
+            <p>Any second-order recurrence can be written as a first-order matrix system. For D<sub>n</sub> = D<sub>n-1</sub> - D<sub>n-2</sub>, define the state vector:</p>
+            <p>$$ u_n = \begin{bmatrix} D_n \\ D_{n-1} \end{bmatrix} $$</p>
+            <p>Then u<sub>n</sub> = Au<sub>n-1</sub> where:</p>
+            <p>$$ A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix} $$</p>
+            <p>This converts the scalar recurrence into a matrix system that can be analyzed with eigenvalues and eigenvectors. The matrix A encodes the recurrence in first-order form.</p>
 
             <h4>Complex Eigenvalues and Periodicity</h4>
-            <p>The characteristic equation of $A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix}$ is $\lambda^2 - \lambda + 1 = 0$. The eigenvalues are $\lambda = \frac{1 \pm i\sqrt{3}}{2}$. These are complex numbers on the unit circle: their magnitude is $\sqrt{(1/2)^2 + (\sqrt{3}/2)^2} = 1$. In polar form, $\lambda = e^{\pm i\pi/3}$. Since $|\lambda| = 1$, the powers $\lambda^6 = (e^{\pm i\pi/3})^6 = e^{\pm 2\pi i} = 1$. Therefore $A^6 = I$, and the sequence repeats with period 6. The determinants cycle: $D_1=1, D_2=0, D_3=-1, D_4=-1, D_5=0, D_6=1, D_7=1, \ldots$</p>
+            <p>The characteristic equation of:</p>
+            <p>$$ A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix} $$</p>
+            <p>is:</p>
+            <p>$$ \lambda^2 - \lambda + 1 = 0 $$</p>
+            <p>The eigenvalues are:</p>
+            <p>$$ \lambda = \frac{1 \pm i\sqrt{3}}{2} $$</p>
+            <p>These are complex numbers on the unit circle: their magnitude is:</p>
+            <p>$$ \sqrt{(1/2)^2 + (\sqrt{3}/2)^2} = 1 $$</p>
+            <p>In polar form:</p>
+            <p>$$ \lambda = e^{\pm i\pi/3} $$</p>
+            <p>Since |λ| = 1, the powers λ<sup>6</sup> = (e<sup>±iπ/3</sup>)<sup>6</sup> = e<sup>±2πi</sup> = 1. Therefore A<sup>6</sup> = I, and the sequence repeats with period 6.</p>
+            <p>The determinants cycle: D<sub>1</sub>=1, D<sub>2</sub>=0, D<sub>3</sub>=-1, D<sub>4</sub>=-1, D<sub>5</sub>=0, D<sub>6</sub>=1, D<sub>7</sub>=1, ...</p>
 
             <h4>A Family of Symmetric Matrices</h4>
-            <p>The lecture introduces a family of symmetric matrices $A_n$ with zeros on the diagonal and increasing integers on the off-diagonals. For $n=3$: $A_3 = \begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 2 \\ 0 & 2 & 0 \end{bmatrix}$. This matrix is singular because column 3 is twice column 1. Its eigenvalues are $0, \sqrt{5}, -\sqrt{5}$. For $n=4$: $A_4$ follows the same pattern but with entries 1, 2, 3 on the off-diagonals. Unlike $A_3$, $A_4$ is invertible with determinant 9. Since $A_4$ is invertible, its column space is all of $\mathbb{R}^4$, and the projection matrix onto the column space is the identity matrix $I_4$. A pattern emerges: odd-indexed matrices are singular, even-indexed matrices are invertible.</p>
+            <p>The lecture introduces a family of symmetric matrices A<sub>n</sub> with zeros on the diagonal and increasing integers on the off-diagonals.</p>
+            <p>For n=3:</p>
+            <p>$$ A_3 = \begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 2 \\ 0 & 2 & 0 \end{bmatrix} $$</p>
+            <p>This matrix is singular because column 3 is twice column 1. Its eigenvalues are 0, √5, -√5.</p>
+            <p>For n=4: A<sub>4</sub> follows the same pattern but with entries 1, 2, 3 on the off-diagonals. Unlike A<sub>3</sub>, A<sub>4</sub> is invertible with determinant 9. Since A<sub>4</sub> is invertible, its column space is all of R<sup>4</sup>, and the projection matrix onto the column space is the identity matrix I<sub>4</sub>.</p>
+            <p>A pattern emerges: odd-indexed matrices are singular, even-indexed matrices are invertible.</p>
 
             <h4>Projection Matrix onto the Column Space</h4>
-            <p>For any matrix $A$, the projection matrix onto the column space $C(A)$ is $P = A(A^T A)^{-1} A^T$, provided $A^T A$ is invertible. This requires that $A$ has independent columns. If $A$ is square and invertible, then $C(A) = \mathbb{R}^n$ and $P = I$. For $A_4$, which is invertible, the projection matrix onto its column space is simply the $4 \times 4$ identity matrix. For $A_3$, which is singular, the column space is a 2-dimensional subspace of $\mathbb{R}^3$, and the projection matrix is a $3 \times 3$ matrix of rank 2.</p>
+            <p>For any matrix A, the projection matrix onto the column space C(A) is:</p>
+            <p>$$ P = A(A^T A)^{-1} A^T $$</p>
+            <p>provided A<sup>T</sup>A is invertible. This requires that A has independent columns.</p>
+            <p>If A is square and invertible, then C(A) = R<sup>n</sup> and P = I.</p>
+            <p>For A<sub>4</sub>, which is invertible, the projection matrix onto its column space is simply the 4×4 identity matrix.</p>
+            <p>For A<sub>3</sub>, which is singular, the column space is a 2-dimensional subspace of R<sup>3</sup>, and the projection matrix is a 3×3 matrix of rank 2.</p>
 
             <h3>Computation Examples</h3>
 
             <div class="derivation">
                 <h4>Derivation: Cofactor Expansion and the Determinant Recurrence</h4>
-                <p>For the $n \times n$ tri-diagonal matrix of ones $A_n$ with 1s on the main diagonal and the first super/sub-diagonals, expand $\det(A_n)$ along the first row. The first entry is 1 with cofactor $D_{n-1}$ (the determinant of the $(n-1) \times (n-1)$ submatrix). The second entry is 1 with cofactor $-\det(B)$ where $B$ is the matrix obtained by deleting row 1 and column 2. But $B$ has a first column that is all zeros except for a single 1, so expanding $B$ along its first column gives $D_{n-2}$ with a positive sign. The overall sign from row 1, column 2 is $(-1)^{1+2} = -1$. Thus:</p>
-                $$D_n = 1 \cdot D_{n-1} - 1 \cdot D_{n-2} = D_{n-1} - D_{n-2}$$
-                <p>With $D_1 = 1$ and $D_2 = 0$, the sequence is $1, 0, -1, -1, 0, 1, 1, 0, \ldots$</p>
+                <p>For the n × n tri-diagonal matrix of ones A<sub>n</sub> with 1s on the main diagonal and the first super/sub-diagonals, expand det(A<sub>n</sub>) along the first row. The first entry is 1 with cofactor D<sub>n-1</sub> (the determinant of the (n-1) × (n-1) submatrix). The second entry is 1 with cofactor -det(B) where B is the matrix obtained by deleting row 1 and column 2. But B has a first column that is all zeros except for a single 1, so expanding B along its first column gives D<sub>n-2</sub> with a positive sign. The overall sign from row 1, column 2 is (-1)<sup>1+2</sup> = -1. Thus:</p>
+                <p>$$ D_n = 1 \cdot D_{n-1} - 1 \cdot D_{n-2} = D_{n-1} - D_{n-2} $$</p>
+                <p>With D<sub>1</sub> = 1 and D<sub>2</sub> = 0, the sequence is 1, 0, -1, -1, 0, 1, 1, 0, ...</p>
             </div>
 
             <div class="derivation">

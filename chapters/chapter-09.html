@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 9: Independence, Basis, and Dimension - Linear Algebra</title>
     <link rel="stylesheet" href="../css/styles.css">
+
     <!-- MathJax Configuration -->
     <script>
     window.MathJax = {
@@ -38,6 +39,9 @@
             <h2>Chapter 9: Independence, Basis, and Dimension</h2>
             <p class="lead">Linear independence, basis vectors, and dimension theory. This chapter defines the fundamental concepts that measure the "size" and structure of vector spaces and subspaces.</p>
 
+            <!-- ========================================== -->
+            <!-- CORE LECTURE: Gilbert Strang -->
+            <!-- ========================================== -->
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
@@ -50,6 +54,9 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CONCEPT BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Concept Breakdowns</h3>
             <div class="video-grid">
                 <div class="video-card">
@@ -85,7 +92,7 @@
                         <iframe src="https://www.youtube.com/embed/L-vWPl7mAjI"
                                     title="Dr. Valerie Hower — Bases and Linear Independence"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                         </iframe>
                     </div>
@@ -96,41 +103,49 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- DETAILED TOPIC BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>Linear Independence</h4>
-            <p>A set of vectors <code>{v1, v2, ..., vk}</code> is linearly independent if the only solution to <code>c1*v1 + c2*v2 + ... + ck*vk = 0</code> is <code>c1 = c2 = ... = ck = 0</code>. If any nonzero coefficients produce zero, the vectors are dependent.</p>
+            <p>A set of vectors $\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\}$ is linearly independent if the only solution to $c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \cdots + c_k\mathbf{v}_k = \mathbf{0}$ is $c_1 = c_2 = \cdots = c_k = 0$. If any nonzero coefficients produce zero, the vectors are dependent.</p>
 
             <h4>Span and Basis</h4>
-            <p>The span of a set of vectors is all possible linear combinations. A basis for a vector space V is a set of vectors that are both linearly independent and span V. Every vector in V can be written uniquely as a linear combination of basis vectors.</p>
+            <p>The span of a set of vectors is all possible linear combinations. A basis for a vector space $V$ is a set of vectors that are both linearly independent and span $V$. Every vector in $V$ can be written uniquely as a linear combination of basis vectors.</p>
 
             <h4>Dimension</h4>
-            <p>The dimension of a vector space is the number of vectors in any basis for that space. All bases for a given space have the same number of vectors. <code>dim($\mathbb{R}^n$) = n</code>. The dimension of a subspace is less than or equal to the dimension of the parent space.</p>
+            <p>The dimension of a vector space is the number of vectors in any basis for that space. All bases for a given space have the same number of vectors. $\dim(\mathbb{R}^n) = n$. The dimension of a subspace is less than or equal to the dimension of the parent space.</p>
 
             <h4>Rank and Matrix Spaces</h4>
-            <p>The rank of a matrix is the dimension of its column space (or row space). The rank equals the number of pivot columns. It measures how ch "information" the matrix preserves.</p>
+            <p>The rank of a matrix is the dimension of its column space (or row space). The rank equals the number of pivot columns. It measures how much "information" the matrix preserves.</p>
 
+            <!-- ========================================== -->
+            <!-- Computation Examples -->
+            <!-- ========================================== -->
             <h3>Computation Examples</h3>
 
             <div class="derivation">
                 <h4>Derivation: Independence Test via Matrix</h4>
-                <p>To test if vectors <code>v1, v2, ..., vk</code> in <code>$\mathbb{R}^n$</code> are independent:</p>
-                $$A = [\mathbf{v}_1 \ \mathbf{v}_2 \ \cdots \ \mathbf{v}_k]$$
+                <p>To test if vectors $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k$ in $\mathbb{R}^n$ are independent:</p>
+                $$A = \begin{bmatrix} \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_k \end{bmatrix}$$
                 $$A\mathbf{x} = \mathbf{0}$$
-
-                <p>If only trivial solution <code>$\mathbf{x} = \mathbf{0}$</code> exists: independent. If nontrivial solution exists: dependent.</p>
-                <p>The vectors are independent exactly when $\text{rank}(A)$ = k.</p>
+                <p>If only trivial solution $\mathbf{x} = \mathbf{0}$ exists: independent. If nontrivial solution exists: dependent.</p>
+                <p>The vectors are independent exactly when $\text{rank}(A) = k$.</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Uniqueness of Basis Representation</h4>
-                <p>If <code>{v1, ..., vn}</code> is a basis for V and <code>v = c1*v1 + ... + cn*vn = d1*v1 + ... + dn*vn</code>, then:</p>
+                <p>If $\{\mathbf{v}_1, \ldots, \mathbf{v}_n\}$ is a basis for $V$ and $\mathbf{v} = c_1\mathbf{v}_1 + \cdots + c_n\mathbf{v}_n = d_1\mathbf{v}_1 + \cdots + d_n\mathbf{v}_n$, then:</p>
                 $$(c_1 - d_1)\mathbf{v}_1 + \cdots + (c_n - d_n)\mathbf{v}_n = \mathbf{0}$$
                 $$\text{By independence: } c_1 - d_1 = 0, \ldots, c_n - d_n = 0$$
                 $$\text{Therefore: } c_i = d_i \text{ for all } i$$
                 <p>Basis representations are unique.</p>
             </div>
 
+            <!-- ========================================== -->
+            <!-- LEARNING STRATEGIES -->
+            <!-- ========================================== -->
             <h3>Learning Strategies</h3>
 
             <div class="strategies">
@@ -148,90 +163,97 @@
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>Always test independence by solving <code>Ax = 0</code> where A has the vectors as columns</li>
-                    <li>More vectors than dimensions (k > n in <code>$\mathbb{R}^n$</code>) always means dependence</li>
-                    <li>The standard basis for <code>$\mathbb{R}^n$</code> is <code>e1, e2, ..., en</code></li>
+                    <li>Always test independence by solving $A\mathbf{x} = \mathbf{0}$ where $A$ has the vectors as columns</li>
+                    <li>More vectors than dimensions ($k > n$ in $\mathbb{R}^n$) always means dependence</li>
+                    <li>The standard basis for $\mathbb{R}^n$ is $\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n$</li>
                     <li>To extend a linearly independent set to a basis, add vectors from the standard basis that aren't already in the span</li>
-                    <li>Dimension is invariant - all bases have the same size</li>
+                    <li>Dimension is invariant — all bases have the same size</li>
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- VISUAL AIDS -->
+            <!-- ========================================== -->
             <h3>Visual Aids</h3>
 
             <div class="visual-aid">
-                <h4>Figure: Independent vs. Dependent Vectors in R^2</h4>
-                <p>Two vectors in <code>R^2</code>:</p>
-                $$Independent:       Dependent:
-$$v1 = [1]          v1 = [1]$$
-    [0]                [0]
-$$v2 = [0]          v2 = [2]$$
-    [1]                [0]
+                <h4>Figure: Independent vs. Dependent Vectors in $\mathbb{R}^2$</h4>
+                <p>Two vectors in $\mathbb{R}^2$:</p>
+                $$\text{Independent:} \quad \mathbf{v}_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad \mathbf{v}_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$$
 
-$$v1 and v2 span R^2.   v2 = 2*v1, lies on same line.$$
+                $$\text{Dependent:} \quad \mathbf{v}_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad \mathbf{v}_2 = \begin{bmatrix} 2 \\ 0 \end{bmatrix}$$
+
+                $$\mathbf{v}_1 \text{ and } \mathbf{v}_2 \text{ span } \mathbb{R}^2. \quad \mathbf{v}_2 = 2\mathbf{v}_1, \text{ lies on same line.}$$
             </div>
 
             <div class="visual-aid">
-                <h4>Figure: Basis for a Plane in R^3</h4>
-                <p>A plane through the origin in <code>R^3</code> has dimension 2. Any two independent vectors in the plane form a basis:</p>
-                $$Plane: x + y + z = 0
-$$Basis vectors: v1 = [1, -1, 0]^T, v2 = [1, 0, -1]^T
-Any vector in plane: c1*v1 + c2*v2$$
+                <h4>Figure: Basis for a Plane in $\mathbb{R}^3$</h4>
+                <p>A plane through the origin in $\mathbb{R}^3$ has dimension 2. Any two independent vectors in the plane form a basis:</p>
+                $$\text{Plane: } x + y + z = 0$$
+                $$\text{Basis vectors: } \mathbf{v}_1 = \begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix}, \quad \mathbf{v}_2 = \begin{bmatrix} 1 \\ 0 \\ -1 \end{bmatrix}$$
+                $$\text{Any vector in plane: } c_1\mathbf{v}_1 + c_2\mathbf{v}_2$$
             </div>
 
+            <!-- ========================================== -->
+            <!-- WORKED EXAMPLES -->
+            <!-- ========================================== -->
             <h3>Worked Examples</h3>
 
             <div class="example">
                 <h4>Example 1: Testing Independence</h4>
-                <p><strong>Problem:</strong> Determine if <code>v1 = [1, 2, 3]^T</code>, <code>v2 = [2, 5, 7]^T</code>, <code>v3 = [3, 7, 10]^T</code> are independent.</p>
+                <p><strong>Problem:</strong> Determine if $\mathbf{v}_1 = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$, $\mathbf{v}_2 = \begin{bmatrix} 2 \\ 5 \\ 7 \end{bmatrix}$, $\mathbf{v}_3 = \begin{bmatrix} 3 \\ 7 \\ 10 \end{bmatrix}$ are independent.</p>
                 <p><strong>Solution:</strong></p>
                 <ol>
-                    <li>Form <code>A = [[1, 2, 3], [2, 5, 7], [3, 7, 10]]</code></li>
-                    <li>RREF: <code>[[1, 0, 1], [0, 1, 1], [0, 0, 0]]</code></li>
-                    <li>Rank = 2 &lt; 3 (number of vectors)</li>
-                    <li>Nontrivial solution exists: <code>v3 = v1 + v2</code></li>
+                    <li>Form $A = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 5 & 7 \\ 3 & 7 & 10 \end{bmatrix}$</li>
+                    <li>RREF: $\begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \end{bmatrix}$</li>
+                    <li>Rank = 2 $< 3$ (number of vectors)</li>
+                    <li>Nontrivial solution exists: $\mathbf{v}_3 = \mathbf{v}_1 + \mathbf{v}_2$</li>
                     <li><strong>Vectors are dependent.</strong></li>
                 </ol>
             </div>
 
             <div class="example">
                 <h4>Example 2: Finding a Basis</h4>
-                <p><strong>Problem:</strong> Find a basis for the subspace <code>S = span{[1, 2, 1]^T, [2, 4, 2]^T, [1, 0, 1]^T}</code>.</p>
+                <p><strong>Problem:</strong> Find a basis for the subspace $S = \text{span}\{\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}, \begin{bmatrix} 2 \\ 4 \\ 2 \end{bmatrix}, \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}\}$.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>Note: <code>v2 = 2*v1</code>, so <code>v2</code> is dependent on <code>v1</code></li>
-                    <li>Check if <code>v3</code> is independent of <code>v1</code>: not a multiple</li>
-                    <li>RREF of <code>[v1 v2 v3]</code> gives pivots in columns 1 and 3</li>
-                    <li>Basis: <code>{[1, 2, 1]^T, [1, 0, 1]^T}</code></li>
-                    <li>dim(S) = 2</li>
+                    <li>Note: $\mathbf{v}_2 = 2\mathbf{v}_1$, so $\mathbf{v}_2$ is dependent on $\mathbf{v}_1$</li>
+                    <li>Check if $\mathbf{v}_3$ is independent of $\mathbf{v}_1$: not a multiple</li>
+                    <li>RREF of $[\mathbf{v}_1 \; \mathbf{v}_2 \; \mathbf{v}_3]$ gives pivots in columns 1 and 3</li>
+                    <li>Basis: $\{\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}\}$</li>
+                    <li>$\dim(S) = 2$</li>
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- PRACTICE PROBLEMS -->
+            <!-- ========================================== -->
             <h3>Practice Problems</h3>
 
             <div class="questions">
                 <h4>Problem Set 9</h4>
-                <p><strong>Problem 1:</strong> Are the vectors <code>[1, 1, 0]^T, [0, 1, 1]^T, [1, 0, 1]^T</code> in <code>R^3</code> independent?</p>
-                <p><em>Hint: Three vectors in <code>R^3</code> can be independent if they form a basis.</em></p>
+                <p><strong>Problem 1:</strong> Are the vectors $\begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}$ in $\mathbb{R}^3$ independent?</p>
+                <p><em>Hint: Three vectors in $\mathbb{R}^3$ can be independent if they form a basis.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>RREF of <code>[[1,0,1],[1,1,0],[0,1,1]]</code> = I. Rank = 3. <strong>Independent.</strong></p>
+                    <p>RREF of $\begin{bmatrix} 1 & 0 & 1 \\ 1 & 1 & 0 \\ 0 & 1 & 1 \end{bmatrix} = I$. Rank = 3. <strong>Independent.</strong></p>
                 </details>
 
-                <p><strong>Problem 2:</strong> What is the dimension of the subspace of <code>R^4</code> spanned by <code>[1, 0, 0, 1]^T, [0, 1, 0, 1]^T, [1, 1, 0, 0]^T, [0, 0, 1, 1]^T</code>?</p>
+                <p><strong>Problem 2:</strong> What is the dimension of the subspace of $\mathbb{R}^4$ spanned by $\begin{bmatrix} 1 \\ 0 \\ 0 \\ 1 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 0 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ 1 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 0 \\ 1 \\ 1 \end{bmatrix}$?</p>
                 <p><em>Hint: Compute the rank of the matrix with these vectors as columns.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>The four vectors are independent (RREF = I). Dimension = 4. They span all of <code>R^4</code>.</p>
+                    <p>The four vectors are independent (RREF = I). Dimension = 4. They span all of $\mathbb{R}^4$.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Extend <code>{[1, 1]^T}</code> to a basis for <code>R^2</code>.</p>
+                <p><strong>Problem 3:</strong> Extend $\{\begin{bmatrix} 1 \\ 1 \end{bmatrix}\}$ to a basis for $\mathbb{R}^2$.</p>
                 <p><em>Hint: Add any vector not in the span of the first vector.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Add <code>[0, 1]^T</code> or <code>[1, 0]^T</code> or any vector not equal to <code>c*[1, 1]^T</code>. Basis: <code>{[1, 1]^T, [0, 1]^T}</code>.</p>
+                    <p>Add $\begin{bmatrix} 0 \\ 1 \end{bmatrix}$ or $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ or any vector not equal to $c\begin{bmatrix} 1 \\ 1 \end{bmatrix}$. Basis: $\{\begin{bmatrix} 1 \\ 1 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \end{bmatrix}\}$.</p>
                 </details>
 
-                <p><strong>Problem 4:</strong> If a subspace S of <code>R^5</code> has dimension 3, what is the maximum number of linearly independent vectors it can contain?</p>
+                <p><strong>Problem 4:</strong> If a subspace $S$ of $\mathbb{R}^5$ has dimension 3, what is the maximum number of linearly independent vectors it can contain?</p>
                 <p><em>Hint: Think about the definition of dimension.</em></p>
                 <details>
                     <summary>Solution</summary>
@@ -239,6 +261,9 @@ Any vector in plane: c1*v1 + c2*v2$$
                 </details>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CHAPTER NAVIGATION -->
+            <!-- ========================================== -->
             <nav class="chapter-nav">
                 <a href="chapter-08.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
@@ -250,6 +275,3 @@ Any vector in plane: c1*v1 + c2*v2$$
     <script src="../js/app.js"></script>
 </body>
 </html>
-
-
-

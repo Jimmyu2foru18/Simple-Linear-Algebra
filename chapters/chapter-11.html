@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 11: Matrix Spaces; Rank 1; Small World Graphs - Linear Algebra</title>
     <link rel="stylesheet" href="../css/styles.css">
+
     <!-- MathJax Configuration -->
     <script>
     window.MathJax = {
@@ -38,6 +39,9 @@
             <h2>Chapter 11: Matrix Spaces; Rank 1; Small World Graphs</h2>
             <p class="lead">Matrix vector spaces, rank-1 matrices, and network theory. This chapter extends vector space concepts to matrices themselves and introduces network analysis through graph theory and adjacency matrices.</p>
 
+            <!-- ========================================== -->
+            <!-- CORE LECTURE: Gilbert Strang -->
+            <!-- ========================================== -->
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
                 <div class="video-container">
@@ -50,6 +54,9 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CONCEPT BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Concept Breakdowns</h3>
             <div class="video-grid">
                 <div class="video-card">
@@ -85,7 +92,7 @@
                         <iframe src="https://www.youtube.com/embed/9kDpbZCK62Y"
                                     title="Prof Dave Explains — Linear Independence"
                                     frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                         </iframe>
                     </div>
@@ -96,39 +103,48 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- DETAILED TOPIC BREAKDOWNS -->
+            <!-- ========================================== -->
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>Matrix Spaces</h4>
-            <p>The set of all <code>m x n</code> matrices forms a vector space <code>M</code> with dimension <code>mn</code>. Addition and scalar multiplication are defined entrywise. Subspaces include symmetric matrices, triangular matrices, and diagonal matrices, each with their own dimensions.</p>
+            <p>The set of all $m \times n$ matrices forms a vector space $M$ with dimension $mn$. Addition and scalar multiplication are defined entrywise. Subspaces include symmetric matrices, triangular matrices, and diagonal matrices, each with their own dimensions.</p>
 
             <h4>Rank-1 Matrices</h4>
-            <p>A rank-1 matrix can be written as the outer product <code>uv^T</code> of two vectors. Every matrix of rank r can be expressed as a sum of r rank-1 matrices. Rank-1 matrices are the "building blocks" of all matrices.</p>
+            <p>A rank-1 matrix can be written as the outer product $\mathbf{u}\mathbf{v}^T$ of two vectors. Every matrix of rank $r$ can be expressed as a sum of $r$ rank-1 matrices. Rank-1 matrices are the "building blocks" of all matrices.</p>
 
             <h4>Small World Graphs</h4>
             <p>The "small world phenomenon" describes how most networks have surprisingly short paths between nodes. Graph theory models these networks, and linear algebra provides tools to analyze their structure through adjacency matrices and their powers.</p>
 
             <h4>Adjacency Matrices</h4>
-            <p>An adjacency matrix A represents a graph where <code>A_ij = 1</code> if there is an edge from node i to node j, and 0 otherwise. The matrix powers <code>A^k</code> count the number of walks of length k between nodes.</p>
+            <p>An adjacency matrix $A$ represents a graph where $A_{ij} = 1$ if there is an edge from node $i$ to node $j$, and 0 otherwise. The matrix powers $A^k$ count the number of walks of length $k$ between nodes.</p>
 
+            <!-- ========================================== -->
+            <!-- Computation Examples -->
+            <!-- ========================================== -->
             <h3>Computation Examples</h3>
 
             <div class="derivation">
                 <h4>Derivation: Rank-1 Factorization</h4>
-                <p>Any rank-1 matrix <code>A</code> has columns that are multiples of each other:</p>
-                $$A = [\mathbf{u} \ c_2\mathbf{u} \ \cdots \ c_n\mathbf{u}] \quad \text{where } \mathbf{u} \text{ is a column vector}$$
-                <p>This can be written as: $$A = \mathbf{u} \begin{bmatrix} c_1 & c_2 & \cdots & c_n \end{bmatrix} = \mathbf{u}\mathbf{v}^T \quad \text{(outer product)}$$</p>
-                <p>The dimension of the space of rank-1 matrices in <code>M_{m \times n}</code> is <code>m + n - 1</code> (m for u, n for v, minus 1 for scaling ambiguity).</p>
+                <p>Any rank-1 matrix $A$ has columns that are multiples of each other:</p>
+                $$A = \begin{bmatrix} \mathbf{u} & c_2\mathbf{u} & \cdots & c_n\mathbf{u} \end{bmatrix} \quad \text{where } \mathbf{u} \text{ is a column vector}$$
+                <p>This can be written as:</p>
+                $$A = \mathbf{u} \begin{bmatrix} c_1 & c_2 & \cdots & c_n \end{bmatrix} = \mathbf{u}\mathbf{v}^T \quad \text{(outer product)}$$
+                <p>The dimension of the space of rank-1 matrices in $M_{m \times n}$ is $m + n - 1$ ($m$ for $\mathbf{u}$, $n$ for $\mathbf{v}$, minus 1 for scaling ambiguity).</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Counting Walks via Matrix Powers</h4>
-                <p>The <code>(i, j)</code> entry of <code>A^k</code> counts walks of length k from node i to node j:</p>
-                <p>The <code>(i, j)</code> entry of <code>A^k</code> counts walks of length k from node i to node j:</p>
+                <p>The $(i, j)$ entry of $A^k$ counts walks of length $k$ from node $i$ to node $j$:</p>
                 $$(A^2)_{ij} = \sum_{\ell} A_{i\ell} A_{\ell j} = \text{number of 2-step paths } i \to \ell \to j$$
                 $$(A^k)_{ij} = \sum_{\substack{\text{paths} \\ i = v_0 \to v_1 \to \cdots \to v_k = j}} 1$$
                 <p>This connects linear algebra to network analysis.</p>
             </div>
 
+            <!-- ========================================== -->
+            <!-- LEARNING STRATEGIES -->
+            <!-- ========================================== -->
             <h3>Learning Strategies</h3>
 
             <div class="strategies">
@@ -138,8 +154,8 @@
                     <p>Every rank-1 matrix is an outer product: one column vector times one row vector. Think of it as stretching a single direction across the entire space.</p>
                 </div>
                 <div class="mnemonic">
-                    <strong>Mnemonic: "Matrix Space Dimensions multiply"</strong>
-                    <p>The space of <code>m x n</code> matrices has dimension <code>m — n</code>. Symmetric matrices: <code>n(n+1)/2</code>. Diagonal matrices: n. Upper triangular: <code>n(n+1)/2</code>.</p>
+                    <strong>Mnemonic: "Matrix Space Dimensions Multiply"</strong>
+                    <p>The space of $m \times n$ matrices has dimension $mn$. Symmetric matrices: $n(n+1)/2$. Diagonal matrices: $n$. Upper triangular: $n(n+1)/2$.</p>
                 </div>
             </div>
 
@@ -149,97 +165,98 @@
                     <li>Practice constructing rank-1 matrices from given vectors</li>
                     <li>Understand that any matrix can be decomposed into a sum of rank-1 matrices (SVD)</li>
                     <li>When analyzing graphs, start by drawing them before building the adjacency matrix</li>
-                    <li>Remember: <code>A^k</code> counts walks, not just shortest paths</li>
+                    <li>Remember: $A^k$ counts walks, not just shortest paths</li>
                     <li>The small world property often emerges in sparse graphs with few long-range connections</li>
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- VISUAL AIDS -->
+            <!-- ========================================== -->
             <h3>Visual Aids</h3>
 
             <div class="visual-aid">
                 <h4>Figure: Rank-1 Matrix Structure</h4>
-                <p>A rank-1 matrix has a simple pattern - every column is a multiple of the first column:</p>
-                $$A = [1  2  3]   =  [1]   [1  2  3]
-    [2  4  6]      [2]
-    [3  6  9]      [3]
-
-= u * v^T  where  u = [1, 2, 3]^T,  v = [1, 2, 3]^T$$
+                <p>A rank-1 matrix has a simple pattern — every column is a multiple of the first column:</p>
+                $$A = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 3 & 6 & 9 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} \begin{bmatrix} 1 & 2 & 3 \end{bmatrix} = \mathbf{u}\mathbf{v}^T \quad \text{where } \mathbf{u} = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}, \mathbf{v} = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$$
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Small World Network</h4>
                 <p>A graph with 6 nodes where each node connects to neighbors and one random long-range link:</p>
-                $$Adjacency matrix:
-[0 1 1 0 0 1]
-[1 0 1 1 0 0]
-[1 1 0 1 1 0]
-[0 1 1 0 1 1]
-[0 0 1 1 0 1]
-[1 0 0 1 1 0]
-
-Short paths exist due to the "small world" connections.$$
+                $$\text{Adjacency matrix: } \begin{bmatrix} 0 & 1 & 1 & 0 & 0 & 1 \\ 1 & 0 & 1 & 1 & 0 & 0 \\ 1 & 1 & 0 & 1 & 1 & 0 \\ 0 & 1 & 1 & 0 & 1 & 1 \\ 0 & 0 & 1 & 1 & 0 & 1 \\ 1 & 0 & 0 & 1 & 1 & 0 \end{bmatrix}$$
+                <p>Short paths exist due to the "small world" connections.</p>
             </div>
 
+            <!-- ========================================== -->
+            <!-- WORKED EXAMPLES -->
+            <!-- ========================================== -->
             <h3>Worked Examples</h3>
 
             <div class="example">
                 <h4>Example 1: Rank-1 Matrix Decomposition</h4>
-                <p><strong>Problem:</strong> Express <code>A = [[2, 4, 6], [1, 2, 3]]</code> as a rank-1 matrix <code>uv^T</code>.</p>
+                <p><strong>Problem:</strong> Express $A = \begin{bmatrix} 2 & 4 & 6 \\ 1 & 2 & 3 \end{bmatrix}$ as a rank-1 matrix $\mathbf{u}\mathbf{v}^T$.</p>
                 <p><strong>Solution:</strong></p>
                 <ol>
-                    <li>Note column 2 = 2 * column 1, column 3 = 3 * column 1</li>
+                    <li>Note column 2 = $2 \times$ column 1, column 3 = $3 \times$ column 1</li>
                     <li>Rank = 1</li>
-                    <li>Take <code>u = [2, 1]^T</code> (first column)</li>
-                    <li>Take <code>v = [1, 2, 3]</code> (row multipliers)</li>
-                    <li><code>A = [2, 1]^T * [1, 2, 3] = [[2, 4, 6], [1, 2, 3]]</code> ✓</li>
+                    <li>Take $\mathbf{u} = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$ (first column)</li>
+                    <li>Take $\mathbf{v} = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$ (row multipliers)</li>
+                    <li>$A = \begin{bmatrix} 2 \\ 1 \end{bmatrix} \begin{bmatrix} 1 & 2 & 3 \end{bmatrix} = \begin{bmatrix} 2 & 4 & 6 \\ 1 & 2 & 3 \end{bmatrix}$ ✓</li>
                 </ol>
             </div>
 
             <div class="example">
                 <h4>Example 2: Matrix Space Dimension</h4>
-                <p><strong>Problem:</strong> What is the dimension of the subspace of 3x3 skew-symmetric matrices?</p>
+                <p><strong>Problem:</strong> What is the dimension of the subspace of $3 \times 3$ skew-symmetric matrices?</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>Skew-symmetric: <code>A^T = -A</code>, so <code>a_ii = 0</code> and <code>a_ji = -a_ij</code></li>
-                    <li>Free parameters: <code>a_12, a_13, a_23</code> (3 parameters)</li>
-                    <li>Dimension = 3 = <code>n(n-1)/2</code> for n=3</li>
+                    <li>Skew-symmetric: $A^T = -A$, so $a_{ii} = 0$ and $a_{ji} = -a_{ij}$</li>
+                    <li>Free parameters: $a_{12}, a_{13}, a_{23}$ (3 parameters)</li>
+                    <li>Dimension = 3 = $n(n-1)/2$ for $n=3$</li>
                 </ul>
             </div>
 
+            <!-- ========================================== -->
+            <!-- PRACTICE PROBLEMS -->
+            <!-- ========================================== -->
             <h3>Practice Problems</h3>
 
             <div class="questions">
                 <h4>Problem Set 11</h4>
-                <p><strong>Problem 1:</strong> Write <code>A = [[1, 3, 5], [2, 6, 10]]</code> as <code>uv^T</code>.</p>
+                <p><strong>Problem 1:</strong> Write $A = \begin{bmatrix} 1 & 3 & 5 \\ 2 & 6 & 10 \end{bmatrix}$ as $\mathbf{u}\mathbf{v}^T$.</p>
                 <p><em>Hint: Identify the column direction and the scaling row.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p><code>u = [1, 2]^T</code>, <code>v = [1, 3, 5]</code></p>
-                    <p><code>A = [1, 2]^T * [1, 3, 5]</code></p>
+                    <p>$\mathbf{u} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$, $\mathbf{v} = \begin{bmatrix} 1 \\ 3 \\ 5 \end{bmatrix}$</p>
+                    <p>$A = \begin{bmatrix} 1 \\ 2 \end{bmatrix} \begin{bmatrix} 1 & 3 & 5 \end{bmatrix}$</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> What is the dimension of the space of 4x4 symmetric matrices?</p>
+                <p><strong>Problem 2:</strong> What is the dimension of the space of $4 \times 4$ symmetric matrices?</p>
                 <p><em>Hint: Count the free entries in the upper triangle including the diagonal.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>4 + 3 + 2 + 1 = 10. Formula: <code>n(n+1)/2 = 4(5)/2 = 10</code>.</p>
+                    <p>$4 + 3 + 2 + 1 = 10$. Formula: $n(n+1)/2 = 4(5)/2 = 10$.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> Can every 2x2 matrix be written as a sum of two rank-1 matrices? Explain.</p>
-                <p><em>Hint: The maximum rank of a 2x2 matrix is 2.</em></p>
+                <p><strong>Problem 3:</strong> Can every $2 \times 2$ matrix be written as a sum of two rank-1 matrices? Explain.</p>
+                <p><em>Hint: The maximum rank of a $2 \times 2$ matrix is 2.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Yes. Any 2x2 matrix A has rank ≠ 2. If rank = 2, it can be written as a sum of two rank-1 matrices (e.g., via SVD or by column splitting). If rank = 1, it is already one rank-1 matrix (add zero matrix).</p>
+                    <p>Yes. Any $2 \times 2$ matrix $A$ has rank $\le 2$. If rank = 2, it can be written as a sum of two rank-1 matrices (e.g., via SVD or by column splitting). If rank = 1, it is already one rank-1 matrix (add zero matrix).</p>
                 </details>
 
-                <p><strong>Problem 4:</strong> For a graph with adjacency matrix A, what does <code>(A^3)_ii</code> represent?</p>
-                <p><em>Hint: Count closed walks of length 3 starting and ending at node i.</em></p>
+                <p><strong>Problem 4:</strong> For a graph with adjacency matrix $A$, what does $(A^3)_{ii}$ represent?</p>
+                <p><em>Hint: Count closed walks of length 3 starting and ending at node $i$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p><code>(A^3)_ii</code> counts the number of closed walks of length 3 starting and ending at node i. This is useful for analyzing clustering in networks.</p>
+                    <p>$(A^3)_{ii}$ counts the number of closed walks of length 3 starting and ending at node $i$. This is useful for analyzing clustering in networks.</p>
                 </details>
             </div>
 
+            <!-- ========================================== -->
+            <!-- CHAPTER NAVIGATION -->
+            <!-- ========================================== -->
             <nav class="chapter-nav">
                 <a href="chapter-10.html" class="nav-btn prev" id="prev-chapter">Previous</a>
                 <span class="nav-indicator" id="chapter-indicator"></span>
@@ -251,7 +268,3 @@ Short paths exist due to the "small world" connections.$$
     <script src="../js/app.js"></script>
 </body>
 </html>
-
-
-
-
