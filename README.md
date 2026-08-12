@@ -6,6 +6,10 @@ This project provides a structured, web-based curriculum for learning linear alg
 
 The curriculum is designed to guide learners through linear algebra topics using a combination of textual explanations and curated video resources. All content is delivered via a clean, browser-based interface.
 
+## Preview
+
+Live at: [Simple Linear Algebra Course](https://jimmyu2foru18.github.io/Simple-Linear-Algebra/)
+
 ## Project Structure
 
 * `/chapters`: Contains modular HTML files for individual topics.
