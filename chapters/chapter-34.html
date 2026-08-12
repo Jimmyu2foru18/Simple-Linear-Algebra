@@ -208,19 +208,32 @@
             <div class="example">
                 <h4>Example 1: Left Inverse and Column-Space Projection</h4>
                 <p><strong>Problem:</strong> Let $A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ 1 & 1 \end{bmatrix}$. Find a left inverse $L$, compute $AL$, and identify the projection.</p>
-                <p><strong>Solution:</strong> Since $A$ has full column rank ($n=2$), $A^T A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$ is invertible. Its inverse is $\frac{1}{3}\begin{bmatrix} 2 & -1 \\ -1 & 2 \end{bmatrix}$. The left inverse is $L = (A^T A)^{-1} A^T = \frac{1}{3}\begin{bmatrix} 2 & -1 & -1 \\ -1 & 2 & 1 \end{bmatrix}$. Multiplying $A L = \frac{1}{3}\begin{bmatrix} 2 & -1 & -1 \\ -1 & 2 & 1 \\ 1 & 1 & 0 \end{bmatrix}$. This $3 \times 3$ matrix is symmetric and idempotent ($(AL)^2 = AL$), confirming it is the orthogonal projection onto the column space of $A$.</p>
+                <p><strong>Solution:</strong> Since $A$ has full column rank ($n=2$), $A^T A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$ is invertible. Its inverse is $\frac{1}{3}\begin{bmatrix} 2 & -1 \\ -1 & 2 \end{bmatrix}$. The left inverse is $L = (A^T A)^{-1} A^T = \frac{1}{3}\begin{bmatrix} 2 & -1 & -1 \\ -1 & 2 & 1 \end{bmatrix}$.</p>
+                <p>Multiplying:
+                    $$A L = \frac{1}{3}\begin{bmatrix} 2 & -1 & -1 \\ -1 & 2 & 1 \\ 1 & 1 & 0 \end{bmatrix}$$</p>
+                <p>This $3 \times 3$ matrix is symmetric and idempotent ($(AL)^2 = AL$), confirming it is the orthogonal projection onto the column space of $A$.</p>
             </div>
 
             <div class="example">
                 <h4>Example 2: Right Inverse and Row-Space Projection</h4>
                 <p><strong>Problem:</strong> Let $A = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \end{bmatrix}$. Find a right inverse $R$, compute $RA$, and identify the projection.</p>
-                <p><strong>Solution:</strong> Since $A$ has full row rank ($m=2$), $A A^T = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$ is invertible. The right inverse is $R = A^T (A A^T)^{-1} = \frac{1}{3}\begin{bmatrix} 2 & -1 \\ -1 & 2 \\ 1 & 1 \end{bmatrix}$. Multiplying $R A = \frac{1}{3}\begin{bmatrix} 2 & -1 & 1 \\ -1 & 2 & 1 \\ 1 & 1 & 2 \end{bmatrix}$. This $3 \times 3$ matrix is symmetric and idempotent, so it is the orthogonal projection onto the row space of $A$.</p>
+                <p><strong>Solution:</strong> Since $A$ has full row rank ($m=2$), $A A^T = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$ is invertible. The right inverse is $R = A^T (A A^T)^{-1} = \frac{1}{3}\begin{bmatrix} 2 & -1 \\ -1 & 2 \\ 1 & 1 \end{bmatrix}$.</p>
+                <p>Multiplying:
+                    $$R A = \frac{1}{3}\begin{bmatrix} 2 & -1 & 1 \\ -1 & 2 & 1 \\ 1 & 1 & 2 \end{bmatrix}$$</p>
+                <p>This $3 \times 3$ matrix is symmetric and idempotent, so it is the orthogonal projection onto the row space of $A$.</p>
             </div>
 
             <div class="example">
                 <h4>Example 3: Pseudo-Inverse of a Rank-1 Matrix</h4>
                 <p><strong>Problem:</strong> Let $A = \begin{bmatrix} 1 \\ 2 \end{bmatrix} \begin{bmatrix} 1 & 2 \end{bmatrix} = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$. Compute the pseudo-inverse $A^+$ and verify that $A A^+$ and $A^+ A$ are projections.</p>
-                <p><strong>Solution:</strong> The SVD of $A$ was computed in Chapter 33: $U = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 & 2 \\ 2 & -1 \end{bmatrix}$, $\Sigma = \begin{bmatrix} 5 & 0 \\ 0 & 0 \end{bmatrix}$, $V = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 & 2 \\ 2 & -1 \end{bmatrix}$. The pseudo-inverse of $\Sigma$ is $\Sigma^+ = \begin{bmatrix} 1/5 & 0 \\ 0 & 0 \end{bmatrix}$. Then $A^+ = V\Sigma^+ U^T = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 & 2 \\ 2 & -1 \end{bmatrix} \begin{bmatrix} 1/5 & 0 \\ 0 & 0 \end{bmatrix} \frac{1}{\sqrt{5}}\begin{bmatrix} 1 & 2 \\ 2 & -1 \end{bmatrix} = \frac{1}{25}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$. We can verify: $A A^+ = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} \frac{1}{25}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} = \frac{1}{25}\begin{bmatrix} 5 & 10 \\ 10 & 20 \end{bmatrix} = \frac{1}{5}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$, which is the projection onto the column space. Similarly, $A^+ A = \frac{1}{25}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} = \frac{1}{5}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$, the same projection (since row and column spaces coincide for this symmetric rank-1 matrix).</p>
+                <p><strong>Solution:</strong> The SVD of $A$ was computed in Chapter 33: $U = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 & 2 \\ 2 & -1 \end{bmatrix}$, $\Sigma = \begin{bmatrix} 5 & 0 \\ 0 & 0 \end{bmatrix}$, $V = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 & 2 \\ 2 & -1 \end{bmatrix}$. The pseudo-inverse of $\Sigma$ is $\Sigma^+ = \begin{bmatrix} 1/5 & 0 \\ 0 & 0 \end{bmatrix}$.</p>
+                <p>Then
+                    $$A^+ = V\Sigma^+ U^T = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 & 2 \\ 2 & -1 \end{bmatrix} \begin{bmatrix} 1/5 & 0 \\ 0 & 0 \end{bmatrix} \frac{1}{\sqrt{5}}\begin{bmatrix} 1 & 2 \\ 2 & -1 \end{bmatrix} = \frac{1}{25}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$$</p>
+                <p>We can verify:
+                    $$A A^+ = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} \frac{1}{25}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} = \frac{1}{25}\begin{bmatrix} 5 & 10 \\ 10 & 20 \end{bmatrix} = \frac{1}{5}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$$</p>
+                <p>which is the projection onto the column space. Similarly,
+                    $$A^+ A = \frac{1}{25}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} = \frac{1}{5}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$$</p>
+                <p>the same projection (since row and column spaces coincide for this symmetric rank-1 matrix).</p>
             </div>
 
             <h3>Practice Problems</h3>
@@ -229,28 +242,39 @@
                 <p><em>Hint: Check the rank of $A$. What are the dimensions of the four subspaces?</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$A$ is $3 \times 2$ with rank $2$ (full column rank). Therefore $A^T A = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}$ is invertible, and the left inverse is $(A^T A)^{-1} A^T = \frac{1}{2}\begin{bmatrix} 1 & 1 & 0 \\ 1 & -1 & 0 \end{bmatrix}$. This is also the pseudo-inverse $A^+$. We have $A A^+ = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{bmatrix}$, the projection onto the column space (the $xy$-plane in $\mathbb{R}^3$).</p>
+                    <p>$A$ is $3 \times 2$ with rank $2$ (full column rank). Therefore $A^T A = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}$ is invertible, and the left inverse is $(A^T A)^{-1} A^T = \frac{1}{2}\begin{bmatrix} 1 & 1 & 0 \\ 1 & -1 & 0 \end{bmatrix}$. This is also the pseudo-inverse $A^+$.</p>
+                    <p>We have
+                        $$A A^+ = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{bmatrix}$$</p>
+                    <p>the projection onto the column space (the $xy$-plane in $\mathbb{R}^3$).</p>
                 </details>
 
                 <p><strong>Problem 2:</strong> Let $A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}$. Show that $\text{rank}(A) = 2$. Find the pseudo-inverse $A^+$ by computing the SVD (you may leave $U$, $\Sigma$, and $V$ in factored form). What are the dimensions of the four subspaces?</p>
                 <p><em>Hint: The rows $(1,2,3)$ and $(4,5,6)$ are linearly independent, but any third row would be a combination. Compute $A^T A$ to confirm the rank.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>The rows are independent, so rank is $2$. The SVD gives $U$ ($2\times 2$), $V$ ($3\times 3$), and $\Sigma = \begin{bmatrix} \sigma_1 & 0 & 0 \\ 0 & \sigma_2 & 0 \end{bmatrix}$ with $\sigma_1, \sigma_2 > 0$. The pseudo-inverse is $A^+ = V \begin{bmatrix} 1/\sigma_1 & 0 \\ 0 & 1/\sigma_2 \\ 0 & 0 \end{bmatrix} U^T$. Dimensions: column space $2$, row space $2$, null space $3-2=1$, left null space $2-2=0$.</p>
+                    <p>The rows are independent, so rank is $2$. The SVD gives $U$ ($2\times 2$), $V$ ($3\times 3$), and
+                        $$\Sigma = \begin{bmatrix} \sigma_1 & 0 & 0 \\ 0 & \sigma_2 & 0 \end{bmatrix}$$
+                        with $\sigma_1, \sigma_2 > 0$.</p>
+                    <p>The pseudo-inverse is
+                        $$A^+ = V \begin{bmatrix} 1/\sigma_1 & 0 \\ 0 & 1/\sigma_2 \\ 0 & 0 \end{bmatrix} U^T$$</p>
+                    <p>Dimensions: column space $2$, row space $2$, null space $3-2=1$, left null space $2-2=0$.</p>
                 </details>
 
                 <p><strong>Problem 3:</strong> Prove that if $A$ has full column rank, then $(A^T A)^{-1} A^T$ is the unique left inverse of $A$.</p>
                 <p><em>Hint: Suppose $L_1$ and $L_2$ are both left inverses. Consider the difference $L_1 - L_2$ and multiply by $A^T A$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>If $L_1 A = I_n$ and $L_2 A = I_n$, then $(L_1 - L_2)A = 0$. multiply on the right by $A^T$: $(L_1 - L_2) A A^T = 0$. But we need full column rank. Better: $(L_1 - L_2) A A^T = 0$ implies $(L_1 - L_2) A A^T A = 0$. Since $A^T A$ is invertible, $A A^T A = A$. Wait, simpler: from $(L_1 - L_2)A = 0$, multiply on the right by $A^T$ gives $(L_1 - L_2) A A^T = 0$. This does not immediately give $L_1 = L_2$ unless $A A^T$ has full row rank. Instead, use $(L_1 - L_2) A = 0$ and multiply by $(A^T A)^{-1} A^T$ on the right: $(L_1 - L_2) A (A^T A)^{-1} A^T = 0$. But $A (A^T A)^{-1} A^T$ is the projection onto $\mathcal{C}(A)$, not $I$. The uniqueness actually requires $A$ to be square. For non-square full column rank, the left inverse is unique among matrices of the same shape. Proof: if $L_1 A = L_2 A = I_n$, then for any $x$, $L_1 A x = L_2 A x$, so $L_1$ and $L_2$ agree on the column space. But they may differ on vectors outside the column space. However, if we restrict to left inverses of size $n \times m$, they are unique. A cleaner proof: $L = (A^T A)^{-1} A^T$ satisfies $LA = I_n$. If $L'$ is another left inverse, then $L' = L + M$ where $M A = 0$. Since $A$ has full column rank, $A^T A$ is invertible, and $M A = 0$ implies $M = -(L' - L)$? Actually, the standard result is that when $A$ has full column rank, the left inverse is unique. The proof uses the fact that any left inverse must equal $(A^T A)^{-1} A^T$ because $(A^T A)^{-1} A^T$ is the minimum-norm left inverse.</p>
+                    <p>If $L_1 A = I_n$ and $L_2 A = I_n$, then $(L_1 - L_2)A = 0$. Multiply on the right by $A^T$: $(L_1 - L_2) A A^T = 0$. But we need full column rank. Better: $(L_1 - L_2) A A^T = 0$ implies $(L_1 - L_2) A A^T A = 0$. Since $A^T A$ is invertible, $A A^T A = A$. Wait, simpler: from $(L_1 - L_2)A = 0$, multiply on the right by $A^T$ gives $(L_1 - L_2) A A^T = 0$. This does not immediately give $L_1 = L_2$ unless $A A^T$ has full row rank. Instead, use $(L_1 - L_2) A = 0$ and multiply by $(A^T A)^{-1} A^T$ on the right: $(L_1 - L_2) A (A^T A)^{-1} A^T = 0$. But $A (A^T A)^{-1} A^T$ is the projection onto $\mathcal{C}(A)$, not $I$. The uniqueness actually requires $A$ to be square. For non-square full column rank, the left inverse is unique among matrices of the same shape. Proof: if $L_1 A = L_2 A = I_n$, then for any $x$, $L_1 A x = L_2 A x$, so $L_1$ and $L_2$ agree on the column space. But they may differ on vectors outside the column space. However, if we restrict to left inverses of size $n \times m$, they are unique. A cleaner proof: $L = (A^T A)^{-1} A^T$ satisfies $LA = I_n$. If $L'$ is another left inverse, then $L' = L + M$ where $M A = 0$. Since $A$ has full column rank, $A^T A$ is invertible, and $M A = 0$ implies $M = -(L' - L)$? Actually, the standard result is that when $A$ has full column rank, the left inverse is unique. The proof uses the fact that any left inverse must equal $(A^T A)^{-1} A^T$ because $(A^T A)^{-1} A^T$ is the minimum-norm left inverse.</p>
                 </details>
 
                 <p><strong>Problem 4:</strong> Explain why the pseudo-inverse of a matrix $A$ is the minimum-norm solution to the least-squares problem. In other words, among all vectors $x$ that minimize $\|Ax - b\|_2$, the vector $x = A^+ b$ has the smallest Euclidean norm $\|x\|_2$.</p>
                 <p><em>Hint: Write the general solution to $A^T A x = A^T b$ as $x = A^+ b + z$ where $z$ is in the null space of $A^T A$. Use the Pythagorean theorem to show that $\|x\|_2^2 = \|A^+ b\|_2^2 + \|z\|_2^2$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>The normal equations $A^T A x = A^T b$ are satisfied by any $x$ of the form $x = A^+ b + z$, where $z \in \mathcal{N}(A^T A) = \mathcal{N}(A)$. The residual $\|Ax - b\|_2$ depends only on the component of $x$ in the row space, which is $A^+ b$. The null-space component $z$ does not affect the residual. By the Pythagorean theorem, $\|x\|_2^2 = \|A^+ b\|_2^2 + \|z\|_2^2$, with equality if and only if $z = 0$. Thus $A^+ b$ is the unique minimum-norm least-squares solution.</p>
+                    <p>The normal equations $A^T A x = A^T b$ are satisfied by any $x$ of the form $x = A^+ b + z$, where $z \in \mathcal{N}(A^T A) = \mathcal{N}(A)$. The residual $\|Ax - b\|_2$ depends only on the component of $x$ in the row space, which is $A^+ b$. The null-space component $z$ does not affect the residual.</p>
+                    <p>By the Pythagorean theorem,
+                        $$\|\mathbf{x}\|_2^2 = \|A^+ \mathbf{b}\|_2^2 + \|\mathbf{z}\|_2^2$$</p>
+                    <p>with equality if and only if $z = 0$. Thus $A^+ b$ is the unique minimum-norm least-squares solution.</p>
                 </details>
             </div>
 

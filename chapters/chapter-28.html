@@ -222,11 +222,13 @@
                 <p><strong>Solution:</strong></p>
                 <ul>
                     <li>$Q(x) = 2x_1^2 + 12x_1x_2 + 20x_2^2$</li>
-                    <li>Complete the square: $Q(x) = 2(x_1 + 3x_2)^2 + 2x_2^2$</li>
+                    <li>Complete the square:
+                        $$Q(x) = 2(x_1 + 3x_2)^2 + 2x_2^2$$</li>
                     <li>Pivot 1 = 2 (outside first square), multiplier = 3 (inside square)</li>
                     <li>Pivot 2 = 2 (outside second square)</li>
-                    <li>Gaussian elimination: $L = \begin{bmatrix} 1 & 0 \\ 3 & 1 \end{bmatrix}$, $U = \begin{bmatrix} 2 & 6 \\ 0 & 2 \end{bmatrix}$</li>
-                    <li>$A = LU = \begin{bmatrix} 1 & 0 \\ 3 & 1 \end{bmatrix} \begin{bmatrix} 2 & 6 \\ 0 & 2 \end{bmatrix}$</li>
+                    <li>Gaussian elimination:
+                        $$L = \begin{bmatrix} 1 & 0 \\ 3 & 1 \end{bmatrix}, \quad U = \begin{bmatrix} 2 & 6 \\ 0 & 2 \end{bmatrix}$$</li>
+                    <li>$$A = LU = \begin{bmatrix} 1 & 0 \\ 3 & 1 \end{bmatrix} \begin{bmatrix} 2 & 6 \\ 0 & 2 \end{bmatrix}$$</li>
                     <li>All pivots positive $\Rightarrow$ positive definite</li>
                 </ul>
             </div>
@@ -237,8 +239,12 @@
                 <p><strong>Solution:</strong></p>
                 <ul>
                     <li>Pivot test: pivot 1 = 2, pivot 2 = 3/2, pivot 3 = 4/3. All positive.</li>
-                    <li>Determinant test: $\det(A_1) = 2 > 0$, $\det(A_2) = 3 > 0$, $\det(A_3) = 4 > 0$. All positive.</li>
-                    <li>Eigenvalue test: eigenvalues are $2(1 - \cos(k\pi/4))$ for $k=1,2,3$, giving approximately $0.586, 2.0, 3.414$. All positive.</li>
+                    <li>Determinant test:
+                        $$\det(A_1) = 2 > 0, \quad \det(A_2) = 3 > 0, \quad \det(A_3) = 4 > 0$$
+                        All positive.</li>
+                    <li>Eigenvalue test:
+                        $$\lambda_k = 2(1 - \cos(k\pi/4)) \text{ for } k=1,2,3$$
+                        giving approximately $0.586, 2.0, 3.414$. All positive.</li>
                     <li>Conclusion: $A$ is positive definite by all tests.</li>
                     <li>Quadratic form: $Q(x) = 2x_1^2 + 2x_2^2 + 2x_3^2 - 2x_1x_2 - 2x_2x_3 > 0$ for all nonzero $x$.</li>
                 </ul>
@@ -249,9 +255,11 @@
                 <p><strong>Problem:</strong> For $A = \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$, describe the geometry of the ellipsoid $x^T A x = 1$. Find the principal axes and their lengths.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>Eigenvalues: $\lambda_1 = 2 - \sqrt{2} \approx 0.586$, $\lambda_2 = 2$, $\lambda_3 = 2 + \sqrt{2} \approx 3.414$</li>
+                    <li>Eigenvalues:
+                        $$\lambda_1 = 2 - \sqrt{2} \approx 0.586, \quad \lambda_2 = 2, \quad \lambda_3 = 2 + \sqrt{2} \approx 3.414$$</li>
                     <li>Eigenvectors give principal axes directions</li>
-                    <li>Semi-axis lengths: $1/\sqrt{\lambda_1} \approx 1.306$, $1/\sqrt{\lambda_2} = 1/\sqrt{2} \approx 0.707$, $1/\sqrt{\lambda_3} \approx 0.541$</li>
+                    <li>Semi-axis lengths:
+                        $$1/\sqrt{\lambda_1} \approx 1.306, \quad 1/\sqrt{\lambda_2} = 1/\sqrt{2} \approx 0.707, \quad 1/\sqrt{\lambda_3} \approx 0.541$$</li>
                     <li>The ellipsoid is a "lopsided football" with one long axis and two shorter axes</li>
                     <li>Since all eigenvalues are distinct, the ellipsoid has three distinct principal axes</li>
                     <li>The graph of $f(x) = x^T A x$ is a bowl (paraboloid) opening upward</li>
@@ -267,28 +275,39 @@
                 <p><em>Hint: Factor out the first pivot from the first two terms, then complete the square. The multiplier is the ratio of the off-diagonal entry to the first pivot.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$Q(x) = 2x_1^2 + 12x_1x_2 + 20x_2^2 = 2(x_1 + 3x_2)^2 + 2x_2^2$. Pivot 1 = 2, multiplier = 3, pivot 2 = 2. All pivots positive, so $A$ is positive definite. The quadratic form is a sum of positive squares.</p>
+                    <p>$$Q(x) = 2x_1^2 + 12x_1x_2 + 20x_2^2 = 2(x_1 + 3x_2)^2 + 2x_2^2$$</p>
+                    <p>Pivot 1 = 2, multiplier = 3, pivot 2 = 2. All pivots positive, so $A$ is positive definite. The quadratic form is a sum of positive squares.</p>
                 </details>
 
                 <p><strong>Problem 2:</strong> Let $A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$. Determine if $A$ is positive definite using the pivot test, determinant test, and eigenvalue test.</p>
                 <p><em>Hint: Compute the pivots from elimination. What is the second pivot? What does a negative second pivot tell you?</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Pivot 1 = 1. Eliminate: row 2 - 2*row 1 gives $[0, -3]$. Pivot 2 = -3. Since pivot 2 is negative, $A$ is not positive definite. Eigenvalues: $\lambda^2 - 2\lambda - 3 = 0$, giving $\lambda_1 = 3 > 0$, $\lambda_2 = -1 < 0$. One positive, one negative: indefinite. Determinant = -3 &lt; 0.</p>
+                    <p>Pivot 1 = 1. Eliminate: row 2 - 2*row 1 gives $[0, -3]$. Pivot 2 = -3. Since pivot 2 is negative, $A$ is not positive definite. Eigenvalues:
+                        $$\lambda^2 - 2\lambda - 3 = 0$$
+                        giving $\lambda_1 = 3 > 0$, $\lambda_2 = -1 < 0$. One positive, one negative: indefinite. Determinant = -3 &lt; 0.</p>
                 </details>
 
                 <p><strong>Problem 3:</strong> For $f(x, y) = 2x^2 + 12xy + 20y^2$, find the critical point, verify it is a minimum using the Hessian, and describe the geometry of the level curves $f(x, y) = c$.</p>
                 <p><em>Hint: The critical point is at the origin. The Hessian is the matrix of second derivatives. Complete the square to identify the curve type.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Critical point: $\nabla f = [4x + 12y, 12x + 40y] = [0, 0] \Rightarrow x = 0, y = 0$. Hessian: $H = \begin{bmatrix} 4 & 12 \\ 12 & 40 \end{bmatrix}$. Pivots: 4 and $(40 - 36)/4 = 1$. Both positive, so $H$ is positive definite. The origin is a strict local minimum. Level curves: $2(x+3y)^2 + 2y^2 = c$, which are ellipses centered at the origin.</p>
+                    <p>Critical point:
+                        $$\nabla f = [4x + 12y, 12x + 40y] = [0, 0] \Rightarrow x = 0, \, y = 0$$</p>
+                    <p>Hessian:
+                        $$H = \begin{bmatrix} 4 & 12 \\ 12 & 40 \end{bmatrix}$$</p>
+                    <p>Pivots: 4 and $(40 - 36)/4 = 1$. Both positive, so $H$ is positive definite. The origin is a strict local minimum. Level curves: $2(x+3y)^2 + 2y^2 = c$, which are ellipses centered at the origin.</p>
                 </details>
 
                 <p><strong>Problem 4:</strong> Prove that if $A$ is positive definite, then all its diagonal entries $a_{ii} > 0$. Then give an example of a matrix with positive diagonal entries that is NOT positive definite.</p>
                 <p><em>Hint: Consider $x = e_i$ (the $i$-th standard basis vector). What is $e_i^T A e_i$? For the example, try a $2 \times 2$ matrix with large off-diagonal entries.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>If $A$ is positive definite, then $x^T A x > 0$ for all nonzero $x$. Take $x = e_i$: $e_i^T A e_i = a_{ii} > 0$. So all diagonal entries must be positive. However, positive diagonals are not sufficient. For example, $A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$ has positive diagonals but $\det(A) = -3 &lt; 0$, so it is indefinite (eigenvalues $3$ and $-1$).</p>
+                    <p>If $A$ is positive definite, then $x^T A x > 0$ for all nonzero $x$. Take $x = e_i$:
+                        $$e_i^T A e_i = a_{ii} > 0$$</p>
+                    <p>So all diagonal entries must be positive. However, positive diagonals are not sufficient. For example,
+                        $$A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$$
+                        has positive diagonals but $\det(A) = -3 < 0$, so it is indefinite (eigenvalues $3$ and $-1$).</p>
                 </details>
             </div>
 

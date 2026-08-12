@@ -237,8 +237,8 @@
                 <p><strong>Problem:</strong> Let $x = [3, 2]^T$ in the standard basis of $\mathbb{R}^2$. Let the new basis be $w_1 = [1, 1]^T$ and $w_2 = [1, -1]^T$. Find the coordinates of $x$ in the new basis.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>$W = \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$, $W^{-1} = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$</li>
-                    <li>$c = W^{-1}x = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}\begin{bmatrix} 3 \\ 2 \end{bmatrix} = \frac{1}{2}\begin{bmatrix} 5 \\ 1 \end{bmatrix} = \begin{bmatrix} 2.5 \\ 0.5 \end{bmatrix}$</li>
+                    <li>$$W = \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}, \quad W^{-1} = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$$</li>
+                    <li>$$c = W^{-1}x = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}\begin{bmatrix} 3 \\ 2 \end{bmatrix} = \frac{1}{2}\begin{bmatrix} 5 \\ 1 \end{bmatrix} = \begin{bmatrix} 2.5 \\ 0.5 \end{bmatrix}$$</li>
                     <li>Check: $2.5[1,1]^T + 0.5[1,-1]^T = [3, 2]^T$ ✓</li>
                     <li>The coordinates changed from $[3, 2]$ to $[2.5, 0.5]$</li>
                 </ul>
@@ -249,10 +249,10 @@
                 <p><strong>Problem:</strong> Let $T$ be projection onto the line $y=x$ in $\mathbb{R}^2$. In the standard basis, $A = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$. Find the matrix $B$ of $T$ in the eigenvector basis $\{v_1, v_2\}$ where $v_1 = \frac{1}{\sqrt{2}}[1,1]^T$ and $v_2 = \frac{1}{\sqrt{2}}[1,-1]^T$, using the similarity transformation.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>$S = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$, $S^{-1} = S^T$</li>
+                    <li>$$S = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}, \quad S^{-1} = S^T$$</li>
                     <li>$B = S^{-1} A S = S^T A S$</li>
-                    <li>$S^T A = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix} = \frac{1}{2\sqrt{2}}\begin{bmatrix} 2 & 2 \\ 0 & 0 \end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}$</li>
-                    <li>$B = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix} \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} = \frac{1}{2}\begin{bmatrix} 2 & 0 \\ 0 & 0 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$</li>
+                    <li>$$S^T A = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix} = \frac{1}{2\sqrt{2}}\begin{bmatrix} 2 & 2 \\ 0 & 0 \end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}$$</li>
+                    <li>$$B = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix} \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} = \frac{1}{2}\begin{bmatrix} 2 & 0 \\ 0 & 0 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$$</li>
                     <li>$B$ is diagonal with eigenvalues 1 and 0</li>
                 </ul>
             </div>
@@ -280,7 +280,11 @@
                 <p><em>Hint: For an orthogonal matrix, $W^T W = I$ and $W^{-1} = W^T$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$W^T W = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} = \frac{1}{2}\begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix} = I$. So $W$ is orthogonal and $W^{-1} = W^T = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$. The new coordinates are $c = W^T x = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}\begin{bmatrix} 5 \\ 1 \end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix} 6 \\ 4 \end{bmatrix} = \begin{bmatrix} 3\sqrt{2} \\ 2\sqrt{2} \end{bmatrix}$. Check: $3\sqrt{2} \cdot \frac{1}{\sqrt{2}}[1,1]^T + 2\sqrt{2} \cdot \frac{1}{\sqrt{2}}[1,-1]^T = 3[1,1]^T + 2[1,-1]^T = [5,1]^T$ ✓.</p>
+                    <p>$$W^T W = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} = \frac{1}{2}\begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix} = I$$</p>
+                    <p>So $W$ is orthogonal and $W^{-1} = W^T = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$.</p>
+                    <p>The new coordinates are
+                        $$c = W^T x = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}\begin{bmatrix} 5 \\ 1 \end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix} 6 \\ 4 \end{bmatrix} = \begin{bmatrix} 3\sqrt{2} \\ 2\sqrt{2} \end{bmatrix}$$</p>
+                    <p>Check: $3\sqrt{2} \cdot \frac{1}{\sqrt{2}}[1,1]^T + 2\sqrt{2} \cdot \frac{1}{\sqrt{2}}[1,-1]^T = 3[1,1]^T + 2[1,-1]^T = [5,1]^T$ ✓.</p>
                 </details>
 
                 <p><strong>Problem 2:</strong> Let $T: \mathbb{R}^2 \to \mathbb{R}^2$ be the linear transformation $T(x, y) = (x+y, x-y)$. Find the matrix $A$ of $T$ in the standard basis, and the matrix $B$ of $T$ in the basis $\{v_1, v_2\}$ where $v_1 = [1, 1]^T$ and $v_2 = [1, -1]^T$. Verify that $B = S^{-1}AS$ where $S = [v_1 \; v_2]$.</p>

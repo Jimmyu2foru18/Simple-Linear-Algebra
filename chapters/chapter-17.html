@@ -245,11 +245,12 @@ $$r_{ij} = \mathbf{q}_i^T\mathbf{a}_j.$$</p>
                 <p><strong>Problem:</strong> Apply Gram-Schmidt to $\mathbf{a} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$ and $\mathbf{b} = \begin{bmatrix} 1 \\ 0 \\ 2 \end{bmatrix}$.</p>
                 <p><strong>Solution:</strong></p>
                 <ol>
-                    <li>$\mathbf{a}^T\mathbf{b} = 1(1) + 1(0) + 1(2) = 3$</li>
-                    <li>$\mathbf{a}^T\mathbf{a} = 1^2 + 1^2 + 1^2 = 3$</li>
-                    <li>$\mathbf{B} = \begin{bmatrix} 1 \\ 0 \\ 2 \end{bmatrix} - \frac{3}{3}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}$</li>
-                    <li>Verify: $\mathbf{a}^T\mathbf{B} = 1(0) + 1(-1) + 1(1) = 0$ ✓</li>
-                    <li>Normalize: $\mathbf{q}_1 = \frac{1}{\sqrt{3}}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$, $\mathbf{q}_2 = \frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}$</li>
+                    <li>$$\mathbf{a}^T\mathbf{b} = 1(1) + 1(0) + 1(2) = 3$$</li>
+                    <li>$$\mathbf{a}^T\mathbf{a} = 1^2 + 1^2 + 1^2 = 3$$</li>
+                    <li>$$\mathbf{B} = \begin{bmatrix} 1 \\ 0 \\ 2 \end{bmatrix} - \frac{3}{3}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}$$</li>
+                    <li>Verify: $$\mathbf{a}^T\mathbf{B} = 1(0) + 1(-1) + 1(1) = 0$$ ✓</li>
+                    <li>Normalize:
+                        $$\mathbf{q}_1 = \frac{1}{\sqrt{3}}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}, \quad \mathbf{q}_2 = \frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}$$</li>
                 </ol>
             </div>
 
@@ -258,10 +259,11 @@ $$r_{ij} = \mathbf{q}_i^T\mathbf{a}_j.$$</p>
                 <p><strong>Problem:</strong> Find $Q$ and $R$ such that $A = QR$ for $A = \begin{bmatrix} 1 & 1 \\ 1 & 0 \\ 1 & 2 \end{bmatrix}$.</p>
                 <p><strong>Solution:</strong></p>
                 <ol>
-                    <li>From Example 1: $\mathbf{q}_1 = \frac{1}{\sqrt{3}}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$, $\mathbf{q}_2 = \frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}$</li>
+                    <li>From Example 1:
+                        $$\mathbf{q}_1 = \frac{1}{\sqrt{3}}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}, \quad \mathbf{q}_2 = \frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}$$</li>
                     <li>$R = Q^T A$ (since $Q^T Q = I$)</li>
-                    <li>$r_{11} = \mathbf{q}_1^T\mathbf{a}_1 = \sqrt{3}$, $r_{12} = \mathbf{q}_1^T\mathbf{a}_2 = \sqrt{3}$</li>
-                    <li>$r_{22} = \mathbf{q}_2^T\mathbf{a}_2 = \sqrt{2}$</li>
+                    <li>$$r_{11} = \mathbf{q}_1^T\mathbf{a}_1 = \sqrt{3}, \quad r_{12} = \mathbf{q}_1^T\mathbf{a}_2 = \sqrt{3}$$</li>
+                    <li>$$r_{22} = \mathbf{q}_2^T\mathbf{a}_2 = \sqrt{2}$$</li>
                     <li>$$R = \begin{bmatrix} \sqrt{3} & \sqrt{3} \\ 0 & \sqrt{2} \end{bmatrix}$$</li>
                     <li>Verify: $QR = \begin{bmatrix} 1 & 1 \\ 1 & 0 \\ 1 & 2 \end{bmatrix} = A$ ✓</li>
                 </ol>
@@ -273,7 +275,7 @@ $$r_{ij} = \mathbf{q}_i^T\mathbf{a}_j.$$</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
                     <li>$Q^T = \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix}$</li>
-                    <li>$Q^T Q = \begin{bmatrix} \cos^2\theta + \sin^2\theta & -\cos\theta\sin\theta + \sin\theta\cos\theta \\ -\sin\theta\cos\theta + \cos\theta\sin\theta & \sin^2\theta + \cos^2\theta \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} = I$</li>
+                    <li>$$Q^T Q = \begin{bmatrix} \cos^2\theta + \sin^2\theta & -\cos\theta\sin\theta + \sin\theta\cos\theta \\ -\sin\theta\cos\theta + \cos\theta\sin\theta & \sin^2\theta + \cos^2\theta \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} = I$$</li>
                     <li>Columns are orthonormal: $| \begin{bmatrix} \cos\theta \\ \sin\theta \end{bmatrix} | = 1$, $| \begin{bmatrix} -\sin\theta \\ \cos\theta \end{bmatrix} | = 1$, dot product $= 0$</li>
                     <li>$\det(Q) = \cos^2\theta + \sin^2\theta = 1$ (rotation matrix)</li>
                 </ul>
@@ -291,10 +293,10 @@ $$r_{ij} = \mathbf{q}_i^T\mathbf{a}_j.$$</p>
                 <p><em>Hint: Compute projections and normalize.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$\mathbf{a}^T\mathbf{a} = 5$, $\mathbf{a}^T\mathbf{b} = 4$</p>
-                    <p>$\mathbf{B} = \mathbf{b} - \frac{4}{5}\mathbf{a} = \begin{bmatrix} 2 \\ 1 \end{bmatrix} - \begin{bmatrix} 8/5 \\ 4/5 \end{bmatrix} = \begin{bmatrix} 2/5 \\ 1/5 \end{bmatrix}$</p>
-                    <p>$\|\mathbf{B}\| = \sqrt{4/25 + 1/25} = \sqrt{5}/5 = 1/\sqrt{5}$</p>
-                    <p>$\mathbf{q}_1 = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 \\ 2 \end{bmatrix}$, $\mathbf{q}_2 = \frac{1}{\sqrt{5}}\begin{bmatrix} 2 \\ -1 \end{bmatrix}$</p>
+                    <p>$$\mathbf{a}^T\mathbf{a} = 5, \quad \mathbf{a}^T\mathbf{b} = 4$$</p>
+                    <p>$$\mathbf{B} = \mathbf{b} - \frac{4}{5}\mathbf{a} = \begin{bmatrix} 2 \\ 1 \end{bmatrix} - \begin{bmatrix} 8/5 \\ 4/5 \end{bmatrix} = \begin{bmatrix} 2/5 \\ 1/5 \end{bmatrix}$$</p>
+                    <p>$$\|\mathbf{B}\| = \sqrt{4/25 + 1/25} = \sqrt{5}/5 = 1/\sqrt{5}$$</p>
+                    <p>$$\mathbf{q}_1 = \frac{1}{\sqrt{5}}\begin{bmatrix} 1 \\ 2 \end{bmatrix}, \quad \mathbf{q}_2 = \frac{1}{\sqrt{5}}\begin{bmatrix} 2 \\ -1 \end{bmatrix}$$</p>
                 </details>
 
                 <p><strong>Problem 2:</strong> Given three independent vectors in $\mathbb{R}^3$, write the full Gram-Schmidt formula for the third orthogonal vector $\mathbf{C}$.</p>
@@ -315,7 +317,8 @@ $$r_{ij} = \mathbf{q}_i^T\mathbf{a}_j.$$</p>
                 <p><em>Hint: Compute $|Q\mathbf{x}|^2 = (Q\mathbf{x})^T(Q\mathbf{x})$ and use $Q^T Q = I$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$|Q\mathbf{x}|^2 = (Q\mathbf{x})^T(Q\mathbf{x}) = \mathbf{x}^T Q^T Q \mathbf{x} = \mathbf{x}^T \mathbf{x} = |\mathbf{x}|^2$. Therefore $|Q\mathbf{x}| = |\mathbf{x}|$. Orthogonal matrices preserve lengths.</p>
+                    <p>$$|Q\mathbf{x}|^2 = (Q\mathbf{x})^T(Q\mathbf{x}) = \mathbf{x}^T Q^T Q \mathbf{x} = \mathbf{x}^T \mathbf{x} = |\mathbf{x}|^2$$</p>
+                    <p>Therefore $|Q\mathbf{x}| = |\mathbf{x}|$. Orthogonal matrices preserve lengths.</p>
                 </details>
             </div>
 

@@ -293,7 +293,7 @@
                 <ul>
                     <li>$A$ is already upper triangular</li>
                     <li>Diagonal entries: 2, 3, 4</li>
-                    <li>$\text{det}(A) = 2 \cdot 3 \cdot 4 = 24$</li>
+                    <li>$$\text{det}(A) = 2 \cdot 3 \cdot 4 = 24$$</li>
                     <li>No row exchanges needed, so sign factor is $(-1)^0 = 1$</li>
                     <li>The pivots from elimination are exactly 2, 3, 4</li>
                 </ul>
@@ -304,12 +304,12 @@
                 <p><strong>Problem:</strong> Let $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ and $B = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$. Compute $\text{det}(AB)$, $\text{det}(A^T)$, $\text{det}(B^{-1})$, and $\text{det}(2B)$.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>$\text{det}(A) = 1(4) - 2(3) = -2$</li>
-                    <li>$\text{det}(B) = 0(0) - 1(1) = -1$</li>
-                    <li>$\text{det}(AB) = \text{det}(A)\text{det}(B) = (-2)(-1) = 2$</li>
-                    <li>$\text{det}(A^T) = \text{det}(A) = -2$</li>
-                    <li>$\text{det}(B^{-1}) = 1/\text{det}(B) = 1/(-1) = -1$</li>
-                    <li>$\text{det}(2B) = 2^2 \text{det}(B) = 4(-1) = -4$</li>
+                    <li>$$\text{det}(A) = 1(4) - 2(3) = -2$$</li>
+                    <li>$$\text{det}(B) = 0(0) - 1(1) = -1$$</li>
+                    <li>$$\text{det}(AB) = \text{det}(A)\text{det}(B) = (-2)(-1) = 2$$</li>
+                    <li>$$\text{det}(A^T) = \text{det}(A) = -2$$</li>
+                    <li>$$\text{det}(B^{-1}) = 1/\text{det}(B) = 1/(-1) = -1$$</li>
+                    <li>$$\text{det}(2B) = 2^2 \text{det}(B) = 4(-1) = -4$$</li>
                     <li>Verify directly: $AB = \begin{bmatrix} 2 & 1 \\ 4 & 3 \end{bmatrix}$, $\text{det}(AB) = 2(3) - 1(4) = 2$</li>
                 </ul>
             </div>
@@ -324,7 +324,7 @@
                     <li>Row 2 $- 4 \times$ row 1: $\begin{bmatrix} 1 & 2 & 3 \\ 0 & -3 & -6 \\ 7 & 8 & c \end{bmatrix}$</li>
                     <li>Row 3 $- 7 \times$ row 1: $\begin{bmatrix} 1 & 2 & 3 \\ 0 & -3 & -6 \\ 0 & -6 & c-21 \end{bmatrix}$</li>
                     <li>Row 3 $- 2 \times$ row 2: $\begin{bmatrix} 1 & 2 & 3 \\ 0 & -3 & -6 \\ 0 & 0 & c-21+12 \end{bmatrix} = \begin{bmatrix} 1 & 2 & 3 \\ 0 & -3 & -6 \\ 0 & 0 & c-9 \end{bmatrix}$</li>
-                    <li>$\text{det}(A) = 1 \cdot (-3) \cdot (c-9) = -3(c-9)$</li>
+                    <li>$$\text{det}(A) = 1 \cdot (-3) \cdot (c-9) = -3(c-9)$$</li>
                     <li>Set to zero: $c = 9$</li>
                     <li>When $c = 9$, row 3 of $U$ is zero, confirming singularity</li>
                 </ul>
@@ -342,8 +342,8 @@
                 <p><em>Hint: Subtract half of row 1 from row 3 to create a zero in position (3,1).</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$R_3 \leftarrow R_3 - \frac{1}{2}R_1$: $\begin{bmatrix} 2 & 0 & 1 \\ 0 & 3 & 0 \\ 0 & 0 & 3/2 \end{bmatrix}$.</p>
-                    <p>$\text{det}(A) = 2 \cdot 3 \cdot \frac{3}{2} = 9$.</p>
+                    <p>$$R_3 \leftarrow R_3 - \frac{1}{2}R_1: \quad \begin{bmatrix} 2 & 0 & 1 \\ 0 & 3 & 0 \\ 0 & 0 & 3/2 \end{bmatrix}$$</p>
+                    <p>$$\text{det}(A) = 2 \cdot 3 \cdot \frac{3}{2} = 9$$</p>
                     <p>No row exchanges were needed.</p>
                 </details>
 
@@ -351,10 +351,10 @@
                 <p><em>Hint: Use Properties 9 and 10, and the scalar multiple rule $\text{det}(cA) = c^n \text{det}(A)$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$\text{det}(A^{-1}) = 1/\text{det}(A) = 1/5$.</p>
-                    <p>$\text{det}(A^2) = (\text{det}(A))^2 = 25$.</p>
-                    <p>$\text{det}(A^T) = \text{det}(A) = 5$.</p>
-                    <p>$\text{det}(3A) = 3^4 \text{det}(A) = 81 \cdot 5 = 405$.</p>
+                    <p>$$\text{det}(A^{-1}) = 1/\text{det}(A) = 1/5$$</p>
+                    <p>$$\text{det}(A^2) = (\text{det}(A))^2 = 25$$</p>
+                    <p>$$\text{det}(A^T) = \text{det}(A) = 5$$</p>
+                    <p>$$\text{det}(3A) = 3^4 \text{det}(A) = 81 \cdot 5 = 405$$</p>
                 </details>
 
                 <p><strong>Problem 3:</strong> True or False: If $A$ and $B$ are $n \times n$ matrices with $\text{det}(A) = 2$ and $\text{det}(B) = 3$, then $\text{det}(A+B) = 5$. Explain.</p>
@@ -368,7 +368,8 @@
                 <p><em>Hint: Compute the determinant by cofactor expansion along the first row or by elimination.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Expand along row 1: $\text{det}(A) = t \cdot \text{det}\begin{bmatrix} t & 1 \\ 1 & t \end{bmatrix} - 1 \cdot \text{det}\begin{bmatrix} 1 & 1 \\ 0 & t \end{bmatrix} = t(t^2 - 1) - 1(t) = t^3 - 2t$.</p>
+                    <p>Expand along row 1:
+                        $$\text{det}(A) = t \cdot \text{det}\begin{bmatrix} t & 1 \\ 1 & t \end{bmatrix} - 1 \cdot \text{det}\begin{bmatrix} 1 & 1 \\ 0 & t \end{bmatrix} = t(t^2 - 1) - 1(t) = t^3 - 2t$$</p>
                     <p>Set to zero: $t(t^2 - 2) = 0$, so $t = 0$ or $t = \pm\sqrt{2}$.</p>
                     <p>$A$ is singular for $t = 0, \sqrt{2}, -\sqrt{2}$.</p>
                 </details>

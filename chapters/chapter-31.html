@@ -239,9 +239,11 @@
                     <li>$T(v_2) = 0$ (projection kills the perpendicular direction)</li>
                     <li>Column 1: coordinates of $T(v_1) = v_1$ in the output basis are $[1, 0]^T$</li>
                     <li>Column 2: coordinates of $T(v_2) = 0$ are $[0, 0]^T$</li>
-                    <li>Matrix: $A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$</li>
+                    <li>Matrix:
+                        $$A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$$</li>
                     <li>This is diagonal because the chosen basis consists of eigenvectors</li>
-                    <li>In the standard basis, the same projection has matrix $P = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$</li>
+                    <li>In the standard basis, the same projection has matrix
+                        $$P = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$$</li>
                 </ul>
             </div>
 
@@ -254,7 +256,8 @@
                     <li>$T(e_2) = T([0,1]^T) = \text{proj}_{y=x}[0,1] = \frac{1}{2}[1,1]^T$</li>
                     <li>Column 1: coordinates of $T(e_1) = [1/2, 1/2]^T$ in standard basis are $[1/2, 1/2]^T$</li>
                     <li>Column 2: coordinates of $T(e_2) = [1/2, 1/2]^T$ are $[1/2, 1/2]^T$</li>
-                    <li>Matrix: $P = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$</li>
+                    <li>Matrix:
+                        $$P = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$$</li>
                     <li>This matches $P = A(A^T A)^{-1} A^T$ with $A = [1,1]^T$</li>
                     <li>The matrix is symmetric ($P^T = P$) and idempotent ($P^2 = P$), but not diagonal</li>
                 </ul>
@@ -268,9 +271,10 @@
                     <li>$T(1) = 0 = 0 \cdot 1 + 0 \cdot x \Rightarrow$ column 1 = $[0, 0]^T$</li>
                     <li>$T(x) = 1 = 1 \cdot 1 + 0 \cdot x \Rightarrow$ column 2 = $[1, 0]^T$</li>
                     <li>$T(x^2) = 2x = 0 \cdot 1 + 2 \cdot x \Rightarrow$ column 3 = $[0, 2]^T$</li>
-                    <li>Matrix: $A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{bmatrix}$</li>
+                    <li>Matrix:
+                        $$A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{bmatrix}$$</li>
                     <li>For $p(x) = 3 + 2x - x^2$, input coordinates are $[3, 2, -1]^T$</li>
-                    <li>$A[3, 2, -1]^T = [2, -2]^T$, meaning $p'(x) = 2 - 2x$ ✓</li>
+                    <li>$$A[3, 2, -1]^T = [2, -2]^T$$, meaning $p'(x) = 2 - 2x$ ✓</li>
                     <li>The matrix shifts the coefficient of $x$ to the constant term and doubles the coefficient of $x^2$ to the $x$ term</li>
                 </ul>
             </div>
@@ -284,7 +288,9 @@
                 <p><em>Hint: Compute $T(e_1)$ and $T(e_2)$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$T(e_1) = T([1,0]^T) = [0,1]^T$, so column 1 is $[0,1]^T$. $T(e_2) = T([0,1]^T) = [-1,0]^T$, so column 2 is $[-1,0]^T$. Matrix: $A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$. Verify: $A[x,y]^T = [-y, x]^T$ ✓.</p>
+                    <p>$T(e_1) = T([1,0]^T) = [0,1]^T$, so column 1 is $[0,1]^T$. $T(e_2) = T([0,1]^T) = [-1,0]^T$, so column 2 is $[-1,0]^T$. Matrix:
+                        $$A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$$</p>
+                    <p>Verify: $A[x,y]^T = [-y, x]^T$ ✓.</p>
                 </details>
 
                 <p><strong>Problem 2:</strong> Let $T: \mathbb{R}^3 \to \mathbb{R}^2$ be defined by $T([x,y,z]^T) = [x+y, y+z]^T$. Find the matrix of $T$ with respect to the standard bases.</p>

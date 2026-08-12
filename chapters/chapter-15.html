@@ -279,14 +279,15 @@
                 <p><strong>Problem:</strong> Fit the points $(1, 1), (2, 2), (3, 2)$ to a line $b = C + Dt$ using least squares.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>$A = \begin{bmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{bmatrix}$, $\mathbf{b} = \begin{bmatrix} 1 \\ 2 \\ 2 \end{bmatrix}$</li>
-                    <li>$A^T A = \begin{bmatrix} 3 & 6 \\ 6 & 14 \end{bmatrix}$</li>
+                    <li>$$A = \begin{bmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix} 1 \\ 2 \\ 2 \end{bmatrix}$$</li>
+                    <li>$$A^T A = \begin{bmatrix} 3 & 6 \\ 6 & 14 \end{bmatrix}$$</li>
                     <li>Determinant of $A^T A = 3(14) - 6(6) = 42 - 36 = 6$</li>
-                    <li>$(A^T A)^{-1} = \frac{1}{6}\begin{bmatrix} 14 & -6 \\ -6 & 3 \end{bmatrix}$</li>
-                    <li>$A^T \mathbf{b} = \begin{bmatrix} 5 \\ 11 \end{bmatrix}$</li>
-                    <li>$\hat{\mathbf{x}} = (A^T A)^{-1} A^T \mathbf{b} = \frac{1}{6}\begin{bmatrix} 14 & -6 \\ -6 & 3 \end{bmatrix}\begin{bmatrix} 5 \\ 11 \end{bmatrix} = \frac{1}{6}\begin{bmatrix} 70 - 66 \\ -30 + 33 \end{bmatrix} = \begin{bmatrix} 2/3 \\ 1/2 \end{bmatrix}$</li>
+                    <li>$$(A^T A)^{-1} = \frac{1}{6}\begin{bmatrix} 14 & -6 \\ -6 & 3 \end{bmatrix}$$</li>
+                    <li>$$A^T \mathbf{b} = \begin{bmatrix} 5 \\ 11 \end{bmatrix}$$</li>
+                    <li>$$\hat{\mathbf{x}} = (A^T A)^{-1} A^T \mathbf{b} = \frac{1}{6}\begin{bmatrix} 14 & -6 \\ -6 & 3 \end{bmatrix}\begin{bmatrix} 5 \\ 11 \end{bmatrix} = \frac{1}{6}\begin{bmatrix} 70 - 66 \\ -30 + 33 \end{bmatrix} = \begin{bmatrix} 2/3 \\ 1/2 \end{bmatrix}$$</li>
                     <li>Best-fit line: $b = \frac{2}{3} + \frac{1}{2}t$</li>
-                    <li>Fitted values: $\hat{\mathbf{b}} = A\hat{\mathbf{x}} = \begin{bmatrix} 7/6 \\ 5/3 \\ 13/6 \end{bmatrix} \approx \begin{bmatrix} 1.167 \\ 1.667 \\ 2.167 \end{bmatrix}$</li>
+                    <li>Fitted values:
+                        $$\hat{\mathbf{b}} = A\hat{\mathbf{x}} = \begin{bmatrix} 7/6 \\ 5/3 \\ 13/6 \end{bmatrix} \approx \begin{bmatrix} 1.167 \\ 1.667 \\ 2.167 \end{bmatrix}$$</li>
                 </ul>
             </div>
 
@@ -295,11 +296,14 @@
                 <p><strong>Problem:</strong> For the line fitting problem above, compute the error vector $\mathbf{e} = \mathbf{b} - A\hat{\mathbf{x}}$ and verify $\mathbf{e} \in N(A^T)$.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>$\mathbf{e} = \mathbf{b} - A\hat{\mathbf{x}} = \begin{bmatrix} 1 \\ 2 \\ 2 \end{bmatrix} - \begin{bmatrix} 7/6 \\ 5/3 \\ 13/6 \end{bmatrix} = \begin{bmatrix} -1/6 \\ 1/3 \\ -1/6 \end{bmatrix}$</li>
+                    <li>$$\mathbf{e} = \mathbf{b} - A\hat{\mathbf{x}} = \begin{bmatrix} 1 \\ 2 \\ 2 \end{bmatrix} - \begin{bmatrix} 7/6 \\ 5/3 \\ 13/6 \end{bmatrix} = \begin{bmatrix} -1/6 \\ 1/3 \\ -1/6 \end{bmatrix}$$</li>
                     <li>Since $\hat{\mathbf{x}}$ solves the normal equations, $A^T A \hat{\mathbf{x}} = A^T \mathbf{b}$, which means $A^T(\mathbf{b} - A\hat{\mathbf{x}}) = \mathbf{0}$</li>
                     <li>Therefore $A^T\mathbf{e} = \mathbf{0}$, so $\mathbf{e} \in N(A^T)$</li>
                     <li>This confirms the geometric picture: the error vector is perpendicular to the column space of $A$ and lives in the left nullspace</li>
-                    <li>Verify: $\mathbf{e}^T\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} = -1/6 + 2/6 - 1/6 = 0$ and $\mathbf{e}^T\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} = -1/6 + 4/6 - 3/6 = 0$</li>
+                    <li>Verify:
+                        $$\mathbf{e}^T\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} = -1/6 + 2/6 - 1/6 = 0$$
+                        and
+                        $$\mathbf{e}^T\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} = -1/6 + 4/6 - 3/6 = 0$$</li>
                 </ul>
             </div>
 
@@ -315,17 +319,17 @@
                 <p><em>Hint: Use the 1-D formula $P = \frac{\mathbf{a}\mathbf{a}^T}{\mathbf{a}^T\mathbf{a}}$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$\mathbf{a}^T\mathbf{a} = 2$, $\mathbf{a}\mathbf{a}^T = \begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$.</p>
-                    <p>$P = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$.</p>
-                    <p>$P^2 = \frac{1}{4}\begin{bmatrix} 2 & 2 \\ 2 & 2 \end{bmatrix} = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix} = P$.</p>
+                    <p>$$\mathbf{a}^T\mathbf{a} = 2, \quad \mathbf{a}\mathbf{a}^T = \begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$$</p>
+                    <p>$$P = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$$</p>
+                    <p>$$P^2 = \frac{1}{4}\begin{bmatrix} 2 & 2 \\ 2 & 2 \end{bmatrix} = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix} = P$$</p>
                 </details>
 
                 <p><strong>Problem 2:</strong> Let $A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{bmatrix}$. Find the projection matrix $P$ and describe what subspace it projects onto.</p>
                 <p><em>Hint: Compute $A^T A$ and its inverse, then form $P = A(A^T A)^{-1} A^T$.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$A^T A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} = I$, so $(A^T A)^{-1} = I$.</p>
-                    <p>$P = A I A^T = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}$.</p>
+                    <p>$$A^T A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} = I, \quad \text{so } (A^T A)^{-1} = I$$</p>
+                    <p>$$P = A I A^T = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}$$</p>
                     <p>$P$ projects onto the x-y plane in $\mathbb{R}^3$.</p>
                 </details>
 
@@ -333,8 +337,8 @@
                 <p><em>Hint: Solve $A^T A \hat{\mathbf{x}} = A^T \mathbf{b}$. You computed $A^T A$ and $A^T \mathbf{b}$ in the text.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$A^T A = \begin{bmatrix} 3 & 6 \\ 6 & 14 \end{bmatrix}$, $A^T \mathbf{b} = \begin{bmatrix} 5 \\ 11 \end{bmatrix}$.</p>
-                    <p>Solving gives $\hat{\mathbf{x}} = \begin{bmatrix} 2/3 \\ 1/2 \end{bmatrix}$.</p>
+                    <p>$$A^T A = \begin{bmatrix} 3 & 6 \\ 6 & 14 \end{bmatrix}, \quad A^T \mathbf{b} = \begin{bmatrix} 5 \\ 11 \end{bmatrix}$$</p>
+                    <p>Solving gives $$\hat{\mathbf{x}} = \begin{bmatrix} 2/3 \\ 1/2 \end{bmatrix}$$</p>
                     <p>The best-fit line is $b = \frac{2}{3} + \frac{1}{2}t$.</p>
                 </details>
 

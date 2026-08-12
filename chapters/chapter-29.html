@@ -220,10 +220,11 @@
                 <p><strong>Problem:</strong> Show that $A = \begin{bmatrix} 3 & 1 \\ 0 & 1 \end{bmatrix}$ and $\Lambda = \begin{bmatrix} 3 & 0 \\ 0 & 1 \end{bmatrix}$ are similar. Find $M$ such that $M^{-1} A M = \Lambda$, and verify that the eigenvectors transform correctly.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>Eigenvalues of $A$: $\lambda_1 = 3, \lambda_2 = 1$</li>
-                    <li>Eigenvectors of $A$: $x_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $x_2 = \begin{bmatrix} -1/2 \\ 1 \end{bmatrix}$... actually for $A$, eigenvector for $\lambda=3$: $(A-3I)x=0 \Rightarrow [0,1;0,-2]x=0 \Rightarrow x_2=0$, so $x_1=[1,0]^T$. For $\lambda=1$: $(A-I)x=0 \Rightarrow [2,1;0,0]x=0 \Rightarrow 2x_1+x_2=0$, so $x_2=[-1,2]^T$ or $[1,-2]^T$. Wait, let me recalculate: $A-I = \begin{bmatrix} 2 & 1 \\ 0 & 0 \end{bmatrix}$, so $2x_1 + x_2 = 0$. Take $x_1 = 1$, then $x_2 = -2$. So $x_2 = \begin{bmatrix} 1 \\ -2 \end{bmatrix}$.</li>
-                    <li>$S = \begin{bmatrix} 1 & 1 \\ 0 & -2 \end{bmatrix}$, $S^{-1} = \begin{bmatrix} 1 & 1/2 \\ 0 & -1/2 \end{bmatrix}$</li>
-                    <li>$S^{-1} A S = \begin{bmatrix} 1 & 1/2 \\ 0 & -1/2 \end{bmatrix} \begin{bmatrix} 3 & 1 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 1 \\ 0 & -2 \end{bmatrix} = \begin{bmatrix} 3 & 0 \\ 0 & 1 \end{bmatrix} = \Lambda$</li>
+                    <li>Eigenvalues of $A$:
+                        $$\lambda_1 = 3, \quad \lambda_2 = 1$$</li>
+                    <li>Eigenvectors of $A$: $x_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $x_2 = \begin{bmatrix} 1 \\ -2 \end{bmatrix}$</li>
+                    <li>$$S = \begin{bmatrix} 1 & 1 \\ 0 & -2 \end{bmatrix}, \quad S^{-1} = \begin{bmatrix} 1 & 1/2 \\ 0 & -1/2 \end{bmatrix}$$</li>
+                    <li>$$S^{-1} A S = \begin{bmatrix} 1 & 1/2 \\ 0 & -1/2 \end{bmatrix} \begin{bmatrix} 3 & 1 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 1 \\ 0 & -2 \end{bmatrix} = \begin{bmatrix} 3 & 0 \\ 0 & 1 \end{bmatrix} = \Lambda$$</li>
                     <li>Eigenvectors of $\Lambda$: $e_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $e_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$</li>
                     <li>Check: $M^{-1}x_1 = S^{-1}\begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \end{bmatrix} = e_1$ ✓</li>
                     <li>Check: $M^{-1}x_2 = S^{-1}\begin{bmatrix} 1 \\ -2 \end{bmatrix} = \begin{bmatrix} 1 + (-2)/2 \\ (-2)/(-2) \end{bmatrix} = \begin{bmatrix} 0 \\ 1 \end{bmatrix} = e_2$ ✓</li>
@@ -250,7 +251,7 @@
                     <li>Both $A$ and $B$ have eigenvalue 0 with algebraic multiplicity 4.</li>
                     <li>Rank of $A$ is 2, so nullity is 2. Both have 2 independent eigenvectors.</li>
                     <li>$A$ has two 2×2 Jordan blocks: $J_A = \text{diag}(J_2(0), J_2(0))$</li>
-                    <li>$B$ has one 2×2 Jordan block and two 1×1 blocks: $J_B = \text{diag}(J_2(0), [0], [0])$... wait, that would be 3 blocks. Let me reconsider: actually $B$ as given is $\begin{bmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix}$. Its rank is 2, nullity is 2. The Jordan form of $B$ has one 3×3 block and one 1×1 block? No, the number of blocks equals the number of eigenvectors = 2. The sizes must sum to 4. Possibilities: two 2×2 blocks, or one 3×3 and one 1×1. For $B$, the actual Jordan form is $J_B = \text{diag}(J_3(0), J_1(0))$... let me verify. Actually, $B$ has a 3-dimensional chain: $B e_1 = e_2, B e_2 = e_3, B e_3 = 0$, and $B e_4 = 0$. So there are two eigenvectors ($e_3$ and $e_4$ in the chain basis), but the Jordan blocks are sizes 3 and 1. Wait, that gives 2 blocks, which matches nullity 2. Yes: $J_B$ has one 3×3 block and one 1×1 block.</li>
+                    <li>$B$ has one 3×3 block and one 1×1 block: $J_B = \text{diag}(J_3(0), J_1(0))$</li>
                     <li>$A$ has Jordan form with two 2×2 blocks; $B$ has Jordan form with one 3×3 block and one 1×1 block. Since the Jordan forms are different, $A$ and $B$ are not similar.</li>
                     <li>Key insight: counting eigenvectors is not enough—you must also know the sizes of the Jordan blocks.</li>
                 </ul>

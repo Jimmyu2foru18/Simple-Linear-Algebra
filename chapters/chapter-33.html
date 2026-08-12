@@ -258,7 +258,9 @@
                 <p><em>Hint: Compute $A = U\Sigma V^T$ directly. The null space comes from the singular value equal to zero, if any.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>First compute $V^T = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$. Then $A = U\Sigma V^T = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} \begin{bmatrix} 4 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 4 \\ 1 & -4 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix} 4 & 1 \\ -4 & 1 \end{bmatrix}$. Both singular values are non-zero, so $\text{rank}(A) = 2$ and the null space is trivial (only the zero vector).</p>
+                    <p>First compute $V^T = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$. Then
+                        $$A = U\Sigma V^T = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} \begin{bmatrix} 4 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 4 \\ 1 & -4 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix} 4 & 1 \\ -4 & 1 \end{bmatrix}$$</p>
+                    <p>Both singular values are non-zero, so $\text{rank}(A) = 2$ and the null space is trivial (only the zero vector).</p>
                 </details>
 
                 <p><strong>Problem 4:</strong> Explain why computing $U$ from $AA^T$ alone can lead to the wrong sign for one or more columns of $U$, but computing $U$ from $A v_i = \sigma_i u_i$ always gives the correct orientation.</p>

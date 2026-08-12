@@ -208,7 +208,9 @@
                 <h4>Example 1: Markov Chain Steady State</h4>
                 <p><strong>Problem:</strong> Let $A = \begin{bmatrix} 0.2 & 0.4 & 0.4 \\ 0.4 & 0.4 & 0.3 \\ 0.4 & 0.3 & 0.3 \end{bmatrix}$ be a Markov matrix. Starting from $u^{(0)} = \begin{bmatrix} 0 \\ 10 \\ 0 \end{bmatrix}$, find the steady-state vector $u^{(\infty)} = \lim_{k \to \infty} A^k u^{(0)}$.</p>
                 <p><strong>Solution:</strong> Step 1: Find eigenvalues. Column $1$ + column $2$ = $2 \times$ column $3$, so $A$ is singular and $\lambda_1 = 0$. Since $A$ is Markov, $\lambda_2 = 1$. The trace is $0.2 + 0.4 + 0.3 = 0.9$, so $\lambda_3 = 0.9 - (0 + 1) = -0.2$.</p>
-                <p>Step 2: Find the eigenvector for $\lambda = 1$ by solving $(A - I)x = 0$: $\begin{bmatrix} -0.8 & 0.4 & 0.4 \\ 0.4 & -0.6 & 0.3 \\ 0.4 & 0.3 & -0.7 \end{bmatrix} x = 0$. A basis vector is $x_2 = \begin{bmatrix} 3 \\ 3 \\ 4 \end{bmatrix}$.</p>
+                <p>Step 2: Find the eigenvector for $\lambda = 1$ by solving $(A - I)x = 0$:
+                    $$\begin{bmatrix} -0.8 & 0.4 & 0.4 \\ 0.4 & -0.6 & 0.3 \\ 0.4 & 0.3 & -0.7 \end{bmatrix} x = 0$$</p>
+                <p>A basis vector is $x_2 = \begin{bmatrix} 3 \\ 3 \\ 4 \end{bmatrix}$.</p>
                 <p>Step 3: Use conservation of total mass. The sum of $u^{(0)}$ is $10$, and the sum of $x_2$ is $10$, so the coefficient is $c_2 = 1$.</p>
                 <p>Step 4: As $k \to \infty$, the $\lambda = 0$ and $\lambda = -0.2$ terms vanish, leaving $u^{(\infty)} = \begin{bmatrix} 3 \\ 3 \\ 4 \end{bmatrix}$.</p>
             </div>
@@ -216,19 +218,30 @@
             <div class="example">
                 <h4>Example 2: Projection Matrix onto a Line</h4>
                 <p><strong>Problem:</strong> Find the projection matrix $P$ onto the line through $a = \begin{bmatrix} 4 \\ -3 \end{bmatrix}$. Verify that $P$ is symmetric and idempotent.</p>
-                <p><strong>Solution:</strong> The formula is $P = \frac{a a^T}{a^T a}$. Compute $a^T a = 16 + 9 = 25$. Then $P = \frac{1}{25}\begin{bmatrix} 16 & -12 \\ -12 & 9 \end{bmatrix}$. Symmetry: $P^T = P$. Idempotence: $P^2 = \frac{1}{625}\begin{bmatrix} 16 & -12 \\ -12 & 9 \end{bmatrix}^2 = \frac{1}{625}\begin{bmatrix} 400 & -300 \\ -300 & 225 \end{bmatrix} = \frac{1}{25}\begin{bmatrix} 16 & -12 \\ -12 & 9 \end{bmatrix} = P$.</p>
+                <p><strong>Solution:</strong> The formula is $P = \frac{a a^T}{a^T a}$. Compute $a^T a = 16 + 9 = 25$. Then
+                    $$P = \frac{1}{25}\begin{bmatrix} 16 & -12 \\ -12 & 9 \end{bmatrix}$$</p>
+                <p>Symmetry: $P^T = P$. Idempotence:
+                    $$P^2 = \frac{1}{625}\begin{bmatrix} 16 & -12 \\ -12 & 9 \end{bmatrix}^2 = \frac{1}{625}\begin{bmatrix} 400 & -300 \\ -300 & 225 \end{bmatrix} = \frac{1}{25}\begin{bmatrix} 16 & -12 \\ -12 & 9 \end{bmatrix} = P$$</p>
             </div>
 
             <div class="example">
                 <h4>Example 3: Reconstructing a Matrix from Eigenvalues and Eigenvectors</h4>
                 <p><strong>Problem:</strong> Given eigenvalues $0, 3$ and eigenvectors $\begin{bmatrix} 1 \\ 2 \end{bmatrix}$, $\begin{bmatrix} 2 \\ 1 \end{bmatrix}$, reconstruct $A$.</p>
-                <p><strong>Solution:</strong> Form $S = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$, $\Lambda = \begin{bmatrix} 0 & 0 \\ 0 & 3 \end{bmatrix}$. Then $S^{-1} = \frac{1}{-3}\begin{bmatrix} 1 & -2 \\ -2 & 1 \end{bmatrix}$. Compute $A = S\Lambda S^{-1} = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}\begin{bmatrix} 0 & 0 \\ 0 & 3 \end{bmatrix}\begin{bmatrix} -1/3 & 2/3 \\ 2/3 & -1/3 \end{bmatrix} = \begin{bmatrix} 4 & -4 \\ 2 & -2 \end{bmatrix}$. Check: the eigenvalues of this $A$ are indeed $0$ and $3$, and the given vectors are eigenvectors.</p>
+                <p><strong>Solution:</strong> Form $S = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$, $\Lambda = \begin{bmatrix} 0 & 0 \\ 0 & 3 \end{bmatrix}$. Then $S^{-1} = \frac{1}{-3}\begin{bmatrix} 1 & -2 \\ -2 & 1 \end{bmatrix}$. Compute
+                    $$A = S\Lambda S^{-1} = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}\begin{bmatrix} 0 & 0 \\ 0 & 3 \end{bmatrix}\begin{bmatrix} -1/3 & 2/3 \\ 2/3 & -1/3 \end{bmatrix} = \begin{bmatrix} 4 & -4 \\ 2 & -2 \end{bmatrix}$$</p>
+                <p>Check: the eigenvalues of this $A$ are indeed $0$ and $3$, and the given vectors are eigenvectors.</p>
             </div>
 
             <div class="example">
                 <h4>Example 4: Least-Squares Straight-Line Fit</h4>
                 <p><strong>Problem:</strong> Fit a straight line $y = c + mt$ to the points $(0,3)$, $(1,4)$, $(2,1)$. Find the least-squares solution $\hat{x}$, the projection $P = A\hat{x}$, and interpret $c$ and $m$.</p>
-                <p><strong>Solution:</strong> The design matrix is $A = \begin{bmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{bmatrix}$, $b = \begin{bmatrix} 3 \\ 4 \\ 1 \end{bmatrix}$. The normal equations give $A^T A = \begin{bmatrix} 3 & 3 \\ 3 & 5 \end{bmatrix}$, $A^T b = \begin{bmatrix} 8 \\ 1 \end{bmatrix}$. Solving $\begin{bmatrix} 3 & 3 \\ 3 & 5 \end{bmatrix}\hat{x} = \begin{bmatrix} 8 \\ 1 \end{bmatrix}$ yields $\hat{x} = \begin{bmatrix} 11/3 \\ -1 \end{bmatrix}$. Thus $c = 11/3$ (intercept) and $m = -1$ (slope). The projection is $P = A\hat{x} = \begin{bmatrix} 8/3 \\ 11/3 \\ 5/3 \end{bmatrix}$. The residuals $b - P = \begin{bmatrix} 1/3 \\ 1/3 \\ -2/3 \end{bmatrix}$ are orthogonal to both columns of $A$.</p>
+                <p><strong>Solution:</strong> The design matrix is
+                    $$A = \begin{bmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{bmatrix}, \quad b = \begin{bmatrix} 3 \\ 4 \\ 1 \end{bmatrix}$$</p>
+                <p>The normal equations give
+                    $$A^T A = \begin{bmatrix} 3 & 3 \\ 3 & 5 \end{bmatrix}, \quad A^T b = \begin{bmatrix} 8 \\ 1 \end{bmatrix}$$</p>
+                <p>Solving
+                    $$\begin{bmatrix} 3 & 3 \\ 3 & 5 \end{bmatrix}\hat{x} = \begin{bmatrix} 8 \\ 1 \end{bmatrix}$$</p>
+                <p>yields $\hat{x} = \begin{bmatrix} 11/3 \\ -1 \end{bmatrix}$. Thus $c = 11/3$ (intercept) and $m = -1$ (slope). The projection is $P = A\hat{x} = \begin{bmatrix} 8/3 \\ 11/3 \\ 5/3 \end{bmatrix}$. The residuals $b - P = \begin{bmatrix} 1/3 \\ 1/3 \\ -2/3 \end{bmatrix}$ are orthogonal to both columns of $A$.</p>
             </div>
 
             <h3>Practice Problems</h3>
@@ -237,7 +250,9 @@
                 <p><em>Hint: The columns sum to $1$, so $\lambda = 1$ is an eigenvalue. The trace is $0.1 + 0.3 + 0.5 = 0.9$, giving the third eigenvalue. Check singularity to find the first.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Columns are linearly dependent (col $1$ + col $2$ = $1.5 \times$ col $3$? Let us check: $0.1+0.3=0.4$, $0.6 \times 0.5 = 0.3$, not exactly. Actually trace is $0.9$, so if $\lambda_2=1$, then $\lambda_1+\lambda_3 = -0.1$. But Markov implies $|\lambda| < 1$ for non-dominant eigenvalues, and singularity might not hold. Let us compute determinant or check rank. If columns sum to $1$, then $(1,1,1)^T$ is a left eigenvector with eigenvalue $1$. The trace is $0.9$, so the other two eigenvalues sum to $-0.1$. By Gershgorin, they lie in disks centered at diagonal entries with radius column sum minus diagonal. A safe answer: $\lambda_1 = 1$, and the other two satisfy $\lambda_2 + \lambda_3 = -0.1$ with $|\lambda_i| < 1$. To find steady state, solve $(A-I)x = 0$; a typical steady-state vector is proportional to the left eigenvector $(1,1,1)$, giving $x = c(1,1,1)^T$. Since total population is $10$, $c = 10/3$, so $u^{(\infty)} = \frac{10}{3}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$.</p>
+                    <p>Columns are linearly dependent. The trace is $0.9$, so if $\lambda_2 = 1$, then $\lambda_1 + \lambda_3 = -0.1$. But Markov implies $|\lambda| < 1$ for non-dominant eigenvalues, and singularity might not hold. If columns sum to $1$, then $(1,1,1)^T$ is a left eigenvector with eigenvalue $1$. The trace is $0.9$, so the other two eigenvalues sum to $-0.1$. By Gershgorin, they lie in disks centered at diagonal entries with radius column sum minus diagonal.</p>
+                    <p>A safe answer: $\lambda_1 = 1$, and the other two satisfy $\lambda_2 + \lambda_3 = -0.1$ with $|\lambda_i| < 1$. To find steady state, solve $(A-I)x = 0$; a typical steady-state vector is proportional to the left eigenvector $(1,1,1)$, giving $x = c(1,1,1)^T$. Since total population is $10$, $c = 10/3$, so
+                        $$u^{(\infty)} = \frac{10}{3}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}$$</p>
                 </details>
 
                 <p><strong>Problem 2:</strong> Give an example of a $2 \times 2$ matrix with orthogonal eigenvectors that is not symmetric. Verify its eigenvalues and eigenvectors.</p>
@@ -251,14 +266,28 @@
                 <p><em>Hint: You need $A^T b = 0$. Write $b = \begin{bmatrix} b_1 \\ b_2 \\ b_3 \end{bmatrix}$ and solve the linear equations.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>We need $A^T b = \begin{bmatrix} 1 & 1 & 1 \\ 1 & 0 & 2 \end{bmatrix}\begin{bmatrix} b_1 \\ b_2 \\ b_3 \end{bmatrix} = \begin{bmatrix} b_1 + b_2 + b_3 \\ b_1 + 2b_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$. From the second equation, $b_1 = -2b_3$. Substituting into the first: $-2b_3 + b_2 + b_3 = 0$, so $b_2 = b_3$. Taking $b_3 = 1$ gives $b = \begin{bmatrix} -2 \\ 1 \\ 1 \end{bmatrix}$. This vector is orthogonal to both columns of $A$: $(-2,1,1) \cdot (1,1,1) = 0$ and $(-2,1,1) \cdot (1,0,2) = 0$. Therefore the projection of $b$ onto $\mathcal{C}(A)$ is zero, and the least-squares solution is $\hat{x} = 0$.</p>
+                    <p>We need
+                        $$A^T b = \begin{bmatrix} 1 & 1 & 1 \\ 1 & 0 & 2 \end{bmatrix}\begin{bmatrix} b_1 \\ b_2 \\ b_3 \end{bmatrix} = \begin{bmatrix} b_1 + b_2 + b_3 \\ b_1 + 2b_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$$</p>
+                    <p>From the second equation, $b_1 = -2b_3$. Substituting into the first: $-2b_3 + b_2 + b_3 = 0$, so $b_2 = b_3$. Taking $b_3 = 1$ gives $b = \begin{bmatrix} -2 \\ 1 \\ 1 \end{bmatrix}$.</p>
+                    <p>This vector is orthogonal to both columns of $A$: $(-2,1,1) \cdot (1,1,1) = 0$ and $(-2,1,1) \cdot (1,0,2) = 0$. Therefore the projection of $b$ onto $\mathcal{C}(A)$ is zero, and the least-squares solution is $\hat{x} = 0$.</p>
                 </details>
 
                 <p><strong>Problem 4:</strong> Suppose $A$ is a $3 \times 3$ matrix with eigenvalues $2, -1, 4$ and corresponding eigenvectors $v_1 = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}$, $v_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}$, $v_3 = \begin{bmatrix} 1 \\ 0 \\ -1 \end{bmatrix}$. Write $A$ in the form $S\Lambda S^{-1}$. Is $A$ symmetric? Explain.</p>
                 <p><em>Hint: Form $S$ and $\Lambda$, then compute $S^{-1}$. Check $A^T$ by inspection or by computing $A$ explicitly.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Let $S = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & -1 \end{bmatrix}$, $\Lambda = \begin{bmatrix} 2 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 4 \end{bmatrix}$. The inverse of $S$ is $S^{-1} = \begin{bmatrix} 1/2 & 0 & 1/2 \\ 0 & 1 & 0 \\ 1/2 & 0 & -1/2 \end{bmatrix}$ (check: the columns are orthogonal but not orthonormal; $S^T S = \text{diag}(2, 1, 2)$). Then $A = S\Lambda S^{-1} = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & -1 \end{bmatrix}\begin{bmatrix} 2 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 4 \end{bmatrix}\begin{bmatrix} 1/2 & 0 & 1/2 \\ 0 & 1 & 0 \\ 1/2 & 0 & -1/2 \end{bmatrix}$. Compute the product: $S\Lambda = \begin{bmatrix} 2 & 0 & 4 \\ 0 & -1 & 0 \\ 2 & 0 & -4 \end{bmatrix}$. Then $A = \begin{bmatrix} 2 & 0 & 4 \\ 0 & -1 & 0 \\ 2 & 0 & -4 \end{bmatrix}\begin{bmatrix} 1/2 & 0 & 1/2 \\ 0 & 1 & 0 \\ 1/2 & 0 & -1/2 \end{bmatrix} = \begin{bmatrix} 1+2 & 0 & 1-2 \\ 0 & -1 & 0 \\ 1-2 & 0 & 1+2 \end{bmatrix} = \begin{bmatrix} 3 & 0 & -1 \\ 0 & -1 & 0 \\ -1 & 0 & 3 \end{bmatrix}$. This matrix is symmetric! The eigenvectors $v_1$ and $v_3$ are orthogonal, and $v_2$ is orthogonal to both. Since the eigenvectors are orthogonal, $S^T S$ is diagonal, and $A = S\Lambda S^{-1}$ turns out to be symmetric because $S^{-1} = (S^T S)^{-1} S^T$ and the algebra works out. More directly, $A = S \Lambda (S^T S)^{-1} S^T$ is symmetric because it has the form $M D M^T$ with $D$ diagonal.</p>
+                    <p>Let
+                        $$S = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & -1 \end{bmatrix}, \quad \Lambda = \begin{bmatrix} 2 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 4 \end{bmatrix}$$</p>
+                    <p>The inverse of $S$ is
+                        $$S^{-1} = \begin{bmatrix} 1/2 & 0 & 1/2 \\ 0 & 1 & 0 \\ 1/2 & 0 & -1/2 \end{bmatrix}$$</p>
+                    <p>(check: the columns are orthogonal but not orthonormal; $S^T S = \text{diag}(2, 1, 2)$).</p>
+                    <p>Then
+                        $$A = S\Lambda S^{-1} = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & -1 \end{bmatrix}\begin{bmatrix} 2 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 4 \end{bmatrix}\begin{bmatrix} 1/2 & 0 & 1/2 \\ 0 & 1 & 0 \\ 1/2 & 0 & -1/2 \end{bmatrix}$$</p>
+                    <p>Compute the product:
+                        $$S\Lambda = \begin{bmatrix} 2 & 0 & 4 \\ 0 & -1 & 0 \\ 2 & 0 & -4 \end{bmatrix}$$</p>
+                    <p>Then
+                        $$A = \begin{bmatrix} 2 & 0 & 4 \\ 0 & -1 & 0 \\ 2 & 0 & -4 \end{bmatrix}\begin{bmatrix} 1/2 & 0 & 1/2 \\ 0 & 1 & 0 \\ 1/2 & 0 & -1/2 \end{bmatrix} = \begin{bmatrix} 3 & 0 & -1 \\ 0 & -1 & 0 \\ -1 & 0 & 3 \end{bmatrix}$$</p>
+                    <p>This matrix is symmetric! The eigenvectors $v_1$ and $v_3$ are orthogonal, and $v_2$ is orthogonal to both. Since the eigenvectors are orthogonal, $S^T S$ is diagonal, and $A = S\Lambda S^{-1}$ turns out to be symmetric because $S^{-1} = (S^T S)^{-1} S^T$ and the algebra works out. More directly, $A = S \Lambda (S^T S)^{-1} S^T$ is symmetric because it has the form $M D M^T$ with $D$ diagonal.</p>
                 </details>
             </div>
 
