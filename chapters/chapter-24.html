@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,13 +37,13 @@
         <main class="chapter">
             <h2>Chapter 24: Markov Matrices; Fourier Series</h2>
             <p class="lead">This chapter connects matrix powers to real-world population models through Markov matrices. Then it makes a profound leap from finite-dimensional to infinite-dimensional vector spaces via Fourier series.</p>
-            <p class="lead">You will see how the eigenvalues of a Markov matrix reveal the steady-state distribution of a population. You will see how orthonormal bases make projections trivial. You will see how the same inner-product machinery that works for vectors extends to functions—giving birth to Fourier series and the expansion of arbitrary functions in terms of sines and cosines.</p>
+            <p class="lead">You will see how the eigenvalues of a Markov matrix reveal the steady-state distribution of a population. You will see how orthonormal bases make projections trivial. You will see how the same inner-product machinery that works for vectors extends to functions, giving birth to Fourier series and the expansion of arbitrary functions in terms of sines and cosines.</p>
 
             <div class="video-section">
-                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/8MF3pz-oYHo"
-                            title="24. Markov Matrices; Fourier Series — Gilbert Strang"
+                            title="24. Markov Matrices; Fourier Series, Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -56,7 +56,7 @@
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/is1cg5yhdds"
-                                    title="Prof Dave Explains — Linear Transformations"
+                                    title="Prof Dave Explains, Linear Transformations"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -70,21 +70,21 @@
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/AP-1ukgcG-s"
-                                    title="Dr. Valerie Hower — Linear Transformations in Geometry"
+                                    title="Dr. Valerie Hower, Linear Transformations in Geometry"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Cartier — Textbook Context</h5>
+                        <h5>Paul Cartier, Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/T2Gtt8WygiU"
-                                    title="Prof Dave Explains — Elementary Row Operations"
+                                    title="Prof Dave Explains, Elementary Row Operations"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
@@ -100,7 +100,7 @@
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>Markov Matrices and Population Movement</h4>
-            <p>A Markov matrix describes the movement of populations between states with no gain or loss—total population is conserved. Each column sums to 1, and all entries are non-negative.</p>
+            <p>A Markov matrix describes the movement of populations between states with no gain or loss. Total population is conserved. Each column sums to 1, and all entries are non-negative.</p>
             <p>For a 2-state population model with matrix:</p>
             <p>$$ A = \begin{bmatrix} 0.9 & 0.1 \\ 0.2 & 0.8 \end{bmatrix} $$</p>
             <p>the columns sum to 1 and all entries are between 0 and 1. The determinant is 0.9 × 0.8 - 0.1 × 0.2 = 0.72 - 0.02 = 0.7, confirming the matrix is invertible and well-behaved. The trace is 0.9 + 0.8 = 1.7, which equals the sum of the eigenvalues.</p>
@@ -322,7 +322,7 @@
                     <li>$$ a_1 = \frac{1}{\pi}\int_0^{2\pi} (1+\cos x)\cos x\,dx = \frac{1}{\pi}[\pi + 0] = 1 $$</li>
                     <li>a<sub>n</sub> = 0 for n ≥ 2 (orthogonality of cos nx with cos x when n ≠ 1)</li>
                     <li>b<sub>n</sub> = 0 for all n (integral of odd function sin nx against even 1+cos x)</li>
-                    <li>Fourier series: f(x) = 1 + cos x (exact—only two terms needed)</li>
+                    <li>Fourier series: f(x) = 1 + cos x (exact. Only two terms are needed)</li>
                     <li>This is the function-space analogue of projecting a vector onto an orthonormal basis and finding it lies entirely in the span of the first two basis vectors</li>
                 </ul>
             </div>
@@ -402,6 +402,8 @@
     <script src="../js/app.js"></script>
 </body>
 </html>
+
+
 
 
 

@@ -36,13 +36,13 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 29: Similar Matrices and Jordan Form</h2>
-            <p class="lead">This chapter explores matrix similarity—when two matrices represent the same linear transformation in different bases—and reveals that every square matrix is similar to a canonical form built from Jordan blocks. The good case (distinct eigenvalues) yields diagonalization, where eigenvectors become the standard basis. The bad case (repeated eigenvalues) yields the Jordan form, where 1s on the superdiagonal capture the "missing" eigenvectors. The number of Jordan blocks equals the number of independent eigenvectors, and the size of each block records how many eigenvectors are missing in that invariant subspace.</p>
+            <p class="lead">This chapter explores matrix similarity. This happens when two matrices represent the same linear transformation in different bases. It reveals that every square matrix is similar to a canonical form built from Jordan blocks. The good case (distinct eigenvalues) yields diagonalization, where eigenvectors become the standard basis. The bad case (repeated eigenvalues) yields the Jordan form, where 1s on the superdiagonal capture the "missing" eigenvectors. The number of Jordan blocks equals the number of independent eigenvectors, and the size of each block records how many eigenvectors are missing in that invariant subspace.</p>
 
             <div class="video-section">
-                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/z_zYQHmrh08"
-                            title="29. Similar Matrices and Jordan Form — Gilbert Strang"
+                            title="29. Similar Matrices and Jordan Form, Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -55,7 +55,7 @@
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/WTLl03D4TNA"
-                                    title="Prof Dave Explains — Diagonalization"
+                                    title="Prof Dave Explains, Diagonalization"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -69,21 +69,21 @@
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/CW9g9XI5pxw"
-                                    title="Dr. Valerie Hower — Diagonalization"
+                                    title="Dr. Valerie Hower, Diagonalization"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Cartier — Textbook Context</h5>
+                        <h5>Paul Cartier, Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/kYB8IZa5AuE"
-                                    title="3Blue1Brown — Linear transformations and matrices"
+                                    title="3Blue1Brown, Linear transformations and matrices"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -151,7 +151,7 @@
 
             <div class="derivation">
                 <h4>Derivation: Why $4I$ Is Only Similar to Itself</h4>
-                <p>Let $A = 4I$. For any invertible $M$, compute $M^{-1} A M = M^{-1} (4I) M = 4 M^{-1} M = 4I = A$. Thus $M^{-1} A M = A$ for every $M$, so $4I$ is only similar to itself. The matrix $4I$ is a "loner" in the similarity family—it has no relatives. This is because $4I$ commutes with every matrix: $AI = IA$, so similarity transformations do nothing.</p>
+                <p>Let $A = 4I$. For any invertible $M$, compute $M^{-1} A M = M^{-1} (4I) M = 4 M^{-1} M = 4I = A$. Thus $M^{-1} A M = A$ for every $M$, so $4I$ is only similar to itself. The matrix $4I$ is a "loner" in the similarity family. It has no relatives. This is because $4I$ commutes with every matrix: $AI = IA$, so similarity transformations do nothing.</p>
             </div>
 
             <div class="derivation">
@@ -169,7 +169,7 @@
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Diagonalization: Eigenvectors Become the Basis"</strong>
-                    <p>When $A = S\Lambda S^{-1}$, the columns of $S$ are the eigenvectors. The diagonal matrix $\Lambda$ has the same eigenvalues but the eigenvectors are now $e_1, e_2, \ldots, e_n$—the standard basis. Diagonalization is the similarity transformation that makes eigenvectors trivial.</p>
+                    <p>When $A = S\Lambda S^{-1}$, the columns of $S$ are the eigenvectors. The diagonal matrix $\Lambda$ has the same eigenvalues but the eigenvectors are now $e_1, e_2, \ldots, e_n$. The standard basis. Diagonalization is the similarity transformation that makes eigenvectors trivial.</p>
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Jordan Block: One Eigenvector, Size Records Defect"</strong>
@@ -182,7 +182,7 @@
                 <ul>
                     <li>To check similarity, verify that matrices have the same eigenvalues with the same algebraic and geometric multiplicities</li>
                     <li>Diagonalization is possible if and only if there are $n$ independent eigenvectors</li>
-                    <li>If $\lambda = 4I$, it is only similar to itself—scalar matrices are "loners"</li>
+                    <li>If $\lambda = 4I$, it is only similar to itself. Scalar matrices are "loners"</li>
                     <li>For repeated eigenvalues, compute the geometric multiplicity (dimension of eigenspace); if it is less than algebraic multiplicity, Jordan form is needed</li>
                     <li>The number of Jordan blocks for eigenvalue $\lambda$ equals the geometric multiplicity of $\lambda$</li>
                     <li>Jordan blocks come in sizes that sum to the algebraic multiplicity; larger blocks mean more generalized eigenvectors</li>
@@ -253,7 +253,7 @@
                     <li>$A$ has two 2×2 Jordan blocks: $J_A = \text{diag}(J_2(0), J_2(0))$</li>
                     <li>$B$ has one 3×3 block and one 1×1 block: $J_B = \text{diag}(J_3(0), J_1(0))$</li>
                     <li>$A$ has Jordan form with two 2×2 blocks; $B$ has Jordan form with one 3×3 block and one 1×1 block. Since the Jordan forms are different, $A$ and $B$ are not similar.</li>
-                    <li>Key insight: counting eigenvectors is not enough—you must also know the sizes of the Jordan blocks.</li>
+                    <li>Key insight: counting eigenvectors is not enough. You must also know the sizes of the Jordan blocks.</li>
                 </ul>
             </div>
 
@@ -273,7 +273,7 @@
                     <p><em>Hint: Both have eigenvalues 4, 4, 2. How many independent eigenvectors does each have?</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$A$ is diagonal with eigenvectors $e_1, e_2, e_3$—three independent eigenvectors. $B$ has eigenvalue 4 with geometric multiplicity 1 (only one eigenvector for $\lambda=4$: $[1,0,0]^T$) and eigenvalue 2 with geometric multiplicity 1. Total: 2 independent eigenvectors. Since $A$ has 3 eigenvectors and $B$ has 2, they are not similar. The Jordan form of $A$ is $A$ itself (diagonal); the Jordan form of $B$ has a 2×2 block for $\lambda=4$ and a 1×1 block for $\lambda=2$.</p>
+                    <p>$A$ is diagonal with eigenvectors $e_1, e_2, e_3$. There are three independent eigenvectors. $B$ has eigenvalue 4 with geometric multiplicity 1 (only one eigenvector for $\lambda=4$: $[1,0,0]^T$) and eigenvalue 2 with geometric multiplicity 1. Total: 2 independent eigenvectors. Since $A$ has 3 eigenvectors and $B$ has 2, they are not similar. The Jordan form of $A$ is $A$ itself (diagonal); the Jordan form of $B$ has a 2×2 block for $\lambda=4$ and a 1×1 block for $\lambda=2$.</p>
                 </details>
 
                 <p><strong>Problem 3:</strong> For the matrix $A = \begin{bmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 \end{bmatrix}$, find its rank, nullity, eigenvalues, and the number of Jordan blocks in its Jordan form.</p>
@@ -302,5 +302,6 @@
     <script src="../js/app.js"></script>
 </body>
 </html>
+
 
 

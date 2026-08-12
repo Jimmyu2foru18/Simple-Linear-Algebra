@@ -39,13 +39,13 @@
             <p class="lead">This chapter makes the leap from real to complex vector spaces, introducing the Fourier matrix as the most important example of a complex matrix with orthonormal columns.</p>
             <p>The $n \times n$ Fourier matrix $F_n$ is constructed from the $n$-th roots of unity. Its orthogonal columns make the inverse immediate:</p>
             $$F_n^{-1} = \bar{F}_n^T / n$$
-            <p>The climax is the Fast Fourier Transform (FFT). This algorithm reduces the cost of multiplying by an $n \times n$ matrix from $n^2$ operations to $\frac{1}{2}n \log_2 n$ operations. It does this by recursively factoring $F_n$ into smaller Fourier matrices—a reduction by a factor of 200 for $n = 1024$.</p>
+            <p>The climax is the Fast Fourier Transform (FFT). This algorithm reduces the cost of multiplying by an $n \times n$ matrix from $n^2$ operations to $\frac{1}{2}n \log_2 n$ operations. It does this by recursively factoring $F_n$ into smaller Fourier matrices. This is a reduction by a factor of 200 for $n = 1024$.</p>
 
             <div class="video-section">
-                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/M0Sa8fLOajA"
-                            title="27. Complex Matrices; Fast Fourier Transform — Gilbert Strang"
+                            title="27. Complex Matrices; Fast Fourier Transform, Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -58,7 +58,7 @@
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/DUuTx2nbizM"
-                                    title="Prof Dave Explains — Complex, Hermitian, and Unitary Matrices"
+                                    title="Prof Dave Explains, Complex, Hermitian, and Unitary Matrices"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -72,21 +72,21 @@
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/Zd7wCsUM4pg"
-                                    title="Dr. Valerie Hower — Intro to Linear Transformations"
+                                    title="Dr. Valerie Hower, Intro to Linear Transformations"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Cartier — Textbook Context</h5>
+                        <h5>Paul Cartier, Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/is1cg5yhdds"
-                                    title="Prof Dave Explains — Linear Transformations"
+                                    title="Prof Dave Explains, Linear Transformations"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -123,7 +123,7 @@
             $$F_{2n} = \begin{bmatrix} I & D \\ I & -D \end{bmatrix} \begin{bmatrix} F_n & 0 \\ 0 & F_n \end{bmatrix} \begin{bmatrix} P \\ 0 & I \end{bmatrix}$$
             <p>where $P$ is the permutation matrix that reorders $[x_0, x_1, \ldots, x_{2n-1}]$ into $[x_0, x_2, \ldots, x_{2n-2}, x_1, x_3, \ldots, x_{2n-1}]$ and $D$ is a diagonal matrix of powers of $W$.</p>
             <p>The recursive structure means we solve two problems of size $n$ instead of one problem of size $2n$. The recurrence for the operation count is $M(2n) = 2M(n) + O(n)$, which solves to $M(n) = O(n \log n)$.</p>
-            <p>For $n=1024$, this is $512 \times 10 = 5120$ operations instead of $1,048,576$—a factor of 200 reduction.</p>
+            <p>For $n=1024$, this is $512 \times 10 = 5120$ operations instead of $1,048,576$. This is a factor of 200 reduction.</p>
 
             <h3>Computation Examples</h3>
 
@@ -176,7 +176,7 @@
                     <li>To check orthogonality of columns, compute the inner product with conjugation: $\sum W^{mj} \bar{W}^{mk}$</li>
                     <li>The inverse formula $F_n^{-1} = \frac{1}{n}\bar{F}_n^T$ mirrors $Q^{-1} = Q^T$ for real orthogonal matrices</li>
                     <li>The FFT recursion is $F_{2n} \to$ two copies of $F_n$ plus permutation and diagonal fix-up</li>
-                    <li>The operation count goes from $n^2$ to $\frac{1}{2}n \log_2 n$—memorize this for exam questions</li>
+                    <li>The operation count goes from $n^2$ to $\frac{1}{2}n \log_2 n$. Memorize this for exam questions</li>
                 </ul>
             </div>
 
@@ -284,7 +284,7 @@
                 <p><em>Hint: Unfold the recurrence: $M(2^k) = 2M(2^{k-1}) + c \cdot 2^{k-1}$. Divide by $2^k$ and telescope.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$M(2^k) = 2M(2^{k-1}) + c \cdot 2^{k-1}$. Divide by $2^k$: $M(2^k)/2^k = M(2^{k-1})/2^{k-1} + c/2$. Telescoping: $M(2^k)/2^k = k \cdot c/2$. Thus $M(2^k) = \frac{c}{2} k \cdot 2^k = \frac{c}{2} n \log_2 n$. The $n^2$ term from direct multiplication is replaced by $n \log_2 n$. For $n=1024$: $n^2 = 1,048,576$, while $n \log_2 n \approx 10,240$. The FFT is about 100— faster.</p>
+                    <p>$M(2^k) = 2M(2^{k-1}) + c \cdot 2^{k-1}$. Divide by $2^k$: $M(2^k)/2^k = M(2^{k-1})/2^{k-1} + c/2$. Telescoping: $M(2^k)/2^k = k \cdot c/2$. Thus $M(2^k) = \frac{c}{2} k \cdot 2^k = \frac{c}{2} n \log_2 n$. The $n^2$ term from direct multiplication is replaced by $n \log_2 n$. For $n=1024$: $n^2 = 1,048,576$, while $n \log_2 n \approx 10,240$. The FFT is about 100. This is faster.</p>
                 </details>
             </div>
 
@@ -299,5 +299,6 @@
     <script src="../js/app.js"></script>
 </body>
 </html>
+
 
 

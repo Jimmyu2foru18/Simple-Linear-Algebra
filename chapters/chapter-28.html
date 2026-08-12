@@ -36,13 +36,13 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 28: Positive Definite Matrices and Minima</h2>
-            <p class="lead">This chapter reveals the deep connection between positive definite matrices and optimization. Just as a positive second derivative guarantees a minimum in single-variable calculus, a positive definite matrix of second derivatives guarantees a minimum in multivariable calculus. The chapter shows how completing the square is exactly Gaussian elimination in disguise, how pivots appear outside the squares and multipliers inside, and how the geometry of the graph—a bowl, an ellipsoid, a paraboloid—reflects the eigenvalue structure of the matrix. The principal axis theorem states that every positive definite matrix can be diagonalized by an orthogonal transformation, aligning the axes of the bowl with the eigenvectors.</p>
+            <p class="lead">This chapter reveals the deep connection between positive definite matrices and optimization. Just as a positive second derivative guarantees a minimum in single-variable calculus, a positive definite matrix of second derivatives guarantees a minimum in multivariable calculus. The chapter shows how completing the square is exactly Gaussian elimination in disguise, how pivots appear outside the squares and multipliers inside, and how the geometry of the graph. It is a bowl, an ellipsoid, a paraboloid. This reflects the eigenvalue structure of the matrix. The principal axis theorem states that every positive definite matrix can be diagonalized by an orthogonal transformation, aligning the axes of the bowl with the eigenvectors.</p>
 
             <div class="video-section">
-                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/vF7eyJ2g3kU"
-                            title="28. Positive Definite Matrices and Minima — Gilbert Strang"
+                            title="28. Positive Definite Matrices and Minima, Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -55,7 +55,7 @@
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/DUuTx2nbizM"
-                                    title="Prof Dave Explains — Complex, Hermitian, and Unitary Matrices"
+                                    title="Prof Dave Explains, Complex, Hermitian, and Unitary Matrices"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -69,21 +69,21 @@
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/vL4Qp4EoJS8"
-                                    title="Dr. Valerie Hower — Orthogonal Transformations and Matrices"
+                                    title="Dr. Valerie Hower, Orthogonal Transformations and Matrices"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Cartier — Textbook Context</h5>
+                        <h5>Paul Cartier, Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/6nqMegdbxik"
-                                    title="Prof Dave Explains — Orthogonality and Orthonormality"
+                                    title="Prof Dave Explains, Orthogonality and Orthonormality"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -126,7 +126,7 @@
             <h4>Geometry: Bowls, Ellipsoids, and the Principal Axis Theorem</h4>
             <p>The graph of $f(x) = x^T A x$ with $A$ positive definite is a bowl-shaped surface called a paraboloid.</p>
             <p>For $A = \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$, the function is $f(x) = 2x_1^2 + 2x_2^2 + 2x_3^2 - 2x_1x_2 - 2x_2x_3$.</p>
-            <p>The level set $f(x) = 1$ is an ellipsoid—a "football" shape in 3D.</p>
+            <p>The level set $f(x) = 1$ is an ellipsoid. It is a "football" shape in 3D.</p>
             <p>The principal axis theorem states that $$A = Q \Lambda Q^T$$ where $Q$ has orthonormal eigenvectors and $\Lambda$ is diagonal with eigenvalues $\lambda_i$.</p>
             <p>The eigenvectors give the principal axes of the ellipsoid; the eigenvalues determine the lengths of those axes.</p>
             <p>Specifically, the axis in direction $q_i$ has length proportional to $$1/\sqrt{\lambda_i}$$.</p>
@@ -322,5 +322,6 @@
     <script src="../js/app.js"></script>
 </body>
 </html>
+
 
 

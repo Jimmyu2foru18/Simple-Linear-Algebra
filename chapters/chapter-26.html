@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,13 +36,13 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 26: Symmetric Matrices and Positive Definiteness</h2>
-            <p class="lead">This chapter establishes why symmetric matrices are the "good" matrices: they have real eigenvalues and orthogonal eigenvectors. The spectral theorem reveals that every symmetric matrix can be decomposed into a sum of mutually perpendicular projection matrices. The second half introduces positive definite matrices—the subclass of symmetric matrices with all positive eigenvalues and pivots. It also shows how to test for positive definiteness using pivots, eigenvalues, or the determinant of every leading principal submatrix.</p>
+            <p class="lead">This chapter establishes why symmetric matrices are the "good" matrices: they have real eigenvalues and orthogonal eigenvectors. The spectral theorem reveals that every symmetric matrix can be decomposed into a sum of mutually perpendicular projection matrices. The second half introduces positive definite matrices. This subclass of symmetric matrices with all positive eigenvalues and pivots. It also shows how to test for positive definiteness using pivots, eigenvalues, or the determinant of every leading principal submatrix.</p>
 
             <div class="video-section">
-                <h4>Core Lecture — Gilbert Strang (MIT)</h4>
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/umt6BB1nJ4w"
-                            title="26. Symmetric Matrices and Positive Definiteness — Gilbert Strang"
+                            title="26. Symmetric Matrices and Positive Definiteness, Gilbert Strang"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -55,7 +55,7 @@
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/DUuTx2nbizM"
-                                    title="Prof Dave Explains — Complex, Hermitian, and Unitary Matrices"
+                                    title="Prof Dave Explains, Complex, Hermitian, and Unitary Matrices"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -69,21 +69,21 @@
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/vL4Qp4EoJS8"
-                                    title="Dr. Valerie Hower — Orthogonal Transformations and Matrices"
+                                    title="Dr. Valerie Hower, Orthogonal Transformations and Matrices"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-card-caption">
-                        <h5>Paul Cartier — Textbook Context</h5>
+                        <h5>Paul Cartier, Textbook Context</h5>
                         <p>Textbook-aligned explanation with examples</p>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/6nqMegdbxik"
-                                    title="Prof Dave Explains — Orthogonality and Orthonormality"
+                                    title="Prof Dave Explains, Orthogonality and Orthonormality"
                                     frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -117,11 +117,11 @@
             <p>The spectral theorem states that every symmetric matrix $A$ can be written as a sum of rank-1 projection matrices onto its eigenvectors:</p>
             $$A = \lambda_1 q_1 q_1^T + \lambda_2 q_2 q_2^T + \cdots + \lambda_n q_n q_n^T$$
             <p>Here the $q_i$ are orthonormal eigenvectors and $\lambda_i$ are the corresponding eigenvalues. Each term $q_i q_i^T$ is a symmetric projection matrix onto the line spanned by $q_i$.</p>
-            <p>This decomposition reveals that a symmetric matrix is a "combination of mutually perpendicular projection matrices"—exactly as Strang describes.</p>
+            <p>This decomposition reveals that a symmetric matrix is a "combination of mutually perpendicular projection matrices", exactly as Strang describes.</p>
 
             <h4>Pivots and Eigenvalues Have the Same Sign</h4>
             <p>For a symmetric matrix, the number of positive pivots equals the number of positive eigenvalues, and the number of negative pivots equals the number of negative eigenvalues.</p>
-            <p>This is a profound fact: you can determine the sign pattern of all eigenvalues by computing only the pivots from LU factorization—no need to find the eigenvalues explicitly.</p>
+            <p>This is a profound fact: you can determine the sign pattern of all eigenvalues by computing only the pivots from LU factorization. There is no need to find the eigenvalues explicitly.</p>
             <p>The product of the pivots equals the determinant, which equals the product of the eigenvalues. But the individual signs are what matter. This gives a practical numerical method for estimating eigenvalue distributions in large matrices.</p>
 
             <h4>Positive Definite Matrices</h4>
@@ -199,7 +199,7 @@
                 <p>For a symmetric matrix, the signs of the pivots from LU factorization match the signs of the eigenvalues:</p>
                 <p>$$\text{Positive pivots: } n_+ \quad \text{Negative pivots: } n_- \quad \text{Zero pivots: } n_0$$</p>
                 <p>$$\text{Positive eigenvalues: } n_+ \quad \text{Negative eigenvalues: } n_- \quad \text{Zero eigenvalues: } n_0$$</p>
-                <p>This means you can determine the eigenvalue sign pattern without computing the eigenvalues themselves—just compute the pivots.</p>
+                <p>This means you can determine the eigenvalue sign pattern without computing the eigenvalues themselves. Just compute the pivots.</p>
             </div>
 
             <div class="visual-aid">
@@ -279,7 +279,7 @@
                 <p><em>Hint: This is the tridiagonal matrix from Chapter 19. Compute pivots using LU factorization without row exchanges.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Pivot 1: 2. Eliminate: row 2 + (1/2)row 1 gives $[0, 1.5, -1]$. Pivot 2: 1.5. Eliminate: row 3 + (2/3)row 2 gives $[0, 0, 4/3]$. Pivot 3: 4/3. All pivots are positive (2, 1.5, 4/3), so $A$ is positive definite. Eigenvalues of this tridiagonal matrix are $2(1 - \cos(k\pi/4))$ for $k = 1, 2, 3$, giving approximately 0.586, 2.0, 3.414—all positive. Determinant = $2 \cdot 1.5 \cdot (4/3) = 4$.</p>
+                    <p>Pivot 1: 2. Eliminate: row 2 + (1/2)row 1 gives $[0, 1.5, -1]$. Pivot 2: 1.5. Eliminate: row 3 + (2/3)row 2 gives $[0, 0, 4/3]$. Pivot 3: 4/3. All pivots are positive (2, 1.5, 4/3), so $A$ is positive definite. Eigenvalues of this tridiagonal matrix are $2(1 - \cos(k\pi/4))$ for $k = 1, 2, 3$, giving approximately 0.586, 2.0, 3.414, and all are positive. Determinant = $2 \cdot 1.5 \cdot (4/3) = 4$.</p>
                 </details>
 
                 <p><strong>Problem 4:</strong> Explain why the matrix $A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$ is NOT positive definite, even though its determinant is negative. Use both the pivot test and the eigenvalue test.</p>
@@ -301,5 +301,7 @@
     <script src="../js/app.js"></script>
 </body>
 </html>
+
+
 
 
