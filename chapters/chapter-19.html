@@ -99,14 +99,16 @@
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>Overview</h4>
-            <p>This chapter introduces the <strong>cofactor formula</strong>, a recursive method for computing determinants of any $n \times n$ matrix by expanding along a row or column. Rather than using the $n!$ term big formula or Gaussian elimination to pivots, cofactor expansion breaks the determinant down into smaller determinants of size $(n-1) \times (n-1)$, building up from $1 \times 1$ cases.</p>
+            <p>This chapter introduces the <strong>cofactor formula</strong>, a recursive method for computing determinants of any $$n \times n$$ matrix by expanding along a row or column.</p>
+
+            <p>Rather than using the $$n!$$ term big formula or Gaussian elimination to pivots, cofactor expansion breaks the determinant down into smaller determinants of size $$(n-1) \times (n-1)$$, building up from $$1 \times 1$$ cases.</p>
 
             <h4>Key Concepts</h4>
             <ul>
-                <li><strong>Expanding along a row:</strong> Each element $a_{ij}$ in a row contributes $a_{ij}$ times its cofactor $C_{ij}$ to the determinant.</li>
-                <li><strong>Checkerboard sign pattern:</strong> The cofactor of $a_{ij}$ carries a sign $(-1)^{i+j}$, producing a $+$ / $-$ / $+$ / $-$ alternating pattern across both rows and columns.</li>
-                <li><strong>Minor vs. cofactor:</strong> The <em>minor</em> $M_{ij}$ is the determinant of the submatrix with row $i$ and column $j$ removed; the <em>cofactor</em> $C_{ij} = (-1)^{i+j} M_{ij}$ includes the sign.</li>
-                <li><strong>Tri-diagonal example:</strong> A recurrence $\det(A_n) = \det(A_{n-1}) - \det(A_{n-2})$ yields a periodic sequence of period six.</li>
+                <li><strong>Expanding along a row:</strong> Each element $$a_{ij}$$ in a row contributes $$a_{ij}$$ times its cofactor $$C_{ij}$$ to the determinant.</li>
+                <li><strong>Checkerboard sign pattern:</strong> The cofactor of $$a_{ij}$$ carries a sign $$(-1)^{i+j}$$, producing a $$+$$ / $$-$$ / $$+$$ / $$-$$ alternating pattern across both rows and columns.</li>
+                <li><strong>Minor vs. cofactor:</strong> The <em>minor</em> $$M_{ij}$$ is the determinant of the submatrix with row $$i$$ and column $$j$$ removed. The <em>cofactor</em> $$C_{ij} = (-1)^{i+j} M_{ij}$$ includes the sign.</li>
+                <li><strong>Tri-diagonal example:</strong> A recurrence $$ \det(A_n) = \det(A_{n-1}) - \det(A_{n-2}) $$ yields a periodic sequence of period six.</li>
             </ul>
 
             <!-- ========================================== -->

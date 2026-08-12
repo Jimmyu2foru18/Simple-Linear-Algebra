@@ -36,7 +36,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 26: Symmetric Matrices and Positive Definiteness</h2>
-            <p class="lead">This chapter establishes why symmetric matrices are the "good" matrices: they have real eigenvalues and orthogonal eigenvectors. The spectral theorem reveals that every symmetric matrix can be decomposed into a sum of mutually perpendicular projection matrices. The second half introduces positive definite matrices—the subclass of symmetric matrices with all positive eigenvalues and pivots—and shows how to test for positive definiteness using pivots, eigenvalues, or the determinant of every leading principal submatrix.</p>
+            <p class="lead">This chapter establishes why symmetric matrices are the "good" matrices: they have real eigenvalues and orthogonal eigenvectors. The spectral theorem reveals that every symmetric matrix can be decomposed into a sum of mutually perpendicular projection matrices. The second half introduces positive definite matrices—the subclass of symmetric matrices with all positive eigenvalues and pivots. It also shows how to test for positive definiteness using pivots, eigenvalues, or the determinant of every leading principal submatrix.</p>
 
             <div class="video-section">
                 <h4>Core Lecture — Gilbert Strang (MIT)</h4>
@@ -99,19 +99,36 @@
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>Real Eigenvalues and Orthogonal Eigenvectors</h4>
-            <p>For a real symmetric matrix $A$ ($A = A^T$), the eigenvalues are always real and the eigenvectors are always orthogonal. The proof uses the key identity $x^T A x = \lambda x^T x$. If $A$ has eigenvectors $x$ and $y$ with distinct eigenvalues $\lambda$ and $\alpha$, then $x^T A y = \lambda x^T y$ and $x^T A y = y^T A x = \alpha y^T x = \alpha x^T y$. Since $x^T A y = y^T A x$ by symmetry, we get $\lambda x^T y = \alpha x^T y$, so $(\lambda - \alpha)x^T y = 0$. Since $\lambda \neq \alpha$, we have $x^T y = 0$: the eigenvectors are orthogonal.</p>
+            <p>For a real symmetric matrix $A$ ($A = A^T$), the eigenvalues are always real and the eigenvectors are always orthogonal.</p>
+            <p>The proof uses the key identity:</p>
+            $$x^T A x = \lambda x^T x$$
+            <p>If $A$ has eigenvectors $x$ and $y$ with distinct eigenvalues $\lambda$ and $\alpha$, then</p>
+            $$x^T A y = \lambda x^T y \quad \text{and} \quad x^T A y = y^T A x = \alpha y^T x = \alpha x^T y$$
+            <p>By symmetry, $x^T A y = y^T A x$, so $\lambda x^T y = \alpha x^T y$. This gives $(\lambda - \alpha)x^T y = 0$. Since $\lambda \neq \alpha$, we have $x^T y = 0$: the eigenvectors are orthogonal.</p>
 
             <h4>Hermitian Matrices: The Complex Generalization</h4>
-            <p>For complex matrices, the correct generalization of symmetry is the Hermitian property: $A^H = A$, where $A^H = \bar{A}^T$ is the conjugate transpose. Hermitian matrices also have real eigenvalues and orthogonal eigenvectors (with respect to the complex inner product $\bar{x}^T x$). For real matrices, $A^H = A$ reduces to $A^T = A$, so Hermitian includes symmetric as a special case. The key identity becomes $\bar{x}^T A x = \lambda \bar{x}^T x$, and the length squared of a complex vector $x$ is $\bar{x}^T x$.</p>
+            <p>For complex matrices, the correct generalization of symmetry is the Hermitian property: $A^H = A$, where $A^H = \bar{A}^T$ is the conjugate transpose.</p>
+            <p>Hermitian matrices also have real eigenvalues and orthogonal eigenvectors (with respect to the complex inner product $\bar{x}^T x$). For real matrices, $A^H = A$ reduces to $A^T = A$, so Hermitian includes symmetric as a special case.</p>
+            <p>The key identity becomes:</p>
+            $$\bar{x}^T A x = \lambda \bar{x}^T x$$
+            <p>The length squared of a complex vector $x$ is $\bar{x}^T x$.</p>
 
             <h4>The Spectral Theorem: Decomposition into Projection Matrices</h4>
-            <p>The spectral theorem states that every symmetric matrix $A$ can be written as a sum of rank-1 projection matrices onto its eigenvectors: $A = \lambda_1 q_1 q_1^T + \lambda_2 q_2 q_2^T + \cdots + \lambda_n q_n q_n^T$, where the $q_i$ are orthonormal eigenvectors and $\lambda_i$ are the corresponding eigenvalues. Each term $q_i q_i^T$ is a symmetric projection matrix onto the line spanned by $q_i$. This decomposition reveals that a symmetric matrix is a "combination of mutually perpendicular projection matrices"—exactly as Strang describes.</p>
+            <p>The spectral theorem states that every symmetric matrix $A$ can be written as a sum of rank-1 projection matrices onto its eigenvectors:</p>
+            $$A = \lambda_1 q_1 q_1^T + \lambda_2 q_2 q_2^T + \cdots + \lambda_n q_n q_n^T$$
+            <p>Here the $q_i$ are orthonormal eigenvectors and $\lambda_i$ are the corresponding eigenvalues. Each term $q_i q_i^T$ is a symmetric projection matrix onto the line spanned by $q_i$.</p>
+            <p>This decomposition reveals that a symmetric matrix is a "combination of mutually perpendicular projection matrices"—exactly as Strang describes.</p>
 
             <h4>Pivots and Eigenvalues Have the Same Sign</h4>
-            <p>For a symmetric matrix, the number of positive pivots equals the number of positive eigenvalues, and the number of negative pivots equals the number of negative eigenvalues. This is a profound fact: you can determine the sign pattern of all eigenvalues by computing only the pivots from LU factorization—no need to find the eigenvalues explicitly. The product of the pivots equals the determinant, which equals the product of the eigenvalues, but the individual signs are what matter. This gives a practical numerical method for estimating eigenvalue distributions in large matrices.</p>
+            <p>For a symmetric matrix, the number of positive pivots equals the number of positive eigenvalues, and the number of negative pivots equals the number of negative eigenvalues.</p>
+            <p>This is a profound fact: you can determine the sign pattern of all eigenvalues by computing only the pivots from LU factorization—no need to find the eigenvalues explicitly.</p>
+            <p>The product of the pivots equals the determinant, which equals the product of the eigenvalues. But the individual signs are what matter. This gives a practical numerical method for estimating eigenvalue distributions in large matrices.</p>
 
             <h4>Positive Definite Matrices</h4>
-            <p>A symmetric matrix is positive definite if all its eigenvalues are positive. Equivalently, all its pivots are positive. Equivalently, all leading principal minors (determinants of the top-left $k \times k$ submatrices for $k = 1, 2, \ldots, n$) are positive. For a $2 \times 2$ matrix $\begin{bmatrix} a & b \\ b & c \end{bmatrix}$, the tests are: $a > 0$ (first pivot), $ac - b^2 > 0$ (determinant), and trace $a + c > 0$ (sum of eigenvalues). The determinant alone is not enough: $\begin{bmatrix} -1 & -3 \\ -2 & 1 \end{bmatrix}$ has determinant $1 - 6 = -3$? Wait, the transcript says determinant is positive 3... Let me check: $\det\begin{bmatrix} -1 & -3 \\ -2 & 1 \end{bmatrix} = (-1)(1) - (-3)(-2) = -1 - 6 = -7$, which is negative. Actually the transcript mentions "here is eleven, that's great" for the first matrix and "here the determinant of the whole matrix is three, that's positive" for a counterexample matrix. The key point is that all sub-determinants must be positive, not just the full determinant. Positive definite matrices are the "great" matrices for differential equations because their eigenvalues are all positive, ensuring stability in certain contexts.</p>
+            <p>A symmetric matrix is positive definite if all its eigenvalues are positive. Equivalently, all its pivots are positive. Equivalently, all leading principal minors (determinants of the top-left $k \times k$ submatrices for $k = 1, 2, \ldots, n$) are positive.</p>
+            <p>For a $2 \times 2$ matrix $\begin{bmatrix} a & b \\ b & c \end{bmatrix}$, the tests are: $a > 0$ (first pivot), $ac - b^2 > 0$ (determinant), and trace $a + c > 0$ (sum of eigenvalues).</p>
+            <p>The determinant alone is not enough. A matrix may have a positive determinant but still fail the leading principal minor test. For example, $\begin{bmatrix} -1 & -3 \\ -2 & 1 \end{bmatrix}$ has determinant $(-1)(1) - (-3)(-2) = -1 - 6 = -7$, which is negative. Another example: a matrix with positive determinant but a negative first pivot is not positive definite.</p>
+            <p>The key point is that all sub-determinants must be positive, not just the full determinant. Positive definite matrices are the "great" matrices for differential equations because their eigenvalues are all positive, ensuring stability in certain contexts.</p>
 
             <h3>Computation Examples</h3>
 
@@ -125,12 +142,17 @@
 
             <div class="derivation">
                 <h4>Derivation: The Spectral Theorem Decomposition</h4>
-                <p>Let $A$ be symmetric with orthonormal eigenvectors $q_1, q_2, \ldots, q_n$ and eigenvalues $\lambda_1, \lambda_2, \ldots, \lambda_n$. Form the orthogonal matrix $Q = [q_1 \; q_2 \; \cdots \; q_n]$. Then $Q^T Q = I$ and $A Q = Q \Lambda$ where $\Lambda = \text{diag}(\lambda_1, \ldots, \lambda_n)$. Thus $A = Q \Lambda Q^T$. Expanding: $A = \sum_{i=1}^n \lambda_i q_i q_i^T$. Each term $\lambda_i q_i q_i^T$ is a scalar multiple of the projection matrix $P_i = q_i q_i^T$ onto the line spanned by $q_i$. The projection matrix $P_i$ satisfies $P_i^2 = P_i$ (idempotent), $P_i^T = P_i$ (symmetric), and has rank 1. Therefore every symmetric matrix is a weighted sum of orthogonal rank-1 projection matrices.</p>
+                <p>Let $A$ be symmetric with orthonormal eigenvectors $q_1, q_2, \ldots, q_n$ and eigenvalues $\lambda_1, \lambda_2, \ldots, \lambda_n$. Form the orthogonal matrix $Q = [q_1 \; q_2 \; \cdots \; q_n]$. Then $Q^T Q = I$ and $A Q = Q \Lambda$ where $\Lambda = \text{diag}(\lambda_1, \ldots, \lambda_n)$.</p>
+                <p>Thus $A = Q \Lambda Q^T$. Expanding:</p>
+                $$A = \sum_{i=1}^n \lambda_i q_i q_i^T$$
+                <p>Each term $\lambda_i q_i q_i^T$ is a scalar multiple of the projection matrix $P_i = q_i q_i^T$ onto the line spanned by $q_i$. The projection matrix $P_i$ satisfies $P_i^2 = P_i$ (idempotent), $P_i^T = P_i$ (symmetric), and has rank 1. Therefore every symmetric matrix is a weighted sum of orthogonal rank-1 projection matrices.</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Pivots and Eigenvalues Have the Same Sign</h4>
-                <p>For a symmetric matrix $A$, the LU factorization $A = LU$ (with no row exchanges) produces pivots $d_1, d_2, \ldots, d_n$ on the diagonal of $U$. The determinant of every leading principal submatrix equals the product of the first $k$ pivots. The number of positive pivots equals the number of positive eigenvalues because: (1) the product of all pivots equals the determinant, which equals the product of all eigenvalues; (2) the sign of each pivot can be determined independently through the signs of the leading principal minors; (3) for symmetric matrices, the inertia theorem states that the numbers of positive, negative, and zero eigenvalues are preserved under congruence transformations. Thus the pivot signs exactly match the eigenvalue signs.</p>
+                <p>For a symmetric matrix $A$, the LU factorization $A = LU$ (with no row exchanges) produces pivots $d_1, d_2, \ldots, d_n$ on the diagonal of $U$. The determinant of every leading principal submatrix equals the product of the first $k$ pivots.</p>
+                <p>The number of positive pivots equals the number of positive eigenvalues because: (1) the product of all pivots equals the determinant, which equals the product of all eigenvalues; (2) the sign of each pivot can be determined independently through the signs of the leading principal minors; (3) for symmetric matrices, the inertia theorem states that the numbers of positive, negative, and zero eigenvalues are preserved under congruence transformations.</p>
+                <p>Thus the pivot signs exactly match the eigenvalue signs.</p>
             </div>
 
             <h3>Learning Strategies</h3>
@@ -147,7 +169,7 @@
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Positive Definite: All Positive Eigenvalues, All Positive Pivots"</strong>
-                    <p>A symmetric matrix is positive definite if and only if all eigenvalues are positive if and only if all pivots are positive if and only if all leading principal minors are positive. These four conditions are equivalent.</p>
+                    <p>A symmetric matrix is positive definite if and only if all eigenvalues are positive. This is equivalent to all pivots being positive, and to all leading principal minors being positive. These four conditions are equivalent.</p>
                 </div>
             </div>
 

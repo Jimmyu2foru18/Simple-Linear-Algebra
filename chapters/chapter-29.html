@@ -99,21 +99,48 @@
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>Similar Matrices: Same Eigenvalues, Different Eigenvectors</h4>
-            <p>Two matrices $A$ and $B$ are similar if $B = M^{-1} A M$ for some invertible matrix $M$. Similar matrices represent the same linear transformation in different bases. The key facts: (1) similar matrices have the same eigenvalues; (2) the eigenvectors of $B$ are $M^{-1}$ times the eigenvectors of $A$. If $Ax = \lambda x$, then $B(M^{-1}x) = M^{-1}AM(M^{-1}x) = M^{-1}Ax = \lambda(M^{-1}x)$. So $M^{-1}x$ is an eigenvector of $B$ with the same eigenvalue $\lambda$. The eigenvalues are invariant under similarity; only the eigenvectors change.</p>
+            <p>Two matrices $A$ and $B$ are similar if $B = M^{-1} A M$ for some invertible matrix $M$.</p>
+            <p>Similar matrices represent the same linear transformation in different bases.</p>
+            <p>The eigenvalues are invariant under similarity; only the eigenvectors change.</p>
+            <p>If $Ax = \lambda x$, then
+                $$B(M^{-1}x) = M^{-1}AM(M^{-1}x) = M^{-1}Ax = \lambda(M^{-1}x).$$
+                So $M^{-1}x$ is an eigenvector of $B$ with the same eigenvalue $\lambda$.</p>
 
             <h4>Diagonalization: The Best Similarity Transformation</h4>
-            <p>When $A$ has $n$ independent eigenvectors, they form the columns of $S$. Then $S^{-1}AS = \Lambda$, where $\Lambda$ is the diagonal matrix of eigenvalues. This is diagonalization: $A$ is similar to $\Lambda$. The diagonal matrix $\Lambda$ is the "best" member of the similarity family because its eigenvectors are the standard basis vectors $e_1, e_2, \ldots, e_n$. Diagonalization preserves eigenvalues but makes the eigenvectors trivial. For example, $A = \begin{bmatrix} 3 & 1 \\ 0 & 1 \end{bmatrix}$ is similar to $\Lambda = \begin{bmatrix} 3 & 0 \\ 0 & 1 \end{bmatrix}$ via $S = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$.</p>
+            <p>When $A$ has $n$ independent eigenvectors, they form the columns of $S$.</p>
+            <p>Then
+                $$S^{-1}AS = \Lambda,$$
+                where $\Lambda$ is the diagonal matrix of eigenvalues.</p>
+            <p>The diagonal matrix $\Lambda$ is the "best" member of the similarity family because its eigenvectors are the standard basis vectors $e_1, e_2, \ldots, e_n$.</p>
+            <p>For example,
+                $$A = \begin{bmatrix} 3 & 1 \\ 0 & 1 \end{bmatrix}$$
+                is similar to
+                $$\Lambda = \begin{bmatrix} 3 & 0 \\ 0 & 1 \end{bmatrix}$$
+                via
+                $$S = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}.$$</p>
 
             <h4>The Bad Case: Repeated Eigenvalues and Missing Eigenvectors</h4>
-            <p>When eigenvalues are repeated, diagonalization may fail. A matrix is defective if it does not have a full set of $n$ independent eigenvectors. For example, $A = \begin{bmatrix} 4 & 1 \\ 0 & 4 \end{bmatrix}$ has eigenvalue $\lambda = 4$ with multiplicity 2, but only one eigenvector $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$. The geometric multiplicity (1) is less than the algebraic multiplicity (2). This matrix is not diagonalizable because any diagonal matrix similar to $A$ would have to be $4I$, but $4I$ is only similar to itself.</p>
+            <p>When eigenvalues are repeated, diagonalization may fail.</p>
+            <p>A matrix is defective if it does not have a full set of $n$ independent eigenvectors.</p>
+            <p>For example,
+                $$A = \begin{bmatrix} 4 & 1 \\ 0 & 4 \end{bmatrix}$$
+                has eigenvalue $\lambda = 4$ with multiplicity 2, but only one eigenvector
+                $$\begin{bmatrix} 1 \\ 0 \end{bmatrix}.$$</p>
+            <p>The geometric multiplicity (1) is less than the algebraic multiplicity (2).</p>
+            <p>This matrix is not diagonalizable because any diagonal matrix similar to $A$ would have to be $4I$, but $4I$ is only similar to itself.</p>
 
             <h4>Jordan Blocks: The Building Blocks</h4>
             <p>A Jordan block $J_k(\lambda)$ is a $k \times k$ matrix with $\lambda$ on the diagonal, 1s on the superdiagonal, and 0s elsewhere:
-                $$J_k(\lambda) = \begin{bmatrix} \lambda & 1 & 0 & \cdots & 0 \\ 0 & \lambda & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \ddots & \vdots \\ 0 & 0 & \cdots & \lambda & 1 \\ 0 & 0 & \cdots & 0 & \lambda \end{bmatrix}$$
-            A Jordan block has only one independent eigenvector (corresponding to the eigenvalue $\lambda$), despite having size $k$. The size of the block records how many eigenvectors are missing: a block of size $k$ contributes 1 to the geometric multiplicity but $k$ to the algebraic multiplicity. The number of Jordan blocks equals the number of independent eigenvectors.</p>
+                $$J_k(\lambda) = \begin{bmatrix} \lambda & 1 & 0 & \cdots & 0 \\ 0 & \lambda & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \ddots & \vdots \\ 0 & 0 & \cdots & \lambda & 1 \\ 0 & 0 & \cdots & 0 & \lambda \end{bmatrix}$$</p>
+            <p>A Jordan block has only one independent eigenvector (corresponding to the eigenvalue $\lambda$), despite having size $k$.</p>
+            <p>The number of Jordan blocks equals the number of independent eigenvectors.</p>
 
             <h4>Jordan's Theorem: Every Matrix Is Similar to a Jordan Matrix</h4>
-            <p>Jordan's fundamental theorem states that every square matrix $A$ is similar to a block diagonal matrix $J$ whose blocks are Jordan blocks. The Jordan matrix $J$ is unique up to the order of blocks. If all eigenvalues are distinct, then $J$ is diagonal (each block is 1×1). If eigenvalues are repeated, the Jordan blocks capture the defect: larger blocks mean fewer eigenvectors. For example, a 4×4 matrix with eigenvalue 0 and rank 2 has nullity 2, so it has 2 eigenvectors. If the Jordan form has two 2×2 blocks, that means two eigenvectors, each with a generalized eigenvector attached. The Jordan form brings diagonalization as close as possible when exact diagonalization is impossible.</p>
+            <p>Jordan's fundamental theorem states that every square matrix $A$ is similar to a block diagonal matrix $J$ whose blocks are Jordan blocks.</p>
+            <p>The Jordan matrix $J$ is unique up to the order of blocks.</p>
+            <p>If all eigenvalues are distinct, then $J$ is diagonal (each block is 1×1).</p>
+            <p>If eigenvalues are repeated, the Jordan blocks capture the defect: larger blocks mean fewer eigenvectors.</p>
+            <p>The Jordan form brings diagonalization as close as possible when exact diagonalization is impossible.</p>
 
             <h3>Computation Examples</h3>
 

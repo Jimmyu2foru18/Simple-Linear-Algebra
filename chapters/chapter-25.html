@@ -153,16 +153,24 @@
 
             <div class="derivation">
                 <h4>Derivation: Eigenvalues of the Recurrence Matrix</h4>
-                <p>For $A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix}$, the characteristic equation is:</p>
-                $$\det(A - \lambda I) = \det\begin{bmatrix} 1-\lambda & -1 \\ 1 & -\lambda \end{bmatrix} = (1-\lambda)(-\lambda) + 1 = \lambda^2 - \lambda + 1 = 0$$
+                <p>For:</p>
+                <p>$$ A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix} $$</p>
+                <p>the characteristic equation is:</p>
+                <p>$$ \det(A - \lambda I) = \det\begin{bmatrix} 1-\lambda & -1 \\ 1 & -\lambda \end{bmatrix} = (1-\lambda)(-\lambda) + 1 = \lambda^2 - \lambda + 1 = 0 $$</p>
                 <p>Using the quadratic formula:</p>
-                $$\lambda = \frac{1 \pm \sqrt{1-4}}{2} = \frac{1 \pm i\sqrt{3}}{2}$$
-                <p>These are $e^{\pm i\pi/3}$ in polar form. The magnitude is $\sqrt{(1/2)^2 + (\sqrt{3}/2)^2} = 1$. Since $|\lambda| = 1$, the powers $\lambda^6 = 1$, so $A^6 = I$. The sequence of determinants has period 6.</p>
+                <p>$$ \lambda = \frac{1 \pm \sqrt{1-4}}{2} = \frac{1 \pm i\sqrt{3}}{2} $$</p>
+                <p>These are e<sup>±iπ/3</sup> in polar form. The magnitude is:</p>
+                <p>$$ \sqrt{(1/2)^2 + (\sqrt{3}/2)^2} = 1 $$</p>
+                <p>Since |λ| = 1, the powers λ<sup>6</sup> = 1, so A<sup>6</sup> = I. The sequence of determinants has period 6.</p>
             </div>
 
             <div class="derivation">
                 <h4>Derivation: Eigenvalues and Singularity of the Matrix Family $A_n$</h4>
-                <p>For $A_3 = \begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 2 \\ 0 & 2 & 0 \end{bmatrix}$, the characteristic equation is $\det(A_3 - \lambda I) = -\lambda(\lambda^2 - 5) = 0$. The eigenvalues are $\lambda = 0, \pm\sqrt{5}$. Since $\lambda = 0$ is an eigenvalue, $A_3$ is singular. Column 3 is $[0, 2, 0]^T = 2 \times [0, 1, 0]^T$, confirming singularity. The trace is 0 (matching $0 + \sqrt{5} - \sqrt{5} = 0$) and the determinant is 0 (matching $0 \cdot \sqrt{5} \cdot (-\sqrt{5}) = 0$). For $A_4$, which follows the same pattern with entries 1, 2, 3, the matrix is invertible with determinant 9. Since $A_4$ is invertible, $C(A_4) = \mathbb{R}^4$ and the projection matrix is $P = I_4$.</p>
+                <p>For:</p>
+                <p>$$ A_3 = \begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 2 \\ 0 & 2 & 0 \end{bmatrix} $$</p>
+                <p>the characteristic equation is det(A<sub>3</sub> - λI) = -λ(λ<sup>2</sup> - 5) = 0. The eigenvalues are λ = 0, ±√5. Since λ = 0 is an eigenvalue, A<sub>3</sub> is singular. Column 3 is [0, 2, 0]<sup>T</sup> = 2 × [0, 1, 0]<sup>T</sup>, confirming singularity.</p>
+                <p>The trace is 0 (matching 0 + √5 - √5 = 0) and the determinant is 0 (matching 0 · √5 · (-√5) = 0).</p>
+                <p>For A<sub>4</sub>, which follows the same pattern with entries 1, 2, 3, the matrix is invertible with determinant 9. Since A<sub>4</sub> is invertible, C(A<sub>4</sub>) = R<sup>4</sup> and the projection matrix is P = I<sub>4</sub>.</p>
             </div>
 
             <h3>Learning Strategies</h3>
@@ -171,24 +179,31 @@
                 <h4>Mnemonic Devices</h4>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Cofactor Along First Row: Expand and Recurse"</strong>
-                    <p>When expanding a tri-diagonal determinant along the first row, the first entry gives $D_{n-1}$ and the second gives $-D_{n-2}$. The sign alternates, producing the recurrence $D_n = D_{n-1} - D_{n-2}$.</p>
+                    <p>When expanding a tri-diagonal determinant along the first row, the first entry gives D<sub>n-1</sub> and the second gives -D<sub>n-2</sub>. The sign alternates, producing the recurrence:</p>
+                    <p>$$ D_n = D_{n-1} - D_{n-2} $$</p>
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Complex on Unit Circle Means Periodic"</strong>
-                    <p>If eigenvalues are complex with magnitude 1, they lie on the unit circle: $\lambda = e^{i\theta}$. Then $\lambda^{2\pi/\theta} = 1$, so the matrix raised to that power is the identity. For $\lambda = e^{\pm i\pi/3}$, the period is 6.</p>
+                    <p>If eigenvalues are complex with magnitude 1, they lie on the unit circle:</p>
+                    <p>$$ \lambda = e^{i\theta} $$</p>
+                    <p>Then:</p>
+                    <p>$$ \lambda^{2\pi/\theta} = 1 $$</p>
+                    <p>so the matrix raised to that power is the identity. For λ = e<sup>±iπ/3</sup>, the period is 6.</p>
                 </div>
                 <div class="mnemonic">
                     <strong>Mnemonic: "Invertible Matrix Projects onto Whole Space"</strong>
-                    <p>If $A$ is invertible, $C(A) = \mathbb{R}^n$ and the projection matrix onto $C(A)$ is the identity $I$. Only singular matrices have nontrivial projection matrices onto proper subspaces.</p>
+                    <p>If A is invertible, C(A) = R<sup>n</sup> and the projection matrix onto C(A) is the identity I. Only singular matrices have nontrivial projection matrices onto proper subspaces.</p>
                 </div>
             </div>
 
             <div class="strategies">
                 <h4>Study Tips</h4>
                 <ul>
-                    <li>For determinant recurrences, always verify with the first few terms: $D_1, D_2, D_3, \ldots$</li>
+                    <li>For determinant recurrences, always verify with the first few terms: D<sub>1</sub>, D<sub>2</sub>, D<sub>3</sub>, ...</li>
                     <li>When converting a recurrence to a matrix system, the state vector must contain enough history</li>
-                    <li>For complex eigenvalues $\lambda = \alpha + i\beta$, compute magnitude as $\sqrt{\alpha^2 + \beta^2}$; if magnitude is 1, look for periodicity</li>
+                    <li>For complex eigenvalues λ = α + iβ, compute magnitude as:</li>
+                    <li>$$ \sqrt{\alpha^2 + \beta^2} $$</li>
+                    <li>if magnitude is 1, look for periodicity</li>
                     <li>Check trace and determinant as sanity checks for eigenvalues: trace = sum, det = product</li>
                     <li>For a symmetric matrix, eigenvalues are always real—if you get complex eigenvalues, recheck your work</li>
                     <li>A matrix is singular if and only if 0 is an eigenvalue; check this before computing inverses or projections</li>
@@ -199,23 +214,27 @@
 
             <div class="visual-aid">
                 <h4>Figure: Determinant Recurrence and Period-6 Cycle</h4>
-                <p>The tri-diagonal determinant recurrence $D_n = D_{n-1} - D_{n-2}$ with $D_1 = 1, D_2 = 0$ produces a periodic sequence:</p>
-                $$D_1=1, D_2=0, D_3=-1, D_4=-1, D_5=0, D_6=1, D_7=1, D_8=0, \ldots$$
-                <p>The sequence repeats every 6 terms. This reflects the fact that the recurrence matrix $A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix}$ satisfies $A^6 = I$.</p>
+                <p>The tri-diagonal determinant recurrence D<sub>n</sub> = D<sub>n-1</sub> - D<sub>n-2</sub> with D<sub>1</sub> = 1, D<sub>2</sub> = 0 produces a periodic sequence:</p>
+                <p>$$ D_1=1, D_2=0, D_3=-1, D_4=-1, D_5=0, D_6=1, D_7=1, D_8=0, \ldots $$</p>
+                <p>The sequence repeats every 6 terms. This reflects the fact that the recurrence matrix:</p>
+                <p>$$ A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix} $$</p>
+                <p>satisfies A<sup>6</sup> = I.</p>
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Eigenvalues on the Unit Circle</h4>
-                <p>The eigenvalues $\lambda = \frac{1 \pm i\sqrt{3}}{2}$ lie on the unit circle in the complex plane at angles $\pm\pi/3$:</p>
-                $$\lambda = e^{\pm i\pi/3} = \cos(\pi/3) \pm i\sin(\pi/3) = \frac{1}{2} \pm i\frac{\sqrt{3}}{2}$$
-                <p>Since $|\lambda| = 1$, the powers cycle with period 6: $\lambda^6 = 1$. The matrix $A^6 = I$ means applying the recurrence 6 times returns to the starting state.</p>
+                <p>The eigenvalues:</p>
+                <p>$$ \lambda = \frac{1 \pm i\sqrt{3}}{2} $$</p>
+                <p>lie on the unit circle in the complex plane at angles ±π/3:</p>
+                <p>$$ \lambda = e^{\pm i\pi/3} = \cos(\pi/3) \pm i\sin(\pi/3) = \frac{1}{2} \pm i\frac{\sqrt{3}}{2} $$</p>
+                <p>Since |λ| = 1, the powers cycle with period 6: λ<sup>6</sup> = 1. The matrix A<sup>6</sup> = I means applying the recurrence 6 times returns to the starting state.</p>
             </div>
 
             <div class="visual-aid">
                 <h4>Figure: Singular vs Invertible in the Matrix Family $A_n$</h4>
-                <p>The family of symmetric matrices $A_n$ shows a clear pattern:</p>
-                <p>$A_3$: singular ($\det = 0$), eigenvalues $0, \pm\sqrt{5}$, column space is 2D in $\mathbb{R}^3$</p>
-                <p>$A_4$: invertible ($\det = 9$), column space is $\mathbb{R}^4$, projection matrix $P = I_4$</p>
+                <p>The family of symmetric matrices A<sub>n</sub> shows a clear pattern:</p>
+                <p>A<sub>3</sub>: singular (det = 0), eigenvalues 0, ±√5, column space is 2D in R<sup>3</sup></p>
+                <p>A<sub>4</sub>: invertible (det = 9), column space is R<sup>4</sup>, projection matrix P = I<sub>4</sub></p>
                 <p>Odd-indexed matrices are singular; even-indexed matrices are invertible. The projection onto the column space of an invertible matrix is always the identity.</p>
             </div>
 
@@ -223,45 +242,50 @@
 
             <div class="example">
                 <h4>Example 1: Determinant Recurrence and Periodicity</h4>
-                <p><strong>Problem:</strong> For the tri-diagonal matrix of ones $A_n$, the determinant satisfies $D_n = D_{n-1} - D_{n-2}$ with $D_1 = 1, D_2 = 0$. Find $D_3$ through $D_{10}$, verify the period is 6, and explain why using the recurrence matrix.</p>
+                <p><strong>Problem:</strong> For the tri-diagonal matrix of ones A<sub>n</sub>, the determinant satisfies D<sub>n</sub> = D<sub>n-1</sub> - D<sub>n-2</sub> with D<sub>1</sub> = 1, D<sub>2</sub> = 0. Find D<sub>3</sub> through D<sub>10</sub>, verify the period is 6, and explain why using the recurrence matrix.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>$D_3 = D_2 - D_1 = 0 - 1 = -1$</li>
-                    <li>$D_4 = D_3 - D_2 = -1 - 0 = -1$</li>
-                    <li>$D_5 = D_4 - D_3 = -1 - (-1) = 0$</li>
-                    <li>$D_6 = D_5 - D_4 = 0 - (-1) = 1$</li>
-                    <li>$D_7 = D_6 - D_5 = 1 - 0 = 1$</li>
-                    <li>$D_8 = D_7 - D_6 = 1 - 1 = 0$</li>
-                    <li>Period is 6: $1, 0, -1, -1, 0, 1$ repeats</li>
-                    <li>Recurrence matrix: $A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix}$, eigenvalues $\lambda = e^{\pm i\pi/3}$</li>
-                    <li>$|\lambda| = 1$ and $\lambda^6 = 1$, so $A^6 = I$, confirming period 6</li>
+                    <li>D<sub>3</sub> = D<sub>2</sub> - D<sub>1</sub> = 0 - 1 = -1</li>
+                    <li>D<sub>4</sub> = D<sub>3</sub> - D<sub>2</sub> = -1 - 0 = -1</li>
+                    <li>D<sub>5</sub> = D<sub>4</sub> - D<sub>3</sub> = -1 - (-1) = 0</li>
+                    <li>D<sub>6</sub> = D<sub>5</sub> - D<sub>4</sub> = 0 - (-1) = 1</li>
+                    <li>D<sub>7</sub> = D<sub>6</sub> - D<sub>5</sub> = 1 - 0 = 1</li>
+                    <li>D<sub>8</sub> = D<sub>7</sub> - D<sub>6</sub> = 1 - 1 = 0</li>
+                    <li>Period is 6: 1, 0, -1, -1, 0, 1 repeats</li>
+                    <li>Recurrence matrix:</li>
+                    <li>$$ A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix} $$</li>
+                    <li>eigenvalues λ = e<sup>±iπ/3</sup></li>
+                    <li>|λ| = 1 and λ<sup>6</sup> = 1, so A<sup>6</sup> = I, confirming period 6</li>
                 </ul>
             </div>
 
             <div class="example">
                 <h4>Example 2: Eigenvalues of a Singular Symmetric Matrix</h4>
-                <p><strong>Problem:</strong> For $A_3 = \begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 2 \\ 0 & 2 & 0 \end{bmatrix}$, find the eigenvalues, verify the trace and determinant, and explain why it is singular.</p>
+                <p><strong>Problem:</strong> For:</p>
+                <p>$$ A_3 = \begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 2 \\ 0 & 2 & 0 \end{bmatrix} $$</p>
+                <p>find the eigenvalues, verify the trace and determinant, and explain why it is singular.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>Characteristic equation: $\det(A_3 - \lambda I) = -\lambda(\lambda^2 - 5) = 0$</li>
-                    <li>Eigenvalues: $\lambda_1 = 0, \lambda_2 = \sqrt{5}, \lambda_3 = -\sqrt{5}$</li>
-                    <li>Trace: $0 + 0 + 0 = 0$, matches sum of eigenvalues $0 + \sqrt{5} - \sqrt{5} = 0$</li>
-                    <li>Determinant: $0 \cdot \sqrt{5} \cdot (-\sqrt{5}) = 0$, matrix is singular</li>
-                    <li>Geometric reason: column 3 = $2 \times$ column 1, so columns are dependent</li>
-                    <li>Eigenvector for $\lambda = 0$: null space of $A_3$ is span$\{[2, 0, -1]^T\}$ (row 2 gives $x_1 + 2x_3 = 0$)</li>
+                    <li>Characteristic equation:</li>
+                    <li>$$ \det(A_3 - \lambda I) = -\lambda(\lambda^2 - 5) = 0 $$</li>
+                    <li>Eigenvalues: λ<sub>1</sub> = 0, λ<sub>2</sub> = √5, λ<sub>3</sub> = -√5</li>
+                    <li>Trace: 0 + 0 + 0 = 0, matches sum of eigenvalues 0 + √5 - √5 = 0</li>
+                    <li>Determinant: 0 · √5 · (-√5) = 0, matrix is singular</li>
+                    <li>Geometric reason: column 3 = 2 × column 1, so columns are dependent</li>
+                    <li>Eigenvector for λ = 0: null space of A<sub>3</sub> is span{[2, 0, -1]<sup>T</sup>} (row 2 gives x<sub>1</sub> + 2x<sub>3</sub> = 0)</li>
                 </ul>
             </div>
 
             <div class="example">
                 <h4>Example 3: Projection Matrix for an Invertible Matrix</h4>
-                <p><strong>Problem:</strong> Explain why the projection matrix onto the column space of $A_4$ is the identity matrix, and describe what this means geometrically.</p>
+                <p><strong>Problem:</strong> Explain why the projection matrix onto the column space of A<sub>4</sub> is the identity matrix, and describe what this means geometrically.</p>
                 <p><strong>Solution:</strong></p>
                 <ul>
-                    <li>$A_4$ is invertible (determinant = 9)</li>
-                    <li>For an invertible $n \times n$ matrix, $C(A) = \mathbb{R}^n$</li>
-                    <li>The projection matrix onto $\mathbb{R}^n$ is $P = A(A^T A)^{-1} A^T$</li>
-                    <li>Since $A$ is invertible, $A^T A$ is invertible, and $P = A(A^T A)^{-1} A^T = I$</li>
-                    <li>Geometrically: projecting any vector $b$ onto the whole space $\mathbb{R}^n$ leaves $b$ unchanged</li>
+                    <li>A<sub>4</sub> is invertible (determinant = 9)</li>
+                    <li>For an invertible n × n matrix, C(A) = R<sup>n</sup></li>
+                    <li>The projection matrix onto R<sup>n</sup> is P = A(A<sup>T</sup>A)<sup>-1</sup>A<sup>T</sup></li>
+                    <li>Since A is invertible, A<sup>T</sup>A is invertible, and P = A(A<sup>T</sup>A)<sup>-1</sup>A<sup>T</sup> = I</li>
+                    <li>Geometrically: projecting any vector b onto the whole space R<sup>n</sup> leaves b unchanged</li>
                     <li>Every vector is already in the column space, so projection does nothing</li>
                 </ul>
             </div>
@@ -271,32 +295,45 @@
             <div class="questions">
                 <h4>Problem Set 25</h4>
 
-                <p><strong>Problem 1:</strong> For the determinant recurrence $D_n = D_{n-1} - D_{n-2}$ with $D_1 = 1, D_2 = 0$, compute $D_3$ through $D_8$. Prove by induction that the sequence has period 6.</p>
-                <p><em>Hint: Compute the first 8 terms and look for the pattern $1, 0, -1, -1, 0, 1$ repeating.</em></p>
+                <p><strong>Problem 1:</strong> For the determinant recurrence D<sub>n</sub> = D<sub>n-1</sub> - D<sub>n-2</sub> with D<sub>1</sub> = 1, D<sub>2</sub> = 0, compute D<sub>3</sub> through D<sub>8</sub>. Prove by induction that the sequence has period 6.</p>
+                <p><em>Hint: Compute the first 8 terms and look for the pattern 1, 0, -1, -1, 0, 1 repeating.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>$D_3 = -1, D_4 = -1, D_5 = 0, D_6 = 1, D_7 = 1, D_8 = 0$. The sequence is $1, 0, -1, -1, 0, 1, 1, 0, \ldots$ which has period 6. The recurrence matrix $A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix}$ has eigenvalues $e^{\pm i\pi/3}$, so $A^6 = I$, confirming the period.</p>
+                    <p>D<sub>3</sub> = -1, D<sub>4</sub> = -1, D<sub>5</sub> = 0, D<sub>6</sub> = 1, D<sub>7</sub> = 1, D<sub>8</sub> = 0. The sequence is 1, 0, -1, -1, 0, 1, 1, 0, ... which has period 6.</p>
+                    <p>The recurrence matrix:</p>
+                    <p>$$ A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix} $$</p>
+                    <p>has eigenvalues e<sup>±iπ/3</sup>, so A<sup>6</sup> = I, confirming the period.</p>
                 </details>
 
-                <p><strong>Problem 2:</strong> Let $A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix}$. Find its eigenvalues, compute $A^6$, and verify that $A^6 = I$.</p>
-                <p><em>Hint: The eigenvalues are $e^{\pm i\pi/3}$. Use the diagonalization $A = S\Lambda S^{-1}$ to compute $A^6 = S\Lambda^6 S^{-1}$.</em></p>
+                <p><strong>Problem 2:</strong> Let:</p>
+                <p>$$ A = \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix} $$</p>
+                <p>Find its eigenvalues, compute A<sup>6</sup>, and verify that A<sup>6</sup> = I.</p>
+                <p><em>Hint: The eigenvalues are e<sup>±iπ/3</sup>. Use the diagonalization A = SΛS<sup>-1</sup> to compute A<sup>6</sup> = SΛ<sup>6</sup>S<sup>-1</sup>.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Eigenvalues: $\lambda = \frac{1 \pm i\sqrt{3}}{2} = e^{\pm i\pi/3}$. Since $\lambda^6 = (e^{\pm i\pi/3})^6 = e^{\pm 2\pi i} = 1$, we have $\Lambda^6 = I$. Thus $A^6 = S I S^{-1} = I$. The matrix raised to the 6th power is the identity.</p>
+                    <p>Eigenvalues: λ = (1 ± i√3)/2 = e<sup>±iπ/3</sup>. Since λ<sup>6</sup> = (e<sup>±iπ/3</sup>)<sup>6</sup> = e<sup>±2πi</sup> = 1, we have Λ<sup>6</sup> = I. Thus A<sup>6</sup> = SIS<sup>-1</sup> = I. The matrix raised to the 6th power is the identity.</p>
                 </details>
 
-                <p><strong>Problem 3:</strong> For $A_3 = \begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 2 \\ 0 & 2 & 0 \end{bmatrix}$, verify that it is singular by finding a nontrivial vector in its null space. Then find all eigenvalues and eigenvectors.</p>
+                <p><strong>Problem 3:</strong> For:</p>
+                <p>$$ A_3 = \begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 2 \\ 0 & 2 & 0 \end{bmatrix} $$</p>
+                <p>verify that it is singular by finding a nontrivial vector in its null space. Then find all eigenvalues and eigenvectors.</p>
                 <p><em>Hint: Column 3 is a multiple of column 1. Use this to find the null space directly.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>Column 3 = 2 — column 1, so columns are dependent and $\det(A_3) = 0$. Null space: solve $A_3x = 0$. From row 2: $x_1 + 2x_3 = 0$, so $x_1 = -2x_3$. Let $x_3 = 1$, then $x_1 = -2$, and $x_2 = 0$ from row 1. Null space basis: $[-2, 0, 1]^T$. Eigenvalues: characteristic polynomial is $-\lambda(\lambda^2 - 5) = 0$, giving $\lambda = 0, \pm\sqrt{5}$. Eigenvector for $\lambda = 0$ is $[-2, 0, 1]^T$. For $\lambda = \sqrt{5}$: solve $(A_3 - \sqrt{5}I)x = 0$, giving $[1, \sqrt{5}-1, 2]^T$ (up to scaling). For $\lambda = -\sqrt{5}$: $[1, -\sqrt{5}-1, 2]^T$.</p>
+                    <p>Column 3 = 2 × column 1, so columns are dependent and det(A<sub>3</sub>) = 0. Null space: solve A<sub>3</sub>x = 0. From row 2: x<sub>1</sub> + 2x<sub>3</sub> = 0, so x<sub>1</sub> = -2x<sub>3</sub>. Let x<sub>3</sub> = 1, then x<sub>1</sub> = -2, and x<sub>2</sub> = 0 from row 1. Null space basis: [-2, 0, 1]<sup>T</sup>.</p>
+                    <p>Eigenvalues: characteristic polynomial is -λ(λ<sup>2</sup> - 5) = 0, giving λ = 0, ±√5.</p>
+                    <p>Eigenvector for λ = 0 is [-2, 0, 1]<sup>T</sup>. For λ = √5: solve (A<sub>3</sub> - √5I)x = 0, giving [1, √5-1, 2]<sup>T</sup> (up to scaling). For λ = -√5: [1, -√5-1, 2]<sup>T</sup>.</p>
                 </details>
 
-                <p><strong>Problem 4:</strong> Explain why, for any invertible matrix $A$, the projection matrix onto $C(A)$ is the identity. Then give an example of a singular matrix $B$ where the projection matrix onto $C(B)$ is NOT the identity, and describe what $C(B)$ is.</p>
-                <p><em>Hint: If $A$ is invertible, what is its column space? If $B$ is singular, the column space is a proper subspace.</em></p>
+                <p><strong>Problem 4:</strong> Explain why, for any invertible matrix A, the projection matrix onto C(A) is the identity. Then give an example of a singular matrix B where the projection matrix onto C(B) is NOT the identity, and describe what C(B) is.</p>
+                <p><em>Hint: If A is invertible, what is its column space? If B is singular, the column space is a proper subspace.</em></p>
                 <details>
                     <summary>Solution</summary>
-                    <p>If $A$ is invertible, its columns are independent and span $\mathbb{R}^n$, so $C(A) = \mathbb{R}^n$. The projection matrix onto $\mathbb{R}^n$ is $I$, since projecting any vector onto the whole space leaves it unchanged. For a singular matrix $B$, $C(B)$ is a proper subspace. For example, $B = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$ has $C(B) = \text{span}\{[1, 2]^T\}$, a line in $\mathbb{R}^2$. The projection matrix onto this line is $P = \frac{1}{5}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} \neq I_2$.</p>
+                    <p>If A is invertible, its columns are independent and span R<sup>n</sup>, so C(A) = R<sup>n</sup>. The projection matrix onto R<sup>n</sup> is I, since projecting any vector onto the whole space leaves it unchanged.</p>
+                    <p>For a singular matrix B, C(B) is a proper subspace. For example:</p>
+                    <p>$$ B = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} $$</p>
+                    <p>has C(B) = span{[1, 2]<sup>T</sup>}, a line in R<sup>2</sup>. The projection matrix onto this line is:</p>
+                    <p>$$ P = \frac{1}{5}\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} \neq I_2 $$</p>
                 </details>
             </div>
 

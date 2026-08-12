@@ -99,19 +99,44 @@
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>Shifting Eigenvalues by Adding cI</h4>
-            <p>If $A$ has eigenvalue $\lambda$ with eigenvector $x$, then $A + cI$ has eigenvalue $\lambda + c$ with the same eigenvector $x$. This is because $(A + cI)x = Ax + cIx = \lambda x + cx = (\lambda + c)x$. The eigenvectors are unchanged; only the eigenvalues shift. For example, if $A$ has eigenvalues $1$ and $-1$, then $A + 3I$ has eigenvalues $4$ and $2$. This property is special to adding a multiple of the identity matrix.</p>
+            <p>If $A$ has eigenvalue $\lambda$ with eigenvector $x$, then $A + cI$ has eigenvalue $\lambda + c$ with the same eigenvector $x$.</p>
+            <p>$$(A + cI)x = Ax + cIx = \lambda x + cx = (\lambda + c)x$$</p>
+            <p>The eigenvectors are unchanged; only the eigenvalues shift.</p>
+            <p>For example, if $A$ has eigenvalues $1$ and $-1$, then $A + 3I$ has eigenvalues $4$ and $2$.</p>
+            <p>This property is special to adding a multiple of the identity matrix.</p>
 
             <h4>Why A + B Does Not Simply Add Eigenvalues</h4>
-            <p>If $Ax = \lambda x$ and $Bx = \alpha x$ for the same vector $x$, then $(A+B)x = (\lambda + \alpha)x$. But in general, $A$ and $B$ have different eigenvectors. The equation $Bx = \alpha x$ holds only for specific eigenvectors of $B$, not for eigenvectors of $A$. Without a common eigenvector basis, there is no way to determine the eigenvalues of $A + B$ from the eigenvalues of $A$ and $B$ alone. Eigenvalues are not linear: knowing $\det(A)$ and $\det(B)$ does not tell you $\det(A+B)$.</p>
+            <p>If $Ax = \lambda x$ and $Bx = \alpha x$ for the same vector $x$, then $(A+B)x = (\lambda + \alpha)x$.</p>
+            <p>But in general, $A$ and $B$ have different eigenvectors.</p>
+            <p>The equation $Bx = \alpha x$ holds only for specific eigenvectors of $B$, not for eigenvectors of $A$.</p>
+            <p>Without a common eigenvector basis, there is no way to determine the eigenvalues of $A + B$ from the eigenvalues of $A$ and $B$ alone.</p>
+            <p>Eigenvalues are not linear: knowing $\det(A)$ and $\det(B)$ does not tell you $\det(A+B)$.</p>
 
             <h4>Rotation Matrices and Complex Eigenvalues</h4>
-            <p>The 90-degree rotation matrix $Q = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$ is orthogonal but not symmetric. Its characteristic equation is $\det(Q - \lambda I) = \lambda^2 + 1 = 0$, giving eigenvalues $\lambda = i$ and $\lambda = -i$. These are purely imaginary and form a complex conjugate pair. A real matrix can have complex eigenvalues when it is not symmetric. Symmetric matrices always have real eigenvalues; antisymmetric matrices like $Q$ have purely imaginary eigenvalues.</p>
+            <p>The 90-degree rotation matrix $Q = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$ is orthogonal but not symmetric.</p>
+            <p>$$\det(Q - \lambda I) = \lambda^2 + 1 = 0$$</p>
+            <p>This gives eigenvalues $\lambda = i$ and $\lambda = -i$.</p>
+            <p>These are purely imaginary and form a complex conjugate pair.</p>
+            <p>A real matrix can have complex eigenvalues when it is not symmetric.</p>
+            <p>Symmetric matrices always have real eigenvalues; antisymmetric matrices like $Q$ have purely imaginary eigenvalues.</p>
 
             <h4>Defective Matrices and Repeated Eigenvalues</h4>
-            <p>For a triangular matrix, the eigenvalues are exactly the diagonal entries. Consider $A = \begin{bmatrix} 3 & 3 \\ 0 & 3 \end{bmatrix}$. Its eigenvalues are both 3 (repeated). However, solving $(A - 3I)x = 0$ gives $\begin{bmatrix} 0 & 3 \\ 0 & 0 \end{bmatrix}x = 0$, which has only one independent eigenvector $\begin{bmatrix} 1 \\ 0 \end{bmatrix}^T$. A repeated eigenvalue does not guarantee multiple independent eigenvectors. Such a matrix is called defective. The number of independent eigenvectors can be less than the algebraic multiplicity of the eigenvalue.</p>
+            <p>For a triangular matrix, the eigenvalues are exactly the diagonal entries.</p>
+            <p>Consider $A = \begin{bmatrix} 3 & 3 \\ 0 & 3 \end{bmatrix}$.</p>
+            <p>Its eigenvalues are both 3 (repeated).</p>
+            <p>$$(A - 3I)x = 0 \implies \begin{bmatrix} 0 & 3 \\ 0 & 0 \end{bmatrix}x = 0$$</p>
+            <p>This has only one independent eigenvector $\begin{bmatrix} 1 \\ 0 \end{bmatrix}^T$.</p>
+            <p>A repeated eigenvalue does not guarantee multiple independent eigenvectors.</p>
+            <p>Such a matrix is called defective.</p>
+            <p>The number of independent eigenvectors can be less than the algebraic multiplicity of the eigenvalue.</p>
 
             <h4>Trace and Determinant as Eigenvalue Summaries</h4>
-            <p>The trace of $A$ equals the sum of its eigenvalues: $\operatorname{tr}(A) = \lambda_1 + \lambda_2 + \ldots + \lambda_n$. The determinant of $A$ equals the product of its eigenvalues: $\det(A) = \lambda_1 \cdot \lambda_2 \cdots \lambda_n$. These relationships hold for any square matrix and provide quick checks. For the rotation matrix $Q$, trace $= 0$ (consistent with eigenvalues $i$ and $-i$ summing to 0), and $\det(Q) = 1$ (consistent with $i \cdot (-i) = 1$).</p>
+            <p>$$\operatorname{tr}(A) = \lambda_1 + \lambda_2 + \ldots + \lambda_n$$</p>
+            <p>The trace of $A$ equals the sum of its eigenvalues.</p>
+            <p>$$\det(A) = \lambda_1 \cdot \lambda_2 \cdots \lambda_n$$</p>
+            <p>The determinant of $A$ equals the product of its eigenvalues.</p>
+            <p>These relationships hold for any square matrix and provide quick checks.</p>
+            <p>For the rotation matrix $Q$, trace $= 0$ (consistent with eigenvalues $i$ and $-i$ summing to 0), and $\det(Q) = 1$ (consistent with $i \cdot (-i) = 1$).</p>
 
             <h3>Computation Examples</h3>
 

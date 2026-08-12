@@ -109,16 +109,39 @@
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>Orthogonal and Orthonormal Vectors</h4>
-            <p>Two vectors $\mathbf{u}$ and $\mathbf{v}$ are <strong>orthogonal</strong> if $\mathbf{u}^T\mathbf{v} = 0$. They are <strong>orthonormal</strong> if they are orthogonal and each has unit length: $\|\mathbf{u}\| = \|\mathbf{v}\| = 1$. A set of vectors $\{\mathbf{q}_1, \ldots, \mathbf{q}_n\}$ is orthonormal if $\mathbf{q}_i^T\mathbf{q}_j = \delta_{ij}$ (Kronecker delta: 1 if $i=j$, 0 otherwise).</p>
+            <p>Two vectors $\mathbf{u}$ and $\mathbf{v}$ are <strong>orthogonal</strong> if
+$$\mathbf{u}^T\mathbf{v} = 0.$$</p>
+            <p>They are <strong>orthonormal</strong> if they are orthogonal and each has unit length:
+$$\|\mathbf{u}\| = \|\mathbf{v}\| = 1.$$</p>
+            <p>A set of vectors $\{\mathbf{q}_1, \ldots, \mathbf{q}_n\}$ is orthonormal if
+$$\mathbf{q}_i^T\mathbf{q}_j = \delta_{ij}$$
+(Kronecker delta: 1 if $i=j$, 0 otherwise).</p>
 
             <h4>Orthogonal Matrices</h4>
-            <p>A square matrix $Q$ is <strong>orthogonal</strong> if its columns are orthonormal. This means $Q^T Q = I$. Equivalently, $Q^{-1} = Q^T$. Orthogonal matrices preserve lengths and angles: $|Q\mathbf{x}| = |\mathbf{x}|$ for all $\mathbf{x}$. They represent rotations and reflections in $\mathbb{R}^n$. The determinant of an orthogonal matrix is either $+1$ (rotation) or $-1$ (reflection).</p>
+            <p>A square matrix $Q$ is <strong>orthogonal</strong> if its columns are orthonormal. This means
+$$Q^T Q = I.$$</p>
+            <p>Equivalently,
+$$Q^{-1} = Q^T.$$</p>
+            <p>Orthogonal matrices preserve lengths and angles:
+$$|Q\mathbf{x}| = |\mathbf{x}|$$
+for all $\mathbf{x}$.</p>
+            <p>They represent rotations and reflections in $\mathbb{R}^n$.</p>
+            <p>The determinant of an orthogonal matrix is either $+1$ (rotation) or $-1$ (reflection).</p>
 
             <h4>The Gram-Schmidt Process</h4>
-            <p>Given linearly independent vectors $\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n$, Gram-Schmidt constructs orthonormal vectors $\mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_n$ spanning the same subspace. The process proceeds sequentially: at step $j$, subtract from $\mathbf{a}_j$ its projection onto each previously constructed orthogonal vector. The result is orthogonal to all previous vectors. Then normalize to get $\mathbf{q}_j$.</p>
+            <p>Given linearly independent vectors $\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n$, Gram-Schmidt constructs orthonormal vectors $\mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_n$ spanning the same subspace.</p>
+            <p>The process proceeds sequentially: at step $j$, subtract from $\mathbf{a}_j$ its projection onto each previously constructed orthogonal vector.</p>
+            <p>The result is orthogonal to all previous vectors.</p>
+            <p>Then normalize to get $\mathbf{q}_j$.</p>
 
             <h4>The QR Factorization</h4>
-            <p>Any matrix $A$ with linearly independent columns can be factored as $A = QR$, where $Q$ has orthonormal columns and $R$ is upper triangular. The entries of $R$ are inner products: $r_{ij} = \mathbf{q}_i^T\mathbf{a}_j$. Because each $\mathbf{q}_i$ is orthogonal to all $\mathbf{q}_j$ with $j > i$, the lower triangle of $R$ is zero. QR factorization is the key to many numerical algorithms, including solving least squares problems.</p>
+            <p>Any matrix $A$ with linearly independent columns can be factored as
+$$A = QR,$$
+where $Q$ has orthonormal columns and $R$ is upper triangular.</p>
+            <p>The entries of $R$ are inner products:
+$$r_{ij} = \mathbf{q}_i^T\mathbf{a}_j.$$</p>
+            <p>Because each $\mathbf{q}_i$ is orthogonal to all $\mathbf{q}_j$ with $j > i$, the lower triangle of $R$ is zero.</p>
+            <p>QR factorization is the key to many numerical algorithms, including solving least squares problems.</p>
 
             <!-- ========================================== -->
             <!-- Computation Examples -->

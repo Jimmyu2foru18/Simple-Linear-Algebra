@@ -99,19 +99,61 @@
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>What Makes a Basis "Good"</h4>
-            <p>A good basis has three properties: (1) it is fast to multiply by, (2) it is fast to invert, and (3) it provides good compression. The Fourier basis satisfies all three: the Fast Fourier Transform (FFT) multiplies by $F_n$ in $O(n \log n)$ operations, the inverse is $F_n^{-1} = \frac{1}{n}\bar{F}_n^T$ and is equally fast, and most real-world signals have most of their energy in a few low-frequency coefficients, enabling compression. The wavelet basis is a newer competitor: its matrix $W$ has entries only $\pm 1$ and $0$, making multiplication extremely fast, and it is orthogonal so inversion is just the transpose. Wavelets also concentrate signal energy better than Fourier for images with localized features like edges.</p>
+            <p>A good basis has three properties. It is fast to multiply by, fast to invert, and provides good compression.</p>
+
+            <p>The Fourier basis satisfies all three. The Fast Fourier Transform (FFT) multiplies by the Fourier matrix in</p>
+            $$O(n \log n)$$
+            <p>operations.</p>
+            $$F_n^{-1} = \frac{1}{n}\bar{F}_n^T$$
+            <p>The inverse is equally fast. Most real-world signals have most of their energy in a few low-frequency coefficients, enabling compression.</p>
+
+            <p>The wavelet basis is a newer competitor. Its matrix has entries only $\pm 1$ and $0$, making multiplication extremely fast.</p>
+            <p>The basis is orthogonal, so inversion is just the transpose.</p>
+            <p>Wavelets also concentrate signal energy better than Fourier for images with localized features like edges.</p>
 
             <h4>Change of Basis: From Old Coordinates to New</h4>
-            <p>Let $W$ be the matrix whose columns are the new basis vectors $w_1, \ldots, w_n$. If a vector $x$ has coordinates $c$ in the new basis, then $x = Wc$. Conversely, if $x$ is given in the old (standard) basis, the new coordinates are $c = W^{-1}x$. The matrix $W$ is the change-of-basis matrix. For the wavelet basis, $W$ is orthogonal (after normalization), so $W^{-1} = W^T$, making the change of basis extremely fast. For the Fourier basis, $F_n^{-1} = \frac{1}{n}\bar{F}_n^T$.</p>
+            <p>Let $W$ be the matrix whose columns are the new basis vectors $w_1, \ldots, w_n$.</p>
+            <p>If a vector $x$ has coordinates $c$ in the new basis, then:</p>
+            $$x = Wc$$
+            <p>Conversely, if $x$ is given in the old (standard) basis, the new coordinates are:</p>
+            $$c = W^{-1}x$$
+            <p>The matrix $W$ is the change-of-basis matrix.</p>
+
+            <p>For the wavelet basis, $W$ is orthogonal (after normalization).</p>
+            $$W^{-1} = W^T$$
+            <p>This makes the change of basis extremely fast. For the Fourier basis:</p>
+            $$F_n^{-1} = \frac{1}{n}\bar{F}_n^T$$
 
             <h4>Similar Matrices: Same Transformation, Different Bases</h4>
-            <p>Let $T: \mathbb{R}^n \to \mathbb{R}^n$ be a linear transformation. If we express $T$ in basis $\mathcal{B} = \{v_1, \ldots, v_n\}$, we get matrix $A$. If we express $T$ in basis $\mathcal{C} = \{w_1, \ldots, w_n\}$, we get matrix $B$. The two matrices are related by similarity: $B = M^{-1} A M$, where $M$ is the change-of-basis matrix from $\mathcal{B}$ to $\mathcal{C}$. The columns of $M$ are the coordinates of the $\mathcal{C}$-basis vectors expressed in the $\mathcal{B}$-basis. Similarity preserves eigenvalues, trace, and determinant, but changes the eigenvectors.</p>
+            <p>Let $T: \mathbb{R}^n \to \mathbb{R}^n$ be a linear transformation.</p>
+            <p>If we express $T$ in basis $\mathcal{B} = \{v_1, \ldots, v_n\}$, we get matrix $A$.</p>
+            <p>If we express $T$ in basis $\mathcal{C} = \{w_1, \ldots, w_n\}$, we get matrix $B$.</p>
+
+            <p>The two matrices are related by similarity:</p>
+            $$B = M^{-1} A M$$
+            <p>where $M$ is the change-of-basis matrix from $\mathcal{B}$ to $\mathcal{C}$.</p>
+            <p>The columns of $M$ are the coordinates of the $\mathcal{C}$-basis vectors expressed in the $\mathcal{B}$-basis.</p>
+            <p>Similarity preserves eigenvalues, trace, and determinant, but changes the eigenvectors.</p>
 
             <h4>Constructing the Matrix of a Transformation</h4>
-            <p>Given a linear transformation $T$ and a basis $v_1, \ldots, v_n$, the matrix $A$ is constructed column by column: the $j$-th column is $T(v_j)$ expressed in the chosen basis. If the basis is the eigenvector basis and $T(v_j) = \lambda_j v_j$, then the $j$-th column is $\lambda_j e_j$, so $A$ is diagonal with the eigenvalues on the diagonal. This is the "perfect" case. If the basis is the standard basis, the matrix is usually full. The construction rule works for any basis: apply $T$ to each basis vector, write the result as a combination of basis vectors, and stack the coefficients as columns.</p>
+            <p>Given a linear transformation $T$ and a basis $v_1, \ldots, v_n$, the matrix $A$ is constructed column by column.</p>
+            <p>The $j$-th column is $T(v_j)$ expressed in the chosen basis.</p>
+
+            <p>If the basis is the eigenvector basis and $T(v_j) = \lambda_j v_j$, then the $j$-th column is $\lambda_j e_j$.</p>
+            <p>So $A$ is diagonal with the eigenvalues on the diagonal. This is the "perfect" case.</p>
+
+            <p>If the basis is the standard basis, the matrix is usually full.</p>
+            <p>The construction rule works for any basis: apply $T$ to each basis vector, write the result as a combination of basis vectors, and stack the coefficients as columns.</p>
 
             <h4>Image Compression: Why Basis Matters</h4>
-            <p>An $n \times n$ image has $n^2$ pixel values in the standard basis. If we keep only the $k$ largest coefficients in a good basis, we can reconstruct an approximation that captures most of the image information. In the standard basis, throwing away 90% of the pixels makes the image unrecognizable. In the Fourier or wavelet basis, throwing away the high-frequency coefficients (which are often small) keeps the main features intact. JPEG 2000 uses wavelets because they handle edges better than Fourier. The wavelet basis for an 8×8 block consists of vectors of $\pm 1$ and $0$ with orthogonal structure; the corresponding matrix $W$ is fast to multiply and its inverse is just its transpose.</p>
+            <p>An $n \times n$ image has $n^2$ pixel values in the standard basis.</p>
+            <p>If we keep only the $k$ largest coefficients in a good basis, we can reconstruct an approximation that captures most of the image information.</p>
+
+            <p>In the standard basis, throwing away 90% of the pixels makes the image unrecognizable.</p>
+            <p>In the Fourier or wavelet basis, throwing away the high-frequency coefficients keeps the main features intact.</p>
+
+            <p>JPEG 2000 uses wavelets because they handle edges better than Fourier.</p>
+            <p>The wavelet basis for an 8×8 block consists of vectors of $\pm 1$ and $0$ with orthogonal structure. The corresponding matrix $W$ is fast to multiply, and its inverse is just its transpose.</p>
 
             <h3>Computation Examples</h3>
 

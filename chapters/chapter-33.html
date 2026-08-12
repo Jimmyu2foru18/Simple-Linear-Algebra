@@ -95,22 +95,58 @@
                     </div>
                 </div>
             </div>
-<div class="concept-section">
-                <h4>Symmetric Matrices and Real Eigenvalues</h4>
-                <p>A matrix $A$ is <strong>symmetric</strong> when $A = A^T$. The spectral theorem guarantees that symmetric matrices have exclusively <strong>real eigenvalues</strong> and that eigenvectors corresponding to distinct eigenvalues are <strong>orthogonal</strong>. This is why the imaginary constant $c = i$ is immediately ruled out for symmetric matrices: the eigenvalues would fail to be real, violating the spectral theorem. For any symmetric matrix, we can write the spectral decomposition $A = Q\Lambda Q^T$, where $Q$ is orthogonal and $\Lambda$ is diagonal with the eigenvalues. The orthogonality of eigenvectors is the key property that unlocks every other classification test in this review.</p>
 
-                <h4>Positive Definite Matrices</h4>
-                <p>A symmetric matrix is <strong>positive definite</strong> when all its eigenvalues are strictly positive ($\lambda_i > 0$). It is <strong>positive semi-definite</strong> when all eigenvalues are non-negative ($\lambda_i \ge 0$). The eigenvalue test is the quickest diagnostic: if even one eigenvalue is zero, the matrix is only semi-definite, never definite. For a $2 \times 2$ symmetric matrix $A = \begin{bmatrix} c & 1 \\ 1 & c \end{bmatrix}$, the eigenvalues are $c+1$ and $c-1$. Positive definiteness requires $c > 1$; positive semi-definiteness requires $c \ge 1$. If $c = 1$, the matrix has eigenvalues $2$ and $0$, placing it on the boundary between definite and semi-definite.</p>
+            <h3>Detailed Topic Breakdowns</h3>
 
-                <h4>Markov Matrices</h4>
-                <p>A <strong>Markov matrix</strong> (or stochastic matrix) has non-negative entries and each column sums to $1$. Its most important eigenvalue property is that $\lambda = 1$ is always an eigenvalue, and it is the <strong>largest</strong> eigenvalue in magnitude. All other eigenvalues satisfy $|\lambda| < 1$. Consequently, a matrix with an eigenvalue of $2$ can never be a Markov matrix, because $2$ exceeds the spectral radius of $1$. When checking whether a given symmetric matrix could be Markov, the eigenvalue test gives an immediate "no" if any eigenvalue exceeds $1$ in magnitude.</p>
+            <h4>Symmetric Matrices and Real Eigenvalues</h4>
+            <p>A matrix $A$ is <strong>symmetric</strong> when $A = A^T$.</p>
+            <p>The spectral theorem guarantees that symmetric matrices have exclusively <strong>real eigenvalues</strong> and that eigenvectors corresponding to distinct eigenvalues are <strong>orthogonal</strong>.</p>
+            <p>This is why the imaginary constant</p>
+            $$c = i$$
+            <p>is immediately ruled out for symmetric matrices: the eigenvalues would fail to be real, violating the spectral theorem.</p>
+            <p>For any symmetric matrix, we can write the spectral decomposition</p>
+            $$A = Q\Lambda Q^T$$
+            <p>where $Q$ is orthogonal and $\Lambda$ is diagonal with the eigenvalues.</p>
+            <p>The orthogonality of eigenvectors is the key property that unlocks every other classification test in this review.</p>
 
-                <h4>Projection Matrices</h4>
-                <p>A <strong>projection matrix</strong> $P$ satisfies $P^2 = P$. Applying the eigenvalue equation twice gives $\lambda^2 = \lambda$, so every eigenvalue must be either $0$ or $1$. No other values are possible. If we ask whether $\frac{1}{2}A$ is a projection matrix, we are asking whether $A$ has eigenvalues $0$ and $2$. For our $2 \times 2$ example with eigenvalues $c+1$ and $c-1$, this occurs when $c = 0$ (eigenvalues $1$ and $-1$, wait—actually for $c=0$ eigenvalues are $1$ and $-1$, so $\frac{1}{2}A$ would have eigenvalues $\pm 1/2$, not good) or more carefully: if $A$ has eigenvalues $0$ and $2$, then $\frac{1}{2}A$ has eigenvalues $0$ and $1$. For the matrix $\begin{bmatrix} c & 1 \\ 1 & c \end{bmatrix}$, the eigenvalues are $c \pm 1$. Setting these to $0$ and $2$ gives $c = 1$ (eigenvalues $2, 0$) or $c = -1$ (eigenvalues $0, -2$). But since projection matrices must be symmetric and have non-negative eigenvalues for $\frac{1}{2}A$, we need $c = 1$ for eigenvalues $2$ and $0$.</p>
+            <h4>Positive Definite Matrices</h4>
+            <p>A symmetric matrix is <strong>positive definite</strong> when all its eigenvalues are strictly positive.</p>
+            $$\lambda_i > 0$$
+            <p>It is <strong>positive semi-definite</strong> when all eigenvalues are non-negative.</p>
+            $$\lambda_i \ge 0$$
+            <p>The eigenvalue test is the quickest diagnostic: if even one eigenvalue is zero, the matrix is only semi-definite, never definite.</p>
+            <p>For a $2 \times 2$ symmetric matrix</p>
+            $$A = \begin{bmatrix} c & 1 \\ 1 & c \end{bmatrix}$$
+            <p>the eigenvalues are $c+1$ and $c-1$.</p>
+            <p>Positive definiteness requires $c > 1$; positive semi-definiteness requires $c \ge 1$.</p>
+            <p>If $c = 1$, the matrix has eigenvalues $2$ and $0$, placing it on the boundary between definite and semi-definite.</p>
 
-                <h4>Singular Value Decomposition (SVD)</h4>
-                <p>The <strong>singular value decomposition</strong> factorizes every matrix $A$ (rectangular, square, singular, or invertible) as $A = U\Sigma V^T$, where $U$ and $V$ are orthogonal matrices and $\Sigma$ is a rectangular diagonal matrix with non-negative entries called <strong>singular values</strong>. The singular values are the square roots of the eigenvalues of $A^T A$: $\sigma_i = \sqrt{\lambda_i(A^T A)}$. The columns of $V$ are the eigenvectors of $A^T A$. The columns of $U$ are the eigenvectors of $AA^T$, but there is a subtlety: eigenvectors are only defined up to sign. The correct way to fix the signs is to use the relationship $A v_i = \sigma_i u_i$. Having chosen $v_i$ and computed $\sigma_i$, multiplying by $A$ yields a unit vector that determines $u_i$ uniquely, eliminating the sign ambiguity. If any singular value is zero, the matrix is singular; the rank equals the number of non-zero singular values, and the null space is spanned by the columns of $V$ corresponding to zero singular values.</p>
-            </div>
+            <h4>Markov Matrices</h4>
+            <p>A <strong>Markov matrix</strong> (or stochastic matrix) has non-negative entries and each column sums to $1$.</p>
+            <p>Its most important eigenvalue property is that $\lambda = 1$ is always an eigenvalue, and it is the <strong>largest</strong> eigenvalue in magnitude.</p>
+            <p>All other eigenvalues satisfy $|\lambda| < 1$.</p>
+            <p>Consequently, a matrix with an eigenvalue of $2$ can never be a Markov matrix, because $2$ exceeds the spectral radius of $1$.</p>
+            <p>When checking whether a given symmetric matrix could be Markov, the eigenvalue test gives an immediate "no" if any eigenvalue exceeds $1$ in magnitude.</p>
+
+            <h4>Projection Matrices</h4>
+            <p>A <strong>projection matrix</strong> $P$ satisfies $P^2 = P$.</p>
+            <p>Applying the eigenvalue equation twice gives $\lambda^2 = \lambda$, so every eigenvalue must be either $0$ or $1$.</p>
+            <p>No other values are possible.</p>
+            <p>If we ask whether $\frac{1}{2}A$ is a projection matrix, we are asking whether $A$ has eigenvalues $0$ and $2$.</p>
+            <p>For our $2 \times 2$ example with eigenvalues $c+1$ and $c-1$, setting these to $0$ and $2$ gives $c = 1$ (eigenvalues $2, 0$) or $c = -1$ (eigenvalues $0, -2$).</p>
+            <p>But since projection matrices must be symmetric and have non-negative eigenvalues for $\frac{1}{2}A$, we need $c = 1$ for eigenvalues $2$ and $0$.</p>
+
+            <h4>Singular Value Decomposition (SVD)</h4>
+            <p>The <strong>singular value decomposition</strong> factorizes every matrix $A$ (rectangular, square, singular, or invertible) as</p>
+            $$A = U\Sigma V^T$$
+            <p>where $U$ and $V$ are orthogonal matrices and $\Sigma$ is a rectangular diagonal matrix with non-negative entries called <strong>singular values</strong>.</p>
+            <p>The singular values are the square roots of the eigenvalues of $A^T A$:</p>
+            $$\sigma_i = \sqrt{\lambda_i(A^T A)}$$
+            <p>The columns of $V$ are the eigenvectors of $A^T A$.</p>
+            <p>The columns of $U$ are the eigenvectors of $AA^T$, but there is a subtlety: eigenvectors are only defined up to sign.</p>
+            <p>The correct way to fix the signs is to use the relationship $A v_i = \sigma_i u_i$.</p>
+            <p>Having chosen $v_i$ and computed $\sigma_i$, multiplying by $A$ yields a unit vector that determines $u_i$ uniquely, eliminating the sign ambiguity.</p>
+            <p>If any singular value is zero, the matrix is singular; the rank equals the number of non-zero singular values, and the null space is spanned by the columns of $V$ corresponding to zero singular values.</p>
 
             <h3>Computation Examples</h3>
             <div class="derivation">

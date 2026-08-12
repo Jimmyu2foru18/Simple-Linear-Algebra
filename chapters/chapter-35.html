@@ -95,24 +95,48 @@
                     </div>
                 </div>
             </div>
-<div class="concept-section">
+            <div class="concept-section">
                 <h4>Markov Chains and Steady State</h4>
-                <p>A <strong>Markov matrix</strong> $A$ has non-negative entries and each column sums to $1$. The eigenvalue $\lambda = 1$ is always present, with eigenvector $x$ satisfying $Ax = x$; this is the <strong>steady-state vector</strong>. All other eigenvalues satisfy $|\lambda| < 1$. If the starting state $u^{(0)}$ is expressed in the eigenbasis, then $u^{(k)} = A^k u^{(0)} = c_1 x_1 + c_2 \lambda_2^k x_2 + \cdots + c_n \lambda_n^k x_n$. As $k \to \infty$, every term with $|\lambda| < 1$ vanishes, leaving only $c_1 x_1$. The steady state is determined entirely by the eigenvector for $\lambda = 1$ and the coefficient $c_1$, which can often be found using the conservation of total mass: the sum of the entries of $u^{(k)}$ equals the sum of the entries of $u^{(0)}$.</p>
+                <p>A <strong>Markov matrix</strong> $A$ has non-negative entries and each column sums to $1$.</p>
+                <p>The eigenvalue $\lambda = 1$ is always present, with eigenvector $x$ satisfying $$Ax = x$$ this is the <strong>steady-state vector</strong>.</p>
+                <p>All other eigenvalues satisfy $|\lambda| &lt; 1$.</p>
+                <p>If the starting state $u^{(0)}$ is expressed in the eigenbasis, then $$u^{(k)} = A^k u^{(0)} = c_1 x_1 + c_2 \lambda_2^k x_2 + \cdots + c_n \lambda_n^k x_n$$</p>
+                <p>As $k \to \infty$, every term with $|\lambda| &lt; 1$ vanishes, leaving only $c_1 x_1$.</p>
+                <p>The steady state is determined entirely by the eigenvector for $\lambda = 1$ and the coefficient $c_1$. This coefficient can often be found using the conservation of total mass: the sum of the entries of $u^{(k)}$ equals the sum of the entries of $u^{(0)}$.</p>
 
                 <h4>Projection onto a Line</h4>
-                <p>The <strong>projection matrix</strong> onto the line through a non-zero vector $a$ is $P = \frac{a a^T}{a^T a}$. This rank-$1$ symmetric matrix satisfies $P^2 = P$ and sends every vector to its shadow on the line spanned by $a$. The formula arises from minimizing $\|b - c a\|^2$: the optimal scalar is $c = \frac{a^T b}{a^T a}$, so the projected vector is $Pb = \frac{a^T b}{a^T a} a$. The geometry is independent of dimension: in $\mathbb{R}^2$ or $\mathbb{R}^{100}$, the closest point on a line is found by the same orthogonal projection.</p>
+                <p>The <strong>projection matrix</strong> onto the line through a non-zero vector $a$ is $$P = \frac{a a^T}{a^T a}$$</p>
+                <p>This rank-$1$ symmetric matrix satisfies $P^2 = P$ and sends every vector to its shadow on the line spanned by $a$.</p>
+                <p>The formula arises from minimizing $\|b - c a\|^2$. The optimal scalar is $$c = \frac{a^T b}{a^T a}$$ so the projected vector is $$Pb = \frac{a^T b}{a^T a} a$$</p>
+                <p>The geometry is independent of dimension. In $\mathbb{R}^2$ or $\mathbb{R}^{100}$, the closest point on a line is found by the same orthogonal projection.</p>
 
                 <h4>Diagonalization from Eigenvalues and Eigenvectors</h4>
-                <p>If a matrix $A$ has a complete set of eigenvectors $v_1, \dots, v_n$ with corresponding eigenvalues $\lambda_1, \dots, \lambda_n$, then $A = S \Lambda S^{-1}$, where $S = [v_1 \; \cdots \; v_n]$ and $\Lambda = \text{diag}(\lambda_1, \dots, \lambda_n)$. This is the <strong>spectral decomposition</strong> for diagonalizable matrices. The construction is unambiguous: column $i$ of $S$ is $v_i$, and diagonal entry $i$ of $\Lambda$ is $\lambda_i$. If the eigenvectors are orthogonal (as for symmetric or skew-symmetric matrices), then $S^{-1} = S^T$ up to scaling, and the formula simplifies to $A = S \Lambda S^T$ for appropriately normalized eigenvectors.</p>
+                <p>If a matrix $A$ has a complete set of eigenvectors $v_1, \dots, v_n$ with corresponding eigenvalues $\lambda_1, \dots, \lambda_n$, then $$A = S \Lambda S^{-1}$$ where $$S = [v_1 \; \cdots \; v_n]$$ and $$\Lambda = \text{diag}(\lambda_1, \dots, \lambda_n)$$</p>
+                <p>This is the <strong>spectral decomposition</strong> for diagonalizable matrices.</p>
+                <p>The construction is unambiguous: column $i$ of $S$ is $v_i$, and diagonal entry $i$ of $\Lambda$ is $\lambda_i$.</p>
+                <p>If the eigenvectors are orthogonal, as for symmetric or skew-symmetric matrices, then $S^{-1} = S^T$ up to scaling. The formula simplifies to $$A = S \Lambda S^T$$ for appropriately normalized eigenvectors.</p>
 
                 <h4>Matrices That Cannot Be Factored as $B^T B$</h4>
-                <p>For any matrix $B$, the product $B^T B$ is always <strong>symmetric</strong> and <strong>positive semi-definite</strong>. Symmetry is immediate from $(B^T B)^T = B^T B$. Positive semi-definiteness follows from $x^T B^T B x = \|Bx\|^2 \ge 0$ for all $x$. Consequently, any non-symmetric matrix cannot be written as $B^T B$. This is a quick classification test: if $A \neq A^T$, then no $B$ exists with $A = B^T B$.</p>
+                <p>For any matrix $B$, the product $B^T B$ is always <strong>symmetric</strong> and <strong>positive semi-definite</strong>.</p>
+                <p>Symmetry is immediate from $$(B^T B)^T = B^T B$$</p>
+                <p>Positive semi-definiteness follows from $$x^T B^T B x = \|Bx\|^2 \ge 0$$ for all $x$.</p>
+                <p>Consequently, any non-symmetric matrix cannot be written as $B^T B$.</p>
+                <p>This is a quick classification test: if $A \neq A^T$, then no $B$ exists with $A = B^T B$.</p>
 
                 <h4>Orthogonal Eigenvectors Beyond Symmetric Matrices</h4>
-                <p>Symmetric matrices are the most familiar family with orthogonal eigenvectors, but they are not the only one. <strong>Skew-symmetric matrices</strong> ($A^T = -A$) and <strong>orthogonal matrices</strong> ($Q^T Q = I$) also have orthogonal eigenvectors. For skew-symmetric matrices, eigenvalues are purely imaginary (or zero) and come in conjugate pairs; for orthogonal matrices, eigenvalues have absolute value $1$. In both cases, the spectral theorem guarantees a unitary matrix of eigenvectors, though the eigenvalues may be complex. Real symmetric matrices are special because their eigenvalues and eigenvectors can always be chosen real.</p>
+                <p>Symmetric matrices are the most familiar family with orthogonal eigenvectors, but they are not the only one.</p>
+                <p><strong>Skew-symmetric matrices</strong> ($A^T = -A$) and <strong>orthogonal matrices</strong> ($Q^T Q = I$) also have orthogonal eigenvectors.</p>
+                <p>For skew-symmetric matrices, eigenvalues are purely imaginary (or zero) and come in conjugate pairs. For orthogonal matrices, eigenvalues have absolute value $1$.</p>
+                <p>In both cases, the spectral theorem guarantees a unitary matrix of eigenvectors, though the eigenvalues may be complex.</p>
+                <p>Real symmetric matrices are special because their eigenvalues and eigenvectors can always be chosen real.</p>
 
                 <h4>Least Squares and Projections</h4>
-                <p>Given an overdetermined system $Ax = b$ with $A$ $m \times n$ ($m > n$), the <strong>least-squares solution</strong> $\hat{x}$ minimizes $\|Ax - b\|_2$. It satisfies the <strong>normal equations</strong> $A^T A \hat{x} = A^T b$. Geometrically, $\hat{x}$ is the coefficient vector such that $A\hat{x}$ is the orthogonal projection of $b$ onto the column space $\mathcal{C}(A)$. If $b$ lies in $\mathcal{C}(A)$, the residual is zero and $\hat{x}$ is an exact solution. If $b$ is orthogonal to every column of $A$ (so $A^T b = 0$), the normal equations give $\hat{x} = 0$: the best approximation to $b$ using columns of $A$ is the zero combination. In the classic straight-line fitting problem, $A = \begin{bmatrix} 1 & t_1 \\ 1 & t_2 \\ 1 & t_3 \end{bmatrix}$, $\hat{x} = \begin{bmatrix} c \\ m \end{bmatrix}$, and the first component of $\hat{x}$ is the intercept while the second is the slope.</p>
+                <p>Given an overdetermined system $Ax = b$ with $A$ $m \times n$ ($m &gt; n$), the <strong>least-squares solution</strong> $\hat{x}$ minimizes $\|Ax - b\|_2$.</p>
+                <p>It satisfies the <strong>normal equations</strong> $$A^T A \hat{x} = A^T b$$</p>
+                <p>Geometrically, $\hat{x}$ is the coefficient vector such that $A\hat{x}$ is the orthogonal projection of $b$ onto the column space $\mathcal{C}(A)$.</p>
+                <p>If $b$ lies in $\mathcal{C}(A)$, the residual is zero and $\hat{x}$ is an exact solution.</p>
+                <p>If $b$ is orthogonal to every column of $A$ (so $A^T b = 0$), the normal equations give $\hat{x} = 0$. The best approximation to $b$ using columns of $A$ is the zero combination.</p>
+                <p>In the classic straight-line fitting problem, $$A = \begin{bmatrix} 1 &amp; t_1 \\ 1 &amp; t_2 \\ 1 &amp; t_3 \end{bmatrix}, \quad \hat{x} = \begin{bmatrix} c \\ m \end{bmatrix}$$ and the first component of $\hat{x}$ is the intercept while the second is the slope.</p>
             </div>
 
             <h3>Computation Examples</h3>

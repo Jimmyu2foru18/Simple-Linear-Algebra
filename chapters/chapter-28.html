@@ -99,21 +99,44 @@
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>From Calculus to Linear Algebra: The Second Derivative Test</h4>
-            <p>In single-variable calculus, a function $f(x)$ has a minimum at $x = a$ when $f'(a) = 0$ and $f''(a) > 0$. The first derivative being zero finds the critical point; the second derivative being positive ensures it is a minimum rather than a maximum. In multivariable calculus, the first derivative becomes the gradient $\nabla f = 0$, and the second derivative becomes the Hessian matrix $H$ of second partial derivatives. The condition $f''(a) > 0$ generalizes to $H$ being positive definite. For a function $f(x_1, x_2, \ldots, x_n)$, the Hessian is the symmetric matrix $H_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}$. By Clairaut's theorem, mixed partials are equal: $\frac{\partial^2 f}{\partial x_i \partial x_j} = \frac{\partial^2 f}{\partial x_j \partial x_i}$, so $H$ is symmetric.</p>
+            <p>In single-variable calculus, a function $f(x)$ has a minimum at $x = a$ when $$f'(a) = 0$$ and $$f''(a) > 0$$.</p>
+            <p>The first derivative being zero finds the critical point; the second derivative being positive ensures it is a minimum rather than a maximum.</p>
+            <p>In multivariable calculus, the first derivative becomes the gradient $$\nabla f = 0$$, and the second derivative becomes the Hessian matrix $H$ of second partial derivatives.</p>
+            <p>The condition $f''(a) > 0$ generalizes to $H$ being positive definite.</p>
+            <p>For a function $f(x_1, x_2, \ldots, x_n)$, the Hessian is the symmetric matrix $$H_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}$$.</p>
+            <p>By Clairaut's theorem, mixed partials are equal: $$\frac{\partial^2 f}{\partial x_i \partial x_j} = \frac{\partial^2 f}{\partial x_j \partial x_i}$$, so $H$ is symmetric.</p>
 
             <h4>Completing the Square Is Elimination</h4>
-            <p>For a quadratic form $Q(x) = x^T A x$ with $A = \begin{bmatrix} 2 & 6 \\ 6 & 20 \end{bmatrix}$, completing the square gives $Q(x) = 2(x_1 + 3x_2)^2 + 2x_2^2$. The numbers outside the squares (2 and 2) are the pivots from Gaussian elimination. The numbers inside the squares (3) are the multipliers from elimination. This is not a coincidence: completing the square is exactly Gaussian elimination expressed in terms of squares. The pivot is the coefficient outside the first square; the multiplier is the coefficient inside. Positive pivots guarantee a sum of positive squares, which guarantees $Q(x) > 0$ for all nonzero $x$.</p>
+            <p>For a quadratic form $Q(x) = x^T A x$ with $A = \begin{bmatrix} 2 & 6 \\ 6 & 20 \end{bmatrix}$, completing the square gives $$Q(x) = 2(x_1 + 3x_2)^2 + 2x_2^2$$.</p>
+            <p>The numbers outside the squares (2 and 2) are the pivots from Gaussian elimination.</p>
+            <p>The numbers inside the squares (3) are the multipliers from elimination.</p>
+            <p>This is not a coincidence: completing the square is exactly Gaussian elimination expressed in terms of squares.</p>
+            <p>The pivot is the coefficient outside the first square; the multiplier is the coefficient inside.</p>
+            <p>Positive pivots guarantee a sum of positive squares, which guarantees $$Q(x) > 0$$ for all nonzero $x$.</p>
 
             <h4>The Matrix of Second Derivatives</h4>
-            <p>For a function $f(x, y)$, the matrix of second derivatives at a critical point is:
-                $$H = \begin{bmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{bmatrix}$$
-            where $f_{xx} = \frac{\partial^2 f}{\partial x^2}$, $f_{yy} = \frac{\partial^2 f}{\partial y^2}$, and $f_{xy} = f_{yx} = \frac{\partial^2 f}{\partial x \partial y}$. The diagonal entries $f_{xx}$ and $f_{yy}$ must be positive for a minimum. But that is not enough: the cross-derivative $f_{xy}$ must not be too large. The determinant condition $f_{xx} f_{yy} - f_{xy}^2 > 0$ ensures the cross-term is controlled. In matrix language, $H$ must be positive definite: all eigenvalues positive, all pivots positive, all leading principal minors positive.</p>
+            <p>For a function $f(x, y)$, the matrix of second derivatives at a critical point is:</p>
+            <p>                $$H = \begin{bmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{bmatrix}$$</p>
+            <p>where $$f_{xx} = \frac{\partial^2 f}{\partial x^2}$$, $$f_{yy} = \frac{\partial^2 f}{\partial y^2}$$, and $$f_{xy} = f_{yx} = \frac{\partial^2 f}{\partial x \partial y}$$.</p>
+            <p>The diagonal entries $f_{xx}$ and $f_{yy}$ must be positive for a minimum.</p>
+            <p>But that is not enough: the cross-derivative $f_{xy}$ must not be too large.</p>
+            <p>The determinant condition $$f_{xx} f_{yy} - f_{xy}^2 > 0$$ ensures the cross-term is controlled.</p>
+            <p>In matrix language, $H$ must be positive definite: all eigenvalues positive, all pivots positive, all leading principal minors positive.</p>
 
             <h4>Geometry: Bowls, Ellipsoids, and the Principal Axis Theorem</h4>
-            <p>The graph of $f(x) = x^T A x$ with $A$ positive definite is a bowl-shaped surface called a paraboloid. For $A = \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$, the function is $f(x) = 2x_1^2 + 2x_2^2 + 2x_3^2 - 2x_1x_2 - 2x_2x_3$. The level set $f(x) = 1$ is an ellipsoid—a "football" shape in 3D. The principal axis theorem states that $A = Q \Lambda Q^T$ where $Q$ has orthonormal eigenvectors and $\Lambda$ is diagonal with eigenvalues $\lambda_i$. The eigenvectors give the principal axes of the ellipsoid; the eigenvalues determine the lengths of those axes. Specifically, the axis in direction $q_i$ has length proportional to $1/\sqrt{\lambda_i}$.</p>
+            <p>The graph of $f(x) = x^T A x$ with $A$ positive definite is a bowl-shaped surface called a paraboloid.</p>
+            <p>For $A = \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$, the function is $f(x) = 2x_1^2 + 2x_2^2 + 2x_3^2 - 2x_1x_2 - 2x_2x_3$.</p>
+            <p>The level set $f(x) = 1$ is an ellipsoid—a "football" shape in 3D.</p>
+            <p>The principal axis theorem states that $$A = Q \Lambda Q^T$$ where $Q$ has orthonormal eigenvectors and $\Lambda$ is diagonal with eigenvalues $\lambda_i$.</p>
+            <p>The eigenvectors give the principal axes of the ellipsoid; the eigenvalues determine the lengths of those axes.</p>
+            <p>Specifically, the axis in direction $q_i$ has length proportional to $$1/\sqrt{\lambda_i}$$.</p>
 
             <h4>The Test for Positive Definiteness</h4>
-            <p>For a symmetric matrix $A$, these conditions are equivalent: (1) all eigenvalues $\lambda_i > 0$; (2) all pivots $d_i > 0$; (3) all leading principal minors $\det(A_k) > 0$ for $k = 1, 2, \ldots, n$; (4) $x^T A x > 0$ for all nonzero $x$; (5) $A$ can be written as $A = L D L^T$ with $D$ having positive diagonal entries. The pivot test is often fastest computationally. For the matrix $\begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$, the pivots are $2, 3/2, 4/3$, all positive, so the matrix is positive definite. The eigenvalues are $2 - \sqrt{2} \approx 0.586$, $2$, and $2 + \sqrt{2} \approx 3.414$, all positive. The determinants of leading principal minors are $2, 3, 4$, all positive.</p>
+            <p>For a symmetric matrix $A$, these conditions are equivalent: (1) all eigenvalues $$\lambda_i > 0$$; (2) all pivots $$d_i > 0$$; (3) all leading principal minors $$\det(A_k) > 0$$ for $k = 1, 2, \ldots, n$; (4) $$x^T A x > 0$$ for all nonzero $x$; (5) $A$ can be written as $$A = L D L^T$$ with $D$ having positive diagonal entries.</p>
+            <p>The pivot test is often fastest computationally.</p>
+            <p>For the matrix $\begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{bmatrix}$, the pivots are $2, 3/2, 4/3$, all positive, so the matrix is positive definite.</p>
+            <p>The eigenvalues are $2 - \sqrt{2} \approx 0.586$, $2$, and $2 + \sqrt{2} \approx 3.414$, all positive.</p>
+            <p>The determinants of leading principal minors are $2, 3, 4$, all positive.</p>
 
             <h3>Computation Examples</h3>
 

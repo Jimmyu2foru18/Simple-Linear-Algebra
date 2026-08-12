@@ -99,22 +99,51 @@
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>The Determinant Gives Volume</h4>
-            <p>For an $n \times n$ matrix $A$, the absolute value of the determinant $|\det(A)|$ equals the volume of the box (parallelepiped) spanned by its row vectors. The rows of $A$ become the edges of the box emanating from the origin. For a $3 \times 3$ matrix, the rows are vectors $\mathbf{r}_1 = (a_{11}, a_{12}, a_{13})$, $\mathbf{r}_2 = (a_{21}, a_{22}, a_{23})$, and $\mathbf{r}_3 = (a_{31}, a_{32}, a_{33})$. These three vectors define three edges of a box in $\mathbb{R}^3$, and $\det(A)$ is its signed volume.</p>
+            <p>For an $n \times n$ matrix $A$, the absolute value of the determinant $|\det(A)|$ equals the volume of the box spanned by its row vectors. The rows of $A$ become the edges of the box emanating from the origin.</p>
+            <p>For a $3 \times 3$ matrix, the rows are vectors:</p>
+            <p>$$
+            \mathbf{r}_1 = (a_{11}, a_{12}, a_{13}), \quad \mathbf{r}_2 = (a_{21}, a_{22}, a_{23}), \quad \mathbf{r}_3 = (a_{31}, a_{32}, a_{33}).
+            $$</p>
+            <p>These three vectors define three edges of a box in $\mathbb{R}^3$. The determinant $\det(A)$ is its signed volume.</p>
 
             <h4>The Unit Cube and the Identity Matrix</h4>
-            <p>When $A = I$, the rows are the standard basis vectors $\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3$. The box is the unit cube with volume $1$, and indeed $\det(I) = 1$. This verifies the first determinant property: the volume of the unit box is one.</p>
+            <p>When $A = I$, the rows are the standard basis vectors $\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3$. The box is the unit cube with volume $1$.</p>
+            <p>$$
+            \det(I) = 1
+            $$</p>
+            <p>This verifies the first determinant property: the volume of the unit box is one.</p>
 
             <h4>Orthogonal Matrices and Rotated Cubes</h4>
-            <p>If $A = Q$ where $Q$ is an orthogonal matrix ($Q^T Q = I$), the row vectors are orthonormal. The box is again a unit cube, only rotated in space. Its volume is still $1$. Taking determinants of $Q^T Q = I$ gives $\det(Q)^2 = 1$, so $\det(Q) = \pm 1$. The sign records orientation: right-handed ($+1$) or left-handed ($-1$).</p>
+            <p>If $A = Q$ where $Q$ is an orthogonal matrix ($Q^T Q = I$), the row vectors are orthonormal. The box is again a unit cube, only rotated in space. Its volume is still $1$.</p>
+            <p>Taking determinants of $Q^T Q = I$ gives:</p>
+            <p>$$
+            \det(Q)^2 = 1
+            $$</p>
+            <p>so $\det(Q) = \pm 1$. The sign records orientation: right-handed ($+1$) or left-handed ($-1$).</p>
 
             <h4>Scaling an Edge: Property 3a</h4>
-            <p>If you double one edge of the box, the volume doubles. In determinant language, multiplying row $i$ by a scalar $T$ multiplies the determinant by $T$. This is Property 3a: $\det(T \cdot \text{row}_i) = T \cdot \det(A)$. Volume satisfies the same linearity.</p>
+            <p>If you double one edge of the box, the volume doubles. In determinant language, multiplying row $i$ by a scalar $T$ multiplies the determinant by $T$.</p>
+            <p>This is Property 3a:</p>
+            <p>$$
+            \det(T \cdot \text{row}_i) = T \cdot \det(A)
+            $$</p>
+            <p>Volume satisfies the same linearity.</p>
 
             <h4>Linearity in a Row: Property 3b</h4>
-            <p>To complete the proof that determinant equals volume, we must check Property 3b: linearity of the determinant in one row when the other rows are fixed. In $2 \times 2$ terms, if row $1$ is $(a+a', b+b')$ while row $2$ is $(c,d)$, then the area splits into the sum of two parallelogram areas. This corresponds to splitting the determinant: $\det\begin{pmatrix} a+a' & b+b' \\ c & d \end{pmatrix} = \det\begin{pmatrix} a & b \\ c & d \end{pmatrix} + \det\begin{pmatrix} a' & b' \\ c & d \end{pmatrix}$.</p>
+            <p>To complete the proof that determinant equals volume, we must check Property 3b: linearity of the determinant in one row when the other rows are fixed.</p>
+            <p>In $2 \times 2$ terms, if row $1$ is $(a+a', b+b')$ while row $2$ is $(c,d)$, then the area splits into the sum of two parallelogram areas. This corresponds to splitting the determinant:</p>
+            <p>$$
+            \det\begin{pmatrix} a+a' & b+b' \\ c & d \end{pmatrix} = \det\begin{pmatrix} a & b \\ c & d \end{pmatrix} + \det\begin{pmatrix} a' & b' \\ c & d \end{pmatrix}.
+            $$</p>
 
             <h4>Area of a Parallelogram and Triangle</h4>
-            <p>The determinant gives the area of a parallelogram spanned by vectors $(a,b)$ and $(c,d)$ as $|ad - bc|$ — no square roots, no trigonometry. For the triangle with vertices at $(0,0)$, $(a,b)$, and $(c,d)$, the area is $\frac{1}{2}|ad - bc|$. If the triangle does not start at the origin, with vertices $(x_1,y_1)$, $(x_2,y_2)$, $(x_3,y_3)$, the area is $\frac{1}{2} \left| \det\begin{pmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{pmatrix} \right|$. Subtracting one row from the others translates the triangle to the origin, revealing the same determinant formula.</p>
+            <p>The determinant gives the area of a parallelogram spanned by vectors $(a,b)$ and $(c,d)$ as $|ad - bc|$ — no square roots, no trigonometry.</p>
+            <p>For the triangle with vertices at $(0,0)$, $(a,b)$, and $(c,d)$, the area is $\frac{1}{2}|ad - bc|$.</p>
+            <p>If the triangle does not start at the origin, with vertices $(x_1,y_1)$, $(x_2,y_2)$, $(x_3,y_3)$, the area is:</p>
+            <p>$$
+            \frac{1}{2} \left| \det\begin{pmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{pmatrix} \right|
+            $$</p>
+            <p>Subtracting one row from the others translates the triangle to the origin, revealing the same determinant formula.</p>
 
             <h3>Computation Examples</h3>
 

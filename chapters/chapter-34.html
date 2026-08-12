@@ -97,22 +97,54 @@
             </div>
 <div class="concept-section">
                 <h4>Left Inverses and Full Column Rank</h4>
-                <p>When $A$ is $m \times n$ with <strong>full column rank</strong> ($\text{rank}(A) = n$), the columns are linearly independent and the null space contains only the zero vector. In this case $A^T A$ is invertible, and the matrix $(A^T A)^{-1} A^T$ is a <strong>left inverse</strong>: $A^T A (A^T A)^{-1} A^T = A$. Multiplying in the opposite order gives $A (A^T A)^{-1} A^T$. This is not the identity, because $A (A^T A)^{-1} A^T$ is an $m \times m$ matrix that projects onto the $n$-dimensional column space of $A$. It acts as the identity on the column space and as zero on the left null space.</p>
+                <p>When $A$ is $m \times n$ with <strong>full column rank</strong> ($\text{rank}(A) = n$), the columns are linearly independent. The null space contains only the zero vector.</p>
+                <p>In this case $A^T A$ is invertible. The matrix $(A^T A)^{-1} A^T$ is a <strong>left inverse</strong>:</p>
+                $$A^T A (A^T A)^{-1} A^T = A$$
+                <p>Multiplying in the opposite order gives $A (A^T A)^{-1} A^T$. This is not the identity.</p>
+                $$A (A^T A)^{-1} A^T$$
+                <p>It is an $m \times m$ matrix that projects onto the $n$-dimensional column space of $A$. It acts as the identity on the column space and as zero on the left null space.</p>
 
                 <h4>Right Inverses and Full Row Rank</h4>
-                <p>When $A$ has <strong>full row rank</strong> ($\text{rank}(A) = m$), the rows are independent and $A A^T$ is invertible. The matrix $A^T (A A^T)^{-1}$ is a <strong>right inverse</strong>: $A^T (A A^T)^{-1} A = I_n$. If we reverse the order, we get $A^T (A A^T)^{-1} A$, an $n \times n$ matrix that projects onto the $m$-dimensional row space of $A$. It is the identity on the row space and zero on the null space.</p>
+                <p>When $A$ has <strong>full row rank</strong> ($\text{rank}(A) = m$), the rows are independent. $A A^T$ is invertible.</p>
+                <p>The matrix $A^T (A A^T)^{-1}$ is a <strong>right inverse</strong>:</p>
+                $$A^T (A A^T)^{-1} A = I_n$$
+                <p>If we reverse the order, we get $A^T (A A^T)^{-1} A$. This is an $n \times n$ matrix that projects onto the $m$-dimensional row space of $A$. It is the identity on the row space and zero on the null space.</p>
 
                 <h4>The Four Subspaces in the General Case</h4>
-                <p>For a general matrix $A$ of rank $r < m$ and $r < n$, the four fundamental subspaces have dimensions: column space $r$, null space $n-r$, row space $r$, left null space $m-r$. The matrix $A$ maps the row space bijectively onto the column space, but it kills everything in the null space. Similarly, $A^T$ maps the column space bijectively onto the row space while killing the left null space. This one-to-one correspondence between the row and column spaces is the key to defining a pseudo-inverse.</p>
+                <p>For a general matrix $A$ of rank $r < m$ and $r < n$, the four fundamental subspaces have dimensions: column space $r$, null space $n-r$, row space $r$, left null space $m-r$.</p>
+                <p>The matrix $A$ maps the row space bijectively onto the column space. It kills everything in the null space.</p>
+                <p>Similarly, $A^T$ maps the column space bijectively onto the row space. It kills the left null space.</p>
+                <p>This one-to-one correspondence between the row and column spaces is the key to defining a pseudo-inverse.</p>
 
                 <h4>The Pseudo-Inverse: Definition and Motivation</h4>
-                <p>The <strong>Moore-Penrose pseudo-inverse</strong>, denoted $A^+$, is the matrix that inverts $A$ on the row space and column space and is zero on the null spaces. Formally, $A^+$ satisfies four Penrose conditions, but the essential idea is simple: if $x$ is in the row space and $y = Ax$ is in the column space, then $A^+ y = x$. The pseudo-inverse brings every vector in the column space back to its unique pre-image in the row space. If a vector has any component in the left null space, $A^+$ discards it because that component has no source in the row space. Statisticians discovered the pseudo-inverse because it solves the least-squares problem $A^T A x = A^T b$ even when $A^T A$ is singular—which happens whenever the columns of $A$ are linearly dependent, as in repeated experiments.</p>
+                <p>The <strong>Moore-Penrose pseudo-inverse</strong>, denoted $A^+$, is the matrix that inverts $A$ on the row space and column space. It is zero on the null spaces.</p>
+                <p>Formally, $A^+$ satisfies four Penrose conditions. The essential idea is simple: if $x$ is in the row space and $y = Ax$ is in the column space, then $A^+ y = x$.</p>
+                $$A^+ y = x$$
+                <p>The pseudo-inverse brings every vector in the column space back to its unique pre-image in the row space. If a vector has any component in the left null space, $A^+$ discards it because that component has no source in the row space.</p>
+                <p>Statisticians discovered the pseudo-inverse because it solves the least-squares problem $A^T A x = A^T b$ even when $A^T A$ is singular.</p>
+                $$A^T A x = A^T b$$
+                <p>This happens whenever the columns of $A$ are linearly dependent, as in repeated experiments.</p>
 
                 <h4>Proof: $A$ Is Invertible from Row Space to Column Space</h4>
-                <p>Suppose $x$ and $y$ are two different vectors in the row space, and suppose $Ax = Ay$. Then $A(x-y) = 0$, so $x-y$ lies in the null space. But $x-y$ also lies in the row space, because the row space is a subspace and closed under subtraction. The intersection of the null space and the row space is $\{0\}$, so $x-y = 0$, contradicting our assumption that $x \neq y$. Therefore distinct vectors in the row space map to distinct vectors in the column space, and $A$ is invertible between these two $r$-dimensional subspaces. The pseudo-inverse is exactly that inverse.</p>
+                <p>Suppose $x$ and $y$ are two different vectors in the row space. Suppose $Ax = Ay$.</p>
+                <p>Then $A(x-y) = 0$, so $x-y$ lies in the null space.</p>
+                <p>But $x-y$ also lies in the row space. The row space is a subspace and closed under subtraction.</p>
+                <p>The intersection of the null space and the row space is $\{0\}$. So $x-y = 0$, contradicting our assumption that $x \neq y$.</p>
+                <p>Therefore distinct vectors in the row space map to distinct vectors in the column space. $A$ is invertible between these two $r$-dimensional subspaces. The pseudo-inverse is exactly that inverse.</p>
 
                 <h4>Computing the Pseudo-Inverse from the SVD</h4>
-                <p>If $A = U\Sigma V^T$ is the singular value decomposition, with $\Sigma = \begin{bmatrix} D & 0 \\ 0 & 0 \end{bmatrix}$ where $D$ is $r \times r$ diagonal with non-zero singular values $\sigma_1, \dots, \sigma_r$, then the pseudo-inverse is $A^+ = V\Sigma^+ U^T$, where $\Sigma^+ = \begin{bmatrix} D^{-1} & 0 \\ 0 & 0 \end{bmatrix}$. The non-zero singular values become their reciprocals; zero singular values remain zero. This produces an $n \times m$ matrix of the correct shape. Multiplying gives $A A^+ = U \begin{bmatrix} I_r & 0 \\ 0 & 0 \end{bmatrix} U^T$, the orthogonal projection onto the column space, and $A^+ A = V \begin{bmatrix} I_r & 0 \\ 0 & 0 \end{bmatrix} V^T$, the orthogonal projection onto the row space. The pseudo-inverse is the smallest matrix that achieves these projections; adding any extra non-zero entries would create unnecessary components that still vanish when multiplied by the zero blocks in $\Sigma$.</p>
+                <p>If $A = U\Sigma V^T$ is the singular value decomposition, with</p>
+                $$\Sigma = \begin{bmatrix} D & 0 \\ 0 & 0 \end{bmatrix}$$
+                <p>where $D$ is $r \times r$ diagonal with non-zero singular values $\sigma_1, \dots, \sigma_r$, then the pseudo-inverse is $A^+ = V\Sigma^+ U^T$, where</p>
+                $$\Sigma^+ = \begin{bmatrix} D^{-1} & 0 \\ 0 & 0 \end{bmatrix}$$
+                <p>The non-zero singular values become their reciprocals. Zero singular values remain zero.</p>
+                <p>This produces an $n \times m$ matrix of the correct shape.</p>
+                <p>Multiplying gives</p>
+                $$A A^+ = U \begin{bmatrix} I_r & 0 \\ 0 & 0 \end{bmatrix} U^T$$
+                <p>the orthogonal projection onto the column space, and</p>
+                $$A^+ A = V \begin{bmatrix} I_r & 0 \\ 0 & 0 \end{bmatrix} V^T$$
+                <p>the orthogonal projection onto the row space.</p>
+                <p>The pseudo-inverse is the smallest matrix that achieves these projections. Adding any extra non-zero entries would create unnecessary components that still vanish when multiplied by the zero blocks in $\Sigma$.</p>
             </div>
 
             <h3>Computation Examples</h3>

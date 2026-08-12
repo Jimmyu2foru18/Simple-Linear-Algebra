@@ -99,21 +99,55 @@
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>A Linear Transformation Is Determined by Its Action on a Basis</h4>
-            <p>The fundamental fact is that a linear transformation $T: V \to W$ is completely determined by what it does to a basis of $V$. If $\{v_1, v_2, \ldots, v_n\}$ is a basis for $V$, then every vector $v \in V$ can be written uniquely as $v = c_1 v_1 + c_2 v_2 + \cdots + c_n v_n$. By linearity, $T(v) = c_1 T(v_1) + c_2 T(v_2) + \cdots + c_n T(v_n)$. So if you know $T(v_1), \ldots, T(v_n)$, you know $T(v)$ for all $v$. The scalars $c_1, \ldots, c_n$ are the coordinates of $v$ in the chosen basis. Change the basis, change the coordinates, but the underlying vector stays the same.</p>
+            <p>The fundamental fact is that a linear transformation $T: V \to W$ is completely determined by what it does to a basis of $V$.</p>
+            <p>If $\{v_1, v_2, \ldots, v_n\}$ is a basis for $V$, then every vector $v \in V$ can be written uniquely as
+                $$v = c_1 v_1 + c_2 v_2 + \cdots + c_n v_n.$$</p>
+            <p>By linearity,
+                $$T(v) = c_1 T(v_1) + c_2 T(v_2) + \cdots + c_n T(v_n).$$</p>
+            <p>So if you know $T(v_1), \ldots, T(v_n)$, you know $T(v)$ for all $v$.</p>
+            <p>The scalars $c_1, \ldots, c_n$ are the coordinates of $v$ in the chosen basis.</p>
+            <p>Change the basis, change the coordinates, but the underlying vector stays the same.</p>
 
             <h4>Coordinates and Bases</h4>
-            <p>Coordinates are not absolute—they depend on the choice of basis. The standard basis $\{e_1, e_2, \ldots, e_n\}$ gives the familiar coordinate representation: $v = [3, 2, 4]^T$ means $3e_1 + 2e_2 + 4e_3$. But if we choose a different basis, say the eigenvectors of a matrix, the coordinates change. The vector itself is coordinate-free; the coordinates are just the coefficients in the chosen basis expansion. This is why linear algebra can be done without coordinates initially—the transformation $T$ exists independently of any basis—and then coordinates are introduced only when we need to write down a matrix.</p>
+            <p>Coordinates are not absolute—they depend on the choice of basis.</p>
+            <p>The standard basis $\{e_1, e_2, \ldots, e_n\}$ gives the familiar coordinate representation:
+                $$v = [3, 2, 4]^T$$
+            means $3e_1 + 2e_2 + 4e_3$.</p>
+            <p>But if we choose a different basis, say the eigenvectors of a matrix, the coordinates change.</p>
+            <p>The vector itself is coordinate-free; the coordinates are just the coefficients in the chosen basis expansion.</p>
+            <p>This is why linear algebra can be done without coordinates initially—the transformation $T$ exists independently of any basis—and then coordinates are introduced only when we need to write down a matrix.</p>
 
             <h4>Constructing the Matrix of a Linear Transformation</h4>
-            <p>To construct the matrix $A$ representing $T: \mathbb{R}^n \to \mathbb{R}^m$, we need two bases: an input basis $\{v_1, \ldots, v_n\}$ for $\mathbb{R}^n$ and an output basis $\{w_1, \ldots, w_m\}$ for $\mathbb{R}^m$. The rule is simple: the $j$-th column of $A$ is the coordinate vector of $T(v_j)$ expressed in the output basis. That is, write $T(v_j) = a_{1j} w_1 + a_{2j} w_2 + \cdots + a_{mj} w_m$, and the coefficients $a_{1j}, \ldots, a_{mj}$ form the $j$-th column of $A$. Then for any input $v$ with coordinates $c_1, \ldots, c_n$, the output coordinates are given by $A$ times the input coordinate vector: $A [c_1, \ldots, c_n]^T = [\text{output coordinates}]^T$.</p>
+            <p>To construct the matrix $A$ representing $T: \mathbb{R}^n \to \mathbb{R}^m$, we need two bases: an input basis $\{v_1, \ldots, v_n\}$ for $\mathbb{R}^n$ and an output basis $\{w_1, \ldots, w_m\}$ for $\mathbb{R}^m$.</p>
+            <p>The rule is simple: the $j$-th column of $A$ is the coordinate vector of $T(v_j)$ expressed in the output basis.</p>
+            <p>That is, write
+                $$T(v_j) = a_{1j} w_1 + a_{2j} w_2 + \cdots + a_{mj} w_m,$$
+            and the coefficients $a_{1j}, \ldots, a_{mj}$ form the $j$-th column of $A$.</p>
+            <p>Then for any input $v$ with coordinates $c_1, \ldots, c_n$, the output coordinates are given by $A$ times the input coordinate vector:
+                $$A [c_1, \ldots, c_n]^T = [\text{output coordinates}]^T.$$</p>
 
             <h4>Projection Example: Eigenvector Basis vs Standard Basis</h4>
-            <p>Consider the projection onto the line $y=x$ in $\mathbb{R}^2$. If we choose the input and output basis to be the eigenvectors of the projection—$v_1 = \frac{1}{\sqrt{2}}[1,1]^T$ (along the line, eigenvalue 1) and $v_2 = \frac{1}{\sqrt{2}}[1,-1]^T$ (perpendicular to the line, eigenvalue 0)—then the matrix is diagonal: $A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$. But if we use the standard basis $\{e_1, e_2\}$ for both inputs and outputs, the matrix is $A = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$, the familiar projection matrix $P = \frac{AA^T}{A^T A}$. The same transformation, different bases, different matrices. The eigenvector basis gives the diagonal matrix; the standard basis gives a symmetric but non-diagonal matrix.</p>
+            <p>Consider the projection onto the line $y=x$ in $\mathbb{R}^2$.</p>
+            <p>If we choose the input and output basis to be the eigenvectors of the projection—$v_1 = \frac{1}{\sqrt{2}}[1,1]^T$ (along the line, eigenvalue 1) and $v_2 = \frac{1}{\sqrt{2}}[1,-1]^T$ (perpendicular to the line, eigenvalue 0)—then the matrix is diagonal:
+                $$A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}.$$</p>
+            <p>But if we use the standard basis $\{e_1, e_2\}$ for both inputs and outputs, the matrix is
+                $$A = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix},$$
+            the familiar projection matrix $P = \frac{AA^T}{A^T A}$.</p>
+            <p>The same transformation, different bases, different matrices.</p>
+            <p>The eigenvector basis gives the diagonal matrix; the standard basis gives a symmetric but non-diagonal matrix.</p>
 
             <h4>The Derivative as a Linear Transformation</h4>
-            <p>Consider the transformation $T: P_3 \to P_2$ that takes a polynomial $p(x) = c_1 + c_2 x + c_3 x^2$ to its derivative $p'(x) = c_2 + 2c_3 x$. With input basis $\{1, x, x^2\}$ and output basis $\{1, x\}$, the matrix is:
-                $$A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{bmatrix}$$
-            The first column is $T(1) = 0$ expressed as $[0, 0]^T$ in the output basis. The second column is $T(x) = 1$ expressed as $[1, 0]^T$. The third column is $T(x^2) = 2x$ expressed as $[0, 2]^T$. This $2 \times 3$ matrix maps the input coordinates $[c_1, c_2, c_3]^T$ to the output coordinates $[c_2, 2c_3]^T$, which is exactly the derivative. The derivative is a linear transformation, and its matrix representation makes this explicit.</p>
+            <p>Consider the transformation $T: P_3 \to P_2$ that takes a polynomial
+                $$p(x) = c_1 + c_2 x + c_3 x^2$$
+            to its derivative
+                $$p'(x) = c_2 + 2c_3 x.$$</p>
+            <p>With input basis $\{1, x, x^2\}$ and output basis $\{1, x\}$, the matrix is:
+                $$A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{bmatrix}$$</p>
+            <p>The first column is $T(1) = 0$ expressed as $[0, 0]^T$ in the output basis.</p>
+            <p>The second column is $T(x) = 1$ expressed as $[1, 0]^T$.</p>
+            <p>The third column is $T(x^2) = 2x$ expressed as $[0, 2]^T$.</p>
+            <p>This $2 \times 3$ matrix maps the input coordinates $[c_1, c_2, c_3]^T$ to the output coordinates $[c_2, 2c_3]^T$, which is exactly the derivative.</p>
+            <p>The derivative is a linear transformation, and its matrix representation makes this explicit.</p>
 
             <h3>Computation Examples</h3>
 

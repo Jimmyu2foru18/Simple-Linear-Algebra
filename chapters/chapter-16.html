@@ -37,7 +37,7 @@
     <div class="container">
         <main class="chapter">
             <h2>Chapter 16: Projection Matrices and Least Squares</h2>
-            <p class="lead">Solving least squares problems through the normal equations. This chapter completes the numerical solution of the projection problem, verifies the projection and error vectors, proves that $A^T A$ is invertible when $A$ has independent columns, and introduces orthonormal vectors as the ideal basis for computation.</p>
+            <p class="lead">Solving least squares problems through the normal equations. This chapter completes the numerical solution of the projection problem. It verifies the projection and error vectors. It proves that $A^T A$ is invertible when $A$ has independent columns, and introduces orthonormal vectors as the ideal basis for computation.</p>
 
             <!-- ========================================== -->
             <!-- CORE LECTURE: Gilbert Strang -->
@@ -109,19 +109,42 @@
             <h3>Detailed Topic Breakdowns</h3>
 
             <h4>The Normal Equations: Numerical Solution</h4>
-            <p>For the line-fitting problem with points $(1,1), (2,2), (3,2)$, the matrix is $A = \begin{bmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{bmatrix}$. Computing $A^T A$ gives $\begin{bmatrix} 3 & 6 \\ 6 & 14 \end{bmatrix}$, and $A^T \mathbf{b} = \begin{bmatrix} 5 \\ 11 \end{bmatrix}$. The normal equations are $3C + 6D = 5$ and $6C + 14D = 11$. Solving by elimination: subtract $2 \times$ (first equation) from the second to get $2D = 1$, so $D = 1/2$. Back-substituting gives $3C + 3 = 5$, so $C = 2/3$. The best-fit line is $b = \frac{2}{3} + \frac{1}{2}t$.</p>
+            <p>For the line-fitting problem with points $(1,1), (2,2), (3,2)$:</p>
+            $$A = \begin{bmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{bmatrix}$$
+            <p>Computing $A^T A$ gives $\begin{bmatrix} 3 & 6 \\ 6 & 14 \end{bmatrix}$, and $A^T \mathbf{b} = \begin{bmatrix} 5 \\ 11 \end{bmatrix}$.</p>
+            <p>The normal equations are $3C + 6D = 5$ and $6C + 14D = 11$.</p>
+            <p>Solving by elimination: subtract $2 \times$ (first equation) from the second to get $2D = 1$, so $D = 1/2$. Back-substituting gives $3C + 3 = 5$, so $C = 2/3$.</p>
+            <p>The best-fit line is $b = \frac{2}{3} + \frac{1}{2}t$.</p>
 
             <h4>Verification via Calculus</h4>
-            <p>The same result comes from minimizing the total squared error directly. The error function is $E(C,D) = (C+D-1)^2 + (C+2D-2)^2 + (C+3D-2)^2$. Taking partial derivatives with respect to $C$ and $D$ and setting them to zero yields exactly the normal equations. The beauty of least squares is that minimizing a sum of squares always produces linear equations, regardless of the data.</p>
+            <p>The same result comes from minimizing the total squared error directly.</p>
+            <p>The error function is</p>
+            $$E(C,D) = (C+D-1)^2 + (C+2D-2)^2 + (C+3D-2)^2$$
+            <p>Taking partial derivatives with respect to $C$ and $D$ and setting them to zero yields exactly the normal equations.</p>
+            <p>The beauty of least squares is that minimizing a sum of squares always produces linear equations, regardless of the data.</p>
 
             <h4>The Projection and Error Vectors</h4>
-            <p>With $\hat{\mathbf{x}} = [2/3, 1/2]^T$, the projection vector is $\mathbf{p} = A\hat{\mathbf{x}} = [7/6, 5/3, 13/6]^T \approx [1.167, 1.667, 2.167]^T$. The error vector is $\mathbf{e} = \mathbf{b} - \mathbf{p} = [-1/6, 1/3, -1/6]^T \approx [-0.167, 0.333, -0.167]^T$. The key facts: $\mathbf{p} + \mathbf{e} = \mathbf{b}$, $\mathbf{p}$ lies in the column space of $A$, $\mathbf{e}$ lies in the null space of $A^T$, and $\mathbf{p} \perp \mathbf{e}$. The dot product $\mathbf{p}^T\mathbf{e} = (7/6)(-1/6) + (5/3)(1/3) + (13/6)(-1/6) = -7/36 + 10/36 - 13/36 = 0$ confirms orthogonality.</p>
+            <p>With $\hat{\mathbf{x}} = [2/3, 1/2]^T$, the projection vector is</p>
+            $$\mathbf{p} = A\hat{\mathbf{x}} = [7/6, 5/3, 13/6]^T \approx [1.167, 1.667, 2.167]^T$$
+            <p>The error vector is</p>
+            $$\mathbf{e} = \mathbf{b} - \mathbf{p} = [-1/6, 1/3, -1/6]^T \approx [-0.167, 0.333, -0.167]^T$$
+            <p>The key facts: $\mathbf{p} + \mathbf{e} = \mathbf{b}$, $\mathbf{p}$ lies in the column space of $A$, $\mathbf{e}$ lies in the null space of $A^T$, and $\mathbf{p} \perp \mathbf{e}$.</p>
+            <p>The dot product</p>
+            $$\mathbf{p}^T\mathbf{e} = (7/6)(-1/6) + (5/3)(1/3) + (13/6)(-1/6) = -7/36 + 10/36 - 13/36 = 0$$
+            <p>confirms orthogonality.</p>
 
             <h4>Properties of $A^T A$</h4>
-            <p>The matrix $A^T A$ has three crucial properties: it is always symmetric, it is always invertible when $A$ has independent columns, and it is positive definite. Symmetry holds because $(A^T A)^T = A^T A$. Invertibility is proved by showing that if $A^T A \mathbf{x} = \mathbf{0}$, then $\mathbf{x}^T A^T A \mathbf{x} = (A\mathbf{x})^T(A\mathbf{x}) = |A\mathbf{x}|^2 = 0$, so $A\mathbf{x} = \mathbf{0}$, and since columns of $A$ are independent, $\mathbf{x} = \mathbf{0}$. Thus $A^T A$ has trivial null space and is invertible.</p>
+            <p>The matrix $A^T A$ has three crucial properties: it is always symmetric, it is always invertible when $A$ has independent columns, and it is positive definite.</p>
+            <p>Symmetry holds because $(A^T A)^T = A^T A$.</p>
+            <p>Invertibility is proved by showing that if $A^T A \mathbf{x} = \mathbf{0}$, then</p>
+            $$\mathbf{x}^T A^T A \mathbf{x} = (A\mathbf{x})^T(A\mathbf{x}) = |A\mathbf{x}|^2 = 0$$
+            <p>so $A\mathbf{x} = \mathbf{0}$, and since columns of $A$ are independent, $\mathbf{x} = \mathbf{0}$.</p>
+            <p>Thus $A^T A$ has trivial null space and is invertible.</p>
 
             <h4>Orthonormal Vectors: The Best Columns</h4>
-            <p>When columns of $A$ are perpendicular unit vectors (orthonormal), then $A^T A = I$. This is the ideal case: the normal equations become $I\hat{\mathbf{x}} = A^T \mathbf{b}$, so $\hat{\mathbf{x}} = A^T \mathbf{b}$. No matrix inversion is needed. Examples of orthonormal vectors in $\mathbb{R}^2$: $[1, 0]^T$ and $[0, 1]^T$, or $[\cos\theta, \sin\theta]^T$ and $[-\sin\theta, \cos\theta]^T$ for any angle $\theta$. These are perpendicular unit vectors, and their Gram matrix $A^T A$ is the identity.</p>
+            <p>When columns of $A$ are perpendicular unit vectors (orthonormal), then $A^T A = I$.</p>
+            <p>This is the ideal case: the normal equations become $I\hat{\mathbf{x}} = A^T \mathbf{b}$, so $\hat{\mathbf{x}} = A^T \mathbf{b}$. No matrix inversion is needed.</p>
+            <p>Examples of orthonormal vectors in $\mathbb{R}^2$: $[1, 0]^T$ and $[0, 1]^T$, or $[\cos\theta, \sin\theta]^T$ and $[-\sin\theta, \cos\theta]^T$ for any angle $\theta$. These are perpendicular unit vectors, and their Gram matrix $A^T A$ is the identity.</p>
 
             <!-- ========================================== -->
             <!-- Computation Examples -->
@@ -140,7 +163,8 @@
 
             <div class="derivation">
                 <h4>Derivation: Calculus Verification via Partial Derivatives</h4>
-                <p>Minimize $E(C,D) = (C+D-1)^2 + (C+2D-2)^2 + (C+3D-2)^2$.</p>
+                <p>Minimize</p>
+                $$E(C,D) = (C+D-1)^2 + (C+2D-2)^2 + (C+3D-2)^2$$
                 $$\frac{\partial E}{\partial C} = 2(C+D-1) + 2(C+2D-2) + 2(C+3D-2) = 6C + 12D - 10 = 0$$
                 <p>Dividing by 2: $3C + 6D = 5$.</p>
                 $$\frac{\partial E}{\partial D} = 2(C+D-1) + 4(C+2D-2) + 6(C+3D-2) = 12C + 28D - 22 = 0$$
