@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 1.9 — The Matrix of a Linear Transformation — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 1 &bull; Section 1.9: The Matrix of a Linear Transformation</p>
+        <nav>
+            <a href="index.html">Chapter 1</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 1.9: The Matrix of a Linear Transformation</h2>
+            <p class="lead">Assigned problems: <strong>1, 7, 8</strong>. Source: <em>linearAlgebraSolutionsComplete.pdf</em>.</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+            <p>What is the matrix of a linear transformation? Every linear transformation T: R⁻¹ → R⁻ can be represented as matrix multiplication T(x) = Ax, where A is the standard matrix whose columns are T(e₁), …, T(e₀).</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="Core Lecture, Gilbert Strang (MIT)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>If $T: \mathbb{R}^n \to \mathbb{R}^m$ is a linear transformation, then $T(\mathbf{x}) = A\mathbf{x}$ for a unique matrix $A$, called the <strong>standard matrix</strong> of $T$.</p>
+            <p>The columns of $A$ are the images of the standard basis vectors:</p>
+            <p>$$A = [T(\mathbf{e}_1) \, T(\mathbf{e}_2) \, \dots \, T(\mathbf{e}_n)]$$</p>
+
+            <h3>Worked Problems from linearAlgebraSolutionsComplete.pdf</h3>
+            <div class="questions">
+                <h4>Problem 1</h4>
+                <p><strong>Problem:</strong> Find the standard matrix $A = [T(\mathbf{e}_1) \, T(\mathbf{e}_2)]$ of the linear transformation $T$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>$$A = \begin{bmatrix} 3 & 5 \\ 1 & 2 \\ 3 & 0 \\ 1 & 0 \end{bmatrix}$$</p>
+                    <p>(A $4 \times 2$ matrix whose columns are $T(\mathbf{e}_1)$ and $T(\mathbf{e}_2)$.)</p>
+                </details>
+
+                <h4>Problem 7</h4>
+                <p><strong>Problem:</strong> Find the standard matrix of the transformation that rotates by $-3\pi/4$ radians and then reflects across the horizontal axis.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Following what happens to $\mathbf{e}_1$ and $\mathbf{e}_2$:</p>
+                    <ul>
+                        <li>$\mathbf{e}_1 = (1, 0)$ rotates to $(-1/\sqrt{2}, -1/\sqrt{2})$, then reflects to $(-1/\sqrt{2}, 1/\sqrt{2})$</li>
+                        <li>$\mathbf{e}_2 = (0, 1)$ rotates to $(-1/\sqrt{2}, -1/\sqrt{2})$, then reflects to $(-1/\sqrt{2}, 1/\sqrt{2})$</li>
+                    </ul>
+                    <p><strong>Standard matrix:</strong> $$A = \begin{bmatrix} -1/2 & 1/2 \\ 1/2 & 1/2 \end{bmatrix}$$</p>
+                </details>
+
+                <h4>Problem 8</h4>
+                <p><strong>Problem:</strong> Find the standard matrix $A$ of the transformation.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>$$A = \begin{bmatrix} 1 & 0 \\ 2 & 2 \end{bmatrix}$$</p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="section-1.8.html" class="nav-btn prev">Previous: Section 1.8</a>
+                <span class="nav-indicator">Section 1.9 of 9</span>
+                <a href="index.html" class="nav-btn next">Chapter 1 Index</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

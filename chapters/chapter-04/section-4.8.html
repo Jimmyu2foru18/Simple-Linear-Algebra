@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 4.8 — Applications to Difference Equations — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 4 &bull; Section 4.8: Applications to Difference Equations</p>
+        <nav>
+            <a href="index.html">Chapter 4</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 4.8: Applications to Difference Equations</h2>
+            <p class="lead">Assigned problems: <strong>3, 7, 9</strong>. Source: <em>linearAlgebraSolutionsComplete.pdf</em> (PDF Chapter 4, Section 4.8).</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+                <p>What is a difference equation? A difference equation models a discrete dynamical system where each state vector is obtained by applying a linear transformation to the previous state.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="Core Lecture, Gilbert Strang (MIT)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>A linear difference equation has the form:</p>
+            <p>$$\mathbf{x}_{k+1} = A\mathbf{x}_k$$</p>
+            <p>where $A$ is an $n \times n$ matrix. The solution is:</p>
+            <p>$$\mathbf{x}_k = A^k\mathbf{x}_0$$</p>
+            <p>If $A$ is diagonalizable with $A = PDP^{-1}$, then $A^k = PD^kP^{-1}$, which gives an explicit formula for $\mathbf{x}_k$.</p>
+
+            <h3>Worked Problems from linearAlgebraSolutionsComplete.pdf</h3>
+            <div class="questions">
+                <h4>Problem 3</h4>
+                <p><strong>Problem:</strong> Find the solution to the difference equation.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>The solution to the difference equation is found by diagonalizing $A$ and computing $A^k\mathbf{x}_0$.</p>
+                </details>
+
+                <h4>Problem 7</h4>
+                <p><strong>Problem:</strong> <em>Problem 7 from linearAlgebraSolutionsComplete.pdf section 4.8.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><em>Transcribe solution from linearAlgebraSolutionsComplete.pdf here.</em></p>
+                </details>
+
+                <h4>Problem 9</h4>
+                <p><strong>Problem:</strong> <em>Problem 9 from linearAlgebraSolutionsComplete.pdf section 4.8.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><em>Transcribe solution from linearAlgebraSolutionsComplete.pdf here.</em></p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="section-4.7.html" class="nav-btn prev">Previous: Section 4.7</a>
+                <span class="nav-indicator">Section 4.8 of 9</span>
+                <a href="section-4.9.html" class="nav-btn next">Next: Section 4.9</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

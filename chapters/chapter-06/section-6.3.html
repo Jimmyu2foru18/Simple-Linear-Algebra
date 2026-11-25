@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 6.3 — Orthogonal Projections — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 6 &bull; Section 6.3: Orthogonal Projections</p>
+        <nav>
+            <a href="index.html">Chapter 6</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 6.3: Orthogonal Projections</h2>
+            <p class="lead">Assigned problems: <strong>7, 10, 11, 14, 42, 43</strong>. Source: <em>linearAlgebraSolutionsComplete.pdf</em> (PDF Chapter 6, Section 6.3).</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+            <p>What is an orthogonal projection? The orthogonal projection of y onto a subspace W is the closest point in W to y. If {u₁, …, u₀} is an orthogonal basis for W, then proj₇₇ y = ∑ (y·u₀)/(u₀·u₀) u₀.</p>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>If $\{\mathbf{u}_1, \dots, \mathbf{u}_p\}$ is an <strong>orthogonal set</strong> of vectors (i.e., $\mathbf{u}_i \cdot \mathbf{u}_j = 0$ for $i \neq j$), then it is linearly independent.</p>
+            <p>The <strong>orthogonal projection</strong> of $\mathbf{y}$ onto $W = \text{Span}\{\mathbf{u}_1, \dots, \mathbf{u}_p\}$ is:</p>
+            <p>$$\text{proj}_W \mathbf{y} = \sum_{i=1}^{p} \frac{\mathbf{y} \cdot \mathbf{u}_i}{\mathbf{u}_i \cdot \mathbf{u}_i} \mathbf{u}_i$$</p>
+            <p><strong>Orthogonal Decomposition Theorem:</strong> Any vector $\mathbf{y}$ in $\mathbb{R}^n$ can be written uniquely as $\mathbf{y} = \hat{\mathbf{y}} + \mathbf{z}$ where $\hat{\mathbf{y}}$ is in $W$ and $\mathbf{z}$ is in $W^\perp$ (the orthogonal complement).</p>
+            <p><strong>Best Approximation Theorem:</strong> The orthogonal projection $\hat{\mathbf{y}}$ is the closest point in $W$ to $\mathbf{y}$, meaning $\|\mathbf{y} - \hat{\mathbf{y}}\| < \|\mathbf{y} - \mathbf{v}\|$ for all $\mathbf{v}$ in $W$ with $\mathbf{v} \neq \hat{\mathbf{y}}$.</p>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="1. The Geometry of Linear Equations, Gilbert Strang"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Worked Problems from linearAlgebraSolutionsComplete.pdf</h3>
+            <div class="questions">
+                <h4>Problem 7</h4>
+                <p><strong>Problem:</strong> Given an orthogonal set $\{\mathbf{u}_1, \mathbf{u}_2\}$, write $\mathbf{y}$ as the sum of a vector in $W = \text{Span}\{\mathbf{u}_1, \mathbf{u}_2\}$ and a vector in $W^\perp$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Since $\{\mathbf{u}_1, \mathbf{u}_2\}$ is an orthogonal set, by the Orthogonal Decomposition Theorem:</p>
+                    <p>$$\hat{\mathbf{y}} = \frac{\mathbf{y} \cdot \mathbf{u}_1}{\mathbf{u}_1 \cdot \mathbf{u}_1}\mathbf{u}_1 + \frac{\mathbf{y} \cdot \mathbf{u}_2}{\mathbf{u}_2 \cdot \mathbf{u}_2}\mathbf{u}_2$$</p>
+                    <p>For the given vectors, $\hat{\mathbf{y}} = \begin{bmatrix} 0 \\ 2/3 \\ 7/3 \end{bmatrix}$ and $\mathbf{z} = \begin{bmatrix} 10/3 \\ -1/2 \\ -7/3 \end{bmatrix}$, so $\mathbf{y} = \hat{\mathbf{y}} + \mathbf{z}$ where $\hat{\mathbf{y}}$ is in $W$ and $\mathbf{z}$ is in $W^\perp$.</p>
+                </details>
+
+                <h4>Problem 10</h4>
+                <p><strong>Problem:</strong> Given an orthogonal set $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$, write $\mathbf{y}$ as the sum of a vector in $W$ and a vector in $W^\perp$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Since $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ is an orthogonal set, by the Orthogonal Decomposition Theorem:</p>
+                    <p>$$\hat{\mathbf{y}} = \sum_{i=1}^{3} \frac{\mathbf{y} \cdot \mathbf{u}_i}{\mathbf{u}_i \cdot \mathbf{u}_i}\mathbf{u}_i$$</p>
+                    <p>For the given vectors, $\hat{\mathbf{y}} = \begin{bmatrix} 1 \\ 3/2 \\ 5/2 \end{bmatrix}$ and $\mathbf{z} = \begin{bmatrix} 2 \\ -1 \\ -3 \end{bmatrix}$, so $\mathbf{y} = \hat{\mathbf{y}} + \mathbf{z}$ where $\hat{\mathbf{y}}$ is in $W$ and $\mathbf{z}$ is in $W^\perp$.</p>
+                </details>
+
+                <h4>Problem 11</h4>
+                <p><strong>Problem:</strong> Find $\hat{\mathbf{y}}$, the orthogonal projection of $\mathbf{y}$ onto $W = \text{Span}\{\mathbf{v}_1, \mathbf{v}_2\}$ where $\{\mathbf{v}_1, \mathbf{v}_2\}$ is orthogonal.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>By the Best Approximation Theorem, $\hat{\mathbf{y}}$ is the closest point in $W$ to $\mathbf{y}$.</p>
+                    <p>$$\hat{\mathbf{y}} = \frac{\mathbf{y} \cdot \mathbf{v}_1}{\mathbf{v}_1 \cdot \mathbf{v}_1}\mathbf{v}_1 + \frac{\mathbf{y} \cdot \mathbf{v}_2}{\mathbf{v}_2 \cdot \mathbf{v}_2}\mathbf{v}_2 = \begin{bmatrix} 1 \\ 1 \\ 3 \end{bmatrix}$$</p>
+                    <p><strong>$\hat{\mathbf{y}} = \begin{bmatrix} 1 \\ 1 \\ 3 \end{bmatrix}$.</strong></p>
+                </details>
+
+                <h4>Problem 14</h4>
+                <p><strong>Problem:</strong> Find $\hat{\mathbf{z}}$, the orthogonal projection of $\mathbf{z}$ onto $W = \text{Span}\{\mathbf{v}_1, \mathbf{v}_2\}$ where $\{\mathbf{v}_1, \mathbf{v}_2\}$ is orthogonal.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>By the Best Approximation Theorem, $\hat{\mathbf{z}}$ is the closest point in $W$ to $\mathbf{z}$.</p>
+                    <p>$$\hat{\mathbf{z}} = \frac{\mathbf{z} \cdot \mathbf{v}_1}{\mathbf{v}_1 \cdot \mathbf{v}_1}\mathbf{v}_1 + \frac{\mathbf{z} \cdot \mathbf{v}_2}{\mathbf{v}_2 \cdot \mathbf{v}_2}\mathbf{v}_2 = \begin{bmatrix} 0 \\ 1/2 \\ -1/2 \end{bmatrix}$$</p>
+                    <p><strong>$\hat{\mathbf{z}} = \begin{bmatrix} 0 \\ 1/2 \\ -1/2 \end{bmatrix}$.</strong></p>
+                </details>
+
+                <h4>Problem 42</h4>
+                <p><strong>Problem:</strong> <em>Problem 42 from linearAlgebraSolutionsComplete.pdf section 6.3.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><em>Transcribe solution from linearAlgebraSolutionsComplete.pdf here.</em></p>
+                </details>
+
+                <h4>Problem 43</h4>
+                <p><strong>Problem:</strong> <em>Problem 43 from linearAlgebraSolutionsComplete.pdf section 6.3.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><em>Transcribe solution from linearAlgebraSolutionsComplete.pdf here.</em></p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="index.html" class="nav-btn prev">Chapter 6 Index</a>
+                <span class="nav-indicator">Section 6.3 of 1</span>
+                <a href="index.html" class="nav-btn next">Chapter 6 Index</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

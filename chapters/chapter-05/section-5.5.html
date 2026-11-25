@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 5.5 — Complex Eigenvalues — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 5 &bull; Section 5.5: Complex Eigenvalues</p>
+        <nav>
+            <a href="index.html">Chapter 5</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 5.5: Complex Eigenvalues</h2>
+            <p class="lead">Assigned problems: <strong>Problems from class</strong>. Source: <em>linearAlgebraSolutionsComplete.pdf</em> (PDF Chapter 5, Section 5.5).</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+            <p>What are complex eigenvalues? A real 2×2 matrix with complex eigenvalues a ± bi is similar to a rotation-scaling matrix C = [[a, −b], [b, a]], representing rotation and scaling.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="Core Lecture, Gilbert Strang (MIT)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>A real $2 \times 2$ matrix with complex eigenvalues $\lambda = a \pm bi$ (where $b \neq 0$) is similar to a rotation-scaling matrix:</p>
+            <p>$$A = PCP^{-1}, \quad \text{where} \quad C = \begin{bmatrix} a & -b \\ b & a \end{bmatrix}$$</p>
+            <p>Here $a = \text{Re}(\lambda)$ and $b = |\text{Im}(\lambda)|$. The matrix $C$ represents a rotation by angle $\theta$ and scaling by $r = |\lambda| = \sqrt{a^2 + b^2}$, where $\tan\theta = b/a$.</p>
+            <p>The columns of $P$ are constructed from the real and imaginary parts of a complex eigenvector.</p>
+
+            <div class="review-callout info">
+                <strong>Note:</strong> Section 5.5 problems are assigned "from class." Check with your instructor for specific problem numbers and solutions. The PDF Chapter 5, Section 5.5 contains worked solutions for reference.
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="section-5.3.html" class="nav-btn prev">Previous: Section 5.3</a>
+                <span class="nav-indicator">Section 5.5 of 4</span>
+                <a href="index.html" class="nav-btn next">Chapter 5 Index</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

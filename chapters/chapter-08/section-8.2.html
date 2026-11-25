@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 8.2 — Isomorphism — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 8 &bull; Section 8.2: Isomorphism</p>
+        <nav>
+            <a href="index.html">Chapter 8</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 8.2: Isomorphism</h2>
+            <p class="lead">Assigned problems: <strong>TBD</strong>. Source: textbook and class notes.</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+            <p>What is an isomorphism? Two vector spaces are isomorphic if an invertible linear transformation exists between them. Finite-dimensional spaces are isomorphic exactly when they have the same dimension.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="Core Lecture, Gilbert Strang (MIT)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>A linear transformation $T: V \to W$ is an <strong>isomorphism</strong> if it is both one-to-one and onto.</p>
+            <p>Two vector spaces $V$ and $W$ are <strong>isomorphic</strong> if there exists an isomorphism $T: V \to W$.</p>
+            <p><strong>Key Theorem:</strong> Two finite-dimensional vector spaces are isomorphic if and only if they have the same dimension.</p>
+            <p>The <strong>coordinate mapping</strong> $[\mathbf{x}]_{\mathcal{B}}$ from $V$ to $\mathbb{R}^n$ relative to a basis $\mathcal{B}$ is an isomorphism.</p>
+
+            <div class="review-callout info">
+                <strong>Note:</strong> Problems for this section are TBD. Check with your instructor.
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="section-8.1.html" class="nav-btn prev">Previous: Section 8.1</a>
+                <span class="nav-indicator">Section 8.2 of 2</span>
+                <a href="index.html" class="nav-btn next">Chapter 8 Index</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

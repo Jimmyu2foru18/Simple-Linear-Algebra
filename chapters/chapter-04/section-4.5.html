@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 4.5 — The Dimension of a Vector Space — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 4 &bull; Section 4.5: The Dimension of a Vector Space</p>
+        <nav>
+            <a href="index.html">Chapter 4</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 4.5: The Dimension of a Vector Space</h2>
+            <p class="lead">Assigned problems: <strong>1, 2, 3, 4</strong>. Source: <em>linearAlgebraSolutionsComplete.pdf</em> (PDF Chapter 4, Section 4.5).</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+            <p>What is dimension? The dimension of a vector space is the number of vectors in a basis. The Basis Theorem connects spanning sets, linear independence, and the size of a basis.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="Core Lecture, Gilbert Strang (MIT)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>If a vector space $V$ has a basis $\mathcal{B} = \{\mathbf{b}_1, \dots, \mathbf{b}_n\}$, then any set in $V$ containing more than $n$ vectors must be linearly dependent.</p>
+            <p>The <strong>dimension</strong> of a nonzero vector space $V$ is the number of vectors in a basis for $V$.</p>
+            <p><strong>Rank Theorem:</strong> For an $m \times n$ matrix $A$, $\text{rank } A + \dim(\text{Nul } A) = n$.</p>
+
+            <h3>Worked Problems from linearAlgebraSolutionsComplete.pdf</h3>
+            <div class="questions">
+                <h4>Problem 1</h4>
+                <p><strong>Problem:</strong> Find the dimension of $H = \text{Span}\{\mathbf{v}_1, \mathbf{v}_2\}$ where $\mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}$ and $\mathbf{v}_2 = \begin{bmatrix} 4 \\ 3 \\ -1 \end{bmatrix}$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Since $\mathbf{v}_1$ and $\mathbf{v}_2$ are not multiples of each other, $\{\mathbf{v}_1, \mathbf{v}_2\}$ is linearly independent and is thus a basis for $H$. Hence <strong>the dimension of $H$ is 2.</strong></p>
+                </details>
+
+                <h4>Problem 2</h4>
+                <p><strong>Problem:</strong> Find the dimension of $H = \text{Span}\{\mathbf{v}_1, \mathbf{v}_2\}$ where $\mathbf{v}_1 = \begin{bmatrix} 4 \\ 3 \\ 0 \end{bmatrix}$ and $\mathbf{v}_2 = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Since $\mathbf{v}_1$ and $\mathbf{v}_2$ are not multiples of each other, $\{\mathbf{v}_1, \mathbf{v}_2\}$ is linearly independent and is thus a basis for $H$. Hence <strong>the dimension of $H$ is 2.</strong></p>
+                </details>
+
+                <h4>Problem 3</h4>
+                <p><strong>Problem:</strong> Find the dimension of $H = \text{Span}\{\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3\}$ where $\mathbf{v}_1 = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}$, $\mathbf{v}_2 = \begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}$, $\mathbf{v}_3 = \begin{bmatrix} 2 \\ 0 \\ 3 \end{bmatrix}$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>By Theorem 4 in Section 4.3, $\mathbf{1}_v \neq \mathbf{0}$, $\mathbf{2}_v$ is not a multiple of $\mathbf{1}_v$, and $\mathbf{3}_v$ is not a linear combination of $\mathbf{1}_v$ and $\mathbf{2}_v$. Thus $\{\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3\}$ is linearly independent and is thus a basis for $H$.</p>
+                    <p><strong>Hence the dimension of $H$ is 3.</strong></p>
+                </details>
+
+                <h4>Problem 4</h4>
+                <p><strong>Problem:</strong> Find the dimension of $H = \text{Span}\{\mathbf{v}_1, \mathbf{v}_2\}$ where $\mathbf{v}_1 = \begin{bmatrix} 1 \\ 2 \\ 3 \\ 0 \end{bmatrix}$ and $\mathbf{v}_2 = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Since $\mathbf{v}_1$ and $\mathbf{v}_2$ are not multiples of each other, $\{\mathbf{v}_1, \mathbf{v}_2\}$ is linearly independent and is thus a basis for $H$. Hence <strong>the dimension of $H$ is 2.</strong></p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="section-4.4.html" class="nav-btn prev">Previous: Section 4.4</a>
+                <span class="nav-indicator">Section 4.5 of 9</span>
+                <a href="section-4.6.html" class="nav-btn next">Next: Section 4.6</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

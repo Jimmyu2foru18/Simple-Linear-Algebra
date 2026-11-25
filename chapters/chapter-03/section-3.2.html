@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 3.2 — Null Spaces, Column Spaces, and Linear Transformations — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 3 &bull; Section 3.2: Null Spaces, Column Spaces, and Linear Transformations</p>
+        <nav>
+            <a href="index.html">Chapter 3</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 3.2: Null Spaces, Column Spaces, and Linear Transformations</h2>
+            <p class="lead">Assigned problems: <strong>1, 3, 5, 11, 12, 13, 15</strong>. Source: <em>linearAlgebraSolutionsComplete.pdf</em> (PDF Chapter 4, Section 4.2).</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+                <p>What is a null space? The null space of a matrix A is the set of all solutions to Ax = 0, while the column space is the set of all linear combinations of the columns of A.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="Core Lecture, Gilbert Strang (MIT)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>The <strong>null space</strong> of an $m \times n$ matrix $A$, written $\text{Nul } A$, is the set of all solutions to the homogeneous equation $A\mathbf{x} = \mathbf{0}$.</p>
+            <p>The <strong>column space</strong> of $A$, written $\text{Col } A$, is the set of all linear combinations of the columns of $A$.</p>
+            <p>To find a spanning set for $\text{Nul } A$, row reduce $[A \, | \, \mathbf{0}]$ and express the general solution in parametric vector form.</p>
+
+            <h3>Worked Problems from linearAlgebraSolutionsComplete.pdf</h3>
+            <div class="questions">
+                <h4>Problem 1</h4>
+                <p><strong>Problem:</strong> Show that $\mathbf{w}$ is in $\text{Nul } A$ where $A = \begin{bmatrix} 3 & 5 & 3 \\ 6 & 2 & 0 \\ 8 & 4 & 1 \end{bmatrix}$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>$$A\mathbf{w} = \begin{bmatrix} 3 & 5 & 3 \\ 6 & 2 & 0 \\ 8 & 4 & 1 \end{bmatrix} \begin{bmatrix} 1 \\ -1 \\ 2 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} = \mathbf{0}$$</p>
+                    <p><strong>So $\mathbf{w}$ is in $\text{Nul } A$.</strong></p>
+                </details>
+
+                <h4>Problem 3</h4>
+                <p><strong>Problem:</strong> Find a spanning set for $\text{Nul } A$ where $A = \begin{bmatrix} 1 & 0 & 7 & 6 \\ 0 & 1 & 4 & 2 \end{bmatrix}$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>The general solution is $x_1 = -7x_3 - 6x_4$, $x_2 = -4x_3 - 2x_4$, with $x_3$ and $x_4$ free.</p>
+                    <p>$$\mathbf{x} = x_3\begin{bmatrix} -7 \\ -4 \\ 1 \\ 0 \end{bmatrix} + x_4\begin{bmatrix} -6 \\ -2 \\ 0 \\ 1 \end{bmatrix}$$</p>
+                    <p><strong>A spanning set for $\text{Nul } A$ is $\left\{\begin{bmatrix} -7 \\ -4 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} -6 \\ -2 \\ 0 \\ 1 \end{bmatrix}\right\}$.</strong></p>
+                </details>
+
+                <h4>Problem 5</h4>
+                <p><strong>Problem:</strong> Find a spanning set for $\text{Nul } A$ where $A = \begin{bmatrix} 1 & 2 & 0 & 4 \\ 0 & 0 & 1 & 9 \\ 0 & 0 & 0 & 1 \end{bmatrix}$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>The general solution is $x_1 = -2x_2 - 4x_4$, $x_3 = -9x_4$, $x_5 = 0$, with $x_2$ and $x_4$ free.</p>
+                    <p>$$\mathbf{x} = x_2\begin{bmatrix} -2 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} + x_4\begin{bmatrix} -4 \\ 0 \\ -9 \\ 1 \\ 0 \end{bmatrix}$$</p>
+                    <p><strong>A spanning set for $\text{Nul } A$ is $\left\{\begin{bmatrix} -2 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} -4 \\ 0 \\ -9 \\ 1 \\ 0 \end{bmatrix}\right\}$.</strong></p>
+                </details>
+
+                <h4>Problem 11</h4>
+                <p><strong>Problem:</strong> Find a basis for $\text{Nul } A$ where $A = \begin{bmatrix} 1 & 2 & 1 \end{bmatrix}$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>The general solution is $x = -2y - z$ with $y$ and $z$ free.</p>
+                    <p>$$\mathbf{x} = y\begin{bmatrix} -2 \\ 1 \\ 0 \end{bmatrix} + z\begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix}$$</p>
+                    <p><strong>A basis for $\text{Nul } A$ is $\left\{\begin{bmatrix} -2 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix}\right\}$.</strong></p>
+                </details>
+
+                <h4>Problem 12</h4>
+                <p><strong>Problem:</strong> Find a basis for $\text{Nul } A$ where $A = \begin{bmatrix} 5 & -1 \end{bmatrix}$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>The general solution is $y = 5x$ with $x$ free.</p>
+                    <p>$$\mathbf{x} = x\begin{bmatrix} 1 \\ 5 \end{bmatrix}$$</p>
+                    <p><strong>A basis for $\text{Nul } A$ is $\left\{\begin{bmatrix} 1 \\ 5 \end{bmatrix}\right\}$.</strong></p>
+                </details>
+
+                <h4>Problem 13</h4>
+                <p><strong>Problem:</strong> Find a basis for $\text{Col } A$ where the first and second columns of $A$ are pivot columns.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Since $B$ is a row echelon form of $A$, the first and second columns of $A$ are its pivot columns. Thus a basis for $\text{Col } A$ is:</p>
+                    <p>$$\left\{\begin{bmatrix} 2 \\ 3 \end{bmatrix}, \begin{bmatrix} 2 \\ 6 \end{bmatrix}\right\}$$</p>
+                    <p><strong>A basis for $\text{Col } A$ is $\left\{\begin{bmatrix} 2 \\ 3 \end{bmatrix}, \begin{bmatrix} 2 \\ 6 \end{bmatrix}\right\}$.</strong></p>
+                </details>
+
+                <h4>Problem 15</h4>
+                <p><strong>Problem:</strong> Since the zero vector is not in $W$, determine if $W$ is a vector space.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Since the zero vector is not in $W$, <strong>$W$ is not a vector space.</strong></p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="section-3.1.html" class="nav-btn prev">Previous: Section 3.1</a>
+                <span class="nav-indicator">Section 3.2 of 5</span>
+                <a href="section-3.3.html" class="nav-btn next">Next: Section 3.3</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

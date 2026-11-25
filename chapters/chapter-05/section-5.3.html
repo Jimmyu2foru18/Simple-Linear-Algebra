@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 5.3 — Diagonalization — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 5 &bull; Section 5.3: Diagonalization</p>
+        <nav>
+            <a href="index.html">Chapter 5</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 5.3: Diagonalization</h2>
+            <p class="lead">Assigned problems: <strong>15, 16, 17</strong>. Source: <em>linearAlgebraSolutionsComplete.pdf</em> (PDF Chapter 5, Section 5.3).</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+            <p>What is diagonalization? A matrix A is diagonalizable if A = PDP⁻¹ where P is invertible and D is diagonal. This requires A to have n linearly independent eigenvectors.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="Core Lecture, Gilbert Strang (MIT)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>A matrix $A$ is <strong>diagonalizable</strong> if there exists an invertible matrix $P$ and a diagonal matrix $D$ such that $A = PDP^{-1}$.</p>
+            <p>The columns of $P$ are eigenvectors of $A$, and the diagonal entries of $D$ are the corresponding eigenvalues.</p>
+            <p><strong>Diagonalization Theorem:</strong> An $n \times n$ matrix $A$ is diagonalizable if and only if $A$ has $n$ linearly independent eigenvectors.</p>
+
+            <h3>Worked Problems from linearAlgebraSolutionsComplete.pdf</h3>
+            <div class="questions">
+                <h4>Problem 15</h4>
+                <p><strong>Problem:</strong> Diagonalize $A = \begin{bmatrix} 4 & -2 \\ 1 & 1 \end{bmatrix}$ if possible.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Find eigenvalues: $\det(A - \lambda I) = \begin{vmatrix} 4-\lambda & -2 \\ 1 & 1-\lambda \end{vmatrix} = (4-\lambda)(1-\lambda) + 2 = \lambda^2 - 5\lambda + 6 = (\lambda - 2)(\lambda - 3)$</p>
+                    <p>Eigenvalues: $\lambda_1 = 2$, $\lambda_2 = 3$</p>
+                    <p>For $\lambda_1 = 2$: $(A - 2I)\mathbf{x} = \mathbf{0}$ gives $\begin{bmatrix} 2 & -2 \\ 1 & -1 \end{bmatrix}\mathbf{x} = \mathbf{0}$, so $x_1 - x_2 = 0$. Eigenvector: $\mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$</p>
+                    <p>For $\lambda_2 = 3$: $(A - 3I)\mathbf{x} = \mathbf{0}$ gives $\begin{bmatrix} 1 & -2 \\ 1 & -2 \end{bmatrix}\mathbf{x} = \mathbf{0}$, so $x_1 - 2x_2 = 0$. Eigenvector: $\mathbf{v}_2 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$</p>
+                    <p>$$P = \begin{bmatrix} 1 & 2 \\ 1 & 1 \end{bmatrix}, \quad D = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}$$</p>
+                    <p><strong>$A = PDP^{-1}$ where $P = \begin{bmatrix} 1 & 2 \\ 1 & 1 \end{bmatrix}$ and $D = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}$.</strong></p>
+                </details>
+
+                <h4>Problem 16</h4>
+                <p><strong>Problem:</strong> Diagonalize $A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$ if possible.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Find eigenvalues: $\det(A - \lambda I) = \begin{vmatrix} 1-\lambda & 1 \\ 0 & 1-\lambda \end{vmatrix} = (1-\lambda)^2$</p>
+                    <p>Eigenvalue: $\lambda = 1$ with multiplicity 2</p>
+                    <p>For $\lambda = 1$: $(A - I)\mathbf{x} = \mathbf{0}$ gives $\begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}\mathbf{x} = \mathbf{0}$, so $x_2 = 0$. Only one free variable.</p>
+                    <p>The eigenspace is one-dimensional: $\mathbf{v} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$</p>
+                    <p>Since we need 2 linearly independent eigenvectors for a $2 \times 2$ matrix but only have 1, <strong>$A$ is NOT diagonalizable.</strong></p>
+                </details>
+
+                <h4>Problem 17</h4>
+                <p><strong>Problem:</strong> Diagonalize $A = \begin{bmatrix} 5 & 2 \\ -1 & 4 \end{bmatrix}$ if possible.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Find eigenvalues: $\det(A - \lambda I) = \begin{vmatrix} 5-\lambda & 2 \\ -1 & 4-\lambda \end{vmatrix} = (5-\lambda)(4-\lambda) + 2 = \lambda^2 - 9\lambda + 22$</p>
+                    <p>Using quadratic formula: $\lambda = \frac{9 \pm \sqrt{81 - 88}}{2} = \frac{9 \pm i\sqrt{7}}{2}$</p>
+                    <p>The eigenvalues are complex numbers, not real. For a real matrix to be diagonalizable over $\mathbb{R}$, all eigenvalues must be real.</p>
+                    <p><strong>$A$ is NOT diagonalizable over $\mathbb{R}$ (no real eigenvalues).</strong></p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="section-5.2.html" class="nav-btn prev">Previous: Section 5.2</a>
+                <span class="nav-indicator">Section 5.3 of 4</span>
+                <a href="section-5.5.html" class="nav-btn next">Next: Section 5.5</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

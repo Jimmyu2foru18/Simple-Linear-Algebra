@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 8.1 — Linear Transformations — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 8 &bull; Section 8.1: Linear Transformations</p>
+        <nav>
+            <a href="index.html">Chapter 8</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 8.1: Linear Transformations</h2>
+            <p class="lead">Assigned problems: <strong>TBD</strong>. Source: textbook and class notes.</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+                <p>What is a linear transformation? A linear transformation T: V → W between vector spaces preserves addition and scalar multiplication. Its kernel is the set mapped to zero; its range is the set of all outputs.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="Core Lecture, Gilbert Strang (MIT)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>A <strong>linear transformation</strong> $T: V \to W$ between vector spaces $V$ and $W$ satisfies:</p>
+            <ul>
+                <li>$T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v})$ for all $\mathbf{u}, \mathbf{v}$ in $V$</li>
+                <li>$T(c\mathbf{u}) = cT(\mathbf{u})$ for all $\mathbf{u}$ in $V$ and scalars $c$</li>
+            </ul>
+            <p>The <strong>kernel</strong> of $T$ is $\ker(T) = \{\mathbf{v} \in V : T(\mathbf{v}) = \mathbf{0}\}$.</p>
+            <p>The <strong>range</strong> of $T$ is $\text{range}(T) = \{T(\mathbf{v}) : \mathbf{v} \in V\}$.</p>
+
+            <div class="review-callout info">
+                <strong>Note:</strong> Problems for this section are TBD. Check with your instructor.
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="index.html" class="nav-btn prev">Chapter 8 Index</a>
+                <span class="nav-indicator">Section 8.1 of 2</span>
+                <a href="section-8.2.html" class="nav-btn next">Next: Section 8.2</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

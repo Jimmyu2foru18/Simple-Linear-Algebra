@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 2.1 — Introduction to Determinants — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 2 &bull; Section 2.1: Introduction to Determinants</p>
+        <nav>
+            <a href="index.html">Chapter 2</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 2.1: Introduction to Determinants</h2>
+            <p class="lead">Assigned problems: <strong>5, 15, 16, 21, 23, 33</strong>. Source: <em>linearAlgebraSolutionsComplete.pdf</em> (PDF Chapter 3, Section 3.1).</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+                <p>What is a determinant? The determinant of a square matrix is a scalar value computed from its entries that reveals key properties of the matrix, such as whether it is invertible.</p>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>The <strong>determinant</strong> of an $n \times n$ matrix $A$, denoted $\det A$ or $|A|$, is a scalar value computed from the entries of $A$. For a $2 \times 2$ matrix:</p>
+            <p>$$\det \begin{bmatrix} a & b \\ c & d \end{bmatrix} = ad - bc$$</p>
+            <p>For larger matrices, the determinant is computed by <strong>cofactor expansion</strong> along any row or column:</p>
+            <p>$$\det A = \sum_{j=1}^{n} (-1)^{i+j} a_{ij} \det A_{ij}$$</p>
+            <p>where $A_{ij}$ is the $(n-1) \times (n-1)$ submatrix obtained by deleting row $i$ and column $j$.</p>
+            <p>A key fact: if $A$ is triangular (upper or lower), then $\det A$ is the product of its diagonal entries.</p>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="1. The Geometry of Linear Equations, Gilbert Strang"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Worked Problems from linearAlgebraSolutionsComplete.pdf</h3>
+            <div class="questions">
+                <h4>Problem 5</h4>
+                <p><strong>Problem:</strong> Compute the determinant by cofactor expansion along the first row (and verify along the second column).</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Compute $\det A$ by expanding along the first row, then verify by expanding along the second column. Both expansions should give the same value.</p>
+                </details>
+
+                <h4>Problem 15</h4>
+                <p><strong>Problem:</strong> Compute the determinant of the matrix $\begin{bmatrix} 3 & 0 & 4 \\ 2 & 3 & 2 \\ 0 & 5 & 1 \end{bmatrix}$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>$$\det A = -(3)(3)(-1) + (0)(2)(0) + (4)(2)(5) - (0)(3)(4) - (5)(2)(3) - (-1)(2)(0)$$</p>
+                    <p>$$= -9 + 0 + 40 - 0 - 30 - 0 = 1$$</p>
+                    <p><strong>$\det A = 1$.</strong></p>
+                </details>
+
+                <h4>Problem 16</h4>
+                <p><strong>Problem:</strong> Compute the determinant of the matrix $\begin{bmatrix} 0 & 5 & 1 \\ 4 & 3 & 0 \\ 2 & 4 & 1 \end{bmatrix}$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>$$\det A = (0)(-3)(1) + (5)(0)(2) + (1)(4)(4) - (2)(-3)(1) - (4)(0)(0) - (1)(4)(5)$$</p>
+                    <p>$$= 0 + 0 + 16 - (-6) - 0 - 20 = 2$$</p>
+                    <p><strong>$\det A = 2$.</strong></p>
+                </details>
+
+                <h4>Problem 21</h4>
+                <p><strong>Problem:</strong> Given a matrix and a row operation replacing row 2 with $k$ times row 1 plus row 2, show the determinant is unchanged.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>$$\begin{bmatrix} 3 & 4 & 1 & | & 8 \\ 2 & 5 & 6 & | & 2 \\ 5 & 6 & 3 & | & 4 \end{bmatrix}$$</p>
+                    <p>The row operation replaces row 2 with $k$ times row 1 plus row 2, and the determinant is <strong>unchanged</strong>.</p>
+                </details>
+
+                <h4>Problem 23</h4>
+                <p><strong>Problem:</strong> Given the matrix $\begin{bmatrix} 1 & 1 & 1 \\ 3 & 8 & 4 \\ 2 & 3 & 2 \end{bmatrix}$ with row 1 scaled by $k$, compute the determinant.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>$$\det A = 1(4) - 1(2) + 1(-7) = 4 - 2 - 7 = -5$$</p>
+                    <p>After scaling row 1 by $k$, the determinant is multiplied by $k$.</p>
+                    <p><strong>The row operation scales row 1 by $k$, and the determinant is multiplied by $k$.</strong></p>
+                </details>
+
+                <h4>Problem 33</h4>
+                <p><strong>Problem:</strong> Given elementary matrix $E = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ and $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, show that $\det(EA) = (\det E)(\det A)$.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>$$\det E = -1, \quad \det A = ad - bc$$</p>
+                    <p>$$EA = \begin{bmatrix} c & d \\ a & b \end{bmatrix}, \quad \det(EA) = cb - da = -(ad - bc)$$</p>
+                    <p>$$\det(EA) = -1(ad - bc) = (\det E)(\det A)$$</p>
+                    <p><strong>The determinant of a product equals the product of the determinants.</strong></p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="index.html" class="nav-btn prev">Chapter 2 Index</a>
+                <span class="nav-indicator">Section 2.1 of 3</span>
+                <a href="section-2.2.html" class="nav-btn next">Next: Section 2.2</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

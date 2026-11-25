@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 1.6 — Applications of Linear Systems — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 1 &bull; Section 1.6: Applications of Linear Systems</p>
+        <nav>
+            <a href="index.html">Chapter 1</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 1.6: Applications of Linear Systems</h2>
+            <p class="lead">Assigned problems: <strong>1, 3, 7</strong>. Source: <em>linearAlgebraSolutionsComplete.pdf</em>.</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+            <p>What are applications of linear systems? Linear systems can model real-world phenomena such as economic equilibrium, where input-output analysis determines equilibrium prices across sectors of an economy.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="Core Lecture, Gilbert Strang (MIT)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>Linear systems can model economic equilibrium using input-output analysis. Each column of an exchange table describes where a sector's output goes, and the entries in each column sum to 1.</p>
+            <p>Equilibrium prices satisfy: <strong>income = expenses</strong> for each sector.</p>
+
+            <h3>Worked Problems from linearAlgebraSolutionsComplete.pdf</h3>
+            <div class="questions">
+                <h4>Problem 1</h4>
+                <p><strong>Problem:</strong> Two-sector economy (Goods and Services). Find equilibrium prices.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Exchange table: Goods sector: 0.2 to Goods, 0.7 to Services. Services sector: 0.8 to Goods, 0.3 to Services.</p>
+                    <p>Equilibrium equations:</p>
+                    <p>$$0.8p_G + 0.7p_S = p_G \quad \Rightarrow \quad 0.7p_S = 0.2p_G \quad \Rightarrow \quad p_G = 0.875p_S$$</p>
+                    <p>The general solution is $p_G = 0.875p_S$ with $p_S$ free. One solution: $p_S = 1000$, $p_G = 875$.</p>
+                    <p><strong>Only the ratio of prices matters: $p_G = \frac{7}{8}p_S$.</strong></p>
+                </details>
+
+                <h4>Problem 3</h4>
+                <p><strong>Problem:</strong> Three-sector economy (Chemicals, Fuels, Machinery). Find equilibrium prices.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Exchange table and equilibrium equations lead to the system:</p>
+                    <p>$$\begin{bmatrix} 0.8 & -0.8 & -0.4 \\ -0.3 & 0.9 & -0.4 \\ -0.5 & -0.1 & 0.8 \end{bmatrix} \begin{bmatrix} p_C \\ p_F \\ p_M \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}$$</p>
+                    <p>Row reducing gives the general solution:</p>
+                    <p>$p_C = 1.417p_M$, $p_F = 0.917p_M$, with $p_M$ free.</p>
+                    <p><strong>If $p_M = 100$, then $p_C = 141.7$ and $p_F = 91.7$. Only the ratios matter.</strong></p>
+                </details>
+
+                <h4>Problem 7</h4>
+                <p><strong>Problem:</strong> <em>Problem 7 from Section 1.6 of linearAlgebraSolutionsComplete.pdf — economic application problem. Extract from PDF.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><em>Transcribe solution from linearAlgebraSolutionsComplete.pdf here.</em></p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="section-1.5.html" class="nav-btn prev">Previous: Section 1.5</a>
+                <span class="nav-indicator">Section 1.6 of 9</span>
+                <a href="section-1.7.html" class="nav-btn next">Next: Section 1.7</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

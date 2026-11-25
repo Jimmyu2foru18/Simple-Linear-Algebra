@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 1.1 — Systems of Linear Equations — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <!-- MathJax Configuration -->
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\(', '\)']],
+            displayMath: [['$$', '$$'], ['\[', '\]']],
+            processEscapes: true,
+            tags: 'ams'
+        },
+        svg: { fontCache: 'global' },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'no-mathjax'
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 1 &bull; Section 1.1: Systems of Linear Equations</p>
+        <nav>
+            <a href="index.html">Chapter 1</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 1.1: Systems of Linear Equations</h2>
+            <p class="lead">Assigned problems: <strong>9, 11</strong>. Source: <em>linearAlgebraSolutionsComplete.pdf</em>.</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+                <p>What is a system of linear equations? A system of linear equations is a collection of one or more linear equations involving the same set of variables. The goal is to find values for the variables that satisfy every equation in the system simultaneously.</p>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>A system of linear equations consists of multiple equations that must be satisfied simultaneously. The fundamental question is: can we find values for the variables that satisfy all equations at once?</p>
+            <p>Each equation can be written in the form:</p>
+            <p>$$a_1 x_1 + a_2 x_2 + \cdots + a_n x_n = b$$</p>
+            <p>where $a_1, \dots, a_n$ are coefficients, $x_1, \dots, x_n$ are unknowns, and $b$ is the constant term.</p>
+            <p>A system of $m$ equations in $n$ unknowns can be compactly represented as the matrix equation:</p>
+            <p>$$A\mathbf{x} = \mathbf{b}$$</p>
+            <p>where $A$ is the $m \times n$ coefficient matrix, $\mathbf{x}$ is the $n \times 1$ vector of unknowns, and $\mathbf{b}$ is the $m \times 1$ right-hand side vector.</p>
+
+            <div class="review-callout info">
+                <strong>Two perspectives (Strang):</strong>
+                <ul>
+                    <li><strong>Row picture:</strong> Each row represents one equation. We seek a point $\mathbf{x}$ that satisfies all equations simultaneously.</li>
+                    <li><strong>Column picture:</strong> We take linear combinations of the columns of $A$ to produce $\mathbf{b}$.</li>
+                </ul>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="1. The Geometry of Linear Equations, Gilbert Strang"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Breakdowns</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/csgNflj69-Y"
+                                    title="Prof Dave Explains, Intro to Linear Algebra"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Prof. Dave Explains</h5>
+                        <p>Concise breakdown of linear equation geometry</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/rGWcIeCdwGg"
+                                    title="Dr. Valerie Hower, Introduction to Linear Systems"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Paul Cartier, Textbook Context</h5>
+                        <p>Textbook-aligned explanation with examples</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/XkY2DOUCWMU"
+                                    title="3Blue1Brown, Matrix multiplication as composition"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                    </div>
+                    <div class="video-card-caption">
+                        <h5>Valerie Hower</h5>
+                        <p>Step-by-step problem-solving demonstration</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Worked Problems from linearAlgebraSolutionsComplete.pdf</h3>
+            <div class="questions">
+                <h4>Problem 9</h4>
+                <p><strong>Problem:</strong> The system has already been reduced to triangular form. Begin by scaling the fourth row by 1/2 and then replacing R3 by R3 + (3)R4. Next, replace R2 by R2 + (3)R3. Finally, replace R1 by R1 + R2. Find the solution set.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>After scaling the fourth row by 1/2 and replacing R3 by R3 + (3)R4, then replacing R2 by R2 + (3)R3 and finally R1 by R1 + R2, the system reduces to:</p>
+                    <p>x1 = 4, x2 = 8, x3 = 5, x4 = 2</p>
+                    <p><strong>The solution set contains one solution: (4, 8, 5, 2).</strong></p>
+                </details>
+
+                <h4>Problem 11</h4>
+                <p><strong>Problem:</strong> First, swap R1 and R2. Then replace R3 by R3 + (–3)R1. Finally, replace R3 by R3 + (2)R2. Find the solution set.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>After swapping R1 and R2, then replacing R3 by R3 + (–3)R1, and finally R3 by R3 + (2)R2, the last row of the augmented matrix requires 0 = 2, which is a contradiction.</p>
+                    <p><strong>The system is inconsistent. The solution set is empty.</strong></p>
+                </details>
+            </div>
+
+            <h3>Additional Practice</h3>
+            <div class="questions">
+                <p><strong>My Problem 1:</strong> <em>Create your own practice problem based on Section 1.1 concepts.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><em>Write your solution here.</em></p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="index.html" class="nav-btn prev">Chapter 1 Index</a>
+                <span class="nav-indicator">Section 1.1 of 9</span>
+                <a href="section-1.2.html" class="nav-btn next">Next: Section 1.2</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

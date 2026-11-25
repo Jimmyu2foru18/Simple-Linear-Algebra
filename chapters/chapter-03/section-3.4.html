@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 3.4 — Coordinate Systems — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 3 &bull; Section 3.4: Coordinate Systems</p>
+        <nav>
+            <a href="index.html">Chapter 3</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 3.4: Coordinate Systems</h2>
+            <p class="lead">Assigned problems: <strong>TBD</strong> — Section 3.4 is listed as empty in your course plan. This page serves as a placeholder for coordinate systems content.</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+                <p>What is a coordinate system? Given a basis B for a vector space, the coordinate vector of x relative to B lists the coefficients when x is written as a linear combination of the basis vectors.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="Core Lecture, Gilbert Strang (MIT)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>Let $\mathcal{B} = \{\mathbf{b}_1, \dots, \mathbf{b}_n\}$ be a basis for a vector space $V$. For any $\mathbf{x}$ in $V$, the <strong>coordinate vector</strong> of $\mathbf{x}$ relative to $\mathcal{B}$ is:</p>
+            <p>$$[\mathbf{x}]_{\mathcal{B}} = \begin{bmatrix} c_1 \\ c_2 \\ \vdots \\ c_n \end{bmatrix}$$</p>
+            <p>where $\mathbf{x} = c_1\mathbf{b}_1 + c_2\mathbf{b}_2 + \cdots + c_n\mathbf{b}_n$.</p>
+            <p>The <strong>change-of-coordinates matrix</strong> from $\mathcal{B}$ to the standard basis is:</p>
+            <p>$$P_{\mathcal{B}} = [\mathbf{b}_1 \, \mathbf{b}_2 \, \dots \, \mathbf{b}_n]$$</p>
+
+            <div class="review-callout info">
+                <strong>Note:</strong> No problems were assigned for Section 3.4 in your course plan. Add problems here as needed.
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="section-3.3.html" class="nav-btn prev">Previous: Section 3.3</a>
+                <span class="nav-indicator">Section 3.4 of 5</span>
+                <a href="section-3.5.html" class="nav-btn next">Next: Section 3.5</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

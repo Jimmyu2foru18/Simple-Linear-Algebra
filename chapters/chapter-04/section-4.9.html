@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 4.9 — Applications to Markov Chains — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 4 &bull; Section 4.9: Applications to Markov Chains</p>
+        <nav>
+            <a href="index.html">Chapter 4</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 4.9: Applications to Markov Chains</h2>
+            <p class="lead">Assigned problems: <strong>1, 2, 3, 7, 8</strong>. Source: <em>linearAlgebraSolutionsComplete.pdf</em> (PDF Chapter 4, Section 4.9).</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+                <p>What is a Markov chain? A Markov chain models transitions between states using a stochastic matrix whose columns are probability vectors summing to 1.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="Core Lecture, Gilbert Strang (MIT)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>A <strong>stochastic matrix</strong> is a square matrix whose columns are probability vectors (nonnegative entries that sum to 1).</p>
+            <p>A <strong>Markov chain</strong> is described by:</p>
+            <p>$$\mathbf{x}_{k+1} = P\mathbf{x}_k$$</p>
+            <p>where $P$ is a stochastic matrix and $\mathbf{x}_k$ is the state vector at step $k$.</p>
+            <p>A <strong>steady-state vector</strong> $\mathbf{q}$ satisfies $P\mathbf{q} = \mathbf{q}$, equivalently $(P - I)\mathbf{q} = \mathbf{0}$.</p>
+
+            <h3>Worked Problems from linearAlgebraSolutionsComplete.pdf</h3>
+            <div class="questions">
+                <h4>Problem 1</h4>
+                <p><strong>Problem:</strong> <em>Problem 1 from linearAlgebraSolutionsComplete.pdf section 4.9.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><em>Transcribe solution from linearAlgebraSolutionsComplete.pdf here.</em></p>
+                </details>
+
+                <h4>Problem 2</h4>
+                <p><strong>Problem:</strong> <em>Problem 2 from linearAlgebraSolutionsComplete.pdf section 4.9.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><em>Transcribe solution from linearAlgebraSolutionsComplete.pdf here.</em></p>
+                </details>
+
+                <h4>Problem 3</h4>
+                <p><strong>Problem:</strong> <em>Problem 3 from linearAlgebraSolutionsComplete.pdf section 4.9.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><em>Transcribe solution from linearAlgebraSolutionsComplete.pdf here.</em></p>
+                </details>
+
+                <h4>Problem 7</h4>
+                <p><strong>Problem:</strong> <em>Problem 7 from linearAlgebraSolutionsComplete.pdf section 4.9.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><em>Transcribe solution from linearAlgebraSolutionsComplete.pdf here.</em></p>
+                </details>
+
+                <h4>Problem 8</h4>
+                <p><strong>Problem:</strong> <em>Problem 8 from linearAlgebraSolutionsComplete.pdf section 4.9.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><em>Transcribe solution from linearAlgebraSolutionsComplete.pdf here.</em></p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="section-4.8.html" class="nav-btn prev">Previous: Section 4.8</a>
+                <span class="nav-indicator">Section 4.9 of 9</span>
+                <a href="index.html" class="nav-btn next">Chapter 4 Index</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

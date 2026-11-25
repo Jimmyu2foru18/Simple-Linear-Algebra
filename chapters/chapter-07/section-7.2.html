@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 7.2 — Quadratic Forms — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 7 &bull; Section 7.2: Quadratic Forms</p>
+        <nav>
+            <a href="index.html">Chapter 7</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 7.2: Quadratic Forms</h2>
+            <p class="lead">Assigned problems: <strong>from class</strong>. Source: textbook and class notes.</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+                <p>What is a quadratic form? A quadratic form Q(x) = x⁺Ax can be diagonalized using an orthogonal change of variables, revealing its geometric behavior through the eigenvalues of A.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="Core Lecture, Gilbert Strang (MIT)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>A <strong>quadratic form</strong> in variables $x_1, \dots, x_n$ is a function $Q: \mathbb{R}^n \to \mathbb{R}$ of the form:</p>
+            <p>$$Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$$</p>
+            <p>where $A$ is an $n \times n$ symmetric matrix.</p>
+            <p>A quadratic form is:</p>
+            <ul>
+                <li><strong>Positive definite:</strong> $Q(\mathbf{x}) > 0$ for all $\mathbf{x} \neq \mathbf{0}$</li>
+                <li><strong>Negative definite:</strong> $Q(\mathbf{x}) < 0$ for all $\mathbf{x} \neq \mathbf{0}$</li>
+                <li><strong>Indefinite:</strong> $Q(\mathbf{x})$ takes both positive and negative values</li>
+            </ul>
+            <p>The principal axes theorem uses an orthogonal change of variables $\mathbf{x} = P\mathbf{y}$ to diagonalize the quadratic form:</p>
+            <p>$$Q(\mathbf{x}) = \mathbf{y}^T D \mathbf{y} = \lambda_1 y_1^2 + \cdots + \lambda_n y_n^2$$</p>
+
+            <div class="review-callout info">
+                <strong>Note:</strong> Problems for this section are assigned from class. Check with your instructor for specific problem numbers.
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="section-7.1.html" class="nav-btn prev">Previous: Section 7.1</a>
+                <span class="nav-indicator">Section 7.2 of 2</span>
+                <a href="index.html" class="nav-btn next">Chapter 7 Index</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

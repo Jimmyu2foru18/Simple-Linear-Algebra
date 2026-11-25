@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 4.6 — Rank — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 4 &bull; Section 4.6: Rank</p>
+        <nav>
+            <a href="index.html">Chapter 4</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 4.6: Rank</h2>
+            <p class="lead">Assigned problems: <strong>1, 7, 8, 11, 17</strong>. Source: <em>linearAlgebraSolutionsComplete.pdf</em> (PDF Chapter 4, Section 4.6).</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+                <p>What is rank? The rank of a matrix is the dimension of its column space, equal to the number of pivot columns in the matrix.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="Core Lecture, Gilbert Strang (MIT)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>The <strong>rank</strong> of a matrix $A$, written $\text{rank } A$, is the dimension of the column space of $A$.</p>
+            <p>Equivalently, $\text{rank } A$ equals the number of pivot columns in $A$.</p>
+            <p><strong>Rank Theorem:</strong> For an $m \times n$ matrix $A$, $\text{rank } A + \dim(\text{Nul } A) = n$.</p>
+
+            <h3>Worked Problems from linearAlgebraSolutionsComplete.pdf</h3>
+            <div class="questions">
+                <h4>Problem 1</h4>
+                <p><strong>Problem:</strong> Find the dimension of $\text{Col } A$ and $\text{Nul } A$ for a given matrix.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>This subspace is $\text{Span}\{\mathbf{v}_1, \mathbf{v}_2\}$ where $\mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}$ and $\mathbf{v}_2 = \begin{bmatrix} 4 \\ 3 \\ -1 \end{bmatrix}$. Since $\mathbf{v}_1$ and $\mathbf{v}_2$ are not multiples of each other, $\{\mathbf{v}_1, \mathbf{v}_2\}$ is linearly independent and is thus a basis for $H$. Hence <strong>the dimension of $H$ is 2.</strong></p>
+                </details>
+
+                <h4>Problem 7</h4>
+                <p><strong>Problem:</strong> Find the dimension of $H = \text{Nul } A$ where $A$ reduces to the identity matrix.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>Since $A$ row reduces to $\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$, the homogeneous system has only the trivial solution. Thus $H = \text{Nul } A = \{\mathbf{0}\}$, and <strong>the dimension of $H$ is 0.</strong></p>
+                </details>
+
+                <h4>Problem 8</h4>
+                <p><strong>Problem:</strong> From the equation $a - 3b + c = 0$, find the dimension of the subspace.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>From the equation $a - 3b + c = 0$, it is seen that $(a, b, c, d) = b(3, 1, 0, 0) + c(-1, 0, 1, 0) + d(0, 0, 0, 1)$.</p>
+                    <p>Thus the subspace is $\text{Span}\{\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3\}$ where $\mathbf{v}_1 = (3,1,0,0)$, $\mathbf{v}_2 = (-1,0,1,0)$, and $\mathbf{v}_3 = (0,0,0,1)$. It is easily checked that this set of vectors is linearly independent.</p>
+                    <p><strong>Hence the dimension of the subspace is 3.</strong></p>
+                </details>
+
+                <h4>Problem 11</h4>
+                <p><strong>Problem:</strong> Find the dimension of $\text{Col } A$ where $A$ has two pivot columns.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>The matrix $A$ with these vectors as its columns row reduces to show two pivot columns, so the dimension of $\text{Col } A$ (which is the dimension of $H$) is 2.</p>
+                    <p><strong>$\dim(\text{Col } A) = 2$.</strong></p>
+                </details>
+
+                <h4>Problem 17</h4>
+                <p><strong>Problem:</strong> Find the dimension of $\text{Col } A$ and $\text{Nul } A$ where $A$ is in echelon form with three pivot columns and no columns without pivots.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>The matrix $A$ is in echelon form. There are three pivot columns, so the dimension of $\text{Col } A$ is 3. There are no columns without pivots, so the equation $A\mathbf{x} = \mathbf{0}$ has only the trivial solution $\mathbf{0}$. Thus $\text{Nul } A = \{\mathbf{0}\}$, and <strong>the dimension of $\text{Nul } A$ is 0.</strong></p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="section-4.5.html" class="nav-btn prev">Previous: Section 4.5</a>
+                <span class="nav-indicator">Section 4.6 of 9</span>
+                <a href="section-4.7.html" class="nav-btn next">Next: Section 4.7</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>

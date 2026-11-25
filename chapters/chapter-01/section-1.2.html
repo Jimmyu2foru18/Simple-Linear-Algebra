@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 1.2 — Gaussian Elimination — Simple Linear Algebra</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']], processEscapes: true, tags: 'ams' },
+        svg: { fontCache: 'global' },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'no-mathjax' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Linear Algebra</h1>
+        <p class="subtitle">Chapter 1 &bull; Section 1.2: Gaussian Elimination</p>
+        <nav>
+            <a href="index.html">Chapter 1</a>
+            <a href="../index.html">Curriculum</a>
+            <a href="../../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="chapter">
+            <h2>Section 1.2: Gaussian Elimination</h2>
+            <p class="lead">Assigned problems: <strong>5, 7, 9, 11, 13, 43</strong>. Source: <em>linearAlgebraSolutionsComplete.pdf</em>.</p>
+            <div class="section-intro">
+                <h3>What is this section about?</h3>
+            <p>What is row reduction? Row reduction (Gaussian elimination) is a systematic method for solving systems of linear equations by transforming the augmented matrix into echelon or reduced echelon form using elementary row operations.</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIDEO RESOURCES -->
+            <!-- ========================================== -->
+            <div class="video-section">
+                <h4>Core Lecture, Gilbert Strang (MIT)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/J7DzL2_Na80"
+                            title="Core Lecture, Gilbert Strang (MIT)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3>Concept Overview</h3>
+            <p>Gaussian elimination is a systematic algorithm for solving systems of linear equations. The method transforms the augmented matrix $[A|\mathbf{b}]$ into upper triangular form using elementary row operations, making the system easy to solve by back substitution.</p>
+
+            <h4>Elementary Row Operations</h4>
+            <ul>
+                <li><strong>Type I:</strong> Swap two rows ($R_i \leftrightarrow R_j$)</li>
+                <li><strong>Type II:</strong> Multiply a row by a nonzero scalar ($R_i \leftarrow c \cdot R_i$)</li>
+                <li><strong>Type III:</strong> Add a multiple of one row to another ($R_i \leftarrow R_i + c \cdot R_j$)</li>
+            </ul>
+
+            <div class="review-callout info">
+                <strong>Mnemonic: "Zero Below, Solve Above"</strong><br>
+                Create zeros below each pivot (going down columns). Then solve from the bottom up (going up rows).
+            </div>
+
+            <h3>Worked Problems from linearAlgebraSolutionsComplete.pdf</h3>
+            <div class="questions">
+                <h4>Problem 5</h4>
+                <p><strong>Problem:</strong> Determine whether the given matrix is in reduced echelon form, echelon form, or not echelon form. (Matrix involves all-zero rows.)</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>The matrix with all-zero rows is not in echelon form because the zero rows are not at the bottom, or the leading entry conditions are not satisfied. <strong>Not echelon form.</strong></p>
+                </details>
+
+                <h4>Problem 7</h4>
+                <p><strong>Problem:</strong> Row reduce the augmented matrix and find the general solution. The matrix has columns that reduce to show pivot columns 1 and 3, with column 2 free.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>After row reduction, the basic variables are x1 and x3. The remaining variable x2 is free.</p>
+                    <p><strong>General solution:</strong> x1 = -5 - 2x2, x3 = 3 - x2, where x2 is free.</p>
+                </details>
+
+                <h4>Problem 9</h4>
+                <p><strong>Problem:</strong> Row reduce the augmented matrix and find the general solution. The matrix reduces with pivot columns 1 and 2, with column 3 free.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>After row reduction, the basic variables are x1 and x2. The remaining variable x3 is free.</p>
+                    <p><strong>General solution:</strong> x1 = 9, x2 = -4, where x3 is free.</p>
+                </details>
+
+                <h4>Problem 11</h4>
+                <p><strong>Problem:</strong> Row reduce the augmented matrix and find the general solution. The matrix reduces with pivot column 1, with columns 2 and 3 free.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>After row reduction, the basic variable is x1. The remaining variables x2 and x3 are free.</p>
+                    <p><strong>General solution:</strong> x1 = -2 - 3x2 - 4x3, where x2 and x3 are free.</p>
+                </details>
+
+                <h4>Problem 13</h4>
+                <p><strong>Problem:</strong> Row reduce the augmented matrix and find the general solution. The matrix reduces with pivot columns 1, 2, and 4, with columns 3 and 5 free.</p>
+                <details>
+                    <summary>Solution</summary>
+                    <p>After row reduction, the basic variables are x1, x2, and x4. The remaining variables x3 and x5 are free.</p>
+                    <p><strong>General solution:</strong> x1 = 15 - 2x3 - 5x5, x2 = -3 + x3 + 4x5, x4 = -9, where x3 and x5 are free.</p>
+                </details>
+
+                <h4>Problem 43</h4>
+                <p><strong>Problem:</strong> <em>Problem 43 was not found in Section 1.2 of linearAlgebraSolutionsComplete.pdf (Section 1.2 appears to end around problem 33 in this edition). Please verify the problem number or source.</em></p>
+                <details>
+                    <summary>Solution</summary>
+                    <p><em>Solution not available from the PDF for Section 1.2 Problem 43.</em></p>
+                </details>
+            </div>
+
+            <nav class="chapter-nav">
+                <a href="section-1.1.html" class="nav-btn prev">Previous: Section 1.1</a>
+                <span class="nav-indicator">Section 1.2 of 9</span>
+                <a href="section-1.3.html" class="nav-btn next">Next: Section 1.3</a>
+            </nav>
+        </main>
+    </div>
+
+    <script src="../../js/app.js"></script>
+</body>
+</html>
